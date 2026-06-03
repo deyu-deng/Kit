@@ -1,0 +1,45 @@
+/* base.css - Variables, Reset, and Core Typography */
+
+:root {
+  --bg-app: #fafafa;
+  --bg-card: #ffffff;
+  --text-main: #111111;
+  --text-muted: #666666;
+  --border-color: #eaeaea;
+  --accent-color: #000000;
+  --accent-hover: #333333;
+  --accent-light: #f3f4f6;
+  --success-color: #0070f3;
+  --danger-color: #ff0000;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebTools Hub - Free Online Utilities for Developers & Designers</title>
+  <meta name="description" content="A fast, clean, and minimal collection of online tools for developers and designers. Free Base64 encoder, CSS Glassmorphism generator, QR Code maker, Color Palette generator, and Regex tester.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">W</span>
+        <span id="txt-logo-name">WebTools Hub</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="active" id="nav-home">Home</a>
+        <a href="cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
+        <a href="about.html" id="nav-about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner (CLS protected skeleton) -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <!-- AdSense code will load inside this slot dynamically -->
+      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column (Tools Dashboard or Active Tool) -->
+      <main class="primary-column">
+        
+        <!-- 1. Dashboard View (Visible by default) -->
+        <section id="dashboard-view">
+          <div class="tools-grid" id="tools-grid">
+            
+            <!-- Tool Card 1: Base64 -->
+            <div class="tool-card" data-tool="base64">
+              <div class="tool-card-icon">⚡</div>
+              <h3 class="tool-card-title" id="t-card-base64-title">Base64 Encoder/Decoder</h3>
+              <p class="tool-card-desc" id="t-card-base64-desc">Easily encode or decode text strings to and from Base64 format instantly.</p>
+            </div>
+
+            <!-- Tool Card 2: Glassmorphism -->
+            <div class="tool-card" data-tool="glassmorphism">
+              <div class="tool-card-icon">❄️</div>
+              <h3 class="tool-card-title" id="t-card-glass-title">Glassmorphism Generator</h3>
+              <p class="tool-card-desc" id="t-card-glass-desc">Generate beautiful CSS glassmorphism effects with real-time preview and copyable code.</p>
+            </div>
+
+            <!-- Tool Card 3: QR Code -->
+            <div class="tool-card" data-tool="qrcode">
+              <div class="tool-card-icon">📱</div>
+              <h3 class="tool-card-title" id="t-card-qr-title">QR Code Generator</h3>
+              <p class="tool-card-desc" id="t-card-qr-desc">Generate custom QR codes for any URL or text instantly and download as PNG.</p>
+            </div>
+
+            <!-- Tool Card 4: Color Palette -->
+            <div class="tool-card" data-tool="colorpalette">
+              <div class="tool-card-icon">🎨</div>
+              <h3 class="tool-card-title" id="t-card-palette-title">Color Palette Generator</h3>
+              <p class="tool-card-desc" id="t-card-palette-desc">Create harmonious color palettes dynamically and copy Hex codes in one click.</p>
+            </div>
+
+            <!-- Tool Card 5: Regex Tester -->
+            <div class="tool-card" data-tool="regex">
+              <div class="tool-card-icon">🔍</div>
+              <h3 class="tool-card-title" id="t-card-regex-title">Regex Tester</h3>
+              <p class="tool-card-desc" id="t-card-regex-desc">Test your regular expressions in real-time with visual match highlighting.</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 2. Active Tool Viewer (Hidden by default) -->
+        <section class="tool-viewer" id="tool-viewer">
+          <div class="back-to-grid" id="back-to-grid">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">Tool Title</h2>
+            <p class="tool-description" id="active-tool-desc">Tool Description</p>
+          </div>
+
+          <!-- Tool Panel 1: Base64 Container -->
+          <div class="tool-panel" id="panel-base64" style="display:none;">
+            <div class="form-group">
+              <label class="form-label" id="lbl-b64-mode">Operation Mode</label>
+              <div class="btn-group">
+                <button class="btn" id="b64-mode-encode">Encode (编码)</button>
+                <button class="btn btn-secondary" id="b64-mode-decode">Decode (解码)</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="b64-input" id="lbl-b64-input">Input Text</label>
+              <textarea class="form-control" id="b64-input" placeholder="Type or paste your text here..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="b64-output" id="lbl-b64-output">Result Output</label>
+              <textarea class="form-control" id="b64-output" readonly placeholder="Result will appear here..."></textarea>
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="b64-copy-btn">Copy Result</button>
+              <button class="btn btn-secondary" id="b64-clear-btn">Clear</button>
+            </div>
+            <div class="alert alert-success" id="b64-alert" style="display:none;">Copied to clipboard!</div>
+          </div>
+
+          <!-- Tool Panel 2: Glassmorphism Container -->
+          <div class="tool-panel" id="panel-glassmorphism" style="display:none;">
+            <div class="glass-generator-layout">
+              <!-- Controls -->
+              <div class="glass-controls">
+                <div class="form-group">
+                  <label class="form-label"><span id="lbl-glass-opacity">Opacity</span>: <span id="glass-opacity-val">0.2</span></label>
+                  <input type="range" class="form-control" id="glass-opacity" min="0" max="1" step="0.05" value="0.2">
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><span id="lbl-glass-blur">Blur Radius</span>: <span id="glass-blur-val">8px</span></label>
+                  <input type="range" class="form-control" id="glass-blur" min="0" max="30" step="1" value="8">
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><span id="lbl-glass-radius">Border Radius</span>: <span id="glass-radius-val">12px</span></label>
+                  <input type="range" class="form-control" id="glass-radius" min="0" max="50" step="1" value="12">
+                </div>
+                <div class="form-group">
+                  <label class="form-label"><span id="lbl-glass-border">Border Opacity</span>: <span id="glass-border-val">0.1</span></label>
+                  <input type="range" class="form-control" id="glass-border" min="0" max="1" step="0.05" value="0.1">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="glass-color" id="lbl-glass-color">Background Color</label>
+                  <input type="color" class="form-control" id="glass-color" value="#ffffff" style="height: 44px; padding: 4px;">
+                </div>
+              </div>
+              <!-- Preview & Output -->
+              <div class="glass-preview-column">
+                <div class="glass-preview-container">
+                  <div class="glass-preview-box" id="glass-preview">Glass Preview</div>
+                </div>
+                <div class="form-group" style="margin-top: 16px;">
+                  <label class="form-label" id="lbl-glass-css">Generated CSS</label>
+                  <textarea class="form-control" id="glass-css-code" readonly style="font-family: monospace; font-size: 13px; height: 100px;"></textarea>
+                </div>
+                <button class="btn" id="glass-copy-btn" style="width:100%;">Copy CSS Styles</button>
+                
+                <div class="form-group" style="margin-top: 16px;">
+                  <label class="form-label" id="lbl-glass-tailwind">Tailwind CSS Classes</label>
+                  <textarea class="form-control" id="glass-tailwind-code" readonly style="font-family: monospace; font-size: 13px; height: 80px;"></textarea>
+                </div>
+                <button class="btn btn-secondary" id="glass-copy-tailwind-btn" style="width:100%;">Copy Tailwind Classes</button>
+                
+                <div class="alert alert-success" id="glass-alert" style="display:none;">CSS copied to clipboard!</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tool Panel 3: QR Code Container -->
+          <div class="tool-panel" id="panel-qrcode" style="display:none;">
+            <div class="form-group">
+              <label class="form-label" for="qr-input" id="lbl-qr-input">Enter URL or Plain Text</label>
+              <input type="text" class="form-control" id="qr-input" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+              <div class="qr-result-box">
+                <div class="qr-placeholder" id="qr-ph-text">Your QR Code will be rendered here.</div>
+                <canvas id="qrcode-canvas" style="display:none;"></canvas>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="qr-download-btn" disabled>Download PNG</button>
+              <button class="btn btn-secondary" id="qr-clear-btn">Clear</button>
+            </div>
+          </div>
+
+          <!-- Tool Panel 4: Color Palette Container -->
+          <div class="tool-panel" id="panel-colorpalette" style="display:none;">
+            <div class="palette-container" id="palette-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="palette-generate-btn">Generate New Palette</button>
+              <button class="btn btn-secondary" id="palette-copy-all-btn">Copy All Hex</button>
+            </div>
+            <div class="alert alert-success" id="palette-alert" style="display:none;">Color copied to clipboard!</div>
+          </div>
+
+          <!-- Tool Panel 5: Regex Tester Container -->
+          <div class="tool-panel" id="panel-regex" style="display:none;">
+            <div class="regex-tester-layout">
+              <div class="form-group">
+                <label class="form-label" for="regex-pattern" id="lbl-regex-pattern">Regular Expression Pattern</label>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" class="form-control" id="regex-pattern" placeholder="e.g. [a-zA-Z0-9]+@[a-z]+\.[a-z]+" style="font-family: monospace;">
+                  <input type="text" class="form-control" id="regex-flags" placeholder="flags (e.g. g, i)" style="width: 100px; font-family: monospace;" value="g">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regex-text" id="lbl-regex-text">Test Text</label>
+                <div class="regex-highlight-editor">
+                  <div class="regex-highlights" id="regex-highlights-overlay"></div>
+                  <textarea class="form-control regex-input" id="regex-text" placeholder="Enter text to search or test against regex pattern..."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" id="lbl-regex-summary">Matches Match Result</label>
+                <div id="regex-match-summary" style="font-size: 13px; color: var(--text-muted); background: var(--accent-light); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); min-height: 48px;">
+                  No matches found.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inline Ads Segment (CLS protected) -->
+          <div class="ad-container ad-inline" id="adsense-inline-ad">
+            <!-- <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gw-3+1f-3d+2z" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
+          </div>
+
+          <!-- Tool-Specific Guidelines for SEO and AdSense verification -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <!-- Dynamically populated per active tool via JS module in bilingual translation -->
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column (For Sticky Ad and site info) -->
+      <aside class="sidebar-column">
+        <!-- Sticky Sidebar Ad Slot (CLS protected) -->
+        <div class="ad-container ad-sidebar" id="adsense-sidebar-ad">
+          <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="terms.html" id="nav-footer-terms">Terms of Service</a>
+        <a href="about.html" id="nav-footer-about">About Us</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 WebTools Hub. All rights reserved. Managed legally under AdSense guidelines.
+      </div>
+    </footer>
+  </div>
+
+  <!-- QR Code rendering library (load from static public unpkg/cdnjs, lightweight) -->
+  <script src="https://unpkg.com/qr-creator@1.0.0/dist/qr-creator.min.js"></script>
+  <!-- Main entry JS -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+/* layout.css - Grid, Flexbox, Header, Footer, and Structural Frames */
+
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styling */
+.app-header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-card);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin: 0 -24px 32px -24px;
+  padding: 0 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  gap: 8px;
+}
+
+.logo-icon {
+  background: var(--accent-color);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.nav-links a {
+  transition: var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--text-main);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Main Split Columns Layout */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dashboard Grid for Tools */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Active Tool View Container */
+.tool-viewer {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.tool-viewer.active {
+  display: block;
+}
+
+.back-to-grid {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-bottom: 24px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.back-to-grid:hover {
+  color: var(--text-main);
+}
+
+.tool-header {
+  margin-bottom: 28px;
+}
+
+.tool-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.tool-description {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Footer Section */
+.app-footer {
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-card);
+  padding: 32px 24px;
+  margin: 40px -24px 0 -24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-nav a {
+  transition: var(--transition);
+}
+
+.footer-nav a:hover {
+  color: var(--text-main);
+}
+
+.copyright {
+  font-size: 12px;
+  color: var(--text-muted);
+}

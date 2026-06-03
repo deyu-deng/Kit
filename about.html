@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - WebTools Hub</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">W</span>
+        <span id="txt-logo-name">WebTools Hub</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" id="nav-home">Home</a>
+        <a href="cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
+        <a href="about.html" class="active" id="nav-about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-bottom: 40px;">
+      
+      <h1 style="font-size: 28px; margin-bottom: 24px; letter-spacing: -0.5px;" id="about-title">About WebTools Hub</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;" id="about-desc">
+        Welcome to WebTools Hub, a clean, high-performance portal of online utility applications created to streamline the day-to-day work of web developers, programmers, and digital designers.
+      </p>
+
+      <div style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+        
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Our Mission</h3>
+        <p style="margin-bottom: 16px;">We believe developer tools should be simple, beautiful, and blazing fast. Many tools online are cluttered with heavy layouts, intrusive popups, and slow load times. WebTools Hub is built on a "Vanilla first" principle, loading instantly with zero bundle overhead, ensuring a distraction-free work environment.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Why WebTools Hub is Different</h3>
+        <ul style="padding-left: 20px; margin-bottom: 16px;">
+          <li style="margin-bottom: 8px;"><strong>100% Client-Side</strong>: All computations (QR generation, regex checks, Base64 conversions) occur directly in your browser. None of your sensitive credentials or variables are sent to a server.</li>
+          <li style="margin-bottom: 8px;"><strong>Minimal UI Aesthetics</strong>: Inspired by the design systems of Vercel and Linear, our minimal layout provides clear typography and focus.</li>
+          <li style="margin-bottom: 8px;"><strong>AdSense Friendly & SEO Structured</strong>: Our layout is designed in accordance with Google publisher guidelines, ensuring stable ad layouts without layout shift (CLS), protecting both user experience and monetization channels.</li>
+        </ul>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Contact Us</h3>
+        <p style="margin-bottom: 16px;">Have a feature request or feedback? We'd love to hear from you. Feel free to contact our engineering team directly via GitHub or our official channels.</p>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="terms.html" id="nav-footer-terms">Terms of Service</a>
+        <a href="about.html" id="nav-footer-about">About Us</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 WebTools Hub. All rights reserved. Managed legally under AdSense guidelines.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main entry JS -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
