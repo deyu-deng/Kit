@@ -177,13 +177,18 @@ function handleUrlRouting() {
   
   if (!toolName) return;
 
+  // If we are on index.html (homepage), redirect to standalone tool page
+  const isHomepage = document.getElementById('tools-grid') !== null;
+  if (isHomepage) {
+    const cleanParams = new URLSearchParams(params);
+    cleanParams.delete('tool');
+    const searchStr = cleanParams.toString();
+    window.location.href = 'tools/' + toolName + '.html' + (searchStr ? '?' + searchStr : '');
+    return;
+  }
+
   // Wait a small tick to ensure DOM setup is complete and tools are initialized
   setTimeout(() => {
-    // Open the tool viewer if we are on dashboard page
-    const dashboardView = document.getElementById('dashboard-view');
-    if (dashboardView) {
-      openToolViewer(toolName);
-    }
 
     // Populate inputs depending on the tool
     if (toolName === 'base64') {
