@@ -1,4 +1,5 @@
 /* regexTester.js - Real-time Regular Expression testing and highlighting */
+import { translations } from './i18n.js';
 
 export function initRegexTester() {
   const elPattern = document.getElementById('regex-pattern');
@@ -15,8 +16,10 @@ export function initRegexTester() {
     const text = elText.value;
 
     if (!pattern || !text) {
+      const lang = localStorage.getItem('app-lang') || 'en';
+      const dict = translations[lang] || translations.en;
       elOverlay.innerHTML = escapeHtml(text);
-      elSummary.textContent = 'No pattern or text entered.';
+      elSummary.textContent = dict['regex-no-pattern'] || 'No pattern or text entered.';
       return;
     }
 
@@ -78,17 +81,21 @@ export function initRegexTester() {
 
       // Update summary log
       if (matchesCount > 0) {
-        elSummary.innerHTML = `<strong>Success:</strong> Found ${matchesCount} match(es).`;
+        const msg = (dict['regex-matches-found'] || '<strong>Success:</strong> Found {count} match(es).').replace('{count}', matchesCount);
+        elSummary.innerHTML = msg;
         elSummary.style.color = '#0070f3'; // Blue
       } else {
-        elSummary.innerHTML = 'No matches found.';
+        elSummary.innerHTML = dict['regex-no-matches'] || 'No matches found.';
         elSummary.style.color = 'var(--text-muted)';
       }
 
     } catch (err) {
+      const lang = localStorage.getItem('app-lang') || 'en';
+      const dict = translations[lang] || translations.en;
       // Show regex compile error
       elOverlay.innerHTML = escapeHtml(text);
-      elSummary.innerHTML = `<strong>Regex Error:</strong> ${escapeHtml(err.message)}`;
+      const msg = (dict['regex-error'] || '<strong>Regex Error:</strong> {message}').replace('{message}', escapeHtml(err.message));
+      elSummary.innerHTML = msg;
       elSummary.style.color = 'var(--danger-color)'; // Red
     }
   }

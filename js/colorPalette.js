@@ -1,4 +1,5 @@
 /* colorPalette.js - Dynamic Color Palette Generator based on HSL color wheel harmony */
+import { translations } from './i18n.js';
 
 export function initColorPaletteTool() {
   const container = document.getElementById('palette-container');
@@ -64,7 +65,10 @@ export function initColorPaletteTool() {
       // Copy individual color card click handler
       card.addEventListener('click', () => {
         navigator.clipboard.writeText(hex).then(() => {
-          showAlert(`Color ${hex} copied!`);
+          const lang = localStorage.getItem('app-lang') || 'en';
+          const dict = translations[lang] || translations.en;
+          const msg = (dict['palette-copied-single'] || 'Color {color} copied!').replace('{color}', hex);
+          showAlert(msg);
         });
       });
     });
@@ -87,7 +91,10 @@ export function initColorPaletteTool() {
   btnCopyAll.addEventListener('click', () => {
     const listText = currentPalette.join(', ');
     navigator.clipboard.writeText(listText).then(() => {
-      showAlert('All Hex codes copied: ' + listText);
+      const lang = localStorage.getItem('app-lang') || 'en';
+      const dict = translations[lang] || translations.en;
+      const msg = (dict['palette-copied-all'] || 'All Hex codes copied: {colors}').replace('{colors}', listText);
+      showAlert(msg);
     });
   });
 }

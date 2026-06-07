@@ -81,6 +81,27 @@
               <p class="tool-card-desc" id="t-card-regex-desc">Test your regular expressions in real-time with visual match highlighting.</p>
             </div>
 
+            <!-- Tool Card 6: Git Command Generator -->
+            <div class="tool-card" data-tool="git">
+              <div class="tool-card-icon">💻</div>
+              <h3 class="tool-card-title" id="t-card-git-title">Git Command Generator</h3>
+              <p class="tool-card-desc" id="t-card-git-desc">Interactively generate advanced Git CLI scripts for undoing, branching, and stashing.</p>
+            </div>
+
+            <!-- Tool Card 7: Cron visualizer -->
+            <div class="tool-card" data-tool="cron">
+              <div class="tool-card-icon">⏰</div>
+              <h3 class="tool-card-title" id="t-card-cron-title">Cron Expression Visualizer</h3>
+              <p class="tool-card-desc" id="t-card-cron-desc">Build and test cron schedule expressions interactively with readable descriptions.</p>
+            </div>
+
+            <!-- Tool Card 8: WebP Compressor -->
+            <div class="tool-card" data-tool="image">
+              <div class="tool-card-icon">🖼️</div>
+              <h3 class="tool-card-title" id="t-card-image-title">WebP Image Compressor</h3>
+              <p class="tool-card-desc" id="t-card-image-desc">Compress images locally in your browser and convert them safely to WebP format.</p>
+            </div>
+
           </div>
         </section>
 
@@ -219,6 +240,122 @@
                 <div id="regex-match-summary" style="font-size: 13px; color: var(--text-muted); background: var(--accent-light); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); min-height: 48px;">
                   No matches found.
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tool Panel 6: Git Command Generator Container -->
+          <div class="tool-panel" id="panel-git" style="display:none;">
+            <div class="form-group">
+              <label class="form-label" id="lbl-git-category">Select Action Category</label>
+              <select class="form-control" id="git-action-category">
+                <option value="undo-commit" id="opt-git-undo">Undo / Revert Commits (撤销与回退提交)</option>
+                <option value="discard-changes" id="opt-git-discard">Discard Local Changes (丢弃本地修改)</option>
+                <option value="branches" id="opt-git-branch">Branch Operations (分支管理与重命名)</option>
+                <option value="stash" id="opt-git-stash">Stash File Edits (暂存与恢复修改)</option>
+              </select>
+            </div>
+
+            <!-- Contextual Options for Git -->
+            <div id="git-options-container">
+              <!-- Dynamically populated via js/gitGenerator.js -->
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+              <label class="form-label" id="lbl-git-output">Generated Command CLI</label>
+              <textarea class="form-control" id="git-output-code" readonly style="font-family: monospace; font-size: 13px; height: 100px; background-color: var(--accent-light);"></textarea>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn" id="git-copy-btn">Copy Command</button>
+            </div>
+            <div class="alert alert-success" id="git-alert" style="display:none;">Command copied to clipboard!</div>
+          </div>
+
+          <!-- Tool Panel 7: Cron Generator Container -->
+          <div class="tool-panel" id="panel-cron" style="display:none;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px;">
+              <div class="form-group">
+                <label class="form-label" id="lbl-cron-min">Minutes (<span id="cron-min-val">*</span>)</label>
+                <input type="text" class="form-control" id="cron-min" value="*" placeholder="e.g. *, */5, 0-30" style="font-family: monospace;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" id="lbl-cron-hour">Hours (<span id="cron-hour-val">*</span>)</label>
+                <input type="text" class="form-control" id="cron-hour" value="*" placeholder="e.g. *, 0, 12, 1-5" style="font-family: monospace;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" id="lbl-cron-day">Day of Month (<span id="cron-day-val">*</span>)</label>
+                <input type="text" class="form-control" id="cron-day" value="*" placeholder="e.g. *, 1, 15, 1-15" style="font-family: monospace;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" id="lbl-cron-month">Month (<span id="cron-month-val">*</span>)</label>
+                <input type="text" class="form-control" id="cron-month" value="*" placeholder="e.g. *, 1, 6, 1-6" style="font-family: monospace;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" id="lbl-cron-week">Day of Week (<span id="cron-week-val">*</span>)</label>
+                <input type="text" class="form-control" id="cron-week" value="*" placeholder="e.g. *, 0, 5 (Sunday=0)" style="font-family: monospace;">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" id="lbl-cron-output">Compiled Cron Expression</label>
+              <input type="text" class="form-control" id="cron-output-expression" readonly style="font-family: monospace; font-size: 16px; font-weight: 600; text-align: center; background: var(--accent-light); padding: 12px;">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" id="lbl-cron-readable">Human Readable Schedule Description</label>
+              <div id="cron-readable-translation" style="font-size: 14px; font-weight: 500; background: var(--bg-app); border: 1px solid var(--border-color); padding: 16px; border-radius: var(--radius-sm); color: var(--text-main); min-height: 50px;">
+                Every minute of every hour of every day.
+              </div>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn" id="cron-copy-btn">Copy Cron Expression</button>
+            </div>
+            <div class="alert alert-success" id="cron-alert" style="display:none;">Expression copied to clipboard!</div>
+          </div>
+
+          <!-- Tool Panel 8: WebP Image Compressor Container -->
+          <div class="tool-panel" id="panel-image" style="display:none;">
+            <div class="glass-generator-layout" style="grid-template-columns: 1.2fr 1fr;">
+              <!-- Upload & Settings -->
+              <div>
+                <div class="form-group">
+                  <label class="form-label" id="lbl-image-input">Drag & Drop Image or Click to Select</label>
+                  <div id="image-dropzone" style="border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 40px 20px; text-align: center; background: var(--bg-app); cursor: pointer; transition: var(--transition);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">📥</div>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="txt-image-upload-desc">Supports PNG, JPEG, WEBP formats up to 10MB</p>
+                    <input type="file" id="image-file-input" accept="image/png, image/jpeg, image/webp" style="display:none;">
+                  </div>
+                </div>
+
+                <div class="form-group" id="image-settings-container" style="display:none;">
+                  <label class="form-label"><span id="lbl-image-quality">Compression Quality</span>: <span id="image-quality-val">0.75</span></label>
+                  <input type="range" class="form-control" id="image-quality" min="0.1" max="1.0" step="0.05" value="0.75">
+                </div>
+
+                <div class="btn-group" id="image-action-group" style="display:none; margin-top: 24px;">
+                  <button class="btn" id="image-compress-btn">Compress & Convert to WebP</button>
+                  <button class="btn btn-secondary" id="image-reset-btn">Reset</button>
+                </div>
+              </div>
+
+              <!-- Preview & Metrics -->
+              <div id="image-preview-column" style="display:none; display: flex; flex-direction: column; justify-content: space-between; border-left: 1px solid var(--border-color); padding-left: 24px;">
+                <div>
+                  <label class="form-label" id="lbl-image-preview">Compressed Image Preview</label>
+                  <div style="display: flex; align-items: center; justify-content: center; background: var(--accent-light); border-radius: var(--radius-sm); min-height: 180px; overflow: hidden; border: 1px solid var(--border-color); padding: 8px;">
+                    <img id="image-preview-img" style="max-width: 100%; max-height: 240px; border-radius: 4px; object-fit: contain; box-shadow: var(--shadow-sm);">
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; font-size: 13px;">
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-orig-size">Original Size:</strong> <span id="image-orig-size">0 KB</span></p>
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-comp-size">Compressed Size:</strong> <span id="image-comp-size">0 KB</span></p>
+                  <p style="margin-bottom: 0; color: var(--success-color); font-weight: 600;"><strong id="lbl-image-ratio">Size Reduction:</strong> <span id="image-shrink-ratio">0%</span></p>
+                </div>
+
+                <button class="btn" id="image-download-btn" disabled style="width: 100%; margin-top: 16px;">Download WebP Image</button>
               </div>
             </div>
           </div>

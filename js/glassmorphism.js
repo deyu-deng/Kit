@@ -1,4 +1,5 @@
 /* glassmorphism.js - Glassmorphism CSS Parameter controls and previews */
+import { translations } from './i18n.js';
 
 export function initGlassmorphismTool() {
   const opSlider = document.getElementById('glass-opacity');
@@ -78,6 +79,9 @@ border: 1px solid ${borderColor};`;
   copyBtn.addEventListener('click', () => {
     if (!cssTextarea.value) return;
     navigator.clipboard.writeText(cssTextarea.value).then(() => {
+      const lang = localStorage.getItem('app-lang') || 'en';
+      const dict = translations[lang] || translations.en;
+      elAlert.textContent = dict['glass-copied-css'] || 'CSS copied to clipboard!';
       elAlert.style.display = 'block';
       setTimeout(() => {
         elAlert.style.display = 'none';
@@ -89,6 +93,9 @@ border: 1px solid ${borderColor};`;
   copyTailwindBtn.addEventListener('click', () => {
     if (!tailwindTextarea.value) return;
     navigator.clipboard.writeText(tailwindTextarea.value).then(() => {
+      const lang = localStorage.getItem('app-lang') || 'en';
+      const dict = translations[lang] || translations.en;
+      elAlert.textContent = dict['glass-copied-tailwind'] || 'Tailwind classes copied!';
       elAlert.style.display = 'block';
       setTimeout(() => {
         elAlert.style.display = 'none';

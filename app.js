@@ -50,6 +50,18 @@ function applyLanguage(lang) {
   if (activePanel) {
     const toolName = activePanel.id.replace('panel-', '');
     updateActiveToolHeadings(toolName, lang);
+    
+    // Trigger recalculation to update runtime dynamic text in the new language
+    if (toolName === 'base64') {
+      const el = document.getElementById('b64-input');
+      if (el) el.dispatchEvent(new Event('input'));
+    } else if (toolName === 'qrcode') {
+      const el = document.getElementById('qr-input');
+      if (el) el.dispatchEvent(new Event('input'));
+    } else if (toolName === 'regex') {
+      const el = document.getElementById('regex-text');
+      if (el) el.dispatchEvent(new Event('input'));
+    }
   }
 }
 

@@ -162,7 +162,19 @@ export const translations = {
       <p><strong>Q: What is the difference between global and non-global Regex matching?</strong><br>A: A non-global match stops executing after finding the first instance of a matching pattern. A global match (using the <code>g</code> flag) continues scanning and highlights all matching patterns throughout the entire text payload.</p>
       <p><strong>Q: What are lookaround assertions in Regex?</strong><br>A: Lookaround assertions (lookahead <code>(?=...)</code> and lookbehind <code>(?<=...)</code>) let you match patterns only when they are followed or preceded by another pattern without including that surrounding text in the actual matched match group.</p>
       <p><strong>Q: What is a ReDoS (Regular Expression Denial of Service) attack?</strong><br>A: When a regex contains overlapping nested quantifiers (e.g. <code>(a+)+</code>), evaluating it against matching strings can cause exponential backtracking, freezing the rendering thread. Because our tool runs 100% locally in your browser, any script freeze is contained within your own sandbox, keeping our static hosting server fully secure.</p>
-    `
+    `,
+    'b64-error-encode': 'Error encoding text.',
+    'b64-error-decode': 'Error decoding text. Invalid Base64 format.',
+    'palette-copied-single': 'Color {color} copied!',
+    'palette-copied-all': 'All Hex codes copied: {colors}',
+    'regex-no-pattern': 'No pattern or text entered.',
+    'regex-matches-found': '<strong>Success:</strong> Found {count} match(es).',
+    'regex-no-matches': 'No matches found.',
+    'regex-error': '<strong>Regex Error:</strong> {message}',
+    'qr-cdn-failed-title': 'CDN load failed.',
+    'qr-cdn-failed-sub': 'Please check internet connection.',
+    'glass-copied-css': 'CSS copied to clipboard!',
+    'glass-copied-tailwind': 'Tailwind classes copied!'
   },
   cn: {
     // Nav & General
@@ -325,7 +337,19 @@ export const translations = {
       <p><strong>问：全局匹配修饰符 g 对结果校验有何影响？</strong><br>答：如果未加全局修饰符 <code>g</code>，正则引擎会在文本中捕获到第一个符合的实例后立即停滞并返回匹配成功。加上修饰符 <code>g</code> 后，引擎会继续扫描全部文本，直到字符串结束，这在本工具中是实现多处匹配同时高亮的根基。</p>
       <p><strong>问：正则表达式中的“断言（Lookaround）”是什么意思？</strong><br>答：断言包括正向先行断言 <code>(?=...)</code> 和反向后行断言 <code>(?<=...)</code>，它用于校验目标匹配前面或后面是否符合特定文本规则，但在匹配出的结果集本身中<strong>不包含</strong>断言条件内的字符，用于精细过滤。</p>
       <p><strong>问：什么是 ReDoS（正则拒绝服务攻击）？本工具会有此风险吗？</strong><br>答：如果正则表达式编写不当（例如含有嵌套重复的模糊量词如 <code>(a+)+</code>），在解析某些精心构建的恶意字符串时，引擎会陷入指数级回溯，导致 CPU 占用率瞬间飙升至 100% 引起服务瘫痪。因为本工具是 100% 浏览器客户端本地运行，假若发生卡死只会影响用户本地标签页，不会对我们的服务器产生任何伤害，天然免疫此类服务器攻击危害。</p>
-    `
+    `,
+    'b64-error-encode': '编码文本出错。',
+    'b64-error-decode': '解码文本出错。无效的 Base64 格式。',
+    'palette-copied-single': '颜色 {color} 已复制到剪贴板！',
+    'palette-copied-all': '已复制整组颜色代码：{colors}',
+    'regex-no-pattern': '未输入正则表达式或测试文本。',
+    'regex-matches-found': '<strong>匹配成功:</strong> 共找到 {count} 处匹配。',
+    'regex-no-matches': '未找到匹配项。',
+    'regex-error': '<strong>正则错误:</strong> {message}',
+    'qr-cdn-failed-title': 'CDN 加载失败。',
+    'qr-cdn-failed-sub': '请检查网络连接。',
+    'glass-copied-css': 'CSS 样式代码已复制到剪贴板！',
+    'glass-copied-tailwind': 'Tailwind 实用类名已复制到剪贴板！'
   }
 };
 
@@ -412,7 +436,12 @@ export function updatePageLanguage(lang) {
     'about-desc': 'about-desc',
     'nav-footer-privacy': 'nav-footer-privacy',
     'nav-footer-terms': 'nav-footer-terms',
-    'nav-footer-about': 'nav-footer-about'
+    'nav-footer-about': 'nav-footer-about',
+    
+    // Dynamic Alerts Mappings
+    'b64-alert': 'copy-success',
+    'glass-alert': 'glass-copied-css',
+    'palette-alert': 'copy-success'
   };
 
   for (const [id, dictKey] of Object.entries(mappings)) {

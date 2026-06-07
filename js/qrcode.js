@@ -1,4 +1,5 @@
 /* qrcode.js - Client-Side QR Code Generator logic */
+import { translations } from './i18n.js';
 
 export function initQrCodeTool() {
   const elInput = document.getElementById('qr-input');
@@ -39,14 +40,17 @@ export function initQrCodeTool() {
           size: 250
         }, elCanvas);
       } else {
+        const lang = localStorage.getItem('app-lang') || 'en';
+        const dict = translations[lang] || translations.en;
+        
         // Fallback: draw an error on canvas if CDN fails
         const ctx = elCanvas.getContext('2d');
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, 250, 250);
         ctx.fillStyle = "#ff0000";
         ctx.font = "14px Arial";
-        ctx.fillText("CDN load failed.", 10, 50);
-        ctx.fillText("Please check internet connection.", 10, 80);
+        ctx.fillText(dict['qr-cdn-failed-title'] || "CDN load failed.", 10, 50);
+        ctx.fillText(dict['qr-cdn-failed-sub'] || "Please check internet connection.", 10, 80);
       }
     } catch (err) {
       console.error('Failed to generate QR Code:', err);

@@ -1,7 +1,7 @@
 /* ads.js - AdSense Script Lazy Loader & CLS Optimizer */
 
 let adsLoaded = false;
-const ADSENSE_PUB_ID = 'ca-pub-XXXXXXXXXXXXXXXX'; // Replace with real publisher ID
+const ADSENSE_PUB_ID = 'ca-pub-5108296372072915'; // Replace with real publisher ID
 
 /**
  * Lazy loads the AdSense script upon first scroll, interaction, or after a timer.
@@ -40,32 +40,49 @@ export function initAdSenseLazyLoad() {
 
   // Fallback timer: load after 4 seconds if no user interaction has occurred
   setTimeout(loadScriptAndTrigger, 4000);
+
+  // Check for AdBlock after 6 seconds from page load
+  checkAdBlock();
 }
 
 /**
  * Triggers pushing ad configurations into the empty slots.
- * This should only be executed once the main JS file loads.
- */
-/**
- * Triggers pushing ad configurations into the empty slots.
- * This should only be executed once the main JS file loads.
  */
 function triggerPushAds() {
   try {
-    // If window.adsbygoogle is not loaded, it means ads are blocked
-    if (!window.adsbygoogle) {
-      handleAdBlockNotice();
-      return;
-    }
-    
     const slots = document.querySelectorAll('.adsbygoogle');
     slots.forEach(() => {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     });
   } catch (err) {
     console.warn('AdSense push failed (probably blocked by ad-blocker):', err);
-    handleAdBlockNotice();
   }
+}
+
+/**
+ * Checks if AdSense was blocked and shows a friendly developer-oriented message.
+ */
+function checkAdBlock() {
+  setTimeout(() => {
+    const adsScriptLoaded = window.adsbygoogle && window.adsbygoogle.loaded;
+    if (!adsScriptLoaded) {
+      console.log('AdSense blocked by AdBlock. Showing friendly notice.');
+      const adContainers = document.querySelectorAll('.ad-container');
+      adContainers.forEach(container => {
+        // Clear skeleton before text and format like code comments
+        container.innerHTML = `
+          <div class="adblock-notice" style="padding: 20px; font-family: monospace; font-size: 11px; text-align: center; color: var(--text-muted); line-height: 1.5; width: 100%;">
+            // Note: This site runs 100% locally and has zero tracking cookies.<br>
+            // We show quiet ads to cover domain cost.<br>
+            // Please whitelist us if we saved you time. Thanks! :)
+          </div>
+        `;
+        // Remove skeleton class to avoid flashing double borders/backgrounds
+        container.style.borderStyle = 'solid';
+        container.style.borderColor = 'var(--border-color)';
+      });
+    }
+  }, 6000);
 }
 
 /**

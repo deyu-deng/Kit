@@ -1,4 +1,5 @@
 /* base64.js - Base64 Encoding & Decoding Operations */
+import { translations } from './i18n.js';
 
 export function initBase64Tool() {
   const elInput = document.getElementById('b64-input');
@@ -34,7 +35,11 @@ export function initBase64Tool() {
         elOutput.value = decoded;
       }
     } catch (e) {
-      elOutput.value = currentMode === 'encode' ? 'Error encoding text.' : 'Error decoding text. Invalid Base64 format.';
+      const lang = localStorage.getItem('app-lang') || 'en';
+      const dict = translations[lang] || translations.en;
+      elOutput.value = currentMode === 'encode' 
+        ? (dict['b64-error-encode'] || 'Error encoding text.') 
+        : (dict['b64-error-decode'] || 'Error decoding text. Invalid Base64 format.');
     }
   }
 
