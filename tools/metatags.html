@@ -152,11 +152,26 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Meta tags are snippets of text that describe a page's content; the meta tags don't appear on the page itself, but only in the page's source code.</p>
-              <h4>Why use social media previews?</h4>
-              <p>Open Graph (for Facebook and LinkedIn) and Twitter Cards let you control what image, title, and descriptive summaries are shown when your page link is posted on social feeds. Rich cards significantly increase click-through rates.</p>
-              <h4>Robots Directives</h4>
-              <p>The robots tag instructs search engine crawlers (like Googlebot) whether they are allowed to index the page (<code>index</code>) and follow the links on it (<code>follow</code>).</p>
+              <article>
+                <h4>What Are HTML Meta Tags and Why Do They Matter?</h4>
+                <p>HTML meta tags are invisible snippets of code placed inside the <code>&lt;head&gt;</code> section of a web page. They are not rendered visually on the page itself — instead, they communicate structured information about the page to search engines, social media platforms, and browser applications. Meta tags are the primary mechanism through which you control how your page appears in Google search results, how its preview card looks when shared on Facebook or LinkedIn, and what title and description Twitter displays when a user tweets your link. Getting meta tags right is not optional — it is the foundation of on-page SEO and social media marketing.</p>
+
+                <h4>Understanding the Three Preview Systems</h4>
+                <p><strong>Google Search (Standard Meta Tags):</strong> Google primarily reads the <code>&lt;title&gt;</code> tag and <code>&lt;meta name="description"&gt;</code> to build the blue link title and grey descriptive snippet shown in search results. An ideal title is 50–60 characters, and the description should be 150–160 characters — concise, keyword-rich, and action-oriented. Exceeding these limits causes Google to truncate the text with an ellipsis, cutting off your message.</p>
+                <p><strong>Facebook &amp; LinkedIn (Open Graph Protocol):</strong> When a page URL is shared on Facebook or LinkedIn, their crawlers read <code>og:title</code>, <code>og:description</code>, <code>og:image</code>, and <code>og:url</code> tags from the page. The preview card image (<code>og:image</code>) should be at least 1200×630 pixels for optimal display. Without Open Graph tags, Facebook falls back to random page content, often producing ugly, uncontrolled previews that dramatically reduce click-through rates.</p>
+                <p><strong>Twitter Cards:</strong> Twitter (X) uses its own <code>twitter:card</code>, <code>twitter:title</code>, <code>twitter:description</code>, and <code>twitter:image</code> tags. The <code>summary_large_image</code> card type displays a large, full-width image that greatly increases engagement compared to the small thumbnail default.</p>
+
+                <h4>How to Use This Meta Tags Generator</h4>
+                <p>Fill in the Website Title, Page Description, Canonical URL, OG Image URL, and select the Robots Directive and OG type. All three preview simulators — Google, Facebook, and Twitter — update in real-time as you type, letting you see exactly how your page will appear across all platforms before publishing. The generated HTML Tags block below the previews shows the complete, ready-to-paste code for your <code>&lt;head&gt;</code> section. Click <strong>Copy HTML Meta Tags</strong> to copy the entire block to your clipboard.</p>
+
+                <h4>What Is the Robots Meta Tag?</h4>
+                <p>The <code>&lt;meta name="robots"&gt;</code> tag instructs search engine crawlers on how to treat the page. <code>index, follow</code> allows Google to include the page in its search index and follow its outgoing links — the default for all public pages you want to rank. <code>noindex, nofollow</code> tells crawlers to exclude the page from search results entirely, appropriate for admin pages, thank-you pages after form submissions, or any content you don't want publicly discoverable.</p>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: How quickly does Google update its meta tag cache?</strong><br>A: After you update your meta tags and push them live, Google typically re-crawls and re-indexes the page within hours to a few days. You can request priority re-crawling by submitting the URL in Google Search Console under "URL Inspection" → "Request Indexing".</p>
+                <p><strong>Q: Do meta keywords still affect SEO?</strong><br>A: No. Google officially announced in 2009 that the <code>&lt;meta name="keywords"&gt;</code> tag is not used as a ranking factor. Bing and Yandex give it minimal weight. Focus your efforts on compelling titles and descriptions that drive human click-through rates rather than keyword stuffing in meta tags.</p>
+                <p><strong>Q: Why is my OG image not updating on Facebook?</strong><br>A: Facebook aggressively caches page previews. After updating your <code>og:image</code>, use the <a href="https://developers.facebook.com/tools/debug/" target="_blank" rel="noopener">Facebook Sharing Debugger</a> to force a cache refresh and see the updated preview immediately.</p>
+              </article>
             </div>
           </div>
         </section>

@@ -156,11 +156,25 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Flexbox and CSS Grid are the two primary layout models in CSS. Flexbox is designed for one-dimensional layouts (either a row OR a column), while Grid is designed for two-dimensional layouts (rows AND columns simultaneously).</p>
-              <h4>When to use Flexbox?</h4>
-              <p>Flexbox is ideal for small scale layouts (like alignment of navigation bars, buttons, card content text, or centered UI blocks) where elements wrap dynamically depending on sizing constraints.</p>
-              <h4>When to use Grid?</h4>
-              <p>CSS Grid is perfect for page templates or complex structural tables (like dashboard blocks, article grids, gallery list structures, and responsive grid layouts) where rigid alignment on both axes is required.</p>
+              <article>
+                <h4>Flexbox vs CSS Grid — Understanding the Two Layout Systems</h4>
+                <p>Flexbox and CSS Grid are the two foundational layout systems introduced by the W3C as part of the CSS3 specification. While both are used to arrange elements on a page, they operate on fundamentally different models. Flexbox (Flexible Box Layout) is designed for <strong>one-dimensional</strong> layouts — it distributes items along a single axis, either a horizontal row or a vertical column. CSS Grid, on the other hand, is a <strong>two-dimensional</strong> system, allowing precise control over both rows and columns simultaneously.</p>
+                <p>Before these modern layout systems, developers relied on floats, inline-block elements, and table-based layouts — techniques that were fragile, hard to maintain, and semantically incorrect. Flexbox (standardized around 2012) and Grid (widely supported since 2017) fundamentally changed web layout, making responsive design achievable with just a few CSS declarations.</p>
+
+                <h4>How to Use This Flexbox &amp; Grid Playground</h4>
+                <p>Select <strong>Flexbox</strong> or <strong>CSS Grid</strong> from the Display Type dropdown. For Flexbox mode, configure the <code>flex-direction</code> (row, column, and their reverses), <code>justify-content</code> (main-axis alignment: flex-start, center, space-between, space-evenly, etc.), and <code>align-items</code> (cross-axis alignment: stretch, center, baseline). For Grid mode, choose the number of columns (2 to 5) and set the gap between items using the range slider. The live preview updates instantly as you adjust any control, and the generated CSS declarations appear in the code output panel below. Click <strong>Copy CSS</strong> to copy the code for use in your own project.</p>
+
+                <h4>When Should You Use Flexbox?</h4>
+                <p>Flexbox excels at distributing space among items in a single row or column when the total space is unknown or dynamic. Classic use cases include: navigation bars where links should be evenly distributed, button groups that need to be centered within a container, card content areas where text and images need vertical centering, and responsive rows of tags or chips that should wrap to the next line when the container overflows.</p>
+
+                <h4>When Should You Use CSS Grid?</h4>
+                <p>CSS Grid is the right choice when you need precise two-dimensional placement — when both the column and row positions of elements matter. Use Grid for: full page layouts with headers, sidebars, main content areas, and footers; photo galleries with consistent aspect ratios; dashboard widgets that must align both horizontally and vertically; and any design where content must span multiple columns or rows.</p>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: Can Flexbox and Grid be used together?</strong><br>A: Absolutely — this is actually best practice. Grid is typically used for the macro layout (overall page structure), while Flexbox is used for micro layout (aligning elements within each grid cell). Nesting a flex container inside a grid area is extremely common in modern component-based design systems like Material UI and Tailwind.</p>
+                <p><strong>Q: What is the difference between justify-content and align-items?</strong><br>A: In Flexbox, <code>justify-content</code> controls alignment along the <em>main axis</em> (horizontal for row direction, vertical for column direction), while <code>align-items</code> controls alignment along the <em>cross axis</em> (perpendicular to the main axis). In Grid, <code>justify-items</code> aligns content along the inline axis (horizontal) and <code>align-items</code> aligns along the block axis (vertical).</p>
+                <p><strong>Q: What does 1fr mean in CSS Grid?</strong><br>A: <code>fr</code> is a fractional unit unique to CSS Grid. It represents a fraction of the available space in the grid container. <code>repeat(3, 1fr)</code> creates three equal-width columns that each take up one-third of the container width, automatically adjusting when the container is resized — making it the backbone of responsive grid layouts without needing media queries.</p>
+              </article>
             </div>
           </div>
         </section>

@@ -90,11 +90,29 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Markdown is a lightweight markup language with plain-text-formatting syntax. It is designed so that it can be converted to HTML and many other formats.</p>
-              <h4>Why convert between Markdown and HTML?</h4>
-              <p>Many modern CMS frameworks and AI models export content using Markdown syntax, while web pages require raw HTML tags to render styling. Converting them simplifies content deployment.</p>
-              <h4>How does our HTML to Markdown parser work?</h4>
-              <p>We built a custom lightweight recursive DOM walker in JavaScript. This parses nested HTML structures (like headers, quotes, lists, bold elements, links, and code blocks) and maps them cleanly to their Markdown symbols without adding external third-party library overhead.</p>
+              <article>
+                <h4>What Is Markdown and Why Was It Created?</h4>
+                <p>Markdown is a lightweight plain-text formatting language created by John Gruber and Aaron Swartz in 2004, designed to be easily readable in its raw form while simultaneously being convertible to structurally valid HTML. Unlike traditional word processors that embed invisible binary formatting codes, Markdown uses simple punctuation symbols — asterisks for bold, hashes for headings, hyphens for lists — that look natural even in plain text. Its design philosophy is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it's been marked up with tags or formatting instructions.</p>
+                <p>Today, Markdown is the universal language of developer documentation. It powers GitHub README files, Jupyter Notebooks, static site generators (Jekyll, Hugo, Docusaurus), CMS platforms (Ghost, Notion, Obsidian), and the output of every major large language model (ChatGPT, Claude, Gemini). Knowing how to convert between Markdown and HTML is an essential skill for any modern web developer or technical writer.</p>
+
+                <h4>How to Use the Markdown ↔ HTML Converter</h4>
+                <p>To convert Markdown to HTML: Paste your Markdown text (with headings marked by <code>#</code>, bold with <code>**</code>, links as <code>[text](url)</code>, etc.) into the input field and click <strong>Markdown → HTML</strong>. The tool uses the <code>marked.js</code> parser to produce semantic, standards-compliant HTML output. To reverse the conversion: Paste raw HTML markup into the input and click <strong>HTML → Markdown</strong>. A custom recursive DOM walker processes nested elements — headings, paragraphs, bold, italic, blockquotes, ordered and unordered lists, inline code, and code blocks — mapping each tag to its Markdown equivalent. Click <strong>Copy Output</strong> to copy the result to clipboard.</p>
+
+                <h4>Is This Conversion Safe for Sensitive Content?</h4>
+                <p>Yes. All conversion processing happens entirely within your browser's JavaScript engine. Your document content — whether it contains proprietary source code, confidential meeting notes, or internal technical specifications — never leaves your device or gets uploaded to any remote server. This makes the tool suitable even for corporate environments with strict data-handling policies.</p>
+
+                <h4>Common Use Cases</h4>
+                <ul>
+                  <li><strong>Publishing AI Output to CMS:</strong> Large language models like ChatGPT return responses in Markdown format. Converting these responses to HTML lets you paste polished, formatted content directly into WordPress, Webflow, or custom CMS editors that accept HTML.</li>
+                  <li><strong>Extracting Readable Text from HTML Emails:</strong> Marketing emails and newsletters are frequently delivered as complex HTML tables. Converting to Markdown produces a clean, readable plain-text version for archiving or forwarding.</li>
+                  <li><strong>GitHub README Prototyping:</strong> Write your README content in HTML (using your preferred rich-text editor), then convert to Markdown to get GitHub-compatible formatting without manually learning every Markdown syntax rule.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: Does this tool support GitHub Flavored Markdown (GFM)?</strong><br>A: Yes. The underlying <code>marked.js</code> library supports GFM extensions including fenced code blocks (triple backtick syntax), task lists (<code>- [ ] item</code>), tables, and strikethrough text (<code>~~text~~</code>), in addition to the original CommonMark specification.</p>
+                <p><strong>Q: Why does my converted HTML have extra paragraph tags around headings?</strong><br>A: This is expected behavior. Markdown parsers wrap every block-level element in standard HTML containers for semantic correctness. The extra structure ensures that the resulting HTML renders consistently across all browsers and is correctly indexed by search engine crawlers.</p>
+                <p><strong>Q: Can I use the output directly in my website?</strong><br>A: Yes. The HTML output is standards-compliant and safe to embed within your page's content area. However, always apply your own CSS classes or a CSS reset to the container, as the raw HTML output does not include any inline styles.</p>
+              </article>
             </div>
           </div>
         </section>

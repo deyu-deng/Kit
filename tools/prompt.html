@@ -95,11 +95,27 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Prompt engineering is the process of structuring a text query so that it can be interpreted and understood by a generative AI model.</p>
-              <h4>Why use structured templates?</h4>
-              <p>Simple queries like "Review this code" often yield generic or superficial advice from LLMs. By assigning a specific persona, defining clear review constraints, and structuring formatting rules, you force the AI to return detailed, high-fidelity responses.</p>
-              <h4>Security and Offline Privacy</h4>
-              <p>Our prompt helper runs 100% locally in your browser. No prompt content is ever cached or sent to external servers, protecting intellectual property or proprietary code.</p>
+              <article>
+                <h4>What Is Prompt Engineering and Why Does It Matter?</h4>
+                <p>Prompt engineering is the discipline of designing, structuring, and optimizing text instructions (called "prompts") to elicit the most accurate, useful, and relevant responses from large language models (LLMs) such as OpenAI's ChatGPT, Anthropic's Claude, Google Gemini, and open-source models like Llama. As AI models become embedded in every layer of software development and content production, the ability to communicate effectively with them has become a distinct and highly valuable professional skill.</p>
+                <p>The quality difference between a poorly constructed prompt and a well-engineered one is dramatic. A vague instruction like "Review my code" might return a superficial two-paragraph response. The same request structured as a role-specific prompt — specifying the reviewer's expertise, evaluation criteria, output format, and tone — can produce an expert-level analysis that would normally require hours of a senior developer's time. Effective prompts don't just ask questions; they assign expertise, set context, define constraints, and specify the desired format of the response.</p>
+
+                <h4>How to Use the AI Prompt Helper</h4>
+                <p>Select a role template from the dropdown menu — <strong>Code Quality Reviewer</strong> for refactoring and quality analysis, <strong>Professional Localizer &amp; Translator</strong> for multilingual content work, <strong>Elite Conversion Copywriter</strong> for marketing copy, or <strong>Custom Persona</strong> to define your own AI persona from scratch. Fill in the dynamic input fields that appear based on the selected role (such as programming language, target audience, or source text). The structured prompt is compiled and displayed in real-time in the output panel below. Click <strong>Copy Output Prompt</strong> to copy the complete prompt, then paste it directly into ChatGPT, Claude, or any LLM interface.</p>
+
+                <h4>Key Principles of Effective Prompt Construction</h4>
+                <ul>
+                  <li><strong>Role Assignment:</strong> Begin by assigning the AI a specific expert identity ("You are a senior security engineer specializing in OAuth 2.0 implementations"). This dramatically shifts the model's internal weighting toward domain-specific knowledge and vocabulary.</li>
+                  <li><strong>Context and Constraints:</strong> Provide relevant context (programming language, project type, target audience) and explicit constraints (word limit, output format, banned phrases, required sections). Constraints prevent the model from filling space with generic advice.</li>
+                  <li><strong>Output Format Specification:</strong> Specify exactly how you want the response structured — as a numbered list, a table, a code block with inline comments, a JSON object, or a formal report with headings. Models follow formatting instructions with high fidelity when clearly stated.</li>
+                  <li><strong>Chain of Thought:</strong> For complex analytical tasks, instruct the model to "think step by step" before delivering its conclusion. This activates the model's reasoning capabilities and significantly reduces factual errors.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: Does this tool send my prompts to any AI service?</strong><br>A: No. This tool runs 100% inside your browser as a local JavaScript application. It is a <em>builder</em> — it helps you construct a well-structured prompt text, which you then manually copy and paste into your preferred AI service. No AI API calls are made, and none of your prompt content ever leaves your browser.</p>
+                <p><strong>Q: Which AI models work best with these structured prompts?</strong><br>A: The templates are designed with GPT-4 and Claude 3 in mind, but they work effectively across all instruction-following LLMs. For open-source models (Llama, Mistral), you may need to simplify the persona assignment section, as smaller models respond less reliably to complex role definitions.</p>
+                <p><strong>Q: What is the ideal prompt length?</strong><br>A: For most tasks, an effective prompt is between 100 and 500 words. Very short prompts (under 20 words) lack the context needed to produce targeted responses. Excessively long prompts (over 2000 words) can confuse smaller models or cause the model to lose focus on later instructions. The templates in this tool are calibrated for optimal length-to-specificity balance.</p>
+              </article>
             </div>
           </div>
         </section>

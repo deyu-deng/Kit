@@ -121,12 +121,31 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Cron expressions are string templates representing time intervals used to schedule recurring jobs in Linux and Unix environments.</p>
-              <h4>Cron Syntax Breakdown</h4>
-              <p>A standard cron expression consists of 5 fields: minute, hour, day-of-month, month, and day-of-week. Special characters like <code>*</code> (all values), <code>/</code> (intervals), and <code>-</code> (ranges) add flexibility.</p>
-              <h4>Frequently Asked Questions (FAQ)</h4>
-              <p><strong>Q: What does */5 in the minute field mean?</strong><br>A: It means "every 5 minutes". It runs the job whenever the current minute value is divisible by 5 (e.g., 0, 5, 10, etc.).</p>
-              <p><strong>Q: How do I schedule a job to run only on weekdays?</strong><br>A: In the day-of-week (fifth) field, set it to <code>1-5</code> (Monday through Friday).</p>
+              <article>
+                <h4>What Is a Cron Job and How Do Cron Expressions Work?</h4>
+                <p>Cron is a time-based job scheduling daemon built into Unix and Linux operating systems. It allows users to schedule scripts, commands, or programs to run automatically at specified intervals — whether every minute, every night at midnight, on the first of each month, or on any arbitrary recurring schedule. The term "cron" comes from the Greek word for time, <em>chronos</em>. Cron expressions (also called cron schedules or crontab entries) are the concise string syntax used to define these time intervals.</p>
+                <p>A standard cron expression contains exactly 5 space-separated fields that define when a job fires: <code>minute hour day-of-month month day-of-week</code>. Each field accepts specific value types: an asterisk (<code>*</code>) means "every valid value", a number specifies an exact time, a hyphen (<code>-</code>) defines a range, a comma (<code>,</code>) lists multiple values, and a forward slash (<code>/</code>) followed by a number defines step intervals. Mastering these fields allows you to express virtually any recurring schedule in a single compact expression.</p>
+
+                <h4>How to Use the Cron Expression Visualizer</h4>
+                <p>Enter a value in each of the five fields: <strong>Minutes</strong> (0-59), <strong>Hours</strong> (0-23), <strong>Day of Month</strong> (1-31), <strong>Month</strong> (1-12), and <strong>Day of Week</strong> (0-7, where both 0 and 7 represent Sunday). The Compiled Cron Expression field updates in real-time, showing your complete cron string. The <strong>Human Readable Schedule Description</strong> translates the expression into plain English, so you can immediately confirm whether the schedule matches your intent without mentally parsing the syntax. Click <strong>Copy Cron Expression</strong> to copy the result to your clipboard for use in a crontab file, CI/CD configuration, or cloud scheduler.</p>
+
+                <h4>Common Cron Expression Examples</h4>
+                <ul>
+                  <li><code>0 0 * * *</code> — Run at midnight every day (daily backup jobs)</li>
+                  <li><code>*/5 * * * *</code> — Run every 5 minutes (health check pings, queue processors)</li>
+                  <li><code>0 9 * * 1-5</code> — Run at 9:00 AM Monday through Friday (weekday morning reports)</li>
+                  <li><code>0 0 1 * *</code> — Run at midnight on the first day of every month (monthly billing, invoicing)</li>
+                  <li><code>30 2 * * 0</code> — Run at 2:30 AM every Sunday (weekly database maintenance)</li>
+                </ul>
+
+                <h4>Where Are Cron Expressions Used?</h4>
+                <p>Cron expressions are not limited to Linux servers. They have been adopted as the standard scheduling syntax across a wide range of modern platforms. <strong>GitHub Actions</strong> uses cron syntax for its <code>schedule</code> trigger to run CI/CD pipelines on a recurring schedule. <strong>AWS EventBridge</strong> (formerly CloudWatch Events) uses cron expressions to schedule Lambda function invocations. <strong>Google Cloud Scheduler</strong>, <strong>Vercel Cron Jobs</strong>, <strong>Kubernetes CronJob</strong> resources, and enterprise workflow tools like Apache Airflow all use the same 5-field cron syntax.</p>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: What does */5 in the minute field mean?</strong><br>A: It means "every 5 minutes". The <code>/</code> symbol defines a step — <code>*/5</code> means "starting from 0, every 5 steps", which fires at minutes 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, and 55 of every hour.</p>
+                <p><strong>Q: What is the difference between day-of-month and day-of-week fields?</strong><br>A: If you specify a value in both the day-of-month and day-of-week fields (neither is <code>*</code>), most cron implementations will fire the job when <em>either</em> condition is true, not when both are true simultaneously. To schedule on a specific day of a specific week, set day-of-month to <code>*</code> and use only the day-of-week field.</p>
+                <p><strong>Q: Are cron times in UTC or local timezone?</strong><br>A: The traditional Linux cron daemon uses the server's local timezone. However, cloud-based schedulers (GitHub Actions, AWS EventBridge, Google Cloud Scheduler) execute cron expressions in UTC by default. Always verify the timezone settings of your hosting platform when scheduling time-sensitive jobs.</p>
+              </article>
             </div>
           </div>
 

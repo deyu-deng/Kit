@@ -94,11 +94,28 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances.</p>
-              <h4>Why encode URLs?</h4>
-              <p>URLs can only contain characters from the standard ASCII character set. Characters outside this set (like Emojis or Chinese characters) or characters with special syntactic meanings inside URLs (like ?, &amp;, = ) must be encoded to prevent server parsing errors.</p>
-              <h4>What is RFC 3986?</h4>
-              <p>RFC 3986 is the official specification for URIs. Under standard browser JavaScript <code>encodeURIComponent</code>, characters like <code>!'()*</code> are not encoded. In RFC 3986 mode, we map those characters to their hex representations to guarantee strict compliance.</p>
+              <article>
+                <h4>What Is URL Encoding and Why Is It Necessary?</h4>
+                <p>URL encoding — formally defined in RFC 3986 as "percent-encoding" — is the process of converting characters in a URL into a format that can be safely transmitted over the internet. URLs can only contain a limited set of characters from the ASCII printable character set. Characters outside this set (such as Chinese characters, accented letters, emojis, or symbols like spaces and ampersands) must be encoded into a special sequence beginning with a percent sign (<code>%</code>) followed by two hexadecimal digits representing the character's byte value. Without proper URL encoding, web servers may misinterpret request parameters, leading to broken links, failed API calls, or security vulnerabilities.</p>
+                <p>The need for URL encoding extends far beyond just non-ASCII characters. Many ASCII characters have special syntactic meaning within URLs — the question mark (<code>?</code>) marks the beginning of a query string, the ampersand (<code>&amp;</code>) separates query parameters, the equals sign (<code>=</code>) binds key-value pairs, and the hash (<code>#</code>) introduces a fragment identifier. When these characters appear inside parameter values, they must be percent-encoded so servers and browsers do not misparse the URL structure.</p>
+
+                <h4>How to Use This URL Encoder / Decoder</h4>
+                <p>Type or paste the string you wish to process into the input field. Click <strong>Encode String</strong> to convert all special and non-ASCII characters into their percent-encoded equivalents — suitable for embedding in query parameters or path segments. Click <strong>Decode String</strong> to reverse the operation, converting a percent-encoded string back into its original readable form. Enable <strong>RFC 3986 Mode</strong> to additionally encode the characters <code>!'()*</code>, which standard <code>encodeURIComponent</code> leaves unencoded but which must be encoded for strict RFC 3986 compliance. Use <strong>Copy Output</strong> to place the result on your clipboard instantly.</p>
+
+                <h4>RFC 3986 Mode vs Standard Encoding — What Is the Difference?</h4>
+                <p>Standard JavaScript <code>encodeURIComponent()</code> does not encode the characters <code>! ' ( ) *</code>, because they are considered "unreserved" in older URI specifications. However, RFC 3986 (published in 2005) updated the unreserved character definition and recommends encoding these characters when they appear in contexts where their literal meaning could cause ambiguity. Enabling RFC 3986 Mode ensures the widest possible compatibility across strict HTTP clients, curl, mobile SDKs, and backend frameworks.</p>
+
+                <h4>Common Use Cases</h4>
+                <ul>
+                  <li><strong>Building API Query Strings:</strong> When constructing HTTP GET request URLs programmatically, user-provided search terms, filter values, or geographic names must be URL-encoded to prevent malformed requests. For example, searching for "New York &amp; Boston" must be encoded as <code>New%20York%20%26%20Boston</code>.</li>
+                  <li><strong>Debugging Redirects and OAuth Flows:</strong> OAuth 2.0 uses redirect URIs as URL parameters (e.g., <code>redirect_uri=https%3A%2F%2F...</code>). Decoding these values helps developers verify that authorization servers are receiving the correct callback URLs during login flows.</li>
+                  <li><strong>Internationalized Content:</strong> When embedding non-Latin text in URLs — such as Japanese product names or Arabic search terms — URL encoding ensures cross-platform compatibility across all HTTP clients and proxy servers.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: What is the difference between URL encoding and HTML encoding?</strong><br>A: URL encoding converts characters for safe transmission in URIs using percent-notation (e.g., space becomes <code>%20</code>). HTML encoding escapes characters for safe rendering inside HTML documents using named entities (e.g., space as <code>&amp;nbsp;</code>, ampersand as <code>&amp;amp;</code>). They serve different contexts and are not interchangeable.</p>
+                <p><strong>Q: Why does my encoded URL contain + signs instead of %20 for spaces?</strong><br>A: The <code>+</code> sign encoding for spaces is an older convention (application/x-www-form-urlencoded) used by HTML form submissions. RFC 3986 compliant URL encoding always uses <code>%20</code> for spaces. This tool follows RFC 3986, using <code>%20</code> to ensure maximum compatibility.</p>
+              </article>
             </div>
           </div>
         </section>

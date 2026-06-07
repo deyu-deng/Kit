@@ -46,17 +46,44 @@
       <div style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
         
         <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Our Mission</h3>
-        <p style="margin-bottom: 16px;">We believe developer tools should be simple, beautiful, and blazing fast. Many tools online are cluttered with heavy layouts, intrusive popups, and slow load times. Plobi-kit is built on a "Vanilla first" principle, loading instantly with zero bundle overhead, ensuring a distraction-free work environment.</p>
+        <p style="margin-bottom: 16px;">We believe developer tools should be simple, beautiful, and blazing fast. Too many tools online are cluttered with heavy layouts, intrusive popups, slow server round-trips, and mandatory account registrations just to paste a JSON string. Plobi-kit is built on a "Vanilla First, Local First" principle: every single tool in our collection runs entirely inside your browser, with zero server uploads, zero data collection, and zero login requirements. Your work stays on your device — always.</p>
+        <p style="margin-bottom: 16px;">Plobi-kit was created as an open-source developer efficiency project to provide the global developer community with a single, unified, ad-supported toolbox that remains free forever. We are a small, independent team of web developers and designers who believe that productivity tools shouldn't cost money, require subscriptions, or compromise your privacy to be useful.</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Why Plobi-kit is Different</h3>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Why Plobi-kit Is Different</h3>
         <ul style="padding-left: 20px; margin-bottom: 16px;">
-          <li style="margin-bottom: 8px;"><strong>100% Client-Side</strong>: All computations (QR generation, regex checks, Base64 conversions) occur directly in your browser. None of your sensitive credentials or variables are sent to a server.</li>
-          <li style="margin-bottom: 8px;"><strong>Minimal UI Aesthetics</strong>: Inspired by the design systems of Vercel and Linear, our minimal layout provides clear typography and focus.</li>
-          <li style="margin-bottom: 8px;"><strong>AdSense Friendly & SEO Structured</strong>: Our layout is designed in accordance with Google publisher guidelines, ensuring stable ad layouts without layout shift (CLS), protecting both user experience and monetization channels.</li>
+          <li style="margin-bottom: 8px;"><strong>100% Client-Side Processing</strong>: All computations — QR generation, regex matching, image compression, JWT decoding, SVG optimization — occur directly in your browser's JavaScript engine. None of your sensitive credentials, source code, or private files are ever sent to a server.</li>
+          <li style="margin-bottom: 8px;"><strong>No Account Required</strong>: Use every tool immediately without creating an account, providing an email address, or agreeing to a paywall. Developer tools should be instantly accessible.</li>
+          <li style="margin-bottom: 8px;"><strong>Offline-Capable PWA</strong>: Plobi-kit is built as a Progressive Web App. Once loaded, many tools work without an internet connection — ideal for use during flights, on trains, or in network-restricted corporate environments.</li>
+          <li style="margin-bottom: 8px;"><strong>Minimal, Focused Design</strong>: Inspired by the design systems of Vercel and Linear, our clean layout provides precise typography, consistent spacing, and clear visual hierarchy — a distraction-free environment where your work is front and center.</li>
+          <li style="margin-bottom: 8px;"><strong>Bilingual Support</strong>: Every tool and interface element is available in both English and Simplified Chinese, making Plobi-kit equally accessible to developers across the globe.</li>
         </ul>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Contact Us</h3>
-        <p style="margin-bottom: 16px;">Have a feature request or feedback? We'd love to hear from you. Feel free to contact our engineering team directly via GitHub or our official channels.</p>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Our Complete Tool Collection</h3>
+        <p style="margin-bottom: 12px;">Plobi-kit currently offers 17 free developer and designer utility tools:</p>
+        <ul style="padding-left: 20px; margin-bottom: 16px; line-height: 2; column-count: 2; column-gap: 24px;">
+          <li><a href="/tools/base64.html" style="color: var(--success-color);">Base64 Encoder / Decoder</a></li>
+          <li><a href="/tools/json.html" style="color: var(--success-color);">JSON Formatter &amp; Validator</a></li>
+          <li><a href="/tools/jwt.html" style="color: var(--success-color);">JWT Token Decoder</a></li>
+          <li><a href="/tools/url.html" style="color: var(--success-color);">URL Encoder / Decoder</a></li>
+          <li><a href="/tools/markdown.html" style="color: var(--success-color);">Markdown ↔ HTML Converter</a></li>
+          <li><a href="/tools/regex.html" style="color: var(--success-color);">Regex Pattern Tester</a></li>
+          <li><a href="/tools/colorpalette.html" style="color: var(--success-color);">Color Palette Generator</a></li>
+          <li><a href="/tools/glassmorphism.html" style="color: var(--success-color);">CSS Glassmorphism Generator</a></li>
+          <li><a href="/tools/cron.html" style="color: var(--success-color);">Cron Expression Visualizer</a></li>
+          <li><a href="/tools/git.html" style="color: var(--success-color);">Git Command Generator</a></li>
+          <li><a href="/tools/image.html" style="color: var(--success-color);">WebP Image Compressor</a></li>
+          <li><a href="/tools/qrcode.html" style="color: var(--success-color);">QR Code Maker</a></li>
+          <li><a href="/tools/svg.html" style="color: var(--success-color);">SVG Markup Optimizer</a></li>
+          <li><a href="/tools/flexgrid.html" style="color: var(--success-color);">Flexbox &amp; Grid Playground</a></li>
+          <li><a href="/tools/metatags.html" style="color: var(--success-color);">SEO Meta Tags Generator</a></li>
+          <li><a href="/tools/prompt.html" style="color: var(--success-color);">AI Prompt Helper</a></li>
+          <li><a href="/tools/codeimage.html" style="color: var(--success-color);">Code Snippet to Image</a></li>
+        </ul>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">Contact &amp; Feedback</h3>
+        <p style="margin-bottom: 16px;">Have a feature request, bug report, or tool suggestion? We'd love to hear from you. The best way to reach our engineering team is through our public GitHub repository, where you can open issues, vote on features, and track development progress:</p>
+        <p style="margin-bottom: 16px;"><strong>GitHub:</strong> <a href="https://github.com/Deng-Deyu/NoCloud" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">github.com/Deng-Deyu/NoCloud</a></p>
+        <p style="margin-bottom: 16px;">We review all submissions and prioritize tools based on community demand. Plobi-kit was launched in 2026 and is continuously updated with new tools and improvements based on developer feedback.</p>
       </div>
 
     </main>

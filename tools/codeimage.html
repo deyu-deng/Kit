@@ -139,11 +139,29 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Sharing source code as plain text on social channels like Twitter, LinkedIn, or chat groups often ruins indentation and spacing rules. Converting code blocks into clean images preserves aesthetics and makes snippets highly readable.</p>
-              <h4>Customization features</h4>
-              <p>Choose between beautiful gradient backgrounds (Neon Sunset, Ocean Breeze) or classic solid background modes. Customize outer border margins and window file titles to fit your presentation design.</p>
-              <h4>How it works offline</h4>
-              <p>We load the lightweight, open-source <code>html2canvas</code> parser. Once you click export, the script parses the document nodes locally and converts them directly to standard base64 PNG data-url targets, triggering downloads instantly without any server round-trips.</p>
+              <article>
+                <h4>Why Share Code as an Image Instead of Plain Text?</h4>
+                <p>When you paste code directly into Twitter (X), LinkedIn, Discord, or Slack, the platform immediately destroys it — stripping indentation, losing syntax coloring, collapsing blank lines, and wrapping long lines at random column widths. What was clean, readable code becomes an unformatted wall of text that communicates nothing about its structure or elegance. Code screenshots, by contrast, preserve every formatting detail and render as a polished visual asset that stands out in any feed, making them far more effective for technical communication, tutorial sharing, and personal branding as a developer.</p>
+                <p>The code-to-image format has become a widely adopted convention in the developer community. Screenshots of well-styled code snippets in Mac-style window frames — popularized by tools like Carbon and Ray.so — consistently perform better on social media than raw text posts. They signal craftsmanship, attract more engagement, and position the author as someone who cares about presentation quality.</p>
+
+                <h4>How to Use the Code Snippet Image Exporter</h4>
+                <p>Paste your code into the <strong>Source Code Snippet</strong> text area — it can be any language: JavaScript, Python, Go, SQL, CSS, or even plain pseudocode. Enter the <strong>Window Filename Title</strong> to label the Mac-style title bar (e.g., "utils.py", "auth.go", or your project name). Select a <strong>Background Theme</strong>: Neon Sunset and Ocean Breeze offer vibrant gradient backgrounds ideal for social media posts, while Charcoal Dark and Minimalist Slate provide professional, subdued tones better suited for documentation or presentations. Adjust the <strong>Outer Visual Padding</strong> to control the whitespace around the code window — more padding creates a floating, card-like aesthetic; less padding is compact and thumbnail-friendly. Click <strong>Export PNG Image</strong> to download the rendered image directly to your device.</p>
+
+                <h4>How Does the Browser-Based Image Export Work?</h4>
+                <p>This tool uses <code>html2canvas</code>, an open-source JavaScript library that renders HTML DOM elements into a Canvas element by recursively traversing the document structure and painting each element according to its computed CSS styles. When you click Export PNG, the script captures the code preview container, rasterizes it at full resolution, converts the canvas to a Base64-encoded PNG data URL, and triggers an automatic file download — all entirely within your browser without any server-side processing. Your code content never leaves your device.</p>
+
+                <h4>Common Use Cases</h4>
+                <ul>
+                  <li><strong>Developer Social Media Posting:</strong> Share elegant code snippets on Twitter, LinkedIn, or Instagram stories to grow your developer following and showcase your technical expertise visually.</li>
+                  <li><strong>Technical Blog Thumbnails:</strong> Create eye-catching header images for Medium articles, Hashnode posts, or personal blog entries that feature code as the primary visual element.</li>
+                  <li><strong>Presentation Slides:</strong> Embed beautiful code visuals into Keynote, PowerPoint, or Figma presentation decks where copying code directly would result in ugly, unstyled monospace text boxes.</li>
+                  <li><strong>README and Documentation:</strong> Generate polished code imagery for GitHub README files, product landing pages, or API documentation sites to illustrate SDK usage examples attractively.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: What is the output image resolution?</strong><br>A: The export resolution matches the rendered pixel dimensions of the preview window on your screen. For higher resolution output on Retina/HiDPI displays, your browser renders at 2× density automatically, producing sharper images. The PNG format preserves transparency and guarantees lossless quality — no compression artifacts.</p>
+                <p><strong>Q: Can I use the exported images commercially?</strong><br>A: Yes. Images you generate with this tool are entirely your own intellectual property. The tool itself contains no watermarks, attribution requirements, or usage restrictions on exported files.</p>
+              </article>
             </div>
           </div>
         </section>

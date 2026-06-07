@@ -129,11 +129,28 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Scalable Vector Graphics (SVG) is an XML-based vector image format for two-dimensional graphics with support for interactivity and animation.</p>
-              <h4>Why optimize SVGs?</h4>
-              <p>Vector design editors like Figma, Adobe Illustrator, or Inkscape embed a lot of redundant code (like generator namespaces, comments, editor-specific metadata, explicit layout guides) that has no impact on browser rendering but bloats the file size. Cleaning them can shrink file size by up to 50%.</p>
-              <h4>Responsive Scaling</h4>
-              <p>When width and height attributes are fixed in SVG codes, they do not scale properly on responsive web layouts. By removing them and using standard <code>viewBox</code> parameters, SVGs auto-scale to fill parent containers.</p>
+              <article>
+                <h4>What Is SVG and Why Does File Size Matter?</h4>
+                <p>Scalable Vector Graphics (SVG) is an XML-based vector image format standardized by the W3C. Unlike raster formats such as PNG or JPEG — which store images as grids of pixels — SVG describes images using geometric shapes (paths, circles, rectangles, polygons), text, and mathematical transformations. This means SVGs can scale to any resolution — from a tiny favicon to a massive billboard — without any loss of quality, making them the ideal format for logos, icons, UI illustrations, and data visualizations on modern high-DPI screens.</p>
+                <p>However, SVG files exported directly from design tools like Figma, Adobe Illustrator, or Sketch are frequently bloated with unnecessary metadata. These applications embed editor-specific namespace declarations, creation tool identifiers, comment blocks, hidden layer data, and redundant attribute values that have zero visual effect in the browser. An unoptimized Figma export can easily be 3–10× larger than its visually identical optimized equivalent — wasting bandwidth, increasing page load time, and degrading Google PageSpeed Insights scores.</p>
+
+                <h4>How to Use the SVG Optimizer</h4>
+                <p>Paste your raw SVG markup (the full XML code starting with <code>&lt;svg ...&gt;</code>) into the input field. Select which optimization passes to apply: <strong>Remove Editor Namespace Attributes</strong> strips vendor-specific namespace prefixes (like <code>xmlns:xlink</code>, <code>sodipodi</code>, <code>inkscape</code>) that browsers ignore. <strong>Remove Comments / Metadata</strong> deletes XML comment blocks and <code>&lt;metadata&gt;</code> nodes containing embedded title and description text. <strong>Ensure Responsive viewBox Scale</strong> removes fixed <code>width</code> and <code>height</code> attributes from the root <code>&lt;svg&gt;</code> element, allowing the graphic to scale fluidly within its parent CSS container. <strong>Minify Markup Whitespace</strong> collapses all indentation and newlines into a single line, producing the most compact possible output. Click <strong>Optimize SVG Code</strong> to process, then <strong>Copy Optimized SVG</strong> to export the result.</p>
+
+                <h4>Making SVGs Responsive with viewBox</h4>
+                <p>One of the most impactful SVG optimizations for web development is converting fixed-size SVGs to responsive ones. When an SVG has explicit <code>width="400" height="300"</code> attributes, it will always render at exactly that pixel size, overflowing small containers on mobile. By removing the width and height attributes and preserving only the <code>viewBox="0 0 400 300"</code> attribute, the SVG inherits its dimensions from its CSS parent container — a critical requirement for responsive design.</p>
+
+                <h4>Common Use Cases</h4>
+                <ul>
+                  <li><strong>Preparing Figma Icons for Web:</strong> After exporting icon sets from Figma as SVGs, run them through this optimizer to strip Figma-specific metadata, remove invisible layers, and make them responsive before bundling into your React or Vue component library.</li>
+                  <li><strong>Reducing Logo File Sizes:</strong> Company logos exported as SVGs from design tools often contain editorial guides and layers that are invisible in the browser. Optimization can reduce their size by 40-70%.</li>
+                  <li><strong>Improving Core Web Vitals:</strong> Smaller SVG assets reduce the total page weight, directly improving Google's Largest Contentful Paint (LCP) metric and contributing to better search rankings.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: Will optimization change how my SVG looks?</strong><br>A: No — the optimizations in this tool are safe and non-destructive. They remove metadata, editor comments, and redundant formatting that have no visual effect on how the browser renders the graphic. The optimized output will appear pixel-for-pixel identical to the original in all modern browsers.</p>
+                <p><strong>Q: Can I optimize multiple SVGs at once?</strong><br>A: Currently this tool processes one SVG at a time. For batch optimization in a development workflow, consider combining this tool with Node.js-based tools like SVGO for automated build-time optimization.</p>
+              </article>
             </div>
           </div>
         </section>

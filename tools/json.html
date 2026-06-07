@@ -95,11 +95,29 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>JSON (JavaScript Object Notation) is a lightweight format for storing and transporting data. It is commonly used when data is sent from a server to a web page.</p>
-              <h4>Why validation is important?</h4>
-              <p>Even a missing comma or incorrect quotation marks can make JSON syntax invalid, causing parsing errors in applications. Our formatter detects invalid characters and points to exact lines.</p>
-              <h4>Security & Privacy</h4>
-              <p>All calculations are done entirely on your device. We do not upload your data, keeping credentials or API payloads completely private.</p>
+              <article>
+                <h4>What is JSON and Why Does Formatting Matter?</h4>
+                <p>JSON (JavaScript Object Notation) is a lightweight, human-readable data interchange format based on a subset of the JavaScript programming language. Originally introduced by Douglas Crockford in the early 2000s, JSON has become the dominant format for APIs, configuration files, and data storage across virtually every modern technology stack. Unlike XML, JSON is concise and maps naturally to the data structures that programming languages already use — objects, arrays, strings, and numbers.</p>
+                <p>Formatting JSON matters because raw, minified JSON — while perfectly valid for machines — is nearly impossible for humans to read and debug. A single missing comma, an unclosed bracket, or an incorrectly quoted key can silently break an entire application. Well-formatted JSON with consistent indentation lets developers immediately spot structural errors, trace nested hierarchies, and verify that API responses match the expected schema.</p>
+
+                <h4>How to Use the JSON Formatter &amp; Validator</h4>
+                <p>Using this tool is straightforward. Paste your raw or minified JSON string into the input area. Click <strong>Format (2 Spaces)</strong> for a compact but readable layout, or <strong>Format (4 Spaces)</strong> for a wider indentation style preferred in documentation. To prepare JSON for production transmission and reduce payload size, click <strong>Minify JSON</strong> to strip all whitespace. If your JSON is invalid, the tool will highlight the error inline rather than silently producing broken output. Use the <strong>Copy Output</strong> button to copy the result directly to your clipboard.</p>
+
+                <h4>Is It Safe to Paste API Keys and Tokens Here?</h4>
+                <p>Yes. Plobi-kit's JSON Formatter runs 100% inside your local browser using client-side JavaScript. Your data — including any sensitive API credentials, authentication tokens, or private payload values — is never transmitted to any external server. The page works completely offline once loaded, meaning your clipboard data stays entirely within your own device's memory. This is fundamentally different from server-based formatters that log, cache, or process your input on a remote machine.</p>
+
+                <h4>Common Use Cases for JSON Formatting</h4>
+                <ul>
+                  <li><strong>API Debugging:</strong> Copy a raw API response from a network inspector (Chrome DevTools → Network tab) and paste it here to instantly visualize its structure, identify missing fields, or confirm data types.</li>
+                  <li><strong>Configuration File Editing:</strong> Many applications (VS Code, ESLint, Babel, Webpack) use JSON config files. Our formatter validates these files before you save changes, preventing misconfiguration errors.</li>
+                  <li><strong>Data Migration:</strong> When transforming data between systems or preparing seed files for databases like MongoDB or Firebase, formatted JSON helps verify that object nesting and array indexing are correct before import.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: What is the difference between JSON formatting and JSON validation?</strong><br>A: Formatting (or "pretty-printing") adds indentation and line breaks to make JSON readable — it does not change the data. Validation checks whether the JSON strictly follows the RFC 8259 specification: proper quoting, comma placement, balanced brackets, and legal value types. This tool does both simultaneously.</p>
+                <p><strong>Q: Can I format very large JSON files?</strong><br>A: Yes. Since all processing happens in the browser, performance depends on your device. Files under 5MB format instantly. Very large files (10MB+) may take a few seconds on older hardware, but the process remains fully local and private.</p>
+                <p><strong>Q: Why does JSON require double quotes for keys?</strong><br>A: The JSON specification (RFC 8259 / ECMA-404) mandates that all object keys must be strings enclosed in double quotes. This differs from JavaScript object literal syntax, which allows unquoted or single-quoted keys. Strict adherence ensures interoperability across all languages and parsers.</p>
+              </article>
             </div>
           </div>
         </section>

@@ -106,15 +106,35 @@
           <div class="tool-guide-section" id="tool-guide">
             <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
             <div class="guide-content" id="guide-sec-content">
-              <p>Git is a distributed version control system. This interactive helper lets you generate common Git commands without memorizing complex syntax.</p>
-              <h4>Git Best Practices</h4>
-              <ul>
-                <li><strong>Commit Often</strong>: Make small, single-purpose commits to keep your project history clean.</li>
-                <li><strong>Never Commit Secrets</strong>: Avoid staging API keys or configuration passwords. Use environment variables.</li>
-              </ul>
-              <h4>Frequently Asked Questions (FAQ)</h4>
-              <p><strong>Q: What is the difference between soft and hard reset?</strong><br>A: A soft reset (<code>git reset --soft HEAD~1</code>) undoes the commit but keeps your file changes staged in the working directory. A hard reset (<code>git reset --hard HEAD~1</code>) discards the commit AND permanently deletes all changes in your files.</p>
-              <p><strong>Q: How do I recover a deleted branch?</strong><br>A: You can use <code>git reflog</code> to find the commit hash where the branch was, then run <code>git checkout -b branch-name commit-hash</code> to restore it.</p>
+              <article>
+                <h4>What Is Git and Why Is Version Control Essential?</h4>
+                <p>Git is a distributed version control system created by Linus Torvalds in 2005, originally to manage the development of the Linux kernel. Today, Git is the universal standard for source code management, used by virtually every software team and hosting platform including GitHub, GitLab, Bitbucket, and Azure DevOps. At its core, Git tracks every change made to a codebase over time, stores the complete history of every file, and allows multiple developers to collaborate on the same project simultaneously without overwriting each other's work.</p>
+                <p>Unlike older centralized version control systems (like SVN), Git is <strong>distributed</strong> — every developer has a complete copy of the repository, including its full history, on their own machine. This enables offline work, faster operations, and resilient backup. The ability to create, merge, and delete branches in Git is nearly instantaneous, making it the foundation of modern software development workflows including GitFlow, trunk-based development, and CI/CD pipelines.</p>
+
+                <h4>How to Use the Git Command Generator</h4>
+                <p>Select an <strong>Action Category</strong> from the dropdown: <strong>Undo / Revert Commits</strong> for recovering from accidental commits, <strong>Discard Local Changes</strong> for reverting uncommitted file edits, <strong>Branch Operations</strong> for creating, renaming, and deleting branches, or <strong>Stash File Edits</strong> for temporarily saving work in progress. After selecting a category, contextual input fields appear — such as commit count, branch names, or stash messages — that customize the generated command for your specific situation. The Generated Command CLI output updates in real-time. Click <strong>Copy Command</strong> to copy it for immediate use in your terminal.</p>
+
+                <h4>Understanding Git's Most Critical Operations</h4>
+                <ul>
+                  <li><strong>git reset --soft / --hard:</strong> <code>--soft</code> undoes a commit but keeps your file changes staged and ready to recommit. <code>--hard</code> permanently destroys both the commit and all associated file changes — use with extreme caution as it cannot be undone through normal Git operations.</li>
+                  <li><strong>git stash:</strong> Temporarily saves uncommitted changes to a hidden "stash stack" so you can switch branches cleanly without committing half-finished work. Run <code>git stash pop</code> to restore the saved changes later.</li>
+                  <li><strong>git branch -m:</strong> Renames a branch locally. If you've already pushed the branch to a remote, you must also push the renamed branch and delete the old remote reference: <code>git push origin --delete old-name</code>.</li>
+                  <li><strong>git revert:</strong> Creates a new commit that undoes the changes of a specified commit, leaving the full history intact. This is the safe, non-destructive alternative to <code>git reset</code> for shared branches.</li>
+                </ul>
+
+                <h4>Git Best Practices Every Developer Should Follow</h4>
+                <ul>
+                  <li><strong>Commit Often, Commit Small:</strong> Each commit should represent a single logical change. Small, focused commits are easier to review, bisect for bugs, and revert when something goes wrong.</li>
+                  <li><strong>Write Meaningful Commit Messages:</strong> Follow the Conventional Commits specification — start with a type prefix (<code>feat:</code>, <code>fix:</code>, <code>docs:</code>, <code>refactor:</code>) followed by a concise description in the imperative mood.</li>
+                  <li><strong>Never Commit Secrets:</strong> API keys, database passwords, and OAuth credentials should never appear in any commit. Use environment variables, <code>.env</code> files listed in <code>.gitignore</code>, and secret management tools like HashiCorp Vault or GitHub Actions Secrets.</li>
+                  <li><strong>Use Branches for Features:</strong> Always develop new features or bug fixes in separate branches (e.g., <code>feature/user-auth</code>, <code>bugfix/null-pointer</code>). Keep the main branch always deployable.</li>
+                </ul>
+
+                <h4>Frequently Asked Questions</h4>
+                <p><strong>Q: What is the difference between git reset --soft and --hard?</strong><br>A: <code>git reset --soft HEAD~1</code> undoes the last commit but preserves all file changes in your staged area, ready to recommit. <code>git reset --hard HEAD~1</code> discards the commit AND permanently deletes all associated file changes from your working directory. Hard reset is irreversible through normal Git operations — only recoverable via <code>git reflog</code> if done recently.</p>
+                <p><strong>Q: How do I recover a deleted branch?</strong><br>A: Use <code>git reflog</code> to find the commit hash of the tip of the deleted branch, then run <code>git checkout -b branch-name commit-hash</code> to recreate the branch at that commit. The reflog typically retains entries for 90 days by default.</p>
+                <p><strong>Q: What is the difference between git merge and git rebase?</strong><br>A: <code>git merge</code> integrates changes from one branch into another by creating a merge commit, preserving the complete branch history. <code>git rebase</code> moves or replays commits onto a new base commit, producing a linear history without merge commits — cleaner for reading history but potentially problematic if the branch is already shared with other developers.</p>
+              </article>
             </div>
           </div>
 
