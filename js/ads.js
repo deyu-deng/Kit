@@ -17,12 +17,15 @@ export function initAdSenseLazyLoad() {
     // Remove listeners
     triggerEvents.forEach(evt => window.removeEventListener(evt, loadScriptAndTrigger));
     
-    // Inject AdSense tag
-    const script = document.createElement('script');
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUB_ID}`;
-    document.body.appendChild(script);
+    // Inject AdSense tag if not already present in DOM
+    let script = document.querySelector('script[src*="adsbygoogle.js"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUB_ID}`;
+      document.body.appendChild(script);
+    }
 
     script.onload = () => {
       console.log('Google AdSense script loaded successfully.');
