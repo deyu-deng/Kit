@@ -1,0 +1,16 @@
+{
+  "name": "Plobi-kit Developer Toolbox",
+  "short_name": "Plobi-kit",
+  "description": "A privacy-first, offline-capable suite of essential online developer and designer utilities.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#fafafa",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

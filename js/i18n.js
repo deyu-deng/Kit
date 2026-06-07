@@ -3,10 +3,11 @@
 export const translations = {
   en: {
     // Nav & General
-    'logo-name': 'WebTools Hub',
+    'logo-name': 'Plobi-kit',
     'nav-home': 'Home',
     'nav-cheatsheet': 'Cheat Sheet',
     'nav-about': 'About Us',
+    'nav-guides': 'Guides',
     'back-grid': 'Back to Toolbox',
     'lang-btn': 'CN',
     'copy-success': 'Copied to clipboard!',
@@ -22,6 +23,12 @@ export const translations = {
     'card-palette-desc': 'Create harmonious color palettes dynamically and copy Hex codes in one click.',
     'card-regex-title': 'Regex Tester',
     'card-regex-desc': 'Test your regular expressions in real-time with visual match highlighting.',
+    'card-git-title': 'Git Command Generator',
+    'card-git-desc': 'Interactively generate advanced Git CLI scripts for undoing, branching, and stashing.',
+    'card-cron-title': 'Cron Expression Visualizer',
+    'card-cron-desc': 'Build and test cron schedule expressions interactively with readable descriptions.',
+    'card-image-title': 'WebP Image Compressor',
+    'card-image-desc': 'Compress images locally in your browser and convert them safely to WebP format.',
 
     // Tool: Base64
     'b64-title': 'Base64 Encoder / Decoder',
@@ -76,6 +83,32 @@ export const translations = {
     'regex-no-match': 'No matches found in target text.',
     'regex-match-info': 'Found {count} match(es) in the test text.',
 
+    // Tool: Git
+    'git-title': 'Git Command Generator',
+    'git-desc': 'Interactively generate advanced Git CLI scripts for undoing, branching, and stashing.',
+    'git-copy': 'Copy Command',
+    'git-copied': 'Command copied to clipboard!',
+
+    // Tool: Cron
+    'cron-title': 'Cron Expression Visualizer',
+    'cron-desc': 'Build and test cron schedule expressions interactively with readable descriptions.',
+    'cron-copy': 'Copy Cron Expression',
+    'cron-copied': 'Expression copied to clipboard!',
+
+    // Tool: Image Compressor
+    'image-title': 'WebP Image Compressor',
+    'image-desc': 'Compress images locally in your browser and convert them safely to WebP format.',
+    'image-quality': 'Compression Quality',
+    'image-dropzone-text': 'Drag & Drop Image or Click to Select',
+    'image-upload-desc': 'Supports PNG, JPEG, WEBP formats up to 10MB',
+    'image-compress-btn': 'Compress & Convert to WebP',
+    'image-reset-btn': 'Reset',
+    'image-preview-lbl': 'Compressed Image Preview',
+    'image-orig-size-lbl': 'Original Size:',
+    'image-comp-size-lbl': 'Compressed Size:',
+    'image-ratio-lbl': 'Size Reduction:',
+    'image-download-btn': 'Download WebP Image',
+
     // Cheatsheet Page
     'cs-title': 'Developer & Designer Reference Guides',
     'cs-desc': 'Bilingual, clean quick-reference tables summarizing syntax, shortcuts, and utility declarations.',
@@ -93,8 +126,8 @@ export const translations = {
     'th-css-code': 'Common Values list',
 
     // About Page
-    'about-title': 'About WebTools Hub',
-    'about-desc': 'Learn more about our development goals, tool security, and design philosophy.',
+    'about-title': 'About Plobi-kit',
+    'about-desc': 'Learn more about Plobi-kit\'s development goals, tool security, and design philosophy.',
 
     // Guides (SEO Rich Text)
     'guide-base64': `
@@ -163,6 +196,36 @@ export const translations = {
       <p><strong>Q: What are lookaround assertions in Regex?</strong><br>A: Lookaround assertions (lookahead <code>(?=...)</code> and lookbehind <code>(?<=...)</code>) let you match patterns only when they are followed or preceded by another pattern without including that surrounding text in the actual matched match group.</p>
       <p><strong>Q: What is a ReDoS (Regular Expression Denial of Service) attack?</strong><br>A: When a regex contains overlapping nested quantifiers (e.g. <code>(a+)+</code>), evaluating it against matching strings can cause exponential backtracking, freezing the rendering thread. Because our tool runs 100% locally in your browser, any script freeze is contained within your own sandbox, keeping our static hosting server fully secure.</p>
     `,
+    'guide-git': `
+      <p>Git is a distributed version control system. This interactive helper lets you generate common Git commands without memorizing complex syntax.</p>
+      <h4>Git Best Practices</h4>
+      <ul>
+        <li><strong>Commit Often</strong>: Make small, single-purpose commits to keep your project history clean.</li>
+        <li><strong>Never Commit Secrets</strong>: Avoid staging API keys or configuration passwords. Use environment variables.</li>
+      </ul>
+      <h4>Frequently Asked Questions (FAQ)</h4>
+      <p><strong>Q: What is the difference between soft and hard reset?</strong><br>A: A soft reset (<code>git reset --soft HEAD~1</code>) undoes the commit but keeps your file changes staged in the working directory. A hard reset (<code>git reset --hard HEAD~1</code>) discards the commit AND permanently deletes all changes in your files.</p>
+      <p><strong>Q: How do I recover a deleted branch?</strong><br>A: You can use <code>git reflog</code> to find the commit hash where the branch was, then run <code>git checkout -b branch-name commit-hash</code> to restore it.</p>
+    `,
+    'guide-cron': `
+      <p>Cron expressions are string templates representing time intervals used to schedule recurring jobs in Linux and Unix environments.</p>
+      <h4>Cron Syntax Breakdown</h4>
+      <p>A standard cron expression consists of 5 fields: minute, hour, day-of-month, month, and day-of-week. Special characters like <code>*</code> (all values), <code>/</code> (intervals), and <code>-</code> (ranges) add flexibility.</p>
+      <h4>Frequently Asked Questions (FAQ)</h4>
+      <p><strong>Q: What does */5 in the minute field mean?</strong><br>A: It means "every 5 minutes". It runs the job whenever the current minute value is divisible by 5 (e.g., 0, 5, 10, etc.).</p>
+      <p><strong>Q: How do I schedule a job to run only on weekdays?</strong><br>A: In the day-of-week (fifth) field, set it to <code>1-5</code> (Monday through Friday).</p>
+    `,
+    'guide-image': `
+      <p>This image compressor uses the HTML5 Canvas API in your browser. All compression is performed entirely on your computer, meaning your design assets never touch a server.</p>
+      <h4>Why Convert to WebP?</h4>
+      <ul>
+        <li><strong>Superior Compression</strong>: WebP images are typically 25-35% smaller in file size compared to PNG or JPEG at similar quality.</li>
+        <li><strong>Transparency Support</strong>: Like PNG, WebP supports alpha channel transparency, making it ideal for web UI designs.</li>
+      </ul>
+      <h4>Frequently Asked Questions (FAQ)</h4>
+      <p><strong>Q: Is my uploaded image private?</strong><br>A: Yes. Because this tool runs 100% client-side via JavaScript, your original image is read into browser memory and processed locally. No data is uploaded to any server.</p>
+      <p><strong>Q: What compression quality should I choose?</strong><br>A: A quality value of <code>0.75</code> to <code>0.80</code> is generally the sweet spot for web usage, offering significant file size reductions (often over 70%) with virtually no human-visible quality loss.</p>
+    `,
     'b64-error-encode': 'Error encoding text.',
     'b64-error-decode': 'Error decoding text. Invalid Base64 format.',
     'palette-copied-single': 'Color {color} copied!',
@@ -178,10 +241,11 @@ export const translations = {
   },
   cn: {
     // Nav & General
-    'logo-name': 'WebTools 工具箱',
+    'logo-name': 'Plobi-kit',
     'nav-home': '工具首页',
     'nav-cheatsheet': '开发速查表',
     'nav-about': '关于我们',
+    'nav-guides': '技术教程',
     'back-grid': '返回工具列表',
     'lang-btn': 'EN',
     'copy-success': '已成功复制到剪贴板！',
@@ -197,6 +261,12 @@ export const translations = {
     'card-palette-desc': '基于 HSL 色彩空间算法，一键生成和谐一致的前端与 UI 设计配色卡。',
     'card-regex-title': '正则表达式测试器',
     'card-regex-desc': '在浏览器中实时测试您的正则表达式，高亮匹配结果，展示匹配日志。',
+    'card-git-title': 'Git 常用命令交互生成器',
+    'card-git-desc': '通过操作交互，自动拼装输出诸如“撤销提交”、“分支管理”等常见 Git CLI 脚本。',
+    'card-cron-title': 'Cron 定时表达式生成器',
+    'card-cron-desc': '在线配置 Cron 表达式并实时校验，翻译为直观的中文运行计划描述。',
+    'card-image-title': 'WebP 图片本地压缩器',
+    'card-image-desc': '纯本地浏览器端处理，无需上传服务器，高效压缩图片并转换为 WebP 格式。',
 
     // Tool: Base64
     'b64-title': 'Base64 编码 / 解码器',
@@ -251,6 +321,32 @@ export const translations = {
     'regex-no-match': '在目标文本中未找到符合规则的匹配项。',
     'regex-match-info': '在测试文本中共成功匹配出 {count} 个结果。',
 
+    // Tool: Git
+    'git-title': 'Git 常用命令交互生成器',
+    'git-desc': '通过操作交互，自动拼装输出诸如“撤销提交”、“分支管理”等常见 Git CLI 脚本。',
+    'git-copy': '复制 Git 命令',
+    'git-copied': '命令已成功复制到剪贴板！',
+
+    // Tool: Cron
+    'cron-title': 'Cron 定时表达式生成器',
+    'cron-desc': '在线配置 Cron 表达式并实时校验，翻译为直观的中文运行计划描述。',
+    'cron-copy': '复制 Cron 表达式',
+    'cron-copied': '表达式已成功复制到剪贴板！',
+
+    // Tool: Image Compressor
+    'image-title': 'WebP 图片本地压缩/转换器',
+    'image-desc': '纯本地浏览器端处理，无需上传服务器，高效压缩图片并转换为 WebP 格式。',
+    'image-quality': '压缩质量 (Quality)',
+    'image-dropzone-text': '将图片拖放到此处或点击选择文件',
+    'image-upload-desc': '支持 PNG, JPEG, WEBP 格式，最大 10MB',
+    'image-compress-btn': '开始压缩并转换为 WebP',
+    'image-reset-btn': '重置',
+    'image-preview-lbl': '压缩后图片预览',
+    'image-orig-size-lbl': '原始文件大小:',
+    'image-comp-size-lbl': '压缩后大小:',
+    'image-ratio-lbl': '体积减少比例:',
+    'image-download-btn': '下载 WebP 图片',
+
     // Cheatsheet Page
     'cs-title': '开发者与设计师速查表',
     'cs-desc': '中英双语的快速开发参考卡，包含 Markdown 标准语法、常用正则表达式以及 CSS 布局属性速查。',
@@ -268,8 +364,8 @@ export const translations = {
     'th-css-code': '常用可选属性取值',
 
     // About Page
-    'about-title': '关于 WebTools Hub',
-    'about-desc': '了解我们的小工具集在数据隐私、SEO 优化和广告合规等方面的设计初衷。',
+    'about-title': '关于 Plobi-kit',
+    'about-desc': '了解 Plobi-kit 工具箱在数据隐私、SEO 优化和广告合规等方面的设计初衷。',
 
     // Guides (SEO Rich Text)
     'guide-base64': `
@@ -330,13 +426,43 @@ export const translations = {
       <ul>
         <li><code>g</code> (全局匹配): 寻找整篇文档中的所有匹配项，不至于在找到第一个匹配后就立即退出。</li>
         <li><code>i</code> (不区分大小写): 忽略字母的大小写差异（例如正则表达式 <code>[a-z]</code> 可以匹配大写 <code>A</code>）。</li>
-        <li><code>m</code> (多行匹配): 配合 <code>^</code> 或 <code>$</code> 来对段落中的每一行开头和结尾进行判定，而非仅匹配整篇文本首尾。</li>
+        <li><code>m</code> (多行匹配): 配合 <code>^</code> 或 <code>$</code> 来对段落中的每一行开头 and 结尾进行判定，而非仅匹配整篇文本首尾。</li>
       </ul>
       <h4>常见问题解答 (FAQ)</h4>
       <p><strong>问：邮箱校验常用的正则表达式应该怎么写？</strong><br>答：最常用且兼容大部分 RFC 标准的电子邮箱正则匹配规则是：<code>^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</code>。它主要校验了用户名包含合规特殊字符、存在 @ 符号、域名后缀合法且长度在 2 位以上等核心约束。</p>
       <p><strong>问：全局匹配修饰符 g 对结果校验有何影响？</strong><br>答：如果未加全局修饰符 <code>g</code>，正则引擎会在文本中捕获到第一个符合的实例后立即停滞并返回匹配成功。加上修饰符 <code>g</code> 后，引擎会继续扫描全部文本，直到字符串结束，这在本工具中是实现多处匹配同时高亮的根基。</p>
       <p><strong>问：正则表达式中的“断言（Lookaround）”是什么意思？</strong><br>答：断言包括正向先行断言 <code>(?=...)</code> 和反向后行断言 <code>(?<=...)</code>，它用于校验目标匹配前面或后面是否符合特定文本规则，但在匹配出的结果集本身中<strong>不包含</strong>断言条件内的字符，用于精细过滤。</p>
       <p><strong>问：什么是 ReDoS（正则拒绝服务攻击）？本工具会有此风险吗？</strong><br>答：如果正则表达式编写不当（例如含有嵌套重复的模糊量词如 <code>(a+)+</code>），在解析某些精心构建的恶意字符串时，引擎会陷入指数级回溯，导致 CPU 占用率瞬间飙升至 100% 引起服务瘫痪。因为本工具是 100% 浏览器客户端本地运行，假若发生卡死只会影响用户本地标签页，不会对我们的服务器产生任何伤害，天然免疫此类服务器攻击危害。</p>
+    `,
+    'guide-git': `
+      <p>Git 是目前最流行的分布式版本控制系统。本交互式生成器能帮助您快速组装常用的 Git 终端指令，无需死记硬背复杂的参数搭配。</p>
+      <h4>Git 团队协作最佳实践</h4>
+      <ul>
+        <li><strong>小步快跑，频繁提交</strong>：每次提交只解决一个单一问题或功能，保持提交历史清晰可读。</li>
+        <li><strong>切勿提交敏感凭证</strong>：切勿将 API 密钥、数据库密码等明文提交到代码库。应使用环境变量或配置文件进行隔离。</li>
+      </ul>
+      <h4>常见问题解答 (FAQ)</h4>
+      <p><strong>问：git reset 中的 --soft 和 --hard 模式有什么区别？</strong><br>答：<code>--soft</code> 模式（如 <code>git reset --soft HEAD~1</code>）只撤销最近一次的 Commit 动作，但会将您编写的文件改动完整地保留在暂存区（Staging Area）中；而 <code>--hard</code> 模式则会彻底丢弃最近一次 Commit 动作以及该提交之后所有未保存的本地修改，请谨慎使用。</p>
+      <p><strong>问：如果不小心删除了本地分支，还能找回吗？</strong><br>答：可以。只要未进行垃圾回收，您可以运行 <code>git reflog</code> 查看本地操作日志，找到该分支被删除前的 commit 哈希值，然后执行 <code>git checkout -b <分支名> <commit哈希></code> 即可完美恢复。</p>
+    `,
+    'guide-cron': `
+      <p>Cron 表达式是一种在 Linux/Unix 系统及现代化服务器架构中，用来配置定时循环任务（Cron Job）的时间规范字符串。</p>
+      <h4>Cron 语法格式解析</h4>
+      <p>标准的 Cron 表达式由五个以空格分隔的字段构成，从左到右依次代表：分钟、小时、日期、月份、星期。可以通过 <code>*</code>（任意值）、<code>/</code>（时间间隔）和 <code>-</code>（时间范围）等特殊符号配置复杂的周期任务。</p>
+      <h4>常见问题解答 (FAQ)</h4>
+      <p><strong>问：分钟字段中的 */5 代表什么意思？</strong><br>答：代表“每隔 5 分钟”。系统会在分钟数为 5 的整数倍时（如 0分、5分、10分、15分 等）触发该定时任务。</p>
+      <p><strong>问：如何设置定时任务仅在周一至周五的周内工作日运行？</strong><br>答：您只需要将第五个字段（星期字段）的取值配置为 <code>1-5</code>（代表周一至周五），其他日期和月份字段保持默认的 <code>*</code> 即可。</p>
+    `,
+    'guide-image': `
+      <p>本图片压缩器完全基于您本地浏览器中的 HTML5 Canvas API 技术。所有图片压缩与格式转换工作都在您的电脑上完成，确保您的设计资产和隐私数据绝不上传服务器。</p>
+      <h4>为什么要将图片转换为 WebP 格式？</h4>
+      <ul>
+        <li><strong>极高的压缩率</strong>：在保持几乎肉眼无法分辨的画质前提下，WebP 格式生成的图片体积通常比普通的 PNG 或 JPEG 格式要小 25% ~ 35%。</li>
+        <li><strong>完美支持透明度</strong>：与 JPEG 不同，WebP 完美继承了类似 PNG 的 Alpha 透明通道特性，非常适合网页 UI 和图标素材的无缝展示。</li>
+      </ul>
+      <h4>常见问题解答 (FAQ)</h4>
+      <p><strong>问：上传压缩的图片会被网站服务器保存吗？</strong><br>答：<strong>绝对不会。</strong> 本压缩工具基于 100% 浏览器前端 JavaScript 开发，图片会被读入本地浏览器内存，并在本地生成 WebP 导出，整个过程不需要任何网络连接，绝对保障您的商业设计隐私。</p>
+      <p><strong>问：我应该选择多少的压缩质量（Quality）？</strong><br>答：对于普通网页展示，选择 <code>0.75</code> 至 <code>0.80</code> 是最理想的黄金比例，能在文件体积缩减 70% 以上的同时，保证图像画质无明显受损。</p>
     `,
     'b64-error-encode': '编码文本出错。',
     'b64-error-decode': '解码文本出错。无效的 Base64 格式。',
@@ -366,6 +492,8 @@ export function updatePageLanguage(lang) {
     'nav-home': 'nav-home',
     'nav-cheatsheet': 'nav-cheatsheet',
     'nav-about': 'nav-about',
+    'nav-guides': 'nav-guides',
+    'nav-footer-guides': 'nav-guides',
     'lang-btn': 'lang-btn',
     'back-grid': 'back-grid',
     
@@ -380,6 +508,12 @@ export function updatePageLanguage(lang) {
     't-card-palette-desc': 'card-palette-desc',
     't-card-regex-title': 'card-regex-title',
     't-card-regex-desc': 'card-regex-desc',
+    't-card-git-title': 'card-git-title',
+    't-card-git-desc': 'card-git-desc',
+    't-card-cron-title': 'card-cron-title',
+    't-card-cron-desc': 'card-cron-desc',
+    't-card-image-title': 'card-image-title',
+    't-card-image-desc': 'card-image-desc',
     
     // Base64 tool inputs
     'lbl-b64-mode': 'b64-mode',
@@ -415,6 +549,23 @@ export function updatePageLanguage(lang) {
     'lbl-regex-text': 'regex-lbl-text',
     'lbl-regex-summary': 'regex-lbl-summary',
 
+    // Git
+    'git-copy-btn': 'git-copy',
+
+    // Cron
+    'cron-copy-btn': 'cron-copy',
+
+    // Image Compressor
+    'lbl-image-input': 'image-dropzone-text',
+    'txt-image-upload-desc': 'image-upload-desc',
+    'image-compress-btn': 'image-compress-btn',
+    'image-reset-btn': 'image-reset-btn',
+    'lbl-image-preview': 'image-preview-lbl',
+    'lbl-image-orig-size': 'image-orig-size-lbl',
+    'lbl-image-comp-size': 'image-comp-size-lbl',
+    'lbl-image-ratio': 'image-ratio-lbl',
+    'image-download-btn': 'image-download-btn',
+
     // Cheatsheet Elements
     'cs-title': 'cs-title',
     'cs-desc': 'cs-desc',
@@ -441,7 +592,9 @@ export function updatePageLanguage(lang) {
     // Dynamic Alerts Mappings
     'b64-alert': 'copy-success',
     'glass-alert': 'glass-copied-css',
-    'palette-alert': 'copy-success'
+    'palette-alert': 'copy-success',
+    'git-alert': 'git-copied',
+    'cron-alert': 'cron-copied'
   };
 
   for (const [id, dictKey] of Object.entries(mappings)) {

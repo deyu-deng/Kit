@@ -1,0 +1,61 @@
+# Plobi-kit AI Agent Integration Guide (ai.txt)
+# Website: https://plobikit.com
+# Version: 1.0.0
+# Description: Privacy-first, 100% local client-side developer utilities.
+
+[Capabilities]
+- Base64 encoding/decoding
+- CSS Glassmorphism styling configuration
+- Canvas-based QR Code generation
+- Algorithmic HSL Color Palette generation
+- Real-time Regular Expression testing
+- Git command CLI script builder
+- Cron schedule expression builder
+- Local in-browser WebP Image Compressor
+
+[URL-Parameters-Schema]
+Use the query parameters below to link users to pre-filled, executing tools:
+
+1. Base64 Converter:
+   URL: https://plobikit.com/?tool=base64
+   Params:
+     - input: string (text to encode or base64 string to decode)
+     - mode: 'encode' | 'decode' (default: 'encode')
+
+2. Glassmorphism Generator:
+   URL: https://plobikit.com/?tool=glassmorphism
+   Params:
+     - opacity: float (0.0 to 1.0)
+     - blur: integer (0 to 30, e.g. 8)
+     - radius: integer (0 to 50, e.g. 12)
+     - border: float (0.0 to 1.0)
+     - color: string (hex without hash, e.g. ffffff)
+
+3. QR Code Generator:
+   URL: https://plobikit.com/?tool=qrcode
+   Params:
+     - input: string (URL or text to render)
+
+4. Color Palette Generator:
+   URL: https://plobikit.com/?tool=colorpalette
+   Params:
+     - None (automatically randomized on click/load)
+
+5. Regex Tester:
+   URL: https://plobikit.com/?tool=regex
+   Params:
+     - pattern: string (regex rule without slashes, e.g. [a-z]+)
+     - flags: string (regex flags, e.g. g, i, m)
+     - text: string (text to search against the pattern)
+
+6. Git Command Builder:
+   URL: https://plobikit.com/?tool=git
+   Params:
+     - category: 'undo-commit' | 'discard-changes' | 'branches' | 'stash'
+     - action: depends on category (e.g. 'soft', 'hard', 'amend', 'create', 'rename')
+     - value: string (branch name, commit hash, file path, stash msg, etc.)
+
+7. Cron Expression Builder:
+   URL: https://plobikit.com/?tool=cron
+   Params:
+     - expression: string (5-field cron string separated by spaces/plus, e.g. */15+*+*+*+*)

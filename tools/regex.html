@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-time Regular Expression Tester - Plobi-kit</title>
+  <meta name="description" content="Validate matching rules for regular expression patterns in real-time. Full match highlighting overlays, secure client-side checks.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/regex.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html" id="nav-home">Home</a>
+        <a href="../cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
+        <a href="../about.html" id="nav-about">About</a>
+        <a href="../guides/index.html" id="nav-guides">Guides</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">Real-time Regular Expression Tester</h2>
+            <p class="tool-description" id="active-tool-desc">Validate matching rules for patterns. Matched text highlights yellow instantly.</p>
+          </div>
+
+          <!-- Tool Panel: Regex Tester Container -->
+          <div class="tool-panel" id="panel-regex" style="display:block;">
+            <div class="regex-tester-layout">
+              <div class="form-group">
+                <label class="form-label" for="regex-pattern" id="lbl-regex-pattern">Regex Standard Pattern (without leading/trailing slashes)</label>
+                <div style="display: flex; gap: 8px;">
+                  <input type="text" class="form-control" id="regex-pattern" placeholder="e.g. [a-zA-Z0-9]+@[a-z]+\.[a-z]+" style="font-family: monospace;">
+                  <input type="text" class="form-control" id="regex-flags" placeholder="flags (e.g. g, i)" style="width: 100px; font-family: monospace;" value="g">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regex-text" id="lbl-regex-text">Text Area for Testing Matches</label>
+                <div class="regex-highlight-editor">
+                  <div class="regex-highlights" id="regex-highlights-overlay"></div>
+                  <textarea class="form-control regex-input" id="regex-text" placeholder="Enter your search string or paragraph contents here..."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" id="lbl-regex-summary">Matches Match Result</label>
+                <div id="regex-match-summary" style="font-size: 13px; color: var(--text-muted); background: var(--accent-light); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); min-height: 48px;">
+                  No matches found in target text.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inline Ads Segment -->
+          <div class="ad-container ad-inline" id="adsense-inline-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="fluid"
+                 data-ad-layout-key="-gw-3+1f-3d+2z"
+                 data-ad-client="ca-pub-5108296372072915"
+                 data-ad-slot="1234567890"></ins>
+          </div>
+
+          <!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <p>Regular expressions (often shortened to Regex) are text patterns used to perform advanced search, replace, and validation routines inside large document strings.</p>
+              <h4>Regex Flag Properties:</h4>
+              <ul>
+                <li><code>g</code> (global): Finds all matches throughout the text, rather than stopping after the first instance.</li>
+                <li><code>i</code> (case-insensitive): Ignores case differences (matches both "A" and "a" for a pattern).</li>
+                <li><code>m</code> (multi-line): Matches patterns at the start and end of individual lines, not just the entire file string.</li>
+              </ul>
+              <h4>Frequently Asked Questions (FAQ)</h4>
+              <p><strong>Q: How do I test Regex for emails?</strong><br>A: A standard regex pattern for basic email validation is <code>^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$</code>, which matches username patterns, domain structures, and valid top-level domain extensions.</p>
+              <p><strong>Q: What is the difference between global and non-global Regex matching?</strong><br>A: A non-global match stops executing after finding the first instance of a matching pattern. A global match (using the <code>g</code> flag) continues scanning and highlights all matching patterns throughout the entire text payload.</p>
+              <p><strong>Q: What are lookaround assertions in Regex?</strong><br>A: Lookaround assertions (lookahead <code>(?=...)</code> and lookbehind <code>(?<=...)</code>) let you match patterns only when they are followed or preceded by another pattern without including that surrounding text in the actual matched match group.</p>
+              <p><strong>Q: What is a ReDoS (Regular Expression Denial of Service) attack?</strong><br>A: When a regex contains overlapping nested quantifiers (e.g. <code>(a+)+</code>), evaluating it against matching strings can cause exponential backtracking, freezing the rendering thread. Because our tool runs 100% locally in your browser, any script freeze is contained within your own sandbox, keeping our static hosting server fully secure.</p>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        <div class="ad-container ad-sidebar" id="adsense-sidebar-ad">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-5108296372072915"
+               data-ad-slot="5678901234"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms">Terms of Service</a>
+        <a href="../about.html" id="nav-footer-about">About Us</a>
+        <a href="../guides/index.html" id="nav-footer-guides">Guides</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved. Managed legally under AdSense guidelines.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="../app.js"></script>
+</body>
+</html>

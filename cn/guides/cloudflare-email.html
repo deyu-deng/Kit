@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/guides/cloudflare-email.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email.html">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up Free Custom Domain Business Email - Plobi-kit</title>
+  <meta name="description" content="A comprehensive tutorial on setting up free business email hosting using a custom domain with Cloudflare Email Routing and Gmail.">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html" id="nav-home">Home</a>
+        <a href="../cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
+        <a href="../about.html" id="nav-about">About</a>
+        <a href="index.html" class="active" id="nav-guides">Guides</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">EN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px;">
+        
+        <article class="guide-article" style="line-height: 1.8; color: var(--text-muted); font-size: 15px;">
+          
+          <h1 id="article-title" style="font-size: 28px; font-weight: 700; color: var(--text-main); line-height: 1.3; margin-bottom: 20px; letter-spacing: -0.6px;">
+            How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing
+          </h1>
+          
+          <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 30px; display:flex; gap:16px;">
+            <span><strong>Author:</strong> David</span>
+            <span><strong>Updated:</strong> June 2026</span>
+            <span><strong>Category:</strong> Cloud Infrastructure</span>
+          </div>
+
+          <div id="article-body">
+            <p>For any modern developer, designer, or startup founder, having a professional email address (like <code>contact@yourdomain.com</code>) is essential for building brand authority. However, dedicated business email hosting from providers like Google Workspace or Microsoft 365 can cost $6 to $18 per user every single month.</p>
+            
+            <p>If you have registered a custom domain for your project, you can route all inbound and outbound business emails completely free of charge. We will combine Cloudflare's free Email Routing with a free Gmail inbox to handle everything seamlessly.</p>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">Phase 1: Configure Cloudflare Email Routing</h2>
+            <p>First, make sure your domain's DNS nameservers are managed by Cloudflare. If they are, follow these steps to configure email redirection:</p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+              <li>Log in to your <strong>Cloudflare Dashboard</strong> and select your active website domain.</li>
+              <li>In the left sidebar, click on <strong>Email</strong> -> <strong>Email Routing</strong>.</li>
+              <li>Click <strong>Enable Email Routing</strong>. Cloudflare will prompt you to automatically add the required MX and TXT records to your DNS settings. Confirm and apply the changes.</li>
+              <li>Go to the <strong>Destination Addresses</strong> tab, click <strong>Add Destination</strong>, and enter your personal Gmail address (e.g. <code>myaddress@gmail.com</code>). Verify the verification email sent to your inbox.</li>
+              <li>Go to the <strong>Routing Rules</strong> tab, click <strong>Create Rule</strong>. Set the Custom Address to your desired brand username (e.g. <code>contact@yourdomain.com</code>) and forward it to your verified Gmail destination address.</li>
+            </ol>
+
+            <!-- Inline Ad inside article content -->
+            <div class="ad-container ad-inline" id="adsense-inline-ad" style="margin: 32px 0;">
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-format="fluid"
+                   data-ad-layout-key="-gw-3+1f-3d+2z"
+                   data-ad-client="ca-pub-5108296372072915"
+                   data-ad-slot="1234567890"></ins>
+            </div>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">Phase 2: Enable Sending Email as Your Custom Domain</h2>
+            <p>Receiving emails is now active, but replying from your personal Gmail address will leak your personal account address. To send emails as <code>contact@yourdomain.com</code>, we will configure Google's SMTP servers using a Google App Password:</p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+              <li>Go to your <strong>Google Account Settings</strong> (myaccount.google.com).</li>
+              <li>Click on the <strong>Security</strong> tab. Ensure that <strong>2-Step Verification</strong> is turned ON.</li>
+              <li>Search for or navigate to <strong>App passwords</strong>. Create a new app password, naming it something descriptive like "Plobi Email Routing", and copy the generated 16-character code.</li>
+              <li>Open your <strong>Gmail Inbox</strong>, click the gear icon to open <strong>Settings</strong>, and select <strong>See all settings</strong>.</li>
+              <li>Navigate to the <strong>Accounts and Import</strong> tab. Under <strong>Send mail as</strong>, click <strong>Add another email address</strong>.</li>
+              <li>Enter your display name and your custom domain email address (<code>contact@yourdomain.com</code>). Make sure the box "Treat as an alias" is checked, then click Next Step.</li>
+              <li>Configure the SMTP Server settings as follows:
+                <ul style="padding-left: 20px; margin-top: 8px;">
+                  <li><strong>SMTP Server:</strong> <code>smtp.gmail.com</code></li>
+                  <li><strong>Port:</strong> <code>587</code></li>
+                  <li><strong>Username:</strong> Your full personal Gmail address (e.g. <code>myaddress@gmail.com</code>)</li>
+                  <li><strong>Password:</strong> The 16-character Google App Password you generated in step 3</li>
+                  <li>Select <strong>Secured connection using TLS</strong></li>
+                </ul>
+              </li>
+              <li>Click <strong>Add Account</strong>. Gmail will send a confirmation code to your custom address. Since Cloudflare is already routing emails, check your Gmail inbox for this code, copy it, and paste it to complete verification.</li>
+            </ol>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">Phase 3: Ensure Email Deliverability (SPF & DKIM)</h2>
+            <p>To prevent your outgoing custom domain emails from landing in spam, verify that your SPF record in Cloudflare DNS settings explicitly includes Google. Your SPF TXT record value should look like this:</p>
+            <pre style="background: var(--accent-light); padding: 16px; border-radius: var(--radius-sm); font-family: monospace; font-size: 13px; border: 1px solid var(--border-color); overflow-x: auto; margin-bottom: 20px;">v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all</pre>
+            <p>This tells receiving mail servers that both Cloudflare and Google's servers are legally authorized to transmit mail on behalf of your domain name.</p>
+          </div>
+          
+        </article>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        <!-- Sticky Sidebar Ad Slot -->
+        <div class="ad-container ad-sidebar" id="adsense-sidebar-ad">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-5108296372072915"
+               data-ad-slot="5678901234"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy">隐私政策</a>
+        <a href="../terms.html" id="nav-footer-terms">服务条款</a>
+        <a href="../about.html" id="nav-footer-about">关于我们</a>
+        <a href="index.html" id="nav-footer-guides">技术教程</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. 保留所有权利。依据 AdSense 指南合规运营。
+      </div>
+    </footer>
+  </div>
+
+  <script type="module">
+    // Simple i18n support for guides detail page
+    const langBtn = document.getElementById('lang-btn');
+    let currentLang = 'cn';
+
+    const localTranslations = {
+      en: {
+        'txt-logo-name': 'Plobi-kit',
+        'nav-home': 'Home',
+        'nav-cheatsheet': 'Cheat Sheet',
+        'nav-about': 'About',
+        'nav-guides': 'Guides',
+        'nav-footer-privacy': 'Privacy Policy',
+        'nav-footer-terms': 'Terms of Service',
+        'nav-footer-about': 'About Us',
+        'nav-footer-guides': 'Guides',
+        'lang-btn': 'CN',
+        'article-title': 'How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing',
+        'article-body': `
+            <p>For any modern developer, designer, or startup founder, having a professional email address (like <code>contact@yourdomain.com</code>) is essential for building brand authority. However, dedicated business email hosting from providers like Google Workspace or Microsoft 365 can cost $6 to $18 per user every single month.</p>
+            
+            <p>If you have registered a custom domain for your project, you can route all inbound and outbound business emails completely free of charge. We will combine Cloudflare's free Email Routing with a free Gmail inbox to handle everything seamlessly.</p>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">Phase 1: Configure Cloudflare Email Routing</h2>
+            <p>First, make sure your domain's DNS nameservers are managed by Cloudflare. If they are, follow these steps to configure email redirection:</p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+              <li>Log in to your <strong>Cloudflare Dashboard</strong> and select your active website domain.</li>
+              <li>In the left sidebar, click on <strong>Email</strong> -> <strong>Email Routing</strong>.</li>
+              <li>Click <strong>Enable Email Routing</strong>. Cloudflare will prompt you to automatically add the required MX and TXT records to your DNS settings. Confirm and apply the changes.</li>
+              <li>Go to the <strong>Destination Addresses</strong> tab, click <strong>Add Destination</strong>, and enter your personal Gmail address (e.g. <code>myaddress@gmail.com</code>). Verify the verification email sent to your inbox.</li>
+              <li>Go to the <strong>Routing Rules</strong> tab, click <strong>Create Rule</strong>. Set the Custom Address to your desired brand username (e.g. <code>contact@yourdomain.com</code>) and forward it to your verified Gmail destination address.</li>
+            </ol>
+
+            <div class="ad-container ad-inline" id="adsense-inline-ad" style="margin: 32px 0;">
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-format="fluid"
+                   data-ad-layout-key="-gw-3+1f-3d+2z"
+                   data-ad-client="ca-pub-5108296372072915"
+                   data-ad-slot="1234567890"></ins>
+            </div>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">Phase 2: Enable Sending Email as Your Custom Domain</h2>
+            <p>Receiving emails is now active, but replying from your personal Gmail address will leak your personal account address. To send emails as <code>contact@yourdomain.com</code>, we will configure Google's SMTP servers using a Google App Password:</p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+              <li>Go to your <strong>Google Account Settings</strong> (myaccount.google.com).</li>
+              <li>Click on the <strong>Security</strong> tab. Ensure that <strong>2-Step Verification</strong> is turned ON.</li>
+              <li>Search for or navigate to <strong>App passwords</strong>. Create a new app password, naming it something descriptive like "Plobi Email Routing", and copy the generated 16-character code.</li>
+              <li>Open your <strong>Gmail Inbox</strong>, click the gear icon to open <strong>Settings</strong>, and select <strong>See all settings</strong>.</li>
+              <li>Navigate to the <strong>Accounts and Import</strong> tab. Under <strong>Send mail as</strong>, click <strong>Add another email address</strong>.</li>
+              <li>Enter your display name and your custom domain email address (<code>contact@yourdomain.com</code>). Make sure the box "Treat as an alias" is checked, then click Next Step.</li>
+              <li>Configure the SMTP Server settings as follows:
+                <ul style="padding-left: 20px; margin-top: 8px;">
+                  <li><strong>SMTP Server:</strong> <code>smtp.gmail.com</code></li>
+                  <li><strong>Port:</strong> <code>587</code></li>
+                  <li><strong>Username:</strong> Your full personal Gmail address (e.g. <code>myaddress@gmail.com</code>)</li>
+                  <li><strong>Password:</strong> The 16-character Google App Password you generated in step 3</li>
+                  <li>Select <strong>Secured connection using TLS</strong></li>
+                </ul>
+              </li>
+              <li>Click <strong>Add Account</strong>. Gmail will send a confirmation code to your custom address. Since Cloudflare is already routing emails, check your Gmail inbox for this code, copy it, and paste it to complete verification.</li>
+            </ol>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">Phase 3: Ensure Email Deliverability (SPF & DKIM)</h2>
+            <p>To prevent your outgoing custom domain emails from landing in spam, verify that your SPF record in Cloudflare DNS settings explicitly includes Google. Your SPF TXT record value should look like this:</p>
+            <pre style="background: var(--accent-light); padding: 16px; border-radius: var(--radius-sm); font-family: monospace; font-size: 13px; border: 1px solid var(--border-color); overflow-x: auto; margin-bottom: 20px;">v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all</pre>
+            <p>This tells receiving mail servers that both Cloudflare and Google's servers are legally authorized to transmit mail on behalf of your domain name.</p>
+        `
+      },
+      cn: {
+        'txt-logo-name': 'Plobi-kit 工具箱',
+        'nav-home': '工具首页',
+        'nav-cheatsheet': '开发速查表',
+        'nav-about': '关于我们',
+        'nav-guides': '技术教程',
+        'nav-footer-privacy': '隐私政策',
+        'nav-footer-terms': '服务条款',
+        'nav-footer-about': '关于我们',
+        'nav-footer-guides': '技术教程',
+        'lang-btn': 'EN',
+        'article-title': '如何通过 Cloudflare 邮件转发服务免费配置自定义域名企业邮箱',
+        'article-body': `
+            <p>对现代网页开发者、设计师或初创公司创始人而言，拥有一个带有自己域名的专业邮箱地址（例如 <code>contact@yourdomain.com</code>）是建立商业可信度的基石。然而，来自 Google Workspace 或 Microsoft 365 等主流提供商的专业企业邮箱托管服务，每个用户每月需要花费 6 到 18 美元不等的开销。</p>
+            
+            <p>如果您已经为自己的项目成功注册了自定义域名，您完全可以免费实现全部的收发功能。我们将把 Cloudflare 提供的免费“邮件路由（Email Routing）”服务与免费的个人 Gmail 收件箱相结合，来无缝解决这一痛点。</p>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">第一阶段：配置 Cloudflare 邮件路由 (Email Routing)</h2>
+            <p>首先，确保您的域名 DNS 解析服务是由 Cloudflare 托管。若是，请按照以下步骤配置邮件接收重定向：</p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+              <li>登录您的 <strong>Cloudflare 控制台</strong>，并选择您所绑定的域名。</li>
+              <li>在左侧导航栏中，点击 <strong>Email (电子邮件)</strong> -> <strong>Email Routing (电子邮件路由)</strong>。</li>
+              <li>点击 <strong>Enable Email Routing (启用电子邮件路由)</strong>。Cloudflare 会提示您自动向 DNS 设置中写入必要的 MX 和 TXT 解析记录，确认并应用修改。</li>
+              <li>切换到 <strong>Destination Addresses (目标地址)</strong> 面板，点击 <strong>Add Destination (添加目标地址)</strong>，输入您的个人 Gmail 邮箱（例如 <code>myaddress@gmail.com</code>）。进入 Gmail 点击确认完成账号验证。</li>
+              <li>切换到 <strong>Routing Rules (路由规则)</strong> 面板，点击 <strong>Create Rule (创建规则)</strong>。将自定义前缀设为您想要的商业邮箱名（如 <code>contact@yourdomain.com</code>），并将目标定向到刚刚验证通过的 Gmail 地址。</li>
+            </ol>
+
+            <div class="ad-container ad-inline" id="adsense-inline-ad" style="margin: 32px 0;">
+              <ins class="adsbygoogle"
+                   style="display:block"
+                   data-ad-format="fluid"
+                   data-ad-layout-key="-gw-3+1f-3d+2z"
+                   data-ad-client="ca-pub-5108296372072915"
+                   data-ad-slot="1234567890"></ins>
+            </div>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">第二阶段：配置 Gmail 以自定义域名身份发送邮件</h2>
+            <p>现在我们已经能够成功接收来信，但如果用个人 Gmail 直接回复，会暴露您的私人 Gmail 账户。为了能够以 <code>contact@yourdomain.com</code> 的官方身份发送和回复邮件，我们将利用谷歌的 SMTP 中继服务进行配置：</p>
+            <ol style="padding-left: 20px; margin-bottom: 20px;">
+              <li>登录您的 <strong>Google 账户管理台</strong> (myaccount.google.com)。</li>
+              <li>点击左侧的 <strong>Security (安全性)</strong> 面板，确认您的 Google 账户已开启 <strong>两步验证 (2-Step Verification)</strong>。</li>
+              <li>在搜索栏中输入并前往 <strong>应用专用密码 (App passwords)</strong>，新建一个应用密码，命名为“Plobi Mail Routing”，复制系统为您生成的 16 位字符代码。</li>
+              <li>进入您的 <strong>Gmail 邮箱</strong>，点击右上角齿轮进入 <strong>Settings (设置)</strong>，点击 <strong>See all settings (查看所有设置)</strong>。</li>
+              <li>选择 <strong>Accounts and Import (账户和导入)</strong> 标签。在 <strong>Send mail as (用以下地址发送邮件)</strong> 区域中，点击 <strong>Add another email address (添加另一个电子邮件地址)</strong>。</li>
+              <li>在弹出的窗口中，输入您的显示姓名以及自定义域名邮箱（<code>contact@yourdomain.com</code>）。确保勾选了“视为别名 (Treat as an alias)”选项，然后点击下一步。</li>
+              <li>配置 SMTP 发信服务器参数如下：
+                <ul style="padding-left: 20px; margin-top: 8px;">
+                  <li><strong>SMTP 服务器:</strong> <code>smtp.gmail.com</code></li>
+                  <li><strong>端口:</strong> <code>587</code></li>
+                  <li><strong>用户名:</strong> 您的个人 Gmail 邮箱完整地址（例如 <code>myaddress@gmail.com</code>）</li>
+                  <li><strong>密码:</strong> 您在步骤3中申请的 16 位 Google 应用专用密码</li>
+                  <li>选择 <strong>采用 TLS 的安全连接</strong></li>
+                </ul>
+              </li>
+              <li>点击 <strong>Add Account (添加账户)</strong>。Gmail 会向您的自定义邮箱发送一封包含验证码的确认信。由于 Cloudflare 路由已在工作，您只需要在当前 Gmail 收件箱查收该验证码，输入并完成绑定即可。</li>
+            </ol>
+
+            <h2 style="color: var(--text-main); font-size: 20px; margin: 32px 0 12px 0; font-weight: 600;">第三阶段：保障发信送达率 (SPF & DKIM) 优化</h2>
+            <p>为防止您的自定义域名所发送的外发邮件被各大服务商（如 Outlook, QQ 邮箱）误判为垃圾邮件，必须配置 SPF 解析。您需要在 Cloudflare DNS 设置中，将 SPF TXT 解析记录的取值更新为以下内容，明确给予 Google 发信授权：</p>
+            <pre style="background: var(--accent-light); padding: 16px; border-radius: var(--radius-sm); font-family: monospace; font-size: 13px; border: 1px solid var(--border-color); overflow-x: auto; margin-bottom: 20px;">v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all</pre>
+            <p>这条记录将明确告知收信端服务器，Cloudflare 的邮件代理以及谷歌的官方服务器均是该域名的合法发信者。</p>
+        `
+      }
+    };
+
+    function applyLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('app-lang', lang);
+      langBtn.textContent = lang === 'en' ? 'CN' : 'EN';
+      
+      const dict = localTranslations[lang];
+      for (const [id, val] of Object.entries(dict)) {
+        const el = document.getElementById(id);
+        if (el) {
+          if (id === 'article-body') {
+            el.innerHTML = val;
+          } else {
+            el.textContent = val;
+          }
+        }
+      }
+    }
+
+    langBtn.addEventListener('click', () => {
+      const currentUrl = window.location.href;
+      window.location.href = currentUrl.replace('/cn/guides/', '/guides/');
+    });
+
+    applyLang(currentLang);
+    
+    // AdSense load triggers
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch(e) {}
+  </script>
+</body>
+</html>

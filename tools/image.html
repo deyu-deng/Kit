@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local WebP Image Compressor - Plobi-kit</title>
+  <meta name="description" content="Compress PNG, JPEG, and WebP images locally inside your browser window. 100% secure, offline support, zero server uploads.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html" id="nav-home">Home</a>
+        <a href="../cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
+        <a href="../about.html" id="nav-about">About</a>
+        <a href="../guides/index.html" id="nav-guides">Guides</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">WebP Image Compressor</h2>
+            <p class="tool-description" id="active-tool-desc">Compress images locally in your browser and convert them safely to WebP format.</p>
+          </div>
+
+          <!-- Tool Panel: WebP Image Compressor Container -->
+          <div class="tool-panel" id="panel-image" style="display:block;">
+            <div class="glass-generator-layout" style="grid-template-columns: 1.2fr 1fr;">
+              <!-- Upload & Settings -->
+              <div>
+                <div class="form-group">
+                  <label class="form-label" id="lbl-image-input">Drag & Drop Image or Click to Select</label>
+                  <div id="image-dropzone" style="border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 40px 20px; text-align: center; background: var(--bg-app); cursor: pointer; transition: var(--transition);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">📥</div>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="txt-image-upload-desc">Supports PNG, JPEG, WEBP formats up to 10MB</p>
+                    <input type="file" id="image-file-input" accept="image/png, image/jpeg, image/webp" style="display:none;">
+                  </div>
+                </div>
+
+                <div class="form-group" id="image-settings-container" style="display:none;">
+                  <label class="form-label"><span id="lbl-image-quality">Compression Quality</span>: <span id="image-quality-val">0.75</span></label>
+                  <input type="range" class="form-control" id="image-quality" min="0.1" max="1.0" step="0.05" value="0.75">
+                </div>
+
+                <div class="btn-group" id="image-action-group" style="display:none; margin-top: 24px;">
+                  <button class="btn" id="image-compress-btn">Compress & Convert to WebP</button>
+                  <button class="btn btn-secondary" id="image-reset-btn">Reset</button>
+                </div>
+              </div>
+
+              <!-- Preview & Metrics -->
+              <div id="image-preview-column" style="display:none; display: flex; flex-direction: column; justify-content: space-between; border-left: 1px solid var(--border-color); padding-left: 24px;">
+                <div>
+                  <label class="form-label" id="lbl-image-preview">Compressed Image Preview</label>
+                  <div style="display: flex; align-items: center; justify-content: center; background: var(--accent-light); border-radius: var(--radius-sm); min-height: 180px; overflow: hidden; border: 1px solid var(--border-color); padding: 8px;">
+                    <img id="image-preview-img" style="max-width: 100%; max-height: 240px; border-radius: 4px; object-fit: contain; box-shadow: var(--shadow-sm);">
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; font-size: 13px;">
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-orig-size">Original Size:</strong> <span id="image-orig-size">0 KB</span></p>
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-comp-size">Compressed Size:</strong> <span id="image-comp-size">0 KB</span></p>
+                  <p style="margin-bottom: 0; color: var(--success-color); font-weight: 600;"><strong id="lbl-image-ratio">Size Reduction:</strong> <span id="image-shrink-ratio">0%</span></p>
+                </div>
+
+                <button class="btn" id="image-download-btn" disabled style="width: 100%; margin-top: 16px;">Download WebP Image</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inline Ads Segment -->
+          <div class="ad-container ad-inline" id="adsense-inline-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="fluid"
+                 data-ad-layout-key="-gw-3+1f-3d+2z"
+                 data-ad-client="ca-pub-5108296372072915"
+                 data-ad-slot="1234567890"></ins>
+          </div>
+
+          <!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <p>This image compressor uses the HTML5 Canvas API in your browser. All compression is performed entirely on your computer, meaning your design assets never touch a server.</p>
+              <h4>Why Convert to WebP?</h4>
+              <ul>
+                <li><strong>Superior Compression</strong>: WebP images are typically 25-35% smaller in file size compared to PNG or JPEG at similar quality.</li>
+                <li><strong>Transparency Support</strong>: Like PNG, WebP supports alpha channel transparency, making it ideal for web UI designs.</li>
+              </ul>
+              <h4>Frequently Asked Questions (FAQ)</h4>
+              <p><strong>Q: Is my uploaded image private?</strong><br>A: Yes. Because this tool runs 100% client-side via JavaScript, your original image is read into browser memory and processed locally. No data is uploaded to any server.</p>
+              <p><strong>Q: What compression quality should I choose?</strong><br>A: A quality value of <code>0.75</code> to <code>0.80</code> is generally the sweet spot for web usage, offering significant file size reductions (often over 70%) with virtually no human-visible quality loss.</p>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        <div class="ad-container ad-sidebar" id="adsense-sidebar-ad">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-5108296372072915"
+               data-ad-slot="5678901234"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms">Terms of Service</a>
+        <a href="../about.html" id="nav-footer-about">About Us</a>
+        <a href="../guides/index.html" id="nav-footer-guides">Guides</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved. Managed legally under AdSense guidelines.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="../app.js"></script>
+</body>
+</html>

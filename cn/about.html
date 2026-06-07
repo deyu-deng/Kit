@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 - Plobi-kit</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/about.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" id="nav-home">工具首页</a>
+        <a href="cheatsheet.html" id="nav-cheatsheet">开发速查表</a>
+        <a href="about.html" class="active" id="nav-about">关于我们</a>
+        <a href="guides/index.html" id="nav-guides">技术教程</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">EN</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-bottom: 40px;">
+      
+      <h1 style="font-size: 28px; margin-bottom: 24px; letter-spacing: -0.5px;" id="about-title">关于 Plobi-kit</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;" id="about-desc">
+        欢迎来到 Plobi-kit，这是一个在 Plobi 品牌下创建的干净、高性能的在线工具门户网站，旨在简化网页开发者、程序员和数字设计师的日常工作。
+      </p>
+
+      <div style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+        
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">我们的使命</h3>
+        <p style="margin-bottom: 16px;">我们坚信开发工具应当是简单、美观且极速的。网上的许多工具都充斥着沉重的布局、侵入式弹窗以及缓慢的加载时间。Plobi-kit 秉承“原生（Vanilla）优先”原则，以零打包体积开销实现瞬间加载，为您提供一个无干扰的工作环境。</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">为什么 Plobi-kit 独树一帜</h3>
+        <ul style="padding-left: 20px; margin-bottom: 16px;">
+          <li style="margin-bottom: 8px;"><strong>100% 客户端运行</strong>：所有计算（二维码生成、正则校验、Base64 转换等）均直接在您的浏览器中完成。您的敏感凭证和变量绝不会被传输到外部服务器。</li>
+          <li style="margin-bottom: 8px;"><strong>极简的 UI 美学</strong>：灵感来源于 Vercel 和 Linear 的设计系统，我们的极简布局提供了清晰的排版和专注的工作视界。</li>
+          <li style="margin-bottom: 8px;"><strong>AdSense 友好与 SEO 结构化</strong>：我们的布局设计完全遵循 Google 发布商指南，确保广告展示稳定且无布局偏移（CLS），兼顾用户体验与合理的商业化变现。</li>
+        </ul>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">联系我们</h3>
+        <p style="margin-bottom: 16px;">如果您有任何功能建议或问题反馈，随时欢迎通过 GitHub 或官方渠道与我们的工程团队取得联系。</p>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="privacy.html" id="nav-footer-privacy">隐私政策</a>
+        <a href="terms.html" id="nav-footer-terms">服务条款</a>
+        <a href="about.html" id="nav-footer-about">关于我们</a>
+        <a href="guides/index.html" id="nav-footer-guides">技术教程</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. 保留所有权利。依据 AdSense 指南合规运营。
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="../app.js"></script>
+</body>
+</html>

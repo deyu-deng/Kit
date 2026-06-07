@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - WebTools Hub</title>
+  <title>Privacy Policy - Plobi-kit</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/privacy.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy.html">
   <!-- Google Fonts Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +21,14 @@
     <!-- Header -->
     <header class="app-header">
       <div class="logo">
-        <span class="logo-icon">W</span>
-        <span id="txt-logo-name">WebTools Hub</span>
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
       </div>
       <nav class="nav-links">
         <a href="index.html" id="nav-home">Home</a>
         <a href="cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
         <a href="about.html" id="nav-about">About</a>
+        <a href="guides/index.html" id="nav-guides">Guides</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -37,10 +43,10 @@
       <div style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
         <p style="margin-bottom: 16px;">Last Updated: June 2026</p>
         
-        <p style="margin-bottom: 20px;">Welcome to WebTools Hub. Your privacy is critically important to us. This Privacy Policy details how we handle information, our compliance with Google AdSense terms, and the use of cookies on this website.</p>
+        <p style="margin-bottom: 20px;">Welcome to Plobi-kit. Your privacy is critically important to us. This Privacy Policy details how we handle information, our compliance with Google AdSense terms, and the use of cookies on this website under the Plobi brand.</p>
 
         <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">1. Personal Data and Data Collection</h3>
-        <p style="margin-bottom: 16px;">WebTools Hub provides client-side utility applications (Base64 Encoder, CSS Generator, QR Maker, Color Palette, and Regex Tester). <strong>All data processing, encoding, and conversion tasks occur entirely in your local browser window.</strong> We do not collect, store, transmit, or process your input data on any external web servers.</p>
+        <p style="margin-bottom: 16px;">Plobi-kit provides client-side utility applications (Base64 Encoder, CSS Generator, QR Maker, Color Palette, and Regex Tester). <strong>All data processing, encoding, and conversion tasks occur entirely in your local browser window.</strong> We do not collect, store, transmit, or process your input data on any external web servers.</p>
 
         <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">2. Google AdSense & Cookies</h3>
         <p style="margin-bottom: 16px;">This website uses Google AdSense, a service provided by Google LLC, to serve advertisements. Google uses cookies to serve ads based on a user's prior visits to our website or other websites on the internet.</p>
@@ -65,13 +71,24 @@
         <a href="privacy.html" id="nav-footer-privacy">Privacy Policy</a>
         <a href="terms.html" id="nav-footer-terms">Terms of Service</a>
         <a href="about.html" id="nav-footer-about">About Us</a>
+        <a href="guides/index.html" id="nav-footer-guides">Guides</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
-        &copy; 2026 WebTools Hub. All rights reserved. Managed legally under AdSense guidelines.
+        &copy; 2026 Plobi. All rights reserved. Managed legally under AdSense guidelines.
       </div>
     </footer>
   </div>
 
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
   <!-- Main entry JS -->
   <script type="module" src="app.js"></script>
 </body>
