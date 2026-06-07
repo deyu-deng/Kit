@@ -23,7 +23,16 @@ const ASSETS_TO_CACHE = [
   '/js/i18n.js',
   '/js/qrcode.js',
   '/js/regexTester.js',
-  '/js/imageCompressor.js'
+  '/js/imageCompressor.js',
+  '/js/jsonFormatter.js',
+  '/js/jwtDecoder.js',
+  '/js/urlEncoder.js',
+  '/js/markdownConverter.js',
+  '/js/flexgridBuilder.js',
+  '/js/svgOptimizer.js',
+  '/js/metatagsGenerator.js',
+  '/js/promptHelper.js',
+  '/js/codeToImage.js'
 ];
 
 // Install event: cache all core assets

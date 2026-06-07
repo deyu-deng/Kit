@@ -203,6 +203,79 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image.html"/>
   </url>
+  <url>
+    <loc>https://plobikit.com/tools/json.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/jwt.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/jwt.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/url.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/markdown.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/markdown.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/flexgrid.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/flexgrid.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/svg.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/metatags.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/prompt.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/codeimage.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/codeimage.html"/>
+  </url>
+
 
   <!-- Tools Standalone Pages (Chinese) -->
   <url>
@@ -269,5 +342,78 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image.html"/>
   </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/json.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/jwt.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/jwt.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/url.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/markdown.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/markdown.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/flexgrid.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/flexgrid.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/svg.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/metatags.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/prompt.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt.html"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/codeimage.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/codeimage.html"/>
+  </url>
+
 
 </urlset>

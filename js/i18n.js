@@ -237,7 +237,27 @@ export const translations = {
     'qr-cdn-failed-title': 'CDN load failed.',
     'qr-cdn-failed-sub': 'Please check internet connection.',
     'glass-copied-css': 'CSS copied to clipboard!',
-    'glass-copied-tailwind': 'Tailwind classes copied!'
+    'glass-copied-tailwind': 'Tailwind classes copied!',
+
+    // Dashboard Cards: New Tools
+    'card-json-title': 'JSON Formatter & Validator',
+    'card-json-desc': 'Format, validate, beautify, and minify JSON strings with syntax highlighting.',
+    'card-jwt-title': 'JWT Token Decoder',
+    'card-jwt-desc': 'Instantly decode JSON Web Tokens, inspect claims, and check expiry countdowns.',
+    'card-url-title': 'URL Encoder/Decoder',
+    'card-url-desc': 'Encode or decode URL strings and query parameters using RFC 3986 guidelines.',
+    'card-markdown-title': 'Markdown HTML Converter',
+    'card-markdown-desc': 'Convert raw Markdown syntax to HTML markup or reverse convert back.',
+    'card-flexgrid-title': 'Flexbox & Grid Layout Playground',
+    'card-flexgrid-desc': 'Interactively build and preview CSS Flexbox and Grid layouts.',
+    'card-svg-title': 'SVG Markup Optimizer',
+    'card-svg-desc': 'Clean namespaces, editor metadata, and minify SVG code to reduce file size.',
+    'card-metatags-title': 'SEO Meta Tags Generator',
+    'card-metatags-desc': 'Build, copy, and preview search engine and social media meta tags.',
+    'card-prompt-title': 'AI Prompt Helper',
+    'card-prompt-desc': 'Construct highly structured prompts for ChatGPT, Claude, and general LLMs.',
+    'card-codeimage-title': 'Code Snippet to Image Exporter',
+    'card-codeimage-desc': 'Export code codeblocks as elegant Mac-style window frames to share.'
   },
   cn: {
     // Nav & General
@@ -474,8 +494,28 @@ export const translations = {
     'regex-error': '<strong>正则错误:</strong> {message}',
     'qr-cdn-failed-title': 'CDN 加载失败。',
     'qr-cdn-failed-sub': '请检查网络连接。',
-    'glass-copied-css': 'CSS 样式代码已复制到剪贴板！',
-    'glass-copied-tailwind': 'Tailwind 实用类名已复制到剪贴板！'
+    'glass-copied-css': 'CSS样式代码已复制到剪贴板！',
+    'glass-copied-tailwind': 'Tailwind实用类名已复制到剪贴板！',
+
+    // Dashboard Cards: New Tools
+    'card-json-title': 'JSON 格式化与校验工具',
+    'card-json-desc': '在线对 JSON 进行格式化、校验、美化或压缩，支持语法高亮。',
+    'card-jwt-title': 'JWT 解码与生命周期校验',
+    'card-jwt-desc': '即时解析 JWT 结构，查看 Header 与 Payload 声明并显示过期倒计时。',
+    'card-url-title': 'URL 编码/解码器',
+    'card-url-desc': '基于 RFC 3986 规范对 URL 路径与查询参数进行安全编码或解码。',
+    'card-markdown-title': 'Markdown <-> HTML 互转',
+    'card-markdown-desc': '支持将原始 Markdown 语法和标准 HTML 标记相互实时转换。',
+    'card-flexgrid-title': 'Flex & Grid 布局沙盒',
+    'card-flexgrid-desc': '可视化调节 Flexbox 与 CSS Grid 容器属性并实时渲染组件布局。',
+    'card-svg-title': 'SVG 图形代码优化器',
+    'card-svg-desc': '清理 SVG 臃肿属性、编辑器专属命名空间，深度压缩图形代码体积。',
+    'card-metatags-title': 'SEO 标签生成与预览器',
+    'card-metatags-desc': '配置并生成 Google 搜索、Facebook、Twitter 分享卡片对应的 Meta 标签。',
+    'card-prompt-title': 'AI 提示词工程助手',
+    'card-prompt-desc': '基于多种专业角色模板，可视化拼接输出结构化的 AI 大模型提示词。',
+    'card-codeimage-title': '代码高亮美美化截图工具',
+    'card-codeimage-desc': '将任意代码片段渲染为精致的 Mac 窗口样式截图并导出为 PNG 图像。'
   }
 };
 
@@ -514,6 +554,26 @@ export function updatePageLanguage(lang) {
     't-card-cron-desc': 'card-cron-desc',
     't-card-image-title': 'card-image-title',
     't-card-image-desc': 'card-image-desc',
+
+    // New Cards Mappings
+    't-card-json-title': 'card-json-title',
+    't-card-json-desc': 'card-json-desc',
+    't-card-jwt-title': 'card-jwt-title',
+    't-card-jwt-desc': 'card-jwt-desc',
+    't-card-url-title': 'card-url-title',
+    't-card-url-desc': 'card-url-desc',
+    't-card-markdown-title': 'card-markdown-title',
+    't-card-markdown-desc': 'card-markdown-desc',
+    't-card-flexgrid-title': 'card-flexgrid-title',
+    't-card-flexgrid-desc': 'card-flexgrid-desc',
+    't-card-svg-title': 'card-svg-title',
+    't-card-svg-desc': 'card-svg-desc',
+    't-card-metatags-title': 'card-metatags-title',
+    't-card-metatags-desc': 'card-metatags-desc',
+    't-card-prompt-title': 'card-prompt-title',
+    't-card-prompt-desc': 'card-prompt-desc',
+    't-card-codeimage-title': 'card-codeimage-title',
+    't-card-codeimage-desc': 'card-codeimage-desc',
     
     // Base64 tool inputs
     'lbl-b64-mode': 'b64-mode',

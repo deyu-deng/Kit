@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online URL Encoder / Decoder - Plobi-kit</title>
+  <meta name="description" content="Secure and lightweight online URL encoder and decoder. Process special parameters and RFC 3986 custom encodings instantly.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html" id="nav-home">Home</a>
+        <a href="../cheatsheet.html" id="nav-cheatsheet">Cheat Sheet</a>
+        <a href="../about.html" id="nav-about">About</a>
+        <a href="../guides/index.html" id="nav-guides">Guides</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="main-layout">
+      <main class="primary-column">
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">URL Encoder/Decoder</h2>
+            <p class="tool-description" id="active-tool-desc">Encode or decode URL paths and query parameters following RFC 3986 guidelines.</p>
+          </div>
+
+          <!-- Tool Panel: URL Encoder/Decoder Container -->
+          <div class="tool-panel" id="panel-url" style="display:block;">
+            <div class="form-group">
+              <label class="form-label" for="url-input" id="lbl-url-input">Input Text String</label>
+              <textarea class="form-control" id="url-input" placeholder="Type or paste query text here to encode or decode..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" id="url-rfc3986" checked style="width: auto; margin: 0;">
+                <span class="checkbox-label" id="lbl-url-rfc3986">RFC 3986 Mode (Additionally encode !'()* characters)</span>
+              </label>
+            </div>
+            <div class="btn-group" style="margin-bottom:16px;">
+              <button class="btn" id="url-btn-encode">Encode String</button>
+              <button class="btn btn-secondary" id="url-btn-decode">Decode String</button>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="url-output" id="lbl-url-output">Processed Result Output</label>
+              <textarea class="form-control" id="url-output" readonly placeholder="Output computed here..."></textarea>
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="url-copy-btn">Copy Output</button>
+              <button class="btn btn-secondary" id="url-clear-btn">Clear</button>
+            </div>
+            <div class="alert alert-success" id="url-alert" style="display:none;">Copied to clipboard!</div>
+          </div>
+
+          <div class="ad-container ad-inline" id="adsense-inline-ad">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="fluid"
+                 data-ad-layout-key="-gw-3+1f-3d+2z"
+                 data-ad-client="ca-pub-5108296372072915"
+                 data-ad-slot="1234567890"></ins>
+          </div>
+
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <p>URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI) under certain circumstances.</p>
+              <h4>Why encode URLs?</h4>
+              <p>URLs can only contain characters from the standard ASCII character set. Characters outside this set (like Emojis or Chinese characters) or characters with special syntactic meanings inside URLs (like ?, &amp;, = ) must be encoded to prevent server parsing errors.</p>
+              <h4>What is RFC 3986?</h4>
+              <p>RFC 3986 is the official specification for URIs. Under standard browser JavaScript <code>encodeURIComponent</code>, characters like <code>!'()*</code> are not encoded. In RFC 3986 mode, we map those characters to their hex representations to guarantee strict compliance.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar-column">
+        <div class="ad-container ad-sidebar" id="adsense-sidebar-ad">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-5108296372072915"
+               data-ad-slot="5678901234"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms">Terms of Service</a>
+        <a href="../about.html" id="nav-footer-about">About Us</a>
+        <a href="../guides/index.html" id="nav-footer-guides">Guides</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved. Managed legally under AdSense guidelines.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="../app.js"></script>
+</body>
+</html>

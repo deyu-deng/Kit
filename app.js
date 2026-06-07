@@ -10,6 +10,15 @@ import { initRegexTester } from './js/regexTester.js';
 import { initGitGeneratorTool } from './js/gitGenerator.js';
 import { initCronGeneratorTool } from './js/cronGenerator.js';
 import { initImageCompressorTool } from './js/imageCompressor.js';
+import { initJsonFormatterTool } from './js/jsonFormatter.js';
+import { initJwtDecoderTool } from './js/jwtDecoder.js';
+import { initUrlEncoderTool } from './js/urlEncoder.js';
+import { initMarkdownConverterTool } from './js/markdownConverter.js';
+import { initFlexgridBuilderTool } from './js/flexgridBuilder.js';
+import { initSvgOptimizerTool } from './js/svgOptimizer.js';
+import { initMetatagsGeneratorTool } from './js/metatagsGenerator.js';
+import { initPromptHelperTool } from './js/promptHelper.js';
+import { initCodeToImageTool } from './js/codeToImage.js';
 
 // Application State (Bilingual Directory Alignment)
 const htmlLang = document.documentElement.lang;
@@ -31,6 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initGitGeneratorTool();
   initCronGeneratorTool();
   initImageCompressorTool();
+  initJsonFormatterTool();
+  initJwtDecoderTool();
+  initUrlEncoderTool();
+  initMarkdownConverterTool();
+  initFlexgridBuilderTool();
+  initSvgOptimizerTool();
+  initMetatagsGeneratorTool();
+  initPromptHelperTool();
+  initCodeToImageTool();
 
   // 3. Routing & Page Event Handlers
   setupDashboardRouting();
