@@ -14,10 +14,10 @@ export function initRegexTester() {
     const pattern = elPattern.value;
     const flags = elFlags.value || '';
     const text = elText.value;
+    const lang = localStorage.getItem('app-lang') || 'en';
+    const dict = translations[lang] || translations.en;
 
     if (!pattern || !text) {
-      const lang = localStorage.getItem('app-lang') || 'en';
-      const dict = translations[lang] || translations.en;
       elOverlay.innerHTML = escapeHtml(text);
       elSummary.textContent = dict['regex-no-pattern'] || 'No pattern or text entered.';
       return;
