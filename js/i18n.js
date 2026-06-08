@@ -257,7 +257,10 @@ export const translations = {
     'card-prompt-title': 'AI Prompt Helper',
     'card-prompt-desc': 'Construct highly structured prompts for ChatGPT, Claude, and general LLMs.',
     'card-codeimage-title': 'Code Snippet to Image Exporter',
-    'card-codeimage-desc': 'Export code codeblocks as elegant Mac-style window frames to share.'
+    'card-codeimage-desc': 'Export code codeblocks as elegant Mac-style window frames to share.',
+    'nav-footer-privacy': 'Privacy Policy',
+    'nav-footer-terms': 'Terms of Service',
+    'nav-footer-about': 'About Us'
   },
   cn: {
     // Nav & General
@@ -515,7 +518,10 @@ export const translations = {
     'card-prompt-title': 'AI 提示词工程助手',
     'card-prompt-desc': '基于多种专业角色模板，可视化拼接输出结构化的 AI 大模型提示词。',
     'card-codeimage-title': '代码高亮美美化截图工具',
-    'card-codeimage-desc': '将任意代码片段渲染为精致的 Mac 窗口样式截图并导出为 PNG 图像。'
+    'card-codeimage-desc': '将任意代码片段渲染为精致的 Mac 窗口样式截图并导出为 PNG 图像。',
+    'nav-footer-privacy': '隐私政策',
+    'nav-footer-terms': '服务条款',
+    'nav-footer-about': '关于我们'
   }
 };
 
