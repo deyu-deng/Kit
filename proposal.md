@@ -26,14 +26,20 @@
 2. **AdBlock 友好化与白名单**：
    * 不强行封锁 AdBlock 用户。在广告位被拦截时，显示一行对开发者友好的提示代码：
      `// Note: This site runs 100% locally and has zero tracking cookies. We show quiet ads to cover domain cost. Please whitelist us if we saved you time. Thanks! :)`
-3. **AI 垂类技术工作流指南（多重变现）**：
-   * 在 `/guides/` 下提供针对设计师和开发者的 AI 工具（Midjourney, Cursor, v0）实用提词与集成指南，增加内容价值并植入 AI 工具联盟分销（Affiliate）链接。
+3. **多维创造者指南与博客（多重变现与内容厚度建设）**：
+   * 为了彻底解决工具站内容稀薄、易被 AdSense 判定为“低价值内容”的痛点，我们在 `/guides/` 下开辟多门类的原创技术与生活方式博客，涵盖以下方向：
+     * **A. 硬核技术解析 (Hardcore Dev)**：网页算法底层原理，如 Base64 位运算、正则回溯与 ReDoS 安全防范。
+     * **B. 视觉美学与设计 (Design & UI)**：色彩心理学、60-30-10 配色法则、现代 UI 趋势（毛玻璃、新粗野主义）。
+     * **C. 数字隐私与数据合规 (Security & Privacy)**：企业防泄密科普（为何不应随意上传数据到在线格式化网站）、GDPR 独立站合规底线。
+     * **D. 效率开发与数字游民 (Productivity & Nomad)**：如何搭建极简、无广告的数字工作流，无网状态下的离线开发技巧。
+     * **E. AI 辅助与创造力 (AI Workflows)**：Midjourney 界面设计提词指南、用 v0.dev 快速进行切图等。
+   * **变现方式**：除 AdSense 广告外，在文章中植入推荐的 AI 工具、隐私保护（VPN）等服务的分销（Affiliate）链接。
 
 ---
 
 ## 三、 三阶段滚动开发路线图
 
-### 阶段一：基础本地工具与合规建设（当前阶段）
+### 阶段一：基础本地工具与多维内容建设（当前阶段）
 * **上线工具**：
   1. Base64 编解码器（绝对本地化隐私保护版）
   2. CSS + Tailwind CSS 毛玻璃生成器（支持直接复制代码及 Tailwind 类名）
@@ -42,6 +48,7 @@
   5. 正则表达式测试器（可视化高亮，并与速查表联动）
 * **内容合规**：
   * 每个工具下方的双语深度技术指南与常见问题解答（FAQ）。
+  * 撰写并放置首批涵盖“网络隐私防泄密”、“设计配色心理学”以及“Vanilla JS 极致性能优化”的多门类原创指南文章。
   * 完整的技术速查表（[cheatsheet.html](file:///d:/Cloud/Projects/06-Website/cheatsheet.html)）。
   * 合规基础页（`privacy.html` 声明本地隐私保护, `terms.html`, `about.html`）。
 
@@ -82,5 +89,5 @@ D:/Cloud/Projects/06-Website/
 │   ├── app.js          # 主控制入口与语言切换
 │   ├── i18n.js         # 语言包及长尾问答文本
 │   └── ...             # 各个工具的核心逻辑文件
-└── guides/             # 存放 AI 工作流与高 CPC 技术教程的静态 HTML 页面（二阶段引入）
+└── guides/             # 存放技术、设计、隐私、效率等静态原创博文 HTML 页面
 ```
