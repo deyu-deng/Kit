@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Command Generator - Plobi-kit</title>
+  <meta name="description" content="Generate Git commands interactively. Learn how to undo commits, rename branches, discard changes, and stash code easily.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/git.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Git Command Generator",
+  "description": "A privacy-first Git command generator. Learn how to undo commits, discard changes, and stash work safely without exposing your repository.",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/tools/git.html",
+  "inLanguage": "en"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I undo the last commit without losing my changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run git reset with the soft option to keep changes staged, or the mixed option to unstage them. The hard option discards changes entirely and should be used with caution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between git revert and git reset?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Revert creates a new commit that undoes the changes, which is safe on shared history. Reset moves the branch pointer and rewrites history, so avoid it on branches others depend on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I discard unstaged changes to a file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use git checkout with the file path in older Git, or the modern git restore command, which is clearer about its intent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I temporarily stash my work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run git stash to set changes aside, then git stash pop to bring them back. You can attach a message so multiple stashes stay identifiable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool access my actual repositories?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The generator only assembles command text in your browser; it never reads or touches your local repositories."
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/tools/git">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">Git Command Generator</h2>
+            <p class="tool-description" id="active-tool-desc">Interactively generate advanced Git CLI scripts for undoing, branching, and stashing.</p>
+          </div>
+
+          <!-- Tool Panel: Git Command Generator Container -->
+          <div class="tool-panel" id="panel-git" style="display:block;">
+            <div class="form-group">
+              <label class="form-label" id="lbl-git-category">Select Action Category</label>
+              <select class="form-control" id="git-action-category">
+                <option value="undo-commit" id="opt-git-undo">Undo / Revert Commits (撤销与回退提交)</option>
+                <option value="discard-changes" id="opt-git-discard">Discard Local Changes (丢弃本地修改)</option>
+                <option value="branches" id="opt-git-branch">Branch Operations (分支管理与重命名)</option>
+                <option value="stash" id="opt-git-stash">Stash File Edits (暂存与恢复修改)</option>
+              </select>
+            </div>
+
+            <!-- Contextual Options for Git -->
+            <div id="git-options-container">
+              <!-- Dynamically populated via js/gitGenerator.js -->
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+              <label class="form-label" id="lbl-git-output">Generated Command CLI</label>
+              <textarea class="form-control" id="git-output-code" readonly style="font-family: monospace; font-size: 13px; height: 100px; background-color: var(--accent-light);"></textarea>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn" id="git-copy-btn">Copy Command</button>
+            </div>
+            <div class="alert alert-success" id="git-alert" style="display:none;">Command copied to clipboard!</div>
+          </div>
+
+
+<!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <article>
+                <h4>What Is Git and Why Is Version Control Essential?</h4>
+                <p>Git is a distributed version control system created by Linus Torvalds in 2005, originally to manage the development of the Linux kernel. Today, Git is the universal standard for source code management, used by virtually every software team and hosting platform including GitHub, GitLab, Bitbucket, and Azure DevOps. At its core, Git tracks every change made to a codebase over time, stores the complete history of every file, and allows multiple developers to collaborate on the same project simultaneously without overwriting each other's work.</p>
+                <p>Unlike older centralized version control systems (like SVN), Git is <strong>distributed</strong> — every developer has a complete copy of the repository, including its full history, on their own machine. This enables offline work, faster operations, and resilient backup. The ability to create, merge, and delete branches in Git is nearly instantaneous, making it the foundation of modern software development workflows including GitFlow, trunk-based development, and CI/CD pipelines.</p>
+
+                <h4>How to Use the Git Command Generator</h4>
+                <p>Select an <strong>Action Category</strong> from the dropdown: <strong>Undo / Revert Commits</strong> for recovering from accidental commits, <strong>Discard Local Changes</strong> for reverting uncommitted file edits, <strong>Branch Operations</strong> for creating, renaming, and deleting branches, or <strong>Stash File Edits</strong> for temporarily saving work in progress. After selecting a category, contextual input fields appear — such as commit count, branch names, or stash messages — that customize the generated command for your specific situation. The Generated Command CLI output updates in real-time. Click <strong>Copy Command</strong> to copy it for immediate use in your terminal.</p>
+
+                <h4>Understanding Git's Most Critical Operations</h4>
+                <ul>
+                  <li><strong>git reset --soft / --hard:</strong> <code>--soft</code> undoes a commit but keeps your file changes staged and ready to recommit. <code>--hard</code> permanently destroys both the commit and all associated file changes — use with extreme caution as it cannot be undone through normal Git operations.</li>
+                  <li><strong>git stash:</strong> Temporarily saves uncommitted changes to a hidden "stash stack" so you can switch branches cleanly without committing half-finished work. Run <code>git stash pop</code> to restore the saved changes later.</li>
+                  <li><strong>git branch -m:</strong> Renames a branch locally. If you've already pushed the branch to a remote, you must also push the renamed branch and delete the old remote reference: <code>git push origin --delete old-name</code>.</li>
+                  <li><strong>git revert:</strong> Creates a new commit that undoes the changes of a specified commit, leaving the full history intact. This is the safe, non-destructive alternative to <code>git reset</code> for shared branches.</li>
+                </ul>
+
+                <h4>Git Best Practices Every Developer Should Follow</h4>
+                <ul>
+                  <li><strong>Commit Often, Commit Small:</strong> Each commit should represent a single logical change. Small, focused commits are easier to review, bisect for bugs, and revert when something goes wrong.</li>
+                  <li><strong>Write Meaningful Commit Messages:</strong> Follow the Conventional Commits specification — start with a type prefix (<code>feat:</code>, <code>fix:</code>, <code>docs:</code>, <code>refactor:</code>) followed by a concise description in the imperative mood.</li>
+                  <li><strong>Never Commit Secrets:</strong> API keys, database passwords, and OAuth credentials should never appear in any commit. Use environment variables, <code>.env</code> files listed in <code>.gitignore</code>, and secret management tools like HashiCorp Vault or GitHub Actions Secrets.</li>
+                  <li><strong>Use Branches for Features:</strong> Always develop new features or bug fixes in separate branches (e.g., <code>feature/user-auth</code>, <code>bugfix/null-pointer</code>). Keep the main branch always deployable.</li>
+                </ul>
+
+                <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Frequently Asked Questions</h2>
+<p><strong>Q: How do I undo the last commit without losing my changes?</strong><br>A: Run git reset with the soft option to keep changes staged, or the mixed option to unstage them. The hard option discards changes entirely and should be used with caution.</p>
+<p><strong>Q: What is the difference between git revert and git reset?</strong><br>A: Revert creates a new commit that undoes the changes, which is safe on shared history. Reset moves the branch pointer and rewrites history, so avoid it on branches others depend on.</p>
+<p><strong>Q: How do I discard unstaged changes to a file?</strong><br>A: Use git checkout with the file path in older Git, or the modern git restore command, which is clearer about its intent.</p>
+<p><strong>Q: How do I temporarily stash my work?</strong><br>A: Run git stash to set changes aside, then git stash pop to bring them back. You can attach a message so multiple stashes stay identifiable.</p>
+<p><strong>Q: Does this tool access my actual repositories?</strong><br>A: No. The generator only assembles command text in your browser; it never reads or touches your local repositories.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">How This Tool Works</h2>
+<p>This Git Command Generator runs entirely in your web browser through Plobi-kit's 100% client-side architecture. No input is sent to external web servers, guaranteeing complete privacy and offline utility. Want proof? Open your browser's Network tab, use the tool, and watch: nothing leaves your machine except the page's own assets.</p></div></div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

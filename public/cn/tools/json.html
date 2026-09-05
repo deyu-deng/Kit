@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON 格式化与在线校验工具 - Plobi-kit</title>
+  <meta name="description" content="Validate, format, beauty, and minify JSON code instantly. 100% client-side processing under the Plobi brand.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JSON 格式化与校验工具 使用指南",
+  "description": "Plobi-kit 隐私优先的JSON 格式化与校验工具工具。了解其工作原理、常见疑问，以及我们如何让您的数据始终留在本地。",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/cn/tools/json.html",
+  "inLanguage": "zh"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "为什么格式化 JSON 很重要？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "压缩过的 JSON 对机器有效，但人几乎无法阅读。一致的缩进让你一眼就能发现缺失的逗号、未闭合的括号和错误的嵌套。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "两空格和四空格格式化有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "这只是风格选择，两种都是合法 JSON。两空格在 JavaScript 和 Node 项目常见，四空格在 Python 和 Java 代码库里是传统。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "为什么会报“Unexpected token”错误？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "常见原因有尾随逗号、单引号、未加引号的键，以及行内注释——这些都不符合严格 JSON。如果你需要它们，应该用 JSON5 而非严格 JSON。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我格式化 JSON 时会把它上传吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不会。解析和校验完全在你的浏览器内进行，敏感的接口负载从不会离开你的设备。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "怎么为生产环境压缩 JSON？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "移除所有空白和换行来缩减体积。我们的 Minify 操作会去掉缩进，让输出尽可能紧凑以便传输。"
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/cn/tools/json">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">EN</button>
+      </div>
+    </header>
+
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="main-layout">
+      <main class="primary-column">
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">返回工具列表</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">JSON 格式化与校验工具</h2>
+            <p class="tool-description" id="active-tool-desc">在线对 JSON 进行格式化、校验、美化或压缩，支持语法高亮。</p>
+          </div>
+
+          <!-- Tool Panel: JSON Formatter Container -->
+          <div class="tool-panel" id="panel-json" style="display:block;">
+            <div class="form-group">
+              <label class="form-label" for="json-input" id="lbl-json-input">输入 JSON 字符串</label>
+              <textarea class="form-control" id="json-input" placeholder="请在此处粘贴或输入原始 JSON 字符串..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="lbl-json-actions">操作选项</label>
+              <div class="btn-group">
+                <button class="btn" id="json-format-2">格式化 (2 空格)</button>
+                <button class="btn" id="json-format-4">格式化 (4 空格)</button>
+                <button class="btn btn-secondary" id="json-minify">压缩 JSON</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div id="json-status" style="display:none;"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" id="lbl-json-output">格式化后的输出</label>
+              <pre class="form-control" style="background:#f8f9fa; min-height:180px; overflow:auto;"><code id="json-output"></code></pre>
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="json-copy-btn">复制输出结果</button>
+              <button class="btn btn-secondary" id="json-clear-btn">清空</button>
+            </div>
+            <div class="alert alert-success" id="json-alert" style="display:none;">已成功复制到剪贴板！</div>
+          </div>
+
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">使用指南与常见问题</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <p>JSON 是一种用于存储和传输数据的轻量级文本格式。它经常被作为后端和前端之间传递数据的主要载体。</p>
+              <h4>为什么要进行格式化和校验？</h4>
+              <p>手写的 JSON 字符串经常因为少一个逗号、或者属性名称忘记用双引号包裹而导致格式错误，进而在应用程序里解析失败。我们的工具能快速指出哪一行出错了。</p>
+              <h4>绝对的数据隐私保障</h4>
+              <p>我们所有的格式化运算均在您的浏览器本地进行，绝对不会上传您的数据到服务器，保障您的敏感配置和密码的安全。</p>
+            <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">常见问题解答</h2>
+<p><strong>问：为什么格式化 JSON 很重要？</strong><br>答：压缩过的 JSON 对机器有效，但人几乎无法阅读。一致的缩进让你一眼就能发现缺失的逗号、未闭合的括号和错误的嵌套。</p>
+<p><strong>问：两空格和四空格格式化有什么区别？</strong><br>答：这只是风格选择，两种都是合法 JSON。两空格在 JavaScript 和 Node 项目常见，四空格在 Python 和 Java 代码库里是传统。</p>
+<p><strong>问：为什么会报“Unexpected token”错误？</strong><br>答：常见原因有尾随逗号、单引号、未加引号的键，以及行内注释——这些都不符合严格 JSON。如果你需要它们，应该用 JSON5 而非严格 JSON。</p>
+<p><strong>问：我格式化 JSON 时会把它上传吗？</strong><br>答：不会。解析和校验完全在你的浏览器内进行，敏感的接口负载从不会离开你的设备。</p>
+<p><strong>问：怎么为生产环境压缩 JSON？</strong><br>答：移除所有空白和换行来缩减体积。我们的 Minify 操作会去掉缩进，让输出尽可能紧凑以便传输。</p></div></div>
+        </section>
+      </main>
+
+      <aside class="sidebar-column">
+        
+      </aside>
+    </div>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. 保留所有权利。
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

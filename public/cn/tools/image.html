@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebP 图片本地压缩/转换器 - Plobi-kit</title>
+  <meta name="description" content="Compress PNG, JPEG, and WebP images locally inside your browser window. 100% secure, offline support, zero server uploads.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WebP Image Compressor 使用指南",
+  "description": "Plobi-kit 隐私优先的WebP Image Compressor工具。了解其工作原理、常见疑问，以及我们如何让您的数据始终留在本地。",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/cn/tools/image.html",
+  "inLanguage": "zh"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "为什么要把图片压缩成 WebP？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebP 在相同视觉质量下通常比 JPEG 小 25% 到 34%，并且像 PNG 一样支持透明通道。所有主流浏览器都支持它，因此作为 Web 默认格式很稳妥。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "压缩会损失画质吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有损 WebP 用体积换取一些细节，照片建议用更高的质量百分比。PNG 转 WebP 除非明确选择无损模式，否则也是有损的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我的图片会被上传到服务器吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不会。压缩在你的设备上端通过浏览器的 Canvas 和编码 API 完成，原文件从不会离开你的机器。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "质量参数应该设多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "75% 到 85% 是大多数网页照片的甜点区间。对视觉保真度要求高的主视觉图，可以选 90% 以上。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "WebP 和 AVIF 相比如何？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AVIF 压缩效果更好，但编码更慢，对旧浏览器的支持也更参差。就广泛的兼容性而言，WebP 当下仍是务实的选择。"
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/cn/tools/image">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">EN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">返回工具列表</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">WebP Image Compressor</h2>
+            <p class="tool-description" id="active-tool-desc">Compress images locally in your browser and convert them safely to WebP format.</p>
+          </div>
+
+          <!-- Tool Panel: WebP Image Compressor Container -->
+          <div class="tool-panel" id="panel-image" style="display:block;">
+            <div class="glass-generator-layout" style="grid-template-columns: 1.2fr 1fr;">
+              <!-- Upload & Settings -->
+              <div>
+                <div class="form-group">
+                  <label class="form-label" id="lbl-image-input">将图片拖放到此处或点击选择文件</label>
+                  <div id="image-dropzone" style="border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 40px 20px; text-align: center; background: var(--bg-app); cursor: pointer; transition: var(--transition);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">📥</div>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="txt-image-upload-desc">支持 PNG, JPEG, WEBP 格式，最大 10MB</p>
+                    <input type="file" id="image-file-input" accept="image/png, image/jpeg, image/webp" style="display:none;">
+                  </div>
+                </div>
+
+                <div class="form-group" id="image-settings-container" style="display:none;">
+                  <label class="form-label"><span id="lbl-image-quality">压缩质量 (Quality)</span>: <span id="image-quality-val">0.75</span></label>
+                  <input type="range" class="form-control" id="image-quality" min="0.1" max="1.0" step="0.05" value="0.75">
+                </div>
+
+                <div class="btn-group" id="image-action-group" style="display:none; margin-top: 24px;">
+                  <button class="btn" id="image-compress-btn">开始压缩并转换为 WebP</button>
+                  <button class="btn btn-secondary" id="image-reset-btn">重置</button>
+                </div>
+              </div>
+
+              <!-- Preview & Metrics -->
+              <div id="image-preview-column" style="display:none; display: flex; flex-direction: column; justify-content: space-between; border-left: 1px solid var(--border-color); padding-left: 24px;">
+                <div>
+                  <label class="form-label" id="lbl-image-preview">压缩后图片预览</label>
+                  <div style="display: flex; align-items: center; justify-content: center; background: var(--accent-light); border-radius: var(--radius-sm); min-height: 180px; overflow: hidden; border: 1px solid var(--border-color); padding: 8px;">
+                    <img id="image-preview-img" style="max-width: 100%; max-height: 240px; border-radius: 4px; object-fit: contain; box-shadow: var(--shadow-sm);">
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; font-size: 13px;">
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-orig-size">原始文件大小:</strong> <span id="image-orig-size">0 KB</span></p>
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-comp-size">压缩后大小:</strong> <span id="image-comp-size">0 KB</span></p>
+                  <p style="margin-bottom: 0; color: var(--success-color); font-weight: 600;"><strong id="lbl-image-ratio">体积减少比例:</strong> <span id="image-shrink-ratio">0%</span></p>
+                </div>
+
+                <button class="btn" id="image-download-btn" disabled style="width: 100%; margin-top: 16px;">下载 WebP 图片</button>
+              </div>
+            </div>
+          </div>
+
+
+<!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+      <p>本图片压缩器完全基于您本地浏览器中的 HTML5 Canvas API 技术。所有图片压缩与格式转换工作都在您的电脑上完成，确保您的设计资产和隐私数据绝不上传服务器。</p>
+      <h4>为什么要将图片转换为 WebP 格式？</h4>
+      <ul>
+        <li><strong>极高的压缩率</strong>：在保持几乎肉眼无法分辨的画质前提下，WebP 格式生成的图片体积通常比普通的 PNG 或 JPEG 格式要小 25% ~ 35%。</li>
+        <li><strong>完美支持透明度</strong>：与 JPEG 不同，WebP 完美继承了类似 PNG 的 Alpha 透明通道特性，非常适合网页 UI 和图标素材的无缝展示。</li>
+      </ul>
+      <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">常见问题解答</h2>
+<p><strong>问：为什么要把图片压缩成 WebP？</strong><br>答：WebP 在相同视觉质量下通常比 JPEG 小 25% 到 34%，并且像 PNG 一样支持透明通道。所有主流浏览器都支持它，因此作为 Web 默认格式很稳妥。</p>
+<p><strong>问：压缩会损失画质吗？</strong><br>答：有损 WebP 用体积换取一些细节，照片建议用更高的质量百分比。PNG 转 WebP 除非明确选择无损模式，否则也是有损的。</p>
+<p><strong>问：我的图片会被上传到服务器吗？</strong><br>答：不会。压缩在你的设备上端通过浏览器的 Canvas 和编码 API 完成，原文件从不会离开你的机器。</p>
+<p><strong>问：质量参数应该设多少？</strong><br>答：75% 到 85% 是大多数网页照片的甜点区间。对视觉保真度要求高的主视觉图，可以选 90% 以上。</p>
+<p><strong>问：WebP 和 AVIF 相比如何？</strong><br>答：AVIF 压缩效果更好，但编码更慢，对旧浏览器的支持也更参差。就广泛的兼容性而言，WebP 当下仍是务实的选择。</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">本工具的工作原理</h2>
+<p>这个WebP Image Compressor完全运行在你的网页浏览器内，基于 Plobi-kit 100% 客户端架构。任何输入都不会发送到外部服务器，从而保障完全的隐私与离线可用性。想验证？打开浏览器的网络（Network）面板，使用工具，然后观察：除了页面自身的资源，没有任何东西离开你的机器。</p></div></div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. 保留所有权利。
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

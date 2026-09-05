@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Status Codes Cheat Sheet | Plobi-kit</title>
+  <meta name="description" content="HTTP status codes explained in plain language: 2xx success, 3xx redirects, 4xx client errors, 5xx server errors — what causes each and what to do about it.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/http-status">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="index.html" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
+      <h1 style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">HTTP Status Codes Cheat Sheet</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">Every HTTP response carries a three-digit status. The first digit is the family: 1xx informational, 2xx success, 3xx redirect, 4xx you messed up, 5xx the server messed up.</p>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">2xx — Success</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Code</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Name</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">When you see it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">200</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">OK</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Standard success — page loaded, GET returned data</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">201</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Created</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">POST created a resource (new record, uploaded file)</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">204</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">No Content</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Success with an empty body — common for DELETE</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">3xx — Redirects</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Code</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Name</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">When you see it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">301</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Moved Permanently</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">URL changed for good; browsers and search engines cache it</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">302</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Found</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Temporary redirect — do not use for moved content</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">304</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Not Modified</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Client cache is still valid; body not resent</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">4xx — Client errors</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Code</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Name</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">When you see it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">400</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Bad Request</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Malformed syntax — invalid JSON, bad parameters</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">401</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Unauthorized</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Not authenticated (no/invalid credentials) — log in first</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">403</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Forbidden</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Authenticated but not allowed — do not retry as-is</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">404</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Not Found</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">No resource at this URL</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">409</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Conflict</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Request contradicts current state (duplicate, version clash)</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">422</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Unprocessable Entity</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Well-formed but semantically invalid (validation failed)</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">429</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Too Many Requests</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Rate limit hit — back off, honor Retry-After</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">5xx — Server errors</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Code</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Name</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">When you see it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">500</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Internal Server Error</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Unhandled exception on the server — check the logs</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">502</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Bad Gateway</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Upstream service returned garbage or died</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">503</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Service Unavailable</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Overloaded or in maintenance — usually temporary</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">504</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Gateway Timeout</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Upstream took too long to answer</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">401 vs 403 — both mean "no", right?</strong><br>401 = "who are you?" (missing or invalid authentication). 403 = "I know who you are and you still can't". Retrying 403 with the same credentials never helps.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">301 vs 302 for SEO?</strong><br>301 passes ranking signals to the new URL and browsers cache it aggressively. Use 302 only when the move is truly temporary — search engines keep the old URL indexed.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">I got a 429 — what now?</strong><br>Slow down. Read the Retry-After header if present, add exponential backoff, and batch requests. Hammering a rate-limited endpoint turns 429 into 403.</p>
+      
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

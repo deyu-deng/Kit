@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Delete a Branch — Local and Remote | Plobi-kit</title>
+  <meta name="description" content="Delete Git branches safely: -d vs -D, removing remote branches, pruning stale references, and why merged branches are the only easy deletes.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-delete-branch">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .answer { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--success-color); border-radius: var(--radius-md); padding: 22px 24px; margin: 8px 0 8px 0; }
+    .expr { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 20px; font-weight: 700; color: var(--text-main); word-break: break-all; }
+    .plain { font-size: 14px; color: var(--text-muted); margin: 8px 0 0 0; }
+    table.ref { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card); margin-bottom: 8px; }
+    table.ref th { text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main); }
+    table.ref td { padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6; }
+    table.ref td code { color: var(--text-main); }
+    .prose { font-size: 14.5px; color: var(--text-muted); line-height: 1.85; margin: 14px 0; }
+    .cmdbox { background: #111; color: #e8e8e8; border-radius: var(--radius-sm); padding: 16px 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; overflow-x: auto; line-height: 1.7; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    a.chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-main); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 999px; padding: 8px 14px; text-decoration: none; transition: var(--transition); }
+    a.chip:hover { border-color: var(--success-color); color: var(--success-color); }
+    a.chip code { color: var(--success-color); font-weight: 600; }
+    .crumb { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .crumb a { color: var(--success-color); text-decoration: none; }
+    h1 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Delete a Branch — Local and Remote</p>
+      <h1>Git Delete a Branch — Local and Remote</h1>
+      
+      <div class="answer">
+        <code class="expr" style="display:block; margin-bottom:8px;">git branch -d &lt;name></code><p class="plain" style="margin:0 0 6px 0;">Delete — refuses if the branch has unmerged work</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git branch -D &lt;name></code><p class="plain" style="margin:0 0 6px 0;">Force delete — even with unmerged work (the work becomes unreachable)</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git branch -a</code><p class="plain" style="margin:0 0 6px 0;">List all branches, local and remote-tracking</p>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Local branches</h2>
+      <table class="ref">
+        <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+        <tbody><tr><td><code>git branch -d &lt;name></code></td><td><code>Delete — refuses if the branch has unmerged work</code></td></tr><tr><td><code>git branch -D &lt;name></code></td><td><code>Force delete — even with unmerged work (the work becomes unreachable)</code></td></tr><tr><td><code>git branch -a</code></td><td><code>List all branches, local and remote-tracking</code></td></tr></tbody>
+      </table>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Remote branches</h2>
+      <table class="ref">
+        <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+        <tbody><tr><td><code>git push origin --delete &lt;name></code></td><td><code>Delete the branch on the remote</code></td></tr><tr><td><code>git fetch --prune</code></td><td><code>Clean up local references to remote branches that were deleted elsewhere</code></td></tr></tbody>
+      </table>
+      <p class="prose">Deleting a branch removes a pointer, not (usually) commits — Git garbage-collects commits only when they become unreachable.</p>
+      
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
+      <div class="chips">
+        <a class="chip" href="git-undo-last-commit">Undo Last Commit — 3 Safe Ways</a>
+        <a class="chip" href="git-discard-local-changes">Discard Local Changes — Safely and Completely</a>
+        <a class="chip" href="git-stash-changes">Stash — Park Changes Without Committing</a>
+        <a class="chip" href="git-amend-last-commit">Amend the Last Commit</a>
+        <a class="chip" href="git-revert-pushed-commit">Undo a Pushed Commit — The Safe Way (git revert)</a>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
+      <p class="prose"><strong style="color: var(--text-main);">-d refused my delete — why?</strong><br>The branch contains commits not merged anywhere. If you are certain they are worthless, -D overrides; otherwise merge or rebase first.</p>
+      <p class="prose"><strong style="color: var(--text-main);">The branch still shows after deletion — why?</strong><br>Your local remote-tracking reference is stale. <code>git fetch --prune</code> (or <code>git remote prune origin</code>) syncs the list.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Can I delete main/master?</strong><br>Git will refuse the branch you are on; the remote side is usually protected by the host. Feature branches are the ones meant to be deleted.</p>
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
+        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Generate branch commands in the Git Builder</a>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="git.html" style="color: var(--success-color);">Git Cheat Sheet</a></p>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

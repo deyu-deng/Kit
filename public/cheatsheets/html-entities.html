@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Entities Cheat Sheet | Plobi-kit</title>
+  <meta name="description" content="HTML entities and escape characters on one page: reserved characters (&amp; &lt; &gt;), symbols (© ™ →), and whitespace — plus when escaping is required.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/html-entities">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="index.html" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
+      <h1 style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">HTML Entities Cheat Sheet</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">Some characters have special meaning in HTML. To display them as text, write an entity: an ampersand, a name or number, and a semicolon.</p>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Reserved — must escape in content</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Entity</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Numeric</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Renders</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;lt;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;#60;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;"><</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;gt;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;#62;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;amp;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;#38;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;quot;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;#34;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">"</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;apos;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;#39;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">'</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Symbols & typography</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Entity</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Renders</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;nbsp;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Non-breaking space</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;copy; · &amp;reg; · &amp;trade;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">© · ® · ™</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;mdash; · &amp;ndash; · &amp;hellip;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">— · – · …</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;larr; · &amp;rarr; · &amp;darr; · &amp;uarr;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">← · → · ↓ · ↑</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;times; · &amp;divide; · &amp;minus;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">× · ÷ · −</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;laquo; · &amp;raquo;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">« · »</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;bull; · &amp;middot;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">• · ·</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">&amp;euro; · &amp;pound; · &amp;yen;</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">€ · £ · ¥</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">When is escaping actually required?</strong><br>Always escape < and & when they appear as text — < starts a tag the parser will try to execute, and & starts an entity the parser will try to resolve. Quotes matter inside attribute values.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Why does &copy; render literally sometimes?</strong><br>A missing semicolon. Browsers repair some entity typos, but only named entities with semicolons are guaranteed — write &amp;copy; not &amp;copy.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Entity vs numeric reference?</strong><br>Named (&amp;copy;) is readable; numeric (&amp;#169;) covers every Unicode character, including ones with no named entity. Both are ASCII-safe for emails and old parsers.</p>
+      
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Try it instead of memorizing it</p>
+        <a class="btn" href="../tools/url.html" style="text-decoration: none;">Escape or unescape strings in the URL Encoder</a>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

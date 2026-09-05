@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimizing Prompts and Cursor Workflows for LLM Coding Agents | Plobi-kit</title>
+  <meta name="description" content="A comprehensive workflow guide on structuring system prompts, context control, and leveraging AI agent architectures for coding.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/guides/ai-agent-workflows.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .lib-wrap { max-width: 780px; margin: 0 auto; padding: 12px 20px 64px; }
+    .lib-breadcrumb { font-size: 13px; color: var(--text-muted); margin: 16px 0 4px; }
+    .lib-breadcrumb a { color: var(--success-color); text-decoration: none; }
+    .article-head { margin: 24px 0 32px; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .article-meta .tag { background: var(--accent-light); color: var(--text-main); font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+    .article-head h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--text-main); margin: 0 0 12px; }
+    .article-head .lead { font-size: 17px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .article-body { font-size: 16px; color: var(--text-main); line-height: 1.8; }
+    .article-body h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 36px 0 12px; color: var(--text-main); }
+    .article-body h3 { font-size: 18px; font-weight: 700; margin: 28px 0 8px; color: var(--text-main); }
+    .article-body p { margin: 14px 0; }
+    .article-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; background: var(--accent-light); padding: 1px 5px; border-radius: 4px; }
+    .article-body pre.codeblock { background: #111; color: #e8e8e8; padding: 16px 18px; border-radius: var(--radius-md); overflow-x: auto; font-size: 13px; line-height: 1.7; }
+    .article-body pre.codeblock code { background: transparent; padding: 0; color: inherit; }
+    .article-body ul, .article-body ol { padding-left: 22px; margin: 14px 0; }
+    .article-body li { margin: 4px 0; }
+    .article-body a { color: var(--success-color); text-decoration: underline; }
+    .article-related { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+    .related-card { display: block; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 14px; color: var(--text-main); text-decoration: none; background: var(--bg-card); transition: border-color .18s; }
+    .related-card:hover { border-color: var(--success-color); }
+    .tablewrap { overflow-x: auto; margin: 16px 0; }
+    .article-body table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .article-body th, .article-body td { padding: 9px 12px; border: 1px solid var(--border-color); text-align: left; }
+    .article-body th { background: var(--accent-light); }
+    @media (max-width: 640px) { .article-head h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main class="lib-wrap">
+      <p class="lib-breadcrumb"><a href="/guides/">Library</a> · howto</p>
+      
+    <article class="article">
+      <header class="article-head">
+        <div class="article-meta">
+          <span class="tag" data-i18n="lib.cat.howto">How-To</span>
+          <time>2026-08-01</time>
+          <span class="readtime">5 min</span>
+        </div>
+        <h1>Optimizing Prompts and Cursor Workflows for LLM Coding Agents</h1>
+        <p class="lead">A comprehensive workflow guide on structuring system prompts, context control, and leveraging AI agent architectures for coding.</p>
+      </header>
+      <div class="article-body">
+
+
+<p>Optimizing Prompts and Cursor Workflows for LLM Coding Agents</p>
+
+<p>            <strong>Author:</strong> David             <strong>Updated:</strong> June 2026             <strong>Category:</strong> AI &amp; Development</p>
+
+<p>            Coding with LLMs has shifted from simple autocomplete to sophisticated multi-file agentic code generation. Tools like Cursor, Copilot Workspace, and custom coding scripts have made it possible to build complex web apps in hours. However, without structured prompting and context controls, LLM agents often hallucinate, introduce bugs, or overwrite existing features.</p>
+
+<p>            In this guide, we will break down professional workflows for managing AI context, configuring coding guidelines, and structuring system instructions to get the best outputs from modern LLMs.</p>
+
+<p>            ## 1. Strict Context Control: Feed the AI Only What it Needs</p>
+
+<p>            LLMs have large context windows, but the more irrelevant code you pass to them, the higher the likelihood of distraction and syntax errors. Follow these rules to keep context tight:</p>
+
+<ul><li><strong>Use .cursorrules or System Guides:</strong> Create a project-specific guidelines file in your root directory. Define the tech stack, component rules, and coding style. This forces the LLM to write consistent code.</li><li><strong>Exclusion Patterns:</strong> Exclude large build directories, dependencies (like <code>node_modules/</code>), and compiled assets from the agent's view. In Cursor, configure your settings to ignore these paths for search indexing.</li><li><strong>Targeted References:</strong> Instead of asking the AI to read your entire codebase, reference specific files using symbols (like <code>@filename</code> or <code>@functionName</code>).</li></ul>
+
+<p>            ## 2. How to Structure Coding Rules (.cursorrules)</p>
+
+<p>            A good <code>.cursorrules</code> file instructs the model on architectural constraints, styling preferences, and debugging procedures. Below is a highly effective, minimal template for a frontend project:</p>
+
+<p>            # Plobi-kit Coding Rules</p>
+
+<ul><li>Core Tech: Vanilla HTML, CSS, JavaScript (ES6 Modules)</li><li>Code Style: Minimal intervention. Target only necessary lines. Avoid unsolicited cleanups.</li><li>Styling: Vanilla CSS inside css/*.css files. Avoid framework configurations unless asked.</li><li>Platform constraints: Node.js/Windows paths compatibility. Use absolute imports or local modules.</li><li>Verification: Always check outputs against active scripts before presenting.</li></ul>
+
+<p>            ## 3. Interacting with Coding Agents: The Iterative Loop</p>
+
+<p>            Treat AI agents as junior engineers. Do not expect them to build a complex feature in one single prompt. Instead, guide them through an iterative loop:</p>
+
+<ol><li><strong>Plan First:</strong> Ask the AI to research and list out the files that need modification and the implementation logic. Do not allow it to edit files during this stage.</li><li><strong>Approve the Design:</strong> Review the plan and clarify any ambiguities.</li><li><strong>Incremental Execution:</strong> Let the AI write code for one file or component at a time. Compile or run tests between edits to verify changes.</li><li><strong>Verify and Refine:</strong> Verify the result manually or via tests, and instruct the agent to make adjustments if issues occur.</li></ol>
+
+      </div>
+      
+    </article>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

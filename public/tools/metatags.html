@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online SEO Meta Tags Generator & Preview Card - Plobi-kit</title>
+  <meta name="description" content="Generate Google Search results, Facebook OpenGraph, and Twitter social cards sharing tags. Real-time visual mockup simulator.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Free Online SEO Meta Tags Generator",
+  "description": "A privacy-first meta tags generator. Understand title, description, and Open Graph tags, and how previews are cached by social platforms.",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/tools/metatags.html",
+  "inLanguage": "en"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between title, description and OG tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The title and description drive Google search snippets. Open Graph tags control how the link previews on Facebook and LinkedIn. Twitter cards control tweet previews."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What length should my title and description be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep the title around 50 to 60 characters and the description around 150 to 160 characters. Beyond those limits search engines truncate the text with an ellipsis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Open Graph?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a protocol using tags such as og title, og image and og url that tells social platforms exactly how to render a shared link as a rich card."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my preview not update after I change the tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Social platforms cache previews aggressively. Use the Facebook Sharing Debugger or the Twitter Card Validator to force a fresh fetch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my input uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Tags are generated in your browser only; nothing is sent to a server."
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/tools/metatags">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="main-layout">
+      <main class="primary-column">
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">SEO Meta Tags Generator</h2>
+            <p class="tool-description" id="active-tool-desc">Build, copy, and preview search engine and social media meta tags.</p>
+          </div>
+
+          <!-- Tool Panel: Meta Tags Generator Container -->
+          <div class="tool-panel" id="panel-metatags" style="display:block;">
+            <div class="meta-simulator-layout">
+              <!-- Left Column: Input Panel -->
+              <div class="meta-inputs-panel">
+                <div class="form-group">
+                  <label class="form-label" for="meta-title">Website Title</label>
+                  <input type="text" class="form-control" id="meta-title" value="Plobi-kit - Free Online Utilities">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="meta-desc">Page Description</label>
+                  <textarea class="form-control" id="meta-desc" placeholder="Enter meta description tag content..." style="min-height:90px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="meta-url">Page Canonical URL</label>
+                  <input type="text" class="form-control" id="meta-url" value="https://plobikit.com">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="meta-image">Preview Card Image URL (OG Image)</label>
+                  <input type="text" class="form-control" id="meta-image" value="https://plobikit.com/icon-512.png">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="meta-robots">Robots Directive Tag</label>
+                  <select class="form-control" id="meta-robots">
+                    <option value="index, follow">index, follow (Allow search indexing)</option>
+                    <option value="noindex, nofollow">noindex, nofollow (Block indexing)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="meta-type">OG Category (og:type)</label>
+                  <select class="form-control" id="meta-type">
+                    <option value="website">website</option>
+                    <option value="article">article</option>
+                    <option value="book">book</option>
+                    <option value="profile">profile</option>
+                  </select>
+                </div>
+
+                <div class="btn-group" style="margin-top:16px;">
+                  <button class="btn btn-secondary" id="meta-clear-btn">Clear All Fields</button>
+                </div>
+              </div>
+
+              <!-- Right Column: Previews and Code -->
+              <div class="meta-previews-panel">
+                <div class="form-label">Google Search Result Simulator</div>
+                <div class="preview-card-google">
+                  <div class="g-url" id="google-url">https://plobikit.com</div>
+                  <a href="#" class="g-title" id="google-title">Plobi-kit - Free Online Utilities</a>
+                  <div class="g-desc" id="google-desc">This is a description of the website that search engines will list. Try customizing it.</div>
+                </div>
+
+                <div class="form-label">Facebook Sharing Card Preview</div>
+                <div class="preview-card-social">
+                  <div class="social-image-slot" id="fb-image"></div>
+                  <div class="social-text-box">
+                    <div class="s-domain" id="fb-url">PLOBIKIT.COM</div>
+                    <div class="s-title" id="fb-title">Plobi-kit - Free Online Utilities</div>
+                    <div class="s-desc" id="fb-desc">This is a description of the website that social media sharing lists.</div>
+                  </div>
+                </div>
+
+                <div class="form-label">Twitter Large Image Card Preview</div>
+                <div class="preview-card-social">
+                  <div class="social-image-slot" id="tw-image"></div>
+                  <div class="social-text-box">
+                    <div class="s-domain" id="tw-url">plobikit.com</div>
+                    <div class="s-title" id="tw-title">Plobi-kit - Free Online Utilities</div>
+                    <div class="s-desc" id="tw-desc">This is a description of the website that Twitter summarizes.</div>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                  <label class="form-label" for="meta-output">Generated HTML Tags block</label>
+                  <textarea class="form-control" id="meta-output" readonly style="font-family:monospace; min-height:180px;"></textarea>
+                </div>
+                
+                <div class="btn-group">
+                  <button class="btn" id="meta-copy-btn">Copy HTML Meta Tags</button>
+                </div>
+                <div class="alert alert-success" id="meta-alert" style="display:none; margin-top:8px;">Copied to clipboard!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <article>
+                <h4>What Are HTML Meta Tags and Why Do They Matter?</h4>
+                <p>HTML meta tags are invisible snippets of code placed inside the <code>&lt;head&gt;</code> section of a web page. They are not rendered visually on the page itself — instead, they communicate structured information about the page to search engines, social media platforms, and browser applications. Meta tags are the primary mechanism through which you control how your page appears in Google search results, how its preview card looks when shared on Facebook or LinkedIn, and what title and description Twitter displays when a user tweets your link. Getting meta tags right is not optional — it is the foundation of on-page SEO and social media marketing.</p>
+
+                <h4>Understanding the Three Preview Systems</h4>
+                <p><strong>Google Search (Standard Meta Tags):</strong> Google primarily reads the <code>&lt;title&gt;</code> tag and <code>&lt;meta name="description"&gt;</code> to build the blue link title and grey descriptive snippet shown in search results. An ideal title is 50–60 characters, and the description should be 150–160 characters — concise, keyword-rich, and action-oriented. Exceeding these limits causes Google to truncate the text with an ellipsis, cutting off your message.</p>
+                <p><strong>Facebook &amp; LinkedIn (Open Graph Protocol):</strong> When a page URL is shared on Facebook or LinkedIn, their crawlers read <code>og:title</code>, <code>og:description</code>, <code>og:image</code>, and <code>og:url</code> tags from the page. The preview card image (<code>og:image</code>) should be at least 1200×630 pixels for optimal display. Without Open Graph tags, Facebook falls back to random page content, often producing ugly, uncontrolled previews that dramatically reduce click-through rates.</p>
+                <p><strong>Twitter Cards:</strong> Twitter (X) uses its own <code>twitter:card</code>, <code>twitter:title</code>, <code>twitter:description</code>, and <code>twitter:image</code> tags. The <code>summary_large_image</code> card type displays a large, full-width image that greatly increases engagement compared to the small thumbnail default.</p>
+
+                <h4>How to Use This Meta Tags Generator</h4>
+                <p>Fill in the Website Title, Page Description, Canonical URL, OG Image URL, and select the Robots Directive and OG type. All three preview simulators — Google, Facebook, and Twitter — update in real-time as you type, letting you see exactly how your page will appear across all platforms before publishing. The generated HTML Tags block below the previews shows the complete, ready-to-paste code for your <code>&lt;head&gt;</code> section. Click <strong>Copy HTML Meta Tags</strong> to copy the entire block to your clipboard.</p>
+
+                <h4>What Is the Robots Meta Tag?</h4>
+                <p>The <code>&lt;meta name="robots"&gt;</code> tag instructs search engine crawlers on how to treat the page. <code>index, follow</code> allows Google to include the page in its search index and follow its outgoing links — the default for all public pages you want to rank. <code>noindex, nofollow</code> tells crawlers to exclude the page from search results entirely, appropriate for admin pages, thank-you pages after form submissions, or any content you don't want publicly discoverable.</p>
+
+                <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Frequently Asked Questions</h2>
+<p><strong>Q: What is the difference between title, description and OG tags?</strong><br>A: The title and description drive Google search snippets. Open Graph tags control how the link previews on Facebook and LinkedIn. Twitter cards control tweet previews.</p>
+<p><strong>Q: What length should my title and description be?</strong><br>A: Keep the title around 50 to 60 characters and the description around 150 to 160 characters. Beyond those limits search engines truncate the text with an ellipsis.</p>
+<p><strong>Q: What is Open Graph?</strong><br>A: It is a protocol using tags such as og title, og image and og url that tells social platforms exactly how to render a shared link as a rich card.</p>
+<p><strong>Q: Why does my preview not update after I change the tags?</strong><br>A: Social platforms cache previews aggressively. Use the Facebook Sharing Debugger or the Twitter Card Validator to force a fresh fetch.</p>
+<p><strong>Q: Is my input uploaded?</strong><br>A: No. Tags are generated in your browser only; nothing is sent to a server.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">How This Tool Works</h2>
+<p>This SEO Meta Tags Generator runs entirely in your web browser through Plobi-kit's 100% client-side architecture. No input is sent to external web servers, guaranteeing complete privacy and offline utility. Want proof? Open your browser's Network tab, use the tool, and watch: nothing leaves your machine except the page's own assets.</p></div></div>
+        </section>
+      </main>
+
+      <aside class="sidebar-column">
+        
+      </aside>
+    </div>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

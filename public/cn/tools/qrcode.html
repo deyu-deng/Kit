@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas QR Code Generator - Plobi-kit</title>
+  <meta name="description" content="Generate high-quality custom QR codes locally in your browser instantly. Free, secure, and downloadable PNG assets.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/qrcode.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "QR Code Maker 使用指南",
+  "description": "Plobi-kit 隐私优先的QR Code Maker工具。了解其工作原理、常见疑问，以及我们如何让您的数据始终留在本地。",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/cn/tools/qrcode.html",
+  "inLanguage": "zh"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "在线二维码生成器安全吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "很多会把你的文本发到服务器，对专有或内部链接而言是风险。我们的工具在你的设备上 100% 本地生成，没有任何内容被上传。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "什么是二维码的纠错功能？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它让二维码即使部分脏污或损坏仍可读取。共有四级，大约能恢复 7%、15%、25% 和 30% 的丢失数据。我们默认用 M 级。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "静态二维码和动态二维码有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "静态码直接嵌入目标，事后无法更改；动态码指向一个短链接，你可以重新定向，但它需要服务器来解析。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "为什么要把编码文本保持得短？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "更短的数据产生密度更低的矩阵，手机相机扫描更快更可靠，尤其在小幅面打印时。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "打印二维码的最小尺寸是多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "打印分辨率下每个模块至少约 2 厘米宽。更高的纠错等级允许你印得更小，同时保持可扫描。"
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/cn/tools/qrcode">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">EN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">返回工具列表</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">QR Code Maker</h2>
+            <p class="tool-description" id="active-tool-desc">Enter standard URL pathways or text segments to render downloadable QR matrices.</p>
+          </div>
+
+          <!-- Tool Panel: QR Code Container -->
+          <div class="tool-panel" id="panel-qrcode" style="display:block;">
+            <div class="form-group">
+              <label class="form-label" for="qr-input" id="lbl-qr-input">二维码目标网址/文本</label>
+              <input type="text" class="form-control" id="qr-input" placeholder="请输入例如 https://example.com 或其他任意文本内容...">
+            </div>
+            <div class="form-group">
+              <div class="qr-result-box">
+                <div class="qr-placeholder" id="qr-ph-text">在上方输入文本或 URL 后，系统将在此处为您自动生成二维码。</div>
+                <canvas id="qrcode-canvas" style="display:none;"></canvas>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="qr-download-btn" disabled>下载二维码 (PNG)</button>
+              <button class="btn btn-secondary" id="qr-clear-btn">清空文本</button>
+            </div>
+          </div>
+
+
+<!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+      <p>二维码（Quick Response Code）是一种矩阵式的条形码。它使用特定的二维几何图形记录数据符号，被广泛应用于网址跳转、数字支付和应用分发。</p>
+      <h4>高效二维码生成要点：</h4>
+      <ul>
+        <li><strong>尽量精简网址</strong>: 输入的字符越少，二维码生成的黑白矩阵越稀疏，手机相机的识别与对焦速度就越快。</li>
+        <li><strong>色彩高对比度</strong>: 确保二维码的前景（通常是黑色）与背景（白色）有足够鲜明的明暗差距。</li>
+      </ul>
+      
+              <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">设计真正能扫的二维码</h2>
+              <p>二维码只有在手机能在真实环境里读出来时才有用。最被忽视的要求是静区：每侧至少留出四个模块的空白边距。裁掉这个边距，或把码放得离其他图形太近，是本来有效的码扫不出来的头号原因。</p>
+              <p>接下来是尺寸和摆放。打印时，目标宽度至少约两厘米，让相机能分辨单个模块；在屏幕上，确保码位于远离视频或动画的平整区域。如果你在中心嵌入 logo，面积控制在 15% 以内，并依靠纠错来恢复被遮挡的数据。</p>
+              <p>务必在真实设备上测试，而不只是你的笔记本。用 iOS 和 Android 相机都扫一遍，在你用户真正会用的距离和真实场景的光照条件下测试。在显示器上很清晰的码，在海报的强烈阳光下可能发白。</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">常见问题解答</h2>
+<p><strong>问：在线二维码生成器安全吗？</strong><br>答：很多会把你的文本发到服务器，对专有或内部链接而言是风险。我们的工具在你的设备上 100% 本地生成，没有任何内容被上传。</p>
+<p><strong>问：什么是二维码的纠错功能？</strong><br>答：它让二维码即使部分脏污或损坏仍可读取。共有四级，大约能恢复 7%、15%、25% 和 30% 的丢失数据。我们默认用 M 级。</p>
+<p><strong>问：静态二维码和动态二维码有什么区别？</strong><br>答：静态码直接嵌入目标，事后无法更改；动态码指向一个短链接，你可以重新定向，但它需要服务器来解析。</p>
+<p><strong>问：为什么要把编码文本保持得短？</strong><br>答：更短的数据产生密度更低的矩阵，手机相机扫描更快更可靠，尤其在小幅面打印时。</p>
+<p><strong>问：打印二维码的最小尺寸是多少？</strong><br>答：打印分辨率下每个模块至少约 2 厘米宽。更高的纠错等级允许你印得更小，同时保持可扫描。</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">本工具的工作原理</h2>
+<p>这个QR Code Maker完全运行在你的网页浏览器内，基于 Plobi-kit 100% 客户端架构。任何输入都不会发送到外部服务器，从而保障完全的隐私与离线可用性。想验证？打开浏览器的网络（Network）面板，使用工具，然后观察：除了页面自身的资源，没有任何东西离开你的机器。</p></div></div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. 保留所有权利。
+      </div>
+    </footer>
+  </div>
+
+  <!-- QR Code rendering library -->
+  <script src="https://unpkg.com/qr-creator@1.0.0/dist/qr-creator.min.js"></script>
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

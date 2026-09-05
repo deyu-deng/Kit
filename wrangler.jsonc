@@ -2,13 +2,26 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "plobi-kit",
   "compatibility_date": "2026-06-08",
+  "main": "worker/index.js",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": "public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*", "/s/*", "/deals", "/deals/*"],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
   },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "plobikit",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+    }
+  ],
+  "triggers": {
+    "crons": ["17 3 * * *"]
+  },
+  "compatibility_flags": ["nodejs_compat"]
 }

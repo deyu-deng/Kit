@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Stash — Park Changes Without Committing | Plobi-kit</title>
+  <meta name="description" content="Use git stash to park uncommitted work: stash, pop, apply, list, drop, untracked files with -u, and stacking multiple stashes.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-stash-changes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .answer { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--success-color); border-radius: var(--radius-md); padding: 22px 24px; margin: 8px 0 8px 0; }
+    .expr { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 20px; font-weight: 700; color: var(--text-main); word-break: break-all; }
+    .plain { font-size: 14px; color: var(--text-muted); margin: 8px 0 0 0; }
+    table.ref { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card); margin-bottom: 8px; }
+    table.ref th { text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main); }
+    table.ref td { padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6; }
+    table.ref td code { color: var(--text-main); }
+    .prose { font-size: 14.5px; color: var(--text-muted); line-height: 1.85; margin: 14px 0; }
+    .cmdbox { background: #111; color: #e8e8e8; border-radius: var(--radius-sm); padding: 16px 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; overflow-x: auto; line-height: 1.7; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    a.chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-main); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 999px; padding: 8px 14px; text-decoration: none; transition: var(--transition); }
+    a.chip:hover { border-color: var(--success-color); color: var(--success-color); }
+    a.chip code { color: var(--success-color); font-weight: 600; }
+    .crumb { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .crumb a { color: var(--success-color); text-decoration: none; }
+    h1 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Stash — Park Changes Without Committing</p>
+      <h1>Git Stash — Park Changes Without Committing</h1>
+      
+      <div class="answer">
+        <code class="expr" style="display:block; margin-bottom:8px;">git stash</code><p class="plain" style="margin:0 0 6px 0;">Park all tracked-file changes; working tree becomes clean</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git stash pop</code><p class="plain" style="margin:0 0 6px 0;">Bring the latest stash back and remove it from the stack</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git stash apply</code><p class="plain" style="margin:0 0 6px 0;">Bring it back but keep a copy in the stack</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git stash list</code><p class="plain" style="margin:0 0 6px 0;">Show parked stashes (stash@{0} is newest)</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git stash drop stash@{1}</code><p class="plain" style="margin:0 0 6px 0;">Delete a specific stash entry</p>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Core stash workflow</h2>
+      <table class="ref">
+        <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+        <tbody><tr><td><code>git stash</code></td><td><code>Park all tracked-file changes; working tree becomes clean</code></td></tr><tr><td><code>git stash pop</code></td><td><code>Bring the latest stash back and remove it from the stack</code></td></tr><tr><td><code>git stash apply</code></td><td><code>Bring it back but keep a copy in the stack</code></td></tr><tr><td><code>git stash list</code></td><td><code>Show parked stashes (stash@{0} is newest)</code></td></tr><tr><td><code>git stash drop stash@{1}</code></td><td><code>Delete a specific stash entry</code></td></tr></tbody>
+      </table>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Useful options</h2>
+      <table class="ref">
+        <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+        <tbody><tr><td><code>git stash -u</code></td><td><code>Include untracked files (ignored files need -a)</code></td></tr><tr><td><code>git stash push -m "wip: login bug"</code></td><td><code>Give the stash a memorable name</code></td></tr><tr><td><code>git stash pop stash@{2}</code></td><td><code>Restore a specific (older) stash</code></td></tr></tbody>
+      </table>
+      <p class="prose">Stash shelves your uncommitted changes and gives you a clean working tree — perfect for "I need to fix something else first".</p>
+      
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
+      <div class="chips">
+        <a class="chip" href="git-undo-last-commit">Undo Last Commit — 3 Safe Ways</a>
+        <a class="chip" href="git-discard-local-changes">Discard Local Changes — Safely and Completely</a>
+        <a class="chip" href="git-delete-branch">Delete a Branch — Local and Remote</a>
+        <a class="chip" href="git-amend-last-commit">Amend the Last Commit</a>
+        <a class="chip" href="git-revert-pushed-commit">Undo a Pushed Commit — The Safe Way (git revert)</a>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
+      <p class="prose"><strong style="color: var(--text-main);">Does stash include new (untracked) files?</strong><br>Not by default — stash only touches tracked files. Add <code>-u</code> to include untracked files, <code>-a</code> to include ignored ones too.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Can I stash on one branch and pop on another?</strong><br>Yes — a stash is branch-agnostic. Pop it wherever the changes belong; conflicts are resolved like a merge.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Stash or branch?</strong><br>Stash for minutes-to-hours parking; a real branch for anything that might survive past today. Stashes are easy to forget and painfully easy to drop.</p>
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
+        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Generate stash commands in the Git Builder</a>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="git.html" style="color: var(--success-color);">Git Cheat Sheet</a></p>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

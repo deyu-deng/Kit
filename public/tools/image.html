@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local WebP Image Compressor - Plobi-kit</title>
+  <meta name="description" content="Compress PNG, JPEG, and WebP images locally inside your browser window. 100% secure, offline support, zero server uploads.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Local WebP Image Compressor",
+  "description": "A privacy-first WebP image compressor. Learn why WebP beats JPEG and PNG, how quality affects size, and how we keep files local.",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/tools/image.html",
+  "inLanguage": "en"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why compress images to WebP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebP is typically 25 to 34 percent smaller than JPEG at the same visual quality, and it supports alpha transparency like PNG. Every major browser supports it, so it is a safe default for the web."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I lose quality when compressing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lossy WebP trades some detail for size, so use a higher quality percentage for photos. PNG to WebP is lossy unless you explicitly pick the lossless mode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my image uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Compression runs on your device through the browser's Canvas and encoding APIs, so the original file never leaves your machine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What quality setting should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A quality of 75 to 85 percent is the sweet spot for most web photos. Choose 90 percent or above for hero images where visual fidelity matters most."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does WebP compare to AVIF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AVIF compresses even better but encodes more slowly and has spottier support on older browsers. WebP remains the pragmatic choice for broad compatibility today."
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/tools/image">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">WebP Image Compressor</h2>
+            <p class="tool-description" id="active-tool-desc">Compress images locally in your browser and convert them safely to WebP format.</p>
+          </div>
+
+          <!-- Tool Panel: WebP Image Compressor Container -->
+          <div class="tool-panel" id="panel-image" style="display:block;">
+            <div class="glass-generator-layout" style="grid-template-columns: 1.2fr 1fr;">
+              <!-- Upload & Settings -->
+              <div>
+                <div class="form-group">
+                  <label class="form-label" id="lbl-image-input">Drag & Drop Image or Click to Select</label>
+                  <div id="image-dropzone" style="border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 40px 20px; text-align: center; background: var(--bg-app); cursor: pointer; transition: var(--transition);">
+                    <div style="font-size: 32px; margin-bottom: 12px;">📥</div>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="txt-image-upload-desc">Supports PNG, JPEG, WEBP formats up to 10MB</p>
+                    <input type="file" id="image-file-input" accept="image/png, image/jpeg, image/webp" style="display:none;">
+                  </div>
+                </div>
+
+                <div class="form-group" id="image-settings-container" style="display:none;">
+                  <label class="form-label"><span id="lbl-image-quality">Compression Quality</span>: <span id="image-quality-val">0.75</span></label>
+                  <input type="range" class="form-control" id="image-quality" min="0.1" max="1.0" step="0.05" value="0.75">
+                </div>
+
+                <div class="btn-group" id="image-action-group" style="display:none; margin-top: 24px;">
+                  <button class="btn" id="image-compress-btn">Compress & Convert to WebP</button>
+                  <button class="btn btn-secondary" id="image-reset-btn">Reset</button>
+                </div>
+              </div>
+
+              <!-- Preview & Metrics -->
+              <div id="image-preview-column" style="display:none; display: flex; flex-direction: column; justify-content: space-between; border-left: 1px solid var(--border-color); padding-left: 24px;">
+                <div>
+                  <label class="form-label" id="lbl-image-preview">Compressed Image Preview</label>
+                  <div style="display: flex; align-items: center; justify-content: center; background: var(--accent-light); border-radius: var(--radius-sm); min-height: 180px; overflow: hidden; border: 1px solid var(--border-color); padding: 8px;">
+                    <img id="image-preview-img" style="max-width: 100%; max-height: 240px; border-radius: 4px; object-fit: contain; box-shadow: var(--shadow-sm);">
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px; font-size: 13px;">
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-orig-size">Original Size:</strong> <span id="image-orig-size">0 KB</span></p>
+                  <p style="margin-bottom: 8px;"><strong id="lbl-image-comp-size">Compressed Size:</strong> <span id="image-comp-size">0 KB</span></p>
+                  <p style="margin-bottom: 0; color: var(--success-color); font-weight: 600;"><strong id="lbl-image-ratio">Size Reduction:</strong> <span id="image-shrink-ratio">0%</span></p>
+                </div>
+
+                <button class="btn" id="image-download-btn" disabled style="width: 100%; margin-top: 16px;">Download WebP Image</button>
+              </div>
+            </div>
+          </div>
+
+
+<!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <article>
+                <h4>Why Image Compression Matters for Web Performance</h4>
+                <p>Images are consistently the single largest contributor to web page weight. According to the HTTP Archive, images account for an average of 64% of total page bytes transferred to the browser. Unoptimized images directly hurt Google's Core Web Vitals scores — particularly <strong>Largest Contentful Paint (LCP)</strong>, which measures how quickly the main visual content of a page loads. Google's PageSpeed Insights tool penalizes pages with oversized images and explicitly recommends serving images in "next-generation formats" like WebP.</p>
+                <p>WebP is a modern image format developed by Google, designed to replace both JPEG and PNG for web delivery. It achieves substantially better compression than JPEG (typically 25–34% smaller at equivalent visual quality) while also supporting alpha channel transparency like PNG. As of 2024, WebP is supported by all major browsers including Chrome, Firefox, Safari, and Edge — making it safe to use as the primary image format for virtually all web projects.</p>
+
+                <h4>How to Use the WebP Image Compressor</h4>
+                <p>Drag and drop your image file (PNG, JPEG, or WebP) onto the upload area, or click it to open a file picker. The tool accepts files up to 10MB. Once the image is loaded, use the <strong>Compression Quality</strong> slider to choose a quality level between 0.10 (maximum compression, lowest quality) and 1.00 (minimum compression, lossless). A value of <strong>0.75–0.80</strong> is the recommended sweet spot for most web use cases, delivering 60–80% file size reduction with virtually no perceptible quality difference to the human eye. Click <strong>Compress &amp; Convert to WebP</strong> to process the image. The preview panel shows the compressed result alongside the original and compressed file sizes, and the percentage reduction achieved. Click <strong>Download WebP Image</strong> to save the optimized file.</p>
+
+                <h4>Is My Image Kept Private?</h4>
+                <p>Yes — 100% private. This tool processes all image data entirely inside your browser using the HTML5 Canvas API and the native <code>canvas.toBlob()</code> method. Your image is loaded into browser memory, rendered to a canvas element, re-encoded to WebP at the chosen quality level, and returned as a download URL — all without sending a single byte to any server. This makes it safe to use with confidential design mockups, client product photography, or any private visual content.</p>
+
+                <h4>Common Use Cases</h4>
+                <ul>
+                  <li><strong>Optimizing Hero Images:</strong> Full-page hero and banner images are typically 1–3MB as JPEG or PNG. Converting to WebP at quality 0.80 routinely brings them under 300KB while maintaining visual fidelity — dramatically improving LCP scores.</li>
+                  <li><strong>Product Photography for E-Commerce:</strong> Online stores with hundreds of product images benefit enormously from WebP conversion. Smaller images reduce bandwidth costs and improve page load speed on mobile devices, directly increasing conversion rates.</li>
+                  <li><strong>Blog and Article Thumbnails:</strong> Editorial images used as article thumbnails or Open Graph preview images can be reduced to under 100KB without noticeable quality loss, improving social sharing load times.</li>
+                  <li><strong>App Screenshots and Documentation:</strong> UI screenshots in technical documentation or app store listings compress significantly in WebP format while preserving the sharp text and UI element details that JPEG destroys.</li>
+                </ul>
+
+                <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Frequently Asked Questions</h2>
+<p><strong>Q: Why compress images to WebP?</strong><br>A: WebP is typically 25 to 34 percent smaller than JPEG at the same visual quality, and it supports alpha transparency like PNG. Every major browser supports it, so it is a safe default for the web.</p>
+<p><strong>Q: Will I lose quality when compressing?</strong><br>A: Lossy WebP trades some detail for size, so use a higher quality percentage for photos. PNG to WebP is lossy unless you explicitly pick the lossless mode.</p>
+<p><strong>Q: Is my image uploaded to a server?</strong><br>A: No. Compression runs on your device through the browser's Canvas and encoding APIs, so the original file never leaves your machine.</p>
+<p><strong>Q: What quality setting should I use?</strong><br>A: A quality of 75 to 85 percent is the sweet spot for most web photos. Choose 90 percent or above for hero images where visual fidelity matters most.</p>
+<p><strong>Q: How does WebP compare to AVIF?</strong><br>A: AVIF compresses even better but encodes more slowly and has spottier support on older browsers. WebP remains the pragmatic choice for broad compatibility today.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">How This Tool Works</h2>
+<p>This WebP Image Compressor runs entirely in your web browser through Plobi-kit's 100% client-side architecture. No input is sent to external web servers, guaranteeing complete privacy and offline utility. Want proof? Open your browser's Network tab, use the tool, and watch: nothing leaves your machine except the page's own assets.</p></div></div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

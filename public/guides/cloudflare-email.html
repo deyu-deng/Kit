@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing | Plobi-kit</title>
+  <meta name="description" content="A comprehensive tutorial on setting up free business email hosting using a custom domain with Cloudflare Email Routing and Gmail.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/guides/cloudflare-email.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .lib-wrap { max-width: 780px; margin: 0 auto; padding: 12px 20px 64px; }
+    .lib-breadcrumb { font-size: 13px; color: var(--text-muted); margin: 16px 0 4px; }
+    .lib-breadcrumb a { color: var(--success-color); text-decoration: none; }
+    .article-head { margin: 24px 0 32px; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .article-meta .tag { background: var(--accent-light); color: var(--text-main); font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+    .article-head h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--text-main); margin: 0 0 12px; }
+    .article-head .lead { font-size: 17px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .article-body { font-size: 16px; color: var(--text-main); line-height: 1.8; }
+    .article-body h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 36px 0 12px; color: var(--text-main); }
+    .article-body h3 { font-size: 18px; font-weight: 700; margin: 28px 0 8px; color: var(--text-main); }
+    .article-body p { margin: 14px 0; }
+    .article-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; background: var(--accent-light); padding: 1px 5px; border-radius: 4px; }
+    .article-body pre.codeblock { background: #111; color: #e8e8e8; padding: 16px 18px; border-radius: var(--radius-md); overflow-x: auto; font-size: 13px; line-height: 1.7; }
+    .article-body pre.codeblock code { background: transparent; padding: 0; color: inherit; }
+    .article-body ul, .article-body ol { padding-left: 22px; margin: 14px 0; }
+    .article-body li { margin: 4px 0; }
+    .article-body a { color: var(--success-color); text-decoration: underline; }
+    .article-related { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+    .related-card { display: block; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 14px; color: var(--text-main); text-decoration: none; background: var(--bg-card); transition: border-color .18s; }
+    .related-card:hover { border-color: var(--success-color); }
+    .tablewrap { overflow-x: auto; margin: 16px 0; }
+    .article-body table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .article-body th, .article-body td { padding: 9px 12px; border: 1px solid var(--border-color); text-align: left; }
+    .article-body th { background: var(--accent-light); }
+    @media (max-width: 640px) { .article-head h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main class="lib-wrap">
+      <p class="lib-breadcrumb"><a href="/guides/">Library</a> · howto</p>
+      
+    <article class="article">
+      <header class="article-head">
+        <div class="article-meta">
+          <span class="tag" data-i18n="lib.cat.howto">How-To</span>
+          <time>2026-08-01</time>
+          <span class="readtime">5 min</span>
+        </div>
+        <h1>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing</h1>
+        <p class="lead">A comprehensive tutorial on setting up free business email hosting using a custom domain with Cloudflare Email Routing and Gmail.</p>
+      </header>
+      <div class="article-body">
+
+
+<p>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing</p>
+
+<p>            <strong>Author:</strong> David             <strong>Updated:</strong> June 2026             <strong>Category:</strong> Cloud Infrastructure</p>
+
+<p>            For any modern developer, designer, or startup founder, having a professional email address (like <code>contact@yourdomain.com</code>) is essential for building brand authority. However, dedicated business email hosting from providers like Google Workspace or Microsoft 365 can cost $6 to $18 per user every single month.</p>
+
+<p>            If you have registered a custom domain for your project, you can route all inbound and outbound business emails completely free of charge. We will combine Cloudflare's free Email Routing with a free Gmail inbox to handle everything seamlessly.</p>
+
+<p>            ## Phase 1: Configure Cloudflare Email Routing</p>
+
+<p>            First, make sure your domain's DNS nameservers are managed by Cloudflare. If they are, follow these steps to configure email redirection:</p>
+
+<ol><li>Log in to your <strong>Cloudflare Dashboard</strong> and select your active website domain.</li><li>In the left sidebar, click on <strong>Email</strong> -&gt; <strong>Email Routing</strong>.</li><li>Click <strong>Enable Email Routing</strong>. Cloudflare will prompt you to automatically add the required MX and TXT records to your DNS settings. Confirm and apply the changes.</li><li>Go to the <strong>Destination Addresses</strong> tab, click <strong>Add Destination</strong>, and enter your personal Gmail address (e.g. <code>myaddress@gmail.com</code>). Verify the verification email sent to your inbox.</li><li>Go to the <strong>Routing Rules</strong> tab, click <strong>Create Rule</strong>. Set the Custom Address to your desired brand username (e.g. <code>contact@yourdomain.com</code>) and forward it to your verified Gmail destination address.</li></ol>
+
+<p>            ## Phase 2: Enable Sending Email as Your Custom Domain</p>
+
+<p>            Receiving emails is now active, but replying from your personal Gmail address will leak your personal account address. To send emails as <code>contact@yourdomain.com</code>, we will configure Google's SMTP servers using a Google App Password:</p>
+
+<ol><li>Go to your <strong>Google Account Settings</strong> (myaccount.google.com).</li><li>Click on the <strong>Security</strong> tab. Ensure that <strong>2-Step Verification</strong> is turned ON.</li><li>Search for or navigate to <strong>App passwords</strong>. Create a new app password, naming it something descriptive like "Plobi Email Routing", and copy the generated 16-character code.</li><li>Open your <strong>Gmail Inbox</strong>, click the gear icon to open <strong>Settings</strong>, and select <strong>See all settings</strong>.</li><li>Navigate to the <strong>Accounts and Import</strong> tab. Under <strong>Send mail as</strong>, click <strong>Add another email address</strong>.</li><li>Enter your display name and your custom domain email address (<code>contact@yourdomain.com</code>). Make sure the box "Treat as an alias" is checked, then click Next Step.</li><li>Configure the SMTP Server settings as follows:</li></ol>
+
+<ul><li><strong>SMTP Server:</strong> <code>smtp.gmail.com</code></li><li><strong>Port:</strong> <code>587</code></li><li><strong>Username:</strong> Your full personal Gmail address (e.g. <code>myaddress@gmail.com</code>)</li><li><strong>Password:</strong> The 16-character Google App Password you generated in step 3</li><li>Select <strong>Secured connection using TLS</strong></li></ul>
+
+<ol><li>Click <strong>Add Account</strong>. Gmail will send a confirmation code to your custom address. Since Cloudflare is already routing emails, check your Gmail inbox for this code, copy it, and paste it to complete verification.</li></ol>
+
+<p>            ## Phase 3: Ensure Email Deliverability (SPF &amp; DKIM)</p>
+
+<p>            To prevent your outgoing custom domain emails from landing in spam, verify that your SPF record in Cloudflare DNS settings explicitly includes Google. Your SPF TXT record value should look like this:</p>
+
+<p>            v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all             This tells receiving mail servers that both Cloudflare and Google's servers are legally authorized to transmit mail on behalf of your domain name.</p>
+
+      </div>
+      
+    </article>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

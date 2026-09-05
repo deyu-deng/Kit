@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Plobi-kit</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/privacy.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://plobikit.com/privacy">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-bottom: 40px;">
+      
+      <h1 style="font-size: 28px; margin-bottom: 24px; letter-spacing: -0.5px;">Privacy Policy</h1>
+      
+      <div style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+        <p style="margin-bottom: 16px;">Last Updated: August 2026</p>
+        
+        <p style="margin-bottom: 20px;">Welcome to Plobi-kit. Your privacy is critically important to us. This Privacy Policy details how we handle information, our compliance with Google AdSense terms, and the use of cookies on this website under the Plobi brand.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">1. Personal Data and Data Collection</h3>
+        <p style="margin-bottom: 16px;">Plobi-kit is a collection of client-side web utility tools. <strong>All data processing, encoding, conversion, and computation tasks occur entirely within your local browser window using JavaScript.</strong> We do not collect, store, transmit, or process your input data on any external web servers.</p>
+        <p style="margin-bottom: 12px;">This includes, but is not limited to, the following tools:</p>
+        <ul style="padding-left: 20px; margin-bottom: 16px; line-height: 2;">
+          <li><strong>Base64 Encoder/Decoder</strong> — text data is encoded/decoded locally in memory</li>
+          <li><strong>JSON Formatter &amp; Validator</strong> — JSON strings are parsed entirely client-side</li>
+          <li><strong>JWT Token Decoder</strong> — JWT tokens are Base64URL-decoded locally; no token is transmitted</li>
+          <li><strong>URL Encoder/Decoder</strong> — URL strings are percent-encoded/decoded in the browser</li>
+          <li><strong>Markdown ↔ HTML Converter</strong> — document conversion runs in the browser engine</li>
+          <li><strong>WebP Image Compressor</strong> — uploaded images are processed via the HTML5 Canvas API locally; no image data is uploaded to any server</li>
+          <li><strong>QR Code Generator</strong> — QR codes are rendered on an HTML5 Canvas element; no input text is transmitted</li>
+          <li><strong>Regex Tester</strong> — pattern matching runs in the browser's JavaScript engine</li>
+          <li><strong>Color Palette Generator</strong> — color calculations are performed client-side</li>
+          <li><strong>CSS Glassmorphism Generator</strong> — all CSS values are computed locally</li>
+          <li><strong>Cron Expression Visualizer</strong> — schedule parsing happens in the browser</li>
+          <li><strong>Git Command Generator</strong> — command generation runs locally with no external requests</li>
+          <li><strong>SVG Markup Optimizer</strong> — SVG code is processed via regex substitution in the browser</li>
+          <li><strong>Flexbox &amp; Grid Playground</strong> — layout preview and CSS export run client-side</li>
+          <li><strong>SEO Meta Tags Generator</strong> — meta tag code generation is entirely local</li>
+          <li><strong>AI Prompt Helper</strong> — prompt templates are assembled locally; no AI API calls are made</li>
+          <li><strong>Code Snippet to Image Exporter</strong> — image rendering uses the html2canvas library entirely in the browser; no code or image data is transmitted</li>
+        </ul>
+        <p style="margin-bottom: 16px;">By design, all tool processing happens locally. The only server-side actions are the optional ones you explicitly trigger, described in the next section.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">2. Share Links &amp; Contact Messages (Explicit Server Actions)</h3>
+        <p style="margin-bottom: 12px;">Two features involve our own server (Cloudflare Workers) and database (Cloudflare D1), and both run only when you explicitly use them:</p>
+        <ul style="padding-left: 20px; margin-bottom: 16px; line-height: 2;">
+          <li><strong>Share links</strong> — when you click "Share" in a tool, the current tool settings are stored so that whoever you send the link to can open the tool with those settings. Shared states expire automatically after 30 days and are then purged.</li>
+          <li><strong>Contact form</strong> — if you send us a message, we store the name, email address, and message text you submit, solely so we can reply to you. We never use it for marketing and never share it with third parties.</li>
+        </ul>
+        <p style="margin-bottom: 16px;">In both cases, data you type into the tools themselves stays in your browser. We do not build behavioral profiles, and no third-party form service or tracker is involved.</p>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">3. Google AdSense &amp; Cookies</h3>
+        <p style="margin-bottom: 16px;">This website uses Google AdSense, a service provided by Google LLC, to serve advertisements. Google uses cookies to serve ads based on a user's prior visits to our website or other websites on the internet.</p>
+        <p style="margin-bottom: 16px;">Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our site and/or other sites on the Internet.</p>
+        <p style="margin-bottom: 16px;">Users may opt out of personalized advertising by visiting <a href="https://settings.google.com/ads" target="_blank" style="color: var(--success-color); text-decoration: underline;">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" style="color: var(--success-color); text-decoration: underline;">www.aboutads.info</a>.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">4. External Links</h3>
+        <p style="margin-bottom: 16px;">Our site may contain links to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">5. Children's Privacy (COPPA Compliance)</h3>
+        <p style="margin-bottom: 16px;">Plobi-kit's services are not directed at children under the age of 13. We do not knowingly collect any personal information from children under 13. The tools themselves collect no personal data from any user (of any age), as all processing is local and client-side; the only personal data we ever hold is what you explicitly submit via a share link or the contact form described above. If you believe that a child under 13 has somehow provided personal information to us through a contact channel, please contact us immediately and we will take steps to remove that information.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">6. Changes to This Policy</h3>
+        <p style="margin-bottom: 16px;">We reserve the right to make changes to this Privacy Policy at any time. Changes will be reflected by updating the "Last Updated" date at the top of this page. We encourage visitors to review this page periodically. Continued use of Plobi-kit's tools following any updates constitutes acceptance of the revised policy.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">7. Contact Us</h3>
+        <p style="margin-bottom: 16px;">If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us through our official GitHub repository. You can open an issue or discussion at: <a href="https://github.com/Deng-Deyu/NoCloud" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">github.com/Deng-Deyu/NoCloud</a>. We aim to respond to all legitimate privacy inquiries within 30 days.</p>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Root Pages (English) -->
+  <url>
+    <loc>https://plobikit.com/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/about</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/about"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/privacy</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/privacy"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/terms</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/terms"/>
+  </url>
+
+  <!-- Root Pages (Chinese) -->
+  <url>
+    <loc>https://plobikit.com/cn/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheet</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheet"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheet"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/about</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/about"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/privacy</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/privacy"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/terms</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/terms"/>
+  </url>
+
+  <!-- Guides Hub & Articles (English) -->
+  <url>
+    <loc>https://plobikit.com/guides/index</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/index"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/index"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/contact</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/contact"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/guides/never-paste-secrets</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/never-paste-secrets"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/never-paste-secrets"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/guides/cloudflare-email</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/cloudflare-email"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/guides/ai-agent-workflows</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/ai-agent-workflows"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/ai-agent-workflows"/>
+  </url>
+
+  <url>
+    <loc>https://plobikit.com/guides/regex-redos</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/regex-redos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/regex-redos"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/guides/color-60-30-10</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/color-60-30-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/color-60-30-10"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/guides/privacy-workflow</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/privacy-workflow"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/privacy-workflow"/>
+  </url>
+
+  <!-- Guides Hub & Articles (Chinese) -->
+  <url>
+    <loc>https://plobikit.com/cn/contact</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/contact"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/guides/never-paste-secrets</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/never-paste-secrets"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/never-paste-secrets"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/guides/index</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/index"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/index"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/guides/cloudflare-email</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/cloudflare-email"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/guides/ai-agent-workflows</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/ai-agent-workflows"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/ai-agent-workflows"/>
+  </url>
+
+  <url>
+    <loc>https://plobikit.com/cn/guides/regex-redos</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/regex-redos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/regex-redos"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/guides/color-60-30-10</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/color-60-30-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/color-60-30-10"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/guides/privacy-workflow</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/privacy-workflow"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/privacy-workflow"/>
+  </url>
+
+  <!-- Tools Standalone Pages (English) -->
+  <url>
+    <loc>https://plobikit.com/tools/base64</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/base64"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/glassmorphism</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/glassmorphism"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/glassmorphism"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/qrcode</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/qrcode"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/colorpalette</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/colorpalette"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/colorpalette"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/regex</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/regex"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/git</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/git"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/cron</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/cron"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/cron"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/image</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/json</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/jwt</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/jwt"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/url</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/markdown</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/markdown"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/flexgrid</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/flexgrid"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/svg</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/metatags</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/prompt</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/tools/codeimage</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/codeimage"/>
+  </url>
+
+
+  <!-- Tools Standalone Pages (Chinese) -->
+  <url>
+    <loc>https://plobikit.com/cn/tools/base64</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/base64"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/glassmorphism</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/glassmorphism"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/glassmorphism"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/qrcode</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/qrcode"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/colorpalette</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/colorpalette"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/colorpalette"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/regex</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/regex"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/git</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/git"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/cron</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/cron"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/cron"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/image</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/json</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/jwt</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/jwt"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/url</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/markdown</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/markdown"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/flexgrid</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/flexgrid"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/svg</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/metatags</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/prompt</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/tools/codeimage</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/codeimage"/>
+  </url>
+
+  <!-- Collection & Deals (English) -->
+  <url>
+    <loc>https://plobikit.com/collection/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/collection/developer-tools</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/collection/design-resources</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/deals</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/deals/games</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+
+  <url>
+    <loc>https://plobikit.com/tools/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/regex</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/flexgrid</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/markdown</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/http-status</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/html-entities</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/base64</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-minute</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-5-minutes</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-10-minutes</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-15-minutes</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-30-minutes</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-hour</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-daily-midnight</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-every-weekday-9am</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-weekends-only</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-first-day-of-month</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/cron-last-day-of-month</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git-undo-last-commit</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git-discard-local-changes</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git-delete-branch</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git-stash-changes</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git-amend-last-commit</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cheatsheets/git-revert-pushed-commit</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

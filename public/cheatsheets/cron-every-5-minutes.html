@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cron Every 5 Minutes — Crontab Example | Plobi-kit</title>
+  <meta name="description" content="Run a cron job every 5 minutes with */5 * * * *. Field-by-field explanation, offsets to avoid load spikes, and common pitfalls.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-every-5-minutes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .answer { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--success-color); border-radius: var(--radius-md); padding: 22px 24px; margin: 8px 0 8px 0; }
+    .expr { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 20px; font-weight: 700; color: var(--text-main); word-break: break-all; }
+    .plain { font-size: 14px; color: var(--text-muted); margin: 8px 0 0 0; }
+    table.ref { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card); margin-bottom: 8px; }
+    table.ref th { text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main); }
+    table.ref td { padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6; }
+    table.ref td code { color: var(--text-main); }
+    .prose { font-size: 14.5px; color: var(--text-muted); line-height: 1.85; margin: 14px 0; }
+    .cmdbox { background: #111; color: #e8e8e8; border-radius: var(--radius-sm); padding: 16px 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; overflow-x: auto; line-height: 1.7; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    a.chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-main); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 999px; padding: 8px 14px; text-decoration: none; transition: var(--transition); }
+    a.chip:hover { border-color: var(--success-color); color: var(--success-color); }
+    a.chip code { color: var(--success-color); font-weight: 600; }
+    .crumb { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .crumb a { color: var(--success-color); text-decoration: none; }
+    h1 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="cron.html">Cron Cheat Sheet</a> · Cron Every 5 Minutes — Crontab Example</p>
+      <h1>Cron Every 5 Minutes — Crontab Example</h1>
+      
+      <div class="answer">
+        <code class="expr">*/5 * * * *</code>
+        <p class="plain">Runs every 5 minutes — at minutes 0, 5, 10, 15, and so on.</p>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
+      <table class="ref">
+        <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
+        <tbody><tr><td><code>Minute</code></td><td><code>*/5</code></td><td>Every 5th minute (0, 5, 10, … 55)</td></tr><tr><td><code>Hour</code></td><td><code>*</code></td><td>Every hour</td></tr><tr><td><code>Day of month</code></td><td><code>*</code></td><td>Every day</td></tr><tr><td><code>Month</code></td><td><code>*</code></td><td>Every month</td></tr><tr><td><code>Day of week</code></td><td><code>*</code></td><td>Every day of the week</td></tr></tbody>
+      </table>
+      <p class="prose">This is the most-copied polling interval in cron. The <code>*/5</code> step syntax means "starting at the field minimum, every 5th value" — so runs land exactly on 0, 5, 10, 15 minutes past the hour.</p>
+      <p class="prose">Because every server in the world that copies this expression fires at the same instants, popular APIs see traffic spikes at :00. Offset your runs to a quieter phase with a ranged step: <code>2-57/5 * * * *</code> fires at 2, 7, 12, … and is equivalent in cadence.</p>
+      <pre class="cmdbox">*/5 * * * * /usr/local/bin/poll.sh</pre>
+      
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
+      <div class="chips">
+        <a class="chip" href="cron-every-10-minutes"><code>*/10 * * * *</code> Every 10 minutes</a>
+        <a class="chip" href="cron-every-15-minutes"><code>*/15 * * * *</code> Every 15 minutes</a>
+        <a class="chip" href="cron-every-minute"><code>* * * * *</code> Every minute</a>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
+      <p class="prose"><strong style="color: var(--text-main);">Is */5 the same as 0-55/5?</strong><br>Yes — both enumerate 0, 5, 10, … 55. The range before the slash only sets where the step starts and stops.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Why did my job also fire at midnight?</strong><br>It fires at :00 of every hour including 00:00 — that is expected. If you want "every 5 minutes but never at midnight exactly", exclude it in the script itself.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Does it catch up after downtime?</strong><br>No. Cron has no memory — if the machine was off at 12:05, that run is simply skipped. Use a job queue or anacron-style tooling when catch-up matters.</p>
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
+        <a class="btn" href="../tools/cron.html" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="cron.html" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

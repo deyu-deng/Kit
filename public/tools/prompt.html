@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online AI Prompt Helper & Engineer Builder - Plobi-kit</title>
+  <meta name="description" content="Design and build structured, role-specific prompts for ChatGPT, Claude, and LLMs. 100% offline builder.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Free Online AI Prompt Helper & Engineer Builder",
+  "description": "A privacy-first prompt engineering builder. Learn the core components of a strong prompt and how few-shot examples improve LLM output.",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/tools/prompt.html",
+  "inLanguage": "en"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a role or persona prompt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It assigns the model an expert identity, such as a senior security engineer, which biases its tone, vocabulary, and depth toward that role."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the core components of a good prompt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A strong prompt usually states a role, gives context, defines the task, sets constraints, specifies the output format, and often includes examples."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is few-shot prompting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You provide example input and output pairs so the model copies the desired format and style. It is one of the most reliable ways to steer behavior."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from chain-of-thought?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chain-of-thought asks the model to reason step by step, while few-shot shows examples. The two techniques are complementary and often combined."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my prompt text uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The builder runs locally, so the prompts you draft stay on your device."
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/tools/prompt">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="main-layout">
+      <main class="primary-column">
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">AI Prompt Helper</h2>
+            <p class="tool-description" id="active-tool-desc">Build and optimize structured prompt templates for ChatGPT, Claude, and LLMs.</p>
+          </div>
+
+          <!-- Tool Panel: AI Prompt Container -->
+          <div class="tool-panel" id="panel-prompt" style="display:block;">
+            <div class="form-group">
+              <label class="form-label" for="prompt-role-select">Select AI Role Template</label>
+              <select class="form-control" id="prompt-role-select">
+                <option value="reviewer">Code Quality Reviewer & Refactoring Expert</option>
+                <option value="translator">Professional Localizer & Translator</option>
+                <option value="copywriter">Elite Conversion Copywriter</option>
+                <option value="custom">Custom Persona Prompt Builder</option>
+              </select>
+            </div>
+
+            <!-- Dynamic Input Slots -->
+            <div id="prompt-dynamic-inputs" style="margin-top:16px;">
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+              <label class="form-label" for="prompt-output">Structured Prompt Output</label>
+              <textarea class="form-control" id="prompt-output" readonly style="min-height: 250px; font-family: monospace;"></textarea>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn" id="prompt-copy-btn">Copy Output Prompt</button>
+              <button class="btn btn-secondary" id="prompt-clear-btn">Clear Inputs</button>
+            </div>
+            <div class="alert alert-success" id="prompt-alert" style="display:none; margin-top:8px;">Copied to clipboard!</div>
+          </div>
+
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <article>
+                <h4>What Is Prompt Engineering and Why Does It Matter?</h4>
+                <p>Prompt engineering is the discipline of designing, structuring, and optimizing text instructions (called "prompts") to elicit the most accurate, useful, and relevant responses from large language models (LLMs) such as OpenAI's ChatGPT, Anthropic's Claude, Google Gemini, and open-source models like Llama. As AI models become embedded in every layer of software development and content production, the ability to communicate effectively with them has become a distinct and highly valuable professional skill.</p>
+                <p>The quality difference between a poorly constructed prompt and a well-engineered one is dramatic. A vague instruction like "Review my code" might return a superficial two-paragraph response. The same request structured as a role-specific prompt — specifying the reviewer's expertise, evaluation criteria, output format, and tone — can produce an expert-level analysis that would normally require hours of a senior developer's time. Effective prompts don't just ask questions; they assign expertise, set context, define constraints, and specify the desired format of the response.</p>
+
+                <h4>How to Use the AI Prompt Helper</h4>
+                <p>Select a role template from the dropdown menu — <strong>Code Quality Reviewer</strong> for refactoring and quality analysis, <strong>Professional Localizer &amp; Translator</strong> for multilingual content work, <strong>Elite Conversion Copywriter</strong> for marketing copy, or <strong>Custom Persona</strong> to define your own AI persona from scratch. Fill in the dynamic input fields that appear based on the selected role (such as programming language, target audience, or source text). The structured prompt is compiled and displayed in real-time in the output panel below. Click <strong>Copy Output Prompt</strong> to copy the complete prompt, then paste it directly into ChatGPT, Claude, or any LLM interface.</p>
+
+                <h4>Key Principles of Effective Prompt Construction</h4>
+                <ul>
+                  <li><strong>Role Assignment:</strong> Begin by assigning the AI a specific expert identity ("You are a senior security engineer specializing in OAuth 2.0 implementations"). This dramatically shifts the model's internal weighting toward domain-specific knowledge and vocabulary.</li>
+                  <li><strong>Context and Constraints:</strong> Provide relevant context (programming language, project type, target audience) and explicit constraints (word limit, output format, banned phrases, required sections). Constraints prevent the model from filling space with generic advice.</li>
+                  <li><strong>Output Format Specification:</strong> Specify exactly how you want the response structured — as a numbered list, a table, a code block with inline comments, a JSON object, or a formal report with headings. Models follow formatting instructions with high fidelity when clearly stated.</li>
+                  <li><strong>Chain of Thought:</strong> For complex analytical tasks, instruct the model to "think step by step" before delivering its conclusion. This activates the model's reasoning capabilities and significantly reduces factual errors.</li>
+                </ul>
+
+                <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Frequently Asked Questions</h2>
+<p><strong>Q: What is a role or persona prompt?</strong><br>A: It assigns the model an expert identity, such as a senior security engineer, which biases its tone, vocabulary, and depth toward that role.</p>
+<p><strong>Q: What are the core components of a good prompt?</strong><br>A: A strong prompt usually states a role, gives context, defines the task, sets constraints, specifies the output format, and often includes examples.</p>
+<p><strong>Q: What is few-shot prompting?</strong><br>A: You provide example input and output pairs so the model copies the desired format and style. It is one of the most reliable ways to steer behavior.</p>
+<p><strong>Q: How is this different from chain-of-thought?</strong><br>A: Chain-of-thought asks the model to reason step by step, while few-shot shows examples. The two techniques are complementary and often combined.</p>
+<p><strong>Q: Is my prompt text uploaded?</strong><br>A: No. The builder runs locally, so the prompts you draft stay on your device.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">How This Tool Works</h2>
+<p>This AI Prompt Helper runs entirely in your web browser through Plobi-kit's 100% client-side architecture. No input is sent to external web servers, guaranteeing complete privacy and offline utility. Want proof? Open your browser's Network tab, use the tool, and watch: nothing leaves your machine except the page's own assets.</p></div></div>
+        </section>
+      </main>
+
+      <aside class="sidebar-column">
+        
+      </aside>
+    </div>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

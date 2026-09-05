@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regex Catastrophic Backtracking and ReDoS: A Developer's Guide to Taming Explosive Patterns | Plobi-kit</title>
+  <meta name="description" content="Catastrophic backtracking turns an innocent-looking regex into a denial-of-service weapon. Learn how ReDoS happens, how to detect vulnerable patterns, and how to rewrite them safely — tested locally with a 100% client-side regex tool.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/guides/regex-redos.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .lib-wrap { max-width: 780px; margin: 0 auto; padding: 12px 20px 64px; }
+    .lib-breadcrumb { font-size: 13px; color: var(--text-muted); margin: 16px 0 4px; }
+    .lib-breadcrumb a { color: var(--success-color); text-decoration: none; }
+    .article-head { margin: 24px 0 32px; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .article-meta .tag { background: var(--accent-light); color: var(--text-main); font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+    .article-head h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--text-main); margin: 0 0 12px; }
+    .article-head .lead { font-size: 17px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .article-body { font-size: 16px; color: var(--text-main); line-height: 1.8; }
+    .article-body h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 36px 0 12px; color: var(--text-main); }
+    .article-body h3 { font-size: 18px; font-weight: 700; margin: 28px 0 8px; color: var(--text-main); }
+    .article-body p { margin: 14px 0; }
+    .article-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; background: var(--accent-light); padding: 1px 5px; border-radius: 4px; }
+    .article-body pre.codeblock { background: #111; color: #e8e8e8; padding: 16px 18px; border-radius: var(--radius-md); overflow-x: auto; font-size: 13px; line-height: 1.7; }
+    .article-body pre.codeblock code { background: transparent; padding: 0; color: inherit; }
+    .article-body ul, .article-body ol { padding-left: 22px; margin: 14px 0; }
+    .article-body li { margin: 4px 0; }
+    .article-body a { color: var(--success-color); text-decoration: underline; }
+    .article-related { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+    .related-card { display: block; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 14px; color: var(--text-main); text-decoration: none; background: var(--bg-card); transition: border-color .18s; }
+    .related-card:hover { border-color: var(--success-color); }
+    .tablewrap { overflow-x: auto; margin: 16px 0; }
+    .article-body table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .article-body th, .article-body td { padding: 9px 12px; border: 1px solid var(--border-color); text-align: left; }
+    .article-body th { background: var(--accent-light); }
+    @media (max-width: 640px) { .article-head h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main class="lib-wrap">
+      <p class="lib-breadcrumb"><a href="/guides/">Library</a> · howto</p>
+      
+    <article class="article">
+      <header class="article-head">
+        <div class="article-meta">
+          <span class="tag" data-i18n="lib.cat.howto">How-To</span>
+          <time>2026-08-01</time>
+          <span class="readtime">5 min</span>
+        </div>
+        <h1>Regex Catastrophic Backtracking and ReDoS: A Developer's Guide to Taming Explosive Patterns</h1>
+        <p class="lead">Catastrophic backtracking turns an innocent-looking regex into a denial-of-service weapon. Learn how ReDoS happens, how to detect vulnerable patterns, and how to rewrite them safely — tested locally with a 100% client-side regex tool.</p>
+      </header>
+      <div class="article-body">
+
+
+<p>Regex Catastrophic Backtracking and ReDoS: A Developer's Guide to Taming Explosive Patterns</p>
+
+<p>            <strong>Author:</strong> David Deng             <strong>Updated:</strong> August 2026             <strong>Category:</strong> Hardcore Dev             <strong>Reading time:</strong> ~10 min</p>
+
+<p>            You copy a friendly one-liner from Stack Overflow to "validate an email." It works in your tests. Six months later, a security researcher emails you: a single crafted string makes your API hang for ninety seconds. The culprit is not your server, not your framework — it is three characters of regex quietly doing exponential work. This is <strong>ReDoS</strong>, Regular Expression Denial of Service, and it is one of the most underestimated bugs in production code.</p>
+
+<p>            This guide explains, from the engine upwards, why a harmless-looking pattern can explode, how to spot the danger before it ships, and how to rewrite patterns so they stay linear. Every example here can be tested live in our <a href="../tools/regex.html">100% client-side regex tester</a> without sending a single byte of your data to a server.</p>
+
+<p>            ## How a Regex Engine Actually Matches</p>
+
+<p>            To understand the failure, you first need the mental model of how engines match. Most popular languages (PCRE, Python, Java, JavaScript without special flags) use a <strong>backtracking</strong> engine. It tries one path to match the pattern against the string, and the moment a step fails, it rewinds to the last decision point and tries the next alternative. Think of it as a depth-first search through every way the pattern could fit.</p>
+
+<p>            For a clean pattern on clean input, this is fast and invisible. The trouble begins when the pattern offers the engine <em>many equivalent ways</em> to satisfy the same constraint. Each extra equivalent path multiplies the work.</p>
+
+<p>            ## The Classic Bomb: <code>(a+)+$</code></p>
+
+<p>            Consider the pattern <code>(a+)+$</code> matched against the string <code>aaaaaaaaaaaaaaaaaaaaaaaaaab</code> — twenty-six <code>a</code>s followed by a <code>b</code>. The pattern can never match, because of the trailing <code>b</code> and the anchored <code>$</code>. But look at how many ways the engine can group those <code>a</code>s:</p>
+
+<ul><li>Outer group once: <code>a</code> repeated 26 times inside.</li><li>Outer group twice: split 25+1, 24+2, 23+3, ...</li><li>Outer group three times: every partition into three chunks.</li><li>And so on, for every possible partition.</li></ul>
+
+<p>            The number of partitions grows roughly like the Bell number, which is super-exponential. Adding just one more <code>a</code> before the <code>b</code> can double or triple the runtime. On a realistic input this crosses from "instant" to "the request times out" within a handful of characters. That is catastrophic backtracking.</p>
+
+<p>            ## Why Real Incidents Happen</p>
+
+<p>            ReDoS is not academic. Public post-mortems include a 2019 Cloudflare outage caused by a single catastrophic rule in a WAF regex that consumed CPU across their edge, and numerous CVEs in popular libraries where an email, URL, or XML validator could be frozen by a hostile string. The common shape is always the same: a pattern meant for "simple validation" that contains nested or overlapping quantifiers and is fed attacker-controlled input.</p>
+
+<p>            The insidious part is that it passes code review. The pattern looks correct, tests pass on normal data, and the explosion only appears on the <em>negative</em> case — the very case an attacker will probe.</p>
+
+<p>            ## A Practical Detection Checklist</p>
+
+<p>            Before you trust a pattern, scan it for these red flags:</p>
+
+<ol><li><strong>Nested quantifiers:</strong> a quantifier (<code><em></code>, <code>+</code>, <code>{n,}</code>) applied to a group that itself contains a quantifier, e.g. <code>(a+)+</code>, <code>(a</em>)*</code>.</li><li><strong>Overlapping alternation:</strong> branches that can match the same characters, e.g. <code>(a|a)+</code> or <code>(.+|.*)</code>, letting the engine reorder endlessly.</li><li><strong>Unanchored middle:</strong> <code>.*</code> next to another greedy piece, creating many ways to divide the string.</li><li><strong>Near-duplicate capture groups:</strong> multiple groups that can each absorb the same run of characters.</li></ol>
+
+<p>            If you see any of these on user input, benchmark it. Feed the pattern a string that <em>almost</em> matches but fails at the end, then make that string one character longer and measure. A linear pattern's time grows in a straight line; a vulnerable one curves upward violently.</p>
+
+<p>            ## How to Fix an Unsafe Pattern</p>
+
+<p>            Four moves get most patterns back to linear:</p>
+
+<ul><li><strong>Use atomic groups or possessive quantifiers.</strong> In PCRE/Java, <code>(?&gt;...)</code> or <code>++</code> tell the engine "once you consume this, never give it back." That single change kills backtracking into the group.</li><li><strong>Replace ambiguous alternation with a character class.</strong> <code>(ab|ac)</code> becomes <code>a[bc]</code>, which has exactly one way to match.</li><li><strong>Anchor both ends and be specific.</strong> <code>^[a-z]+$</code> is far safer than <code>[a-z]+</code> floating in the middle of a looser pattern.</li><li><strong>Parse, don't pattern.</strong> For HTML, CSV, or nested structures, use a real parser. Regex is for flat, well-bounded text only.</li></ul>
+
+<p>            ## Test Safely With a Local-Only Tool</p>
+
+<p>            The obvious instinct — "I'll paste my pattern and a test string into an online regex tester" — has the same privacy problem we cover in our <a href="never-paste-secrets.html">guide on never pasting secrets</a>: many of those sites send your input to a server. If your regex is wrapping a sample of real user data, that upload is a leak.</p>
+
+<p>            Our <a href="../tools/regex.html">regex tester</a> runs entirely in your browser. You can throw adversarial, near-miss strings at a pattern to prove it is linear, and the worst that happens is your own tab freezes — your data never leaves the page. That is the right place to do this kind of adversarial testing.</p>
+
+<p>            ## Frequently Asked Questions</p>
+
+<p>            <strong>Q: What is catastrophic backtracking in a regex?</strong> A: It is when a pattern with overlapping or nested quantifiers fails to match, and the regex engine tries exponentially many ways to split the input before giving up. A pattern like (a+)+$ can take milliseconds on a short string but seconds or minutes on a slightly longer one that does not match.</p>
+
+<p>            <strong>Q: How do I know if my regex is vulnerable to ReDoS?</strong> A: Look for nested quantifiers, alternations where both branches can match the same characters, and patterns that allow the engine many equivalent ways to partition a string. The safest test is to benchmark the pattern against a near-miss string one character longer than your usual input and watch the time grow.</p>
+
+<p>            <strong>Q: Is ReDoS only a server-side problem?</strong> A: No. Any code path that runs a user-supplied or user-triggered pattern on user-controlled input is exposed, including browser-side validation. If a malicious visitor can choose the input, they can freeze the tab just as easily as a server thread.</p>
+
+<p>            <strong>Q: Can a regex tester protect me from ReDoS?</strong> A: A good tester helps if it runs locally and shows timing. Plobi-kit's regex tester runs 100% in your browser, so you can safely throw adversarial strings at a pattern without sending your data anywhere. It will still hang the tab on a catastrophic pattern — which is exactly how you learn it is unsafe — but your data never leaves the page.</p>
+
+<p>            <strong>Q: How do I fix an unsafe regex pattern?</strong> A: Prefer atomic groups or possessive quantifiers so the engine cannot backtrack into a captured group. Replace ambiguous alternations with character classes, anchor both ends, and avoid nesting quantifiers on overlapping content. Where possible, parse with a dedicated library instead of one giant pattern.</p>
+
+      </div>
+      
+    </article>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

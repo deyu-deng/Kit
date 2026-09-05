@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas QR Code Generator - Plobi-kit</title>
+  <meta name="description" content="Generate high-quality custom QR codes locally in your browser instantly. Free, secure, and downloadable PNG assets.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <!-- International SEO Alternate Links -->
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/qrcode.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode.html">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google AdSense Verification Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Canvas QR Code Generator",
+  "description": "A privacy-first QR code generator. Understand error correction, static versus dynamic codes, and why local generation protects your links.",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/tools/qrcode.html",
+  "inLanguage": "en"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are online QR generators safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many send your text to their servers, which is a risk for proprietary or internal links. Our tool generates codes 100 percent locally on your device, so nothing is uploaded."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is QR error correction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It lets a code stay readable even if part is dirty or damaged. There are four levels, roughly recovering 7, 15, 25 and 30 percent of lost data. We use level M by default."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between static and dynamic QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A static code embeds the target directly and cannot be changed later. A dynamic code points to a short URL you can retarget, but it requires a server to resolve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why keep the encoded text short?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shorter data produces a less dense matrix, which mobile cameras scan faster and more reliably, especially at small print sizes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum size to print a QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aim for at least about 2 centimeters per module at print resolution. Higher error-correction lets you print slightly smaller while staying scannable."
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/tools/qrcode">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <!-- Top Ads Banner -->
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      
+      <!-- Primary Column -->
+      <main class="primary-column">
+        
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">QR Code Maker</h2>
+            <p class="tool-description" id="active-tool-desc">Enter standard URL pathways or text segments to render downloadable QR matrices.</p>
+          </div>
+
+          <!-- Tool Panel: QR Code Container -->
+          <div class="tool-panel" id="panel-qrcode" style="display:block;">
+            <div class="form-group">
+              <label class="form-label" for="qr-input" id="lbl-qr-input">Target Link / Text Segment</label>
+              <input type="text" class="form-control" id="qr-input" placeholder="https://example.com or any text segment...">
+            </div>
+            <div class="form-group">
+              <div class="qr-result-box">
+                <div class="qr-placeholder" id="qr-ph-text">Enter text or URL above to automatically generate a QR Code.</div>
+                <canvas id="qrcode-canvas" style="display:none;"></canvas>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn" id="qr-download-btn" disabled>Download QR Code (PNG)</button>
+              <button class="btn btn-secondary" id="qr-clear-btn">Clear Text</button>
+            </div>
+          </div>
+
+
+<!-- Tool-Specific Guidelines for SEO -->
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <p>A Quick Response (QR) code is a type of matrix barcode containing embedded binary info. It is widely used for scanning links, digital payments, and document indexing.</p>
+              <h4>Best Practices for QR Generation:</h4>
+              <ul>
+                <li><strong>Keep URLs Short</strong>: Shorter text segments create less dense QR square grids, making them significantly easier and faster for mobile cameras to scan.</li>
+                <li><strong>High Contrast</strong>: Ensure your output keeps a high color contrast relative to the background paper or display panel. Black-on-white remains the gold standard.</li>
+              </ul>
+              <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Designing QR Codes That Actually Scan</h2>
+              <p>A QR code is only useful if a phone can read it in the wild. The most overlooked requirement is the quiet zone: a blank margin of at least four modules on every side. Cropping that margin, or placing the code too close to other graphics, is the single most common reason a otherwise valid code fails to scan.</p>
+              <p>Size and placement come next. On print, aim for a minimum of roughly two centimeters across so the camera can resolve individual modules; on screens, make sure the code sits on a plain area away from video or animation behind it. If you embed a logo in the center, keep it under 15 percent of the area and rely on error correction to recover the obscured data.</p>
+              <p>Always test on real devices, not just your laptop. Scan with both iOS and Android cameras, at the distances your users will actually use, and under the lighting conditions of the real setting. A code that looks crisp on a monitor can wash out under bright sunlight on a poster.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Frequently Asked Questions</h2>
+<p><strong>Q: Are online QR generators safe?</strong><br>A: Many send your text to their servers, which is a risk for proprietary or internal links. Our tool generates codes 100 percent locally on your device, so nothing is uploaded.</p>
+<p><strong>Q: What is QR error correction?</strong><br>A: It lets a code stay readable even if part is dirty or damaged. There are four levels, roughly recovering 7, 15, 25 and 30 percent of lost data. We use level M by default.</p>
+<p><strong>Q: What is the difference between static and dynamic QR codes?</strong><br>A: A static code embeds the target directly and cannot be changed later. A dynamic code points to a short URL you can retarget, but it requires a server to resolve.</p>
+<p><strong>Q: Why keep the encoded text short?</strong><br>A: Shorter data produces a less dense matrix, which mobile cameras scan faster and more reliably, especially at small print sizes.</p>
+<p><strong>Q: What is the minimum size to print a QR code?</strong><br>A: Aim for at least about 2 centimeters per module at print resolution. Higher error-correction lets you print slightly smaller while staying scannable.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">How This Tool Works</h2>
+<p>This QR Code Maker runs entirely in your web browser through Plobi-kit's 100% client-side architecture. No input is sent to external web servers, guaranteeing complete privacy and offline utility. Want proof? Open your browser's Network tab, use the tool, and watch: nothing leaves your machine except the page's own assets.</p></div></div>
+
+        </section>
+
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- QR Code rendering library -->
+  <script src="https://unpkg.com/qr-creator@1.0.0/dist/qr-creator.min.js"></script>
+  <!-- Register Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <!-- Main entry JS -->
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

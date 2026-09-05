@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 60-30-10 Color Rule: A Practical System for Balanced UI Palettes | Plobi-kit</title>
+  <meta name="description" content="The 60-30-10 rule is the fastest way to make any UI palette look intentional instead of random. Learn the math, how to assign roles, pick the accent, and validate in light and dark themes — then generate a balanced palette locally.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cn/guides/color-60-30-10.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .lib-wrap { max-width: 780px; margin: 0 auto; padding: 12px 20px 64px; }
+    .lib-breadcrumb { font-size: 13px; color: var(--text-muted); margin: 16px 0 4px; }
+    .lib-breadcrumb a { color: var(--success-color); text-decoration: none; }
+    .article-head { margin: 24px 0 32px; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .article-meta .tag { background: var(--accent-light); color: var(--text-main); font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+    .article-head h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--text-main); margin: 0 0 12px; }
+    .article-head .lead { font-size: 17px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .article-body { font-size: 16px; color: var(--text-main); line-height: 1.8; }
+    .article-body h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 36px 0 12px; color: var(--text-main); }
+    .article-body h3 { font-size: 18px; font-weight: 700; margin: 28px 0 8px; color: var(--text-main); }
+    .article-body p { margin: 14px 0; }
+    .article-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; background: var(--accent-light); padding: 1px 5px; border-radius: 4px; }
+    .article-body pre.codeblock { background: #111; color: #e8e8e8; padding: 16px 18px; border-radius: var(--radius-md); overflow-x: auto; font-size: 13px; line-height: 1.7; }
+    .article-body pre.codeblock code { background: transparent; padding: 0; color: inherit; }
+    .article-body ul, .article-body ol { padding-left: 22px; margin: 14px 0; }
+    .article-body li { margin: 4px 0; }
+    .article-body a { color: var(--success-color); text-decoration: underline; }
+    .article-related { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+    .related-card { display: block; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 14px; color: var(--text-main); text-decoration: none; background: var(--bg-card); transition: border-color .18s; }
+    .related-card:hover { border-color: var(--success-color); }
+    .tablewrap { overflow-x: auto; margin: 16px 0; }
+    .article-body table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .article-body th, .article-body td { padding: 9px 12px; border: 1px solid var(--border-color); text-align: left; }
+    .article-body th { background: var(--accent-light); }
+    @media (max-width: 640px) { .article-head h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">EN</button>
+      </div>
+    </header>
+
+    <main class="lib-wrap">
+      <p class="lib-breadcrumb"><a href="/cn/guides/">知识库</a> · howto</p>
+      
+    <article class="article">
+      <header class="article-head">
+        <div class="article-meta">
+          <span class="tag" data-i18n="lib.cat.howto">教程</span>
+          <time>2026-08-01</time>
+          <span class="readtime">5 min</span>
+        </div>
+        <h1>The 60-30-10 Color Rule: A Practical System for Balanced UI Palettes</h1>
+        <p class="lead">The 60-30-10 rule is the fastest way to make any UI palette look intentional instead of random. Learn the math, how to assign roles, pick the accent, and validate in light and dark themes — then generate a balanced palette locally.</p>
+      </header>
+      <div class="article-body">
+<p>&lt;div style="background: rgba(0,112,243,.08); border: 1px solid rgba(0,112,243,.25); border-radius: 6px; padding: 12px 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px;"&gt;该文章暂无中文版本,以下为英文原文。&lt;/div&gt;</p>
+
+<p>&lt;p&gt;The 60-30-10 Color Rule: A Practical System for Balanced UI Palettes&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            &lt;strong&gt;Author:&lt;/strong&gt; David Deng             &lt;strong&gt;Updated:&lt;/strong&gt; August 2026             &lt;strong&gt;Category:&lt;/strong&gt; Design &amp; UI             &lt;strong&gt;Reading time:&lt;/strong&gt; ~9 min&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            You have five colors you like. You drop them all onto a settings page and it looks... busy. Not broken, just noisy — like the design is shouting. The fix is almost never "pick better colors." It is "use fewer of them, and give each a job." That is the entire idea behind the &lt;strong&gt;60-30-10 rule&lt;/strong&gt;, the single proportional system that separates a palette that looks designed from one that looks assembled.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            This guide walks through the math, how to assign each color a role, how to choose the one accent that does the heavy lifting, and how to validate the result in both light and dark themes. When you are ready to build, our &lt;a href="../tools/colorpalette.html"&gt;local color palette generator&lt;/a&gt; applies the split for you and previews it on real UI elements — entirely in your browser.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            ## The Rule, Plainly&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            Sixty percent, thirty percent, ten percent. Those are the surface areas each color family should occupy:&lt;/p&gt;</p>
+
+<p>&lt;ul&gt;&lt;li&gt;&lt;strong&gt;60% — Dominant.&lt;/strong&gt; Usually a neutral: off-white, light gray, or (in dark mode) near-black. This is your background, large cards, and the empty space that lets content breathe.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;30% — Secondary.&lt;/strong&gt; A second neutral or a low-saturation tint that structures the page: text, dividers, sidebars, borders, and secondary surfaces.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;10% — Accent.&lt;/strong&gt; Your most saturated color, reserved for the few elements you want the eye to find first: the primary button, active link, focus ring, and key call-to-action.&lt;/li&gt;&lt;/ul&gt;</p>
+
+<p>&lt;p&gt;            The power of the rule is restraint. The accent only pops &lt;em&gt;because&lt;/em&gt; it is rare. Spread it across half the page and it stops meaning anything.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            ## Why It Works (A Tiny Bit of Math)&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            The human eye reads importance through contrast and rarity. When 90 percent of a screen shares a calm, low-contrast family, the remaining 10 percent of saturated color becomes a magnet. Designers borrow this from interior design and cinematography, where a controlled color field makes a single highlight feel intentional. The 60-30-10 split is simply the ratio that consistently produces that effect without tipping into monotony or chaos.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            ## Assigning Roles, Step by Step&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            Do not start by picking the accent. Start with the dominant, because it sets the mood:&lt;/p&gt;</p>
+
+<p>&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Pick the dominant neutral first.&lt;/strong&gt; Warm off-white for a friendly product, cool gray for a technical one, near-black for focus-heavy dashboards.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Derive the secondary from it.&lt;/strong&gt; Usually the dominant shifted in lightness by 8-15 percent. It must be distinct enough to show structure but never compete with content.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Choose one accent with purpose.&lt;/strong&gt; Match it to your brand or to the emotion you want: blue for trust, green for growth, orange/red for energy or urgency. Keep its saturation high and its area small.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Add at most one semantic color.&lt;/strong&gt; A red for errors and a green for success are fine, but treat them as part of the 10 percent, not extra accents.&lt;/li&gt;&lt;/ol&gt;</p>
+
+<p>&lt;p&gt;            ## Light vs Dark: Invert the Roles, Keep the Accent&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            The rule transfers cleanly to dark mode, but the proportions flip to the background:&lt;/p&gt;</p>
+
+<p>&lt;ul&gt;&lt;li&gt;In light mode the 60% is a light surface; in dark mode the 60% is a dark surface.&lt;/li&gt;&lt;li&gt;The 30% becomes lighter surfaces (cards, text) instead of darker ones.&lt;/li&gt;&lt;li&gt;The 10% accent stays the same hue — just make sure its lightness is high enough to read on a dark field. A midnight-blue accent that sang on white can disappear on black.&lt;/li&gt;&lt;/ul&gt;</p>
+
+<p>&lt;p&gt;            Always preview both. A palette that looks balanced in light mode frequently breaks in dark mode because contrast ratios shift. The fix is almost always a lightness nudge, not a hue change.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            ## Common Mistakes&lt;/p&gt;</p>
+
+<p>&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Accent inflation.&lt;/strong&gt; Every button, badge, and border turns accent-colored. The page loses its anchor. Keep the accent at ~10 percent.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Two loud accents.&lt;/strong&gt; Red and blue both screaming for attention cancels both out. Pick one hero.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Chasing hue, ignoring contrast.&lt;/strong&gt; A beautiful color is useless if body text fails WCAG AA (4.5:1). Check contrast before you commit.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Testing on a blank mockup.&lt;/strong&gt; Colors behave differently against real content. Validate against actual text and components.&lt;/li&gt;&lt;/ul&gt;</p>
+
+<p>&lt;p&gt;            ## Generate and Preview Locally&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            Our &lt;a href="../tools/colorpalette.html"&gt;palette generator&lt;/a&gt; applies the 60-30-10 model by default and renders your colors on sample UI blocks — buttons, cards, text — so you see the balance before writing a line of CSS. Because it runs 100% in your browser, your in-progress brand colors never leave your machine, which matters more than people think when a palette is part of unreleased product work.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            ## Frequently Asked Questions&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            &lt;strong&gt;Q: What exactly is the 60-30-10 color rule?&lt;/strong&gt; A: It is a proportional system: roughly 60 percent of a surface uses a dominant (usually neutral) color, 30 percent a secondary color for structure, and 10 percent a high-saturation accent reserved for the few elements you want the eye to find first, such as the primary button or active link.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            &lt;strong&gt;Q: Does the 60-30-10 rule apply to dark mode too?&lt;/strong&gt; A: Yes, but the roles invert. In dark mode the 60 percent is your near-black background, the 30 percent is slightly lighter surfaces and body text, and the 10 percent accent stays the same saturated color. Keep the accent's lightness high enough to stay readable on a dark field.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            &lt;strong&gt;Q: Can I use more than one accent color?&lt;/strong&gt; A: You can, but keep the combined accent area near 10 percent. Multiple accents dilute focus. A common safe pattern is one primary accent plus a single semantic color for errors or success, used sparingly.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            &lt;strong&gt;Q: How do I make sure my palette is accessible?&lt;/strong&gt; A: Check contrast, not just hue. Body text should meet WCAG AA against its background (4.5:1 for normal text). Nudge lightness before changing hue when contrast fails, because lightness has the biggest impact on readability while preserving the mood.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;            &lt;strong&gt;Q: Is there a tool to generate a 60-30-10 balanced palette?&lt;/strong&gt; A: Yes. Plobi-kit's color palette generator builds balanced sets locally in your browser and lets you preview them on UI mock elements, so you can see the 60-30-10 split in context before writing any CSS. Nothing you design is uploaded.&lt;/p&gt;</p>
+
+      </div>
+      
+    </article>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

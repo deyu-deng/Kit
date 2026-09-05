@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Discard Local Changes — Safely and Completely | Plobi-kit</title>
+  <meta name="description" content="Discard uncommitted changes in Git: git restore for tracked files, git clean for untracked files, dry-run flags first, and what is actually recoverable.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-discard-local-changes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>
+    .answer { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--success-color); border-radius: var(--radius-md); padding: 22px 24px; margin: 8px 0 8px 0; }
+    .expr { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 20px; font-weight: 700; color: var(--text-main); word-break: break-all; }
+    .plain { font-size: 14px; color: var(--text-muted); margin: 8px 0 0 0; }
+    table.ref { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card); margin-bottom: 8px; }
+    table.ref th { text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main); }
+    table.ref td { padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6; }
+    table.ref td code { color: var(--text-main); }
+    .prose { font-size: 14.5px; color: var(--text-muted); line-height: 1.85; margin: 14px 0; }
+    .cmdbox { background: #111; color: #e8e8e8; border-radius: var(--radius-sm); padding: 16px 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; overflow-x: auto; line-height: 1.7; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    a.chip { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-main); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 999px; padding: 8px 14px; text-decoration: none; transition: var(--transition); }
+    a.chip:hover { border-color: var(--success-color); color: var(--success-color); }
+    a.chip code { color: var(--success-color); font-weight: 600; }
+    .crumb { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .crumb a { color: var(--success-color); text-decoration: none; }
+    h1 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Discard Local Changes — Safely and Completely</p>
+      <h1>Git Discard Local Changes — Safely and Completely</h1>
+      
+      <div class="answer">
+        <code class="expr" style="display:block; margin-bottom:8px;">git restore &lt;file></code><p class="plain" style="margin:0 0 6px 0;">Discard changes in one file</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git restore .</code><p class="plain" style="margin:0 0 6px 0;">Discard changes in the entire working tree</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git restore --staged &lt;file></code><p class="plain" style="margin:0 0 6px 0;">Keep changes, just unstage them</p>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Tracked files (modified but not committed)</h2>
+      <table class="ref">
+        <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+        <tbody><tr><td><code>git restore &lt;file></code></td><td><code>Discard changes in one file</code></td></tr><tr><td><code>git restore .</code></td><td><code>Discard changes in the entire working tree</code></td></tr><tr><td><code>git restore --staged &lt;file></code></td><td><code>Keep changes, just unstage them</code></td></tr></tbody>
+      </table>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Untracked files (new files Git is not watching)</h2>
+      <table class="ref">
+        <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+        <tbody><tr><td><code>git clean -n</code></td><td><code>DRY RUN — list what would be deleted (always start here)</code></td></tr><tr><td><code>git clean -fd</code></td><td><code>Delete untracked files and directories</code></td></tr><tr><td><code>git clean -fdx</code></td><td><code>Also delete ignored files (node_modules, .env…) — extra careful</code></td></tr></tbody>
+      </table>
+      <p class="prose">Throwing away uncommitted work is the one Git action with no built-in undo — so it pays to know exactly which command throws away what.</p>
+      
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
+      <div class="chips">
+        <a class="chip" href="git-undo-last-commit">Undo Last Commit — 3 Safe Ways</a>
+        <a class="chip" href="git-delete-branch">Delete a Branch — Local and Remote</a>
+        <a class="chip" href="git-stash-changes">Stash — Park Changes Without Committing</a>
+        <a class="chip" href="git-amend-last-commit">Amend the Last Commit</a>
+        <a class="chip" href="git-revert-pushed-commit">Undo a Pushed Commit — The Safe Way (git revert)</a>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
+      <p class="prose"><strong style="color: var(--text-main);">restore vs the old checkout -- ?</strong><br>Same effect; restore arrived in Git 2.23 to split checkout's overloaded jobs. checkout still works but restore is clearer.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Can I recover discarded changes?</strong><br>Tracked-file discards: sometimes, via <code>git fsck --lost-found</code> (dangling blobs) or your IDE's local history. Untracked files removed by clean: gone, unless your editor kept copies.</p>
+      <p class="prose"><strong style="color: var(--text-main);">How do I discard only SOME changes in a file?</strong><br><code>git restore -p <file></code> walks you through hunk by hunk, y/n per change.</p>
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
+        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Build the discard workflow in the Git Builder</a>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="git.html" style="color: var(--success-color);">Git Cheat Sheet</a></p>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

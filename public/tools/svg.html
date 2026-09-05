@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online SVG Optimizer & Compressor - Plobi-kit</title>
+  <meta name="description" content="Clean and minify SVG vector graphic codes. Remove namespace metadata and export compressed responsive markup.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg.html">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+<!-- Article Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Free Online SVG Optimizer & Compressor",
+  "description": "A privacy-first SVG optimizer. Learn why design-tool exports bloat, what gets removed, and how optimization stays local.",
+  "author": {
+    "@type": "Person",
+    "name": "David Deng",
+    "url": "https://github.com/Deng-Deyu"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plobi-kit",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://plobikit.com/icon-512.png"
+    }
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "mainEntityOfPage": "https://plobikit.com/tools/svg.html",
+  "inLanguage": "en"
+}
+</script>
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why are exported SVGs so large?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Design tools embed editor metadata, comments, hidden layers, and redundant default attributes that have no visual effect in the browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the optimizer actually remove?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It strips editor namespaces, comments, empty groups, and default values, and rounds coordinates. Files commonly shrink three to ten times with no visible change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a minified SVG still editable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It remains valid XML, just harder to read by hand. Keep an unminified backup if you expect to edit it later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can SVG contain scripts that are a security risk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Inline SVG can carry script and event handlers. Our optimizer strips them so the output is safe to embed in untrusted contexts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my SVG uploaded during optimization?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Optimization runs locally in your browser, so your graphic never leaves the device."
+      }
+    }
+  ]
+}
+</script>
+  <link rel="canonical" href="https://plobikit.com/tools/svg">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" class="active" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="main-layout">
+      <main class="primary-column">
+        <section class="tool-viewer active" id="tool-viewer" style="display: block;">
+          <div class="back-to-grid" id="back-to-grid" onclick="window.location.href='../index.html'">
+            ← <span id="txt-back-grid">Back to Toolbox</span>
+          </div>
+          
+          <div class="tool-header">
+            <h2 class="tool-title" id="active-tool-title">SVG Markup Optimizer</h2>
+            <p class="tool-description" id="active-tool-desc">Clean, optimize, and minify SVG graphics code to reduce file sizes safely.</p>
+          </div>
+
+          <!-- Tool Panel: SVG Optimizer Container -->
+          <div class="tool-panel" id="panel-svg" style="display:block;">
+            <div class="svg-optimizer-layout">
+              <div class="svg-input-column">
+                <div class="form-group">
+                  <label class="form-label" for="svg-input">Paste Raw SVG Code</label>
+                  <textarea class="form-control" id="svg-input" placeholder="<svg ...> ... </svg>" style="min-height: 180px; font-family: monospace;"></textarea>
+                </div>
+                
+                <div class="svg-options-grid">
+                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="svg-opt-attrs" checked style="width: auto; margin: 0;">
+                    <span class="checkbox-label">Remove Editor Namespace Attributes</span>
+                  </label>
+                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="svg-opt-metadata" checked style="width: auto; margin: 0;">
+                    <span class="checkbox-label">Remove Comments / Metadata</span>
+                  </label>
+                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="svg-opt-viewbox" checked style="width: auto; margin: 0;">
+                    <span class="checkbox-label">Ensure Responsive viewBox Scale</span>
+                  </label>
+                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="svg-opt-fills" style="width: auto; margin: 0;">
+                    <span class="checkbox-label">Remove Fills/Strokes (CSS override)</span>
+                  </label>
+                  <label class="checkbox-container" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="svg-opt-minify" checked style="width: auto; margin: 0;">
+                    <span class="checkbox-label">Minify Markup Whitespace</span>
+                  </label>
+                </div>
+
+                <div class="btn-group" style="margin-bottom:16px;">
+                  <button class="btn" id="svg-optimize-btn">Optimize SVG Code</button>
+                  <button class="btn btn-secondary" id="svg-clear-btn">Clear</button>
+                </div>
+              </div>
+
+              <div class="svg-output-column">
+                <div class="form-group">
+                  <div id="svg-status" style="display:none;"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Optimized Render Preview</label>
+                  <div class="svg-preview-box" id="svg-preview-container">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="svg-output">Optimized Markup Output</label>
+                  <textarea class="form-control" id="svg-output" readonly style="font-family:monospace; min-height:120px;"></textarea>
+                </div>
+
+                <div class="btn-group">
+                  <button class="btn" id="svg-copy-btn">Copy Optimized SVG</button>
+                </div>
+                <div class="alert alert-success" id="svg-alert" style="display:none; margin-top:8px;">Copied to clipboard!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-guide-section" id="tool-guide">
+            <h3 class="guide-title" id="guide-sec-title">Tool Documentation & Usage Guide</h3>
+            <div class="guide-content" id="guide-sec-content">
+              <article>
+                <h4>What Is SVG and Why Does File Size Matter?</h4>
+                <p>Scalable Vector Graphics (SVG) is an XML-based vector image format standardized by the W3C. Unlike raster formats such as PNG or JPEG — which store images as grids of pixels — SVG describes images using geometric shapes (paths, circles, rectangles, polygons), text, and mathematical transformations. This means SVGs can scale to any resolution — from a tiny favicon to a massive billboard — without any loss of quality, making them the ideal format for logos, icons, UI illustrations, and data visualizations on modern high-DPI screens.</p>
+                <p>However, SVG files exported directly from design tools like Figma, Adobe Illustrator, or Sketch are frequently bloated with unnecessary metadata. These applications embed editor-specific namespace declarations, creation tool identifiers, comment blocks, hidden layer data, and redundant attribute values that have zero visual effect in the browser. An unoptimized Figma export can easily be 3–10× larger than its visually identical optimized equivalent — wasting bandwidth, increasing page load time, and degrading Google PageSpeed Insights scores.</p>
+
+                <h4>How to Use the SVG Optimizer</h4>
+                <p>Paste your raw SVG markup (the full XML code starting with <code>&lt;svg ...&gt;</code>) into the input field. Select which optimization passes to apply: <strong>Remove Editor Namespace Attributes</strong> strips vendor-specific namespace prefixes (like <code>xmlns:xlink</code>, <code>sodipodi</code>, <code>inkscape</code>) that browsers ignore. <strong>Remove Comments / Metadata</strong> deletes XML comment blocks and <code>&lt;metadata&gt;</code> nodes containing embedded title and description text. <strong>Ensure Responsive viewBox Scale</strong> removes fixed <code>width</code> and <code>height</code> attributes from the root <code>&lt;svg&gt;</code> element, allowing the graphic to scale fluidly within its parent CSS container. <strong>Minify Markup Whitespace</strong> collapses all indentation and newlines into a single line, producing the most compact possible output. Click <strong>Optimize SVG Code</strong> to process, then <strong>Copy Optimized SVG</strong> to export the result.</p>
+
+                <h4>Making SVGs Responsive with viewBox</h4>
+                <p>One of the most impactful SVG optimizations for web development is converting fixed-size SVGs to responsive ones. When an SVG has explicit <code>width="400" height="300"</code> attributes, it will always render at exactly that pixel size, overflowing small containers on mobile. By removing the width and height attributes and preserving only the <code>viewBox="0 0 400 300"</code> attribute, the SVG inherits its dimensions from its CSS parent container — a critical requirement for responsive design.</p>
+
+                <h4>Common Use Cases</h4>
+                <ul>
+                  <li><strong>Preparing Figma Icons for Web:</strong> After exporting icon sets from Figma as SVGs, run them through this optimizer to strip Figma-specific metadata, remove invisible layers, and make them responsive before bundling into your React or Vue component library.</li>
+                  <li><strong>Reducing Logo File Sizes:</strong> Company logos exported as SVGs from design tools often contain editorial guides and layers that are invisible in the browser. Optimization can reduce their size by 40-70%.</li>
+                  <li><strong>Improving Core Web Vitals:</strong> Smaller SVG assets reduce the total page weight, directly improving Google's Largest Contentful Paint (LCP) metric and contributing to better search rankings.</li>
+                </ul>
+
+                <h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">Frequently Asked Questions</h2>
+<p><strong>Q: Why are exported SVGs so large?</strong><br>A: Design tools embed editor metadata, comments, hidden layers, and redundant default attributes that have no visual effect in the browser.</p>
+<p><strong>Q: What does the optimizer actually remove?</strong><br>A: It strips editor namespaces, comments, empty groups, and default values, and rounds coordinates. Files commonly shrink three to ten times with no visible change.</p>
+<p><strong>Q: Is a minified SVG still editable?</strong><br>A: Yes. It remains valid XML, just harder to read by hand. Keep an unminified backup if you expect to edit it later.</p>
+<p><strong>Q: Can SVG contain scripts that are a security risk?</strong><br>A: Yes. Inline SVG can carry script and event handlers. Our optimizer strips them so the output is safe to embed in untrusted contexts.</p>
+<p><strong>Q: Is my SVG uploaded during optimization?</strong><br>A: No. Optimization runs locally in your browser, so your graphic never leaves the device.</p>
+<h2 style="font-size:20px;color:var(--text-main);margin:24px 0 12px;">How This Tool Works</h2>
+<p>This SVG Markup Optimizer runs entirely in your web browser through Plobi-kit's 100% client-side architecture. No input is sent to external web servers, guaranteeing complete privacy and offline utility. Want proof? Open your browser's Network tab, use the tool, and watch: nothing leaves your machine except the page's own assets.</p></div></div>
+        </section>
+      </main>
+
+      <aside class="sidebar-column">
+        
+      </aside>
+    </div>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

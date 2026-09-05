@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plobi-kit — Free Online Tools That Never See Your Data</title>
+  <meta name="description" content="A fast, clean collection of free online tools that run entirely in your browser — nothing you paste ever leaves your device. Base64 encoder, QR code maker, color palettes, regex tester, cron editor, image compression, and more.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Plobi-kit",
+    "url": "https://plobikit.com/",
+    "description": "A secure, privacy-first, and ultra-fast suite of online tools including Base64 encoder, CSS glassmorphism generator, QR code maker, Color Palette generator, Regex tester, Git command builder, Cron visualizer, and local WebP image compressor.",
+    "inLanguage": ["en", "zh"]
+  }
+  </script>
+  <style>
+    .portal { max-width: 1040px; margin: 0 auto; }
+    .hero { position: relative; text-align: center; padding: 72px 20px 56px; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+      background-size: 44px 44px; opacity: 0.4;
+      -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 0%, #000 25%, transparent 74%);
+      mask-image: radial-gradient(ellipse 72% 68% at 50% 0%, #000 25%, transparent 74%);
+    }
+    .hero > * { position: relative; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 22px;
+    }
+    .eyebrow svg { width: 14px; height: 14px; color: var(--success-color); }
+    .hero h1 {
+      font-size: clamp(40px, 6.4vw, 68px); font-weight: 800; letter-spacing: -0.035em;
+      line-height: 1.04; color: var(--text-main); margin: 0 0 20px 0;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(92deg, #0070f3 10%, #00b3e6 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-sub { font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 640px; margin: 0 auto 30px auto; }
+    .hero-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-color); color: #fff; font-weight: 600; font-size: 15px;
+      padding: 13px 26px; border-radius: var(--radius-sm); text-decoration: none; border: 1px solid var(--accent-color); transition: var(--transition);
+    }
+    .btn-primary:hover { background: #333; }
+    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-card); color: var(--text-main); font-weight: 600; font-size: 15px;
+      padding: 13px 26px; border-radius: var(--radius-sm); text-decoration: none; border: 1px solid var(--border-color); transition: var(--transition);
+    }
+    .btn-ghost:hover { border-color: var(--text-muted); }
+    .btn-ghost svg { width: 16px; height: 16px; color: var(--success-color); }
+    .trust-row { display: flex; justify-content: center; flex-wrap: wrap; margin: 44px auto 0 auto; max-width: 820px; }
+    .trust-item { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 500; color: var(--text-muted); padding: 4px 22px; }
+    .trust-item + .trust-item { border-left: 1px solid var(--border-color); }
+    .trust-item svg { width: 15px; height: 15px; color: var(--success-color); flex-shrink: 0; }
+    .index-section { margin-top: 56px; }
+    .index-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
+    .index-head h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; color: var(--text-main); margin: 0; }
+    .index-head .mono-note {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px; letter-spacing: 0.18em; color: var(--text-muted); text-transform: uppercase;
+    }
+    .index-rows { border-top: 1px solid var(--border-color); }
+    a.index-row {
+      display: grid; grid-template-columns: 52px 40px 1fr auto 24px; align-items: center; gap: 18px;
+      padding: 20px 10px; border-bottom: 1px solid var(--border-color);
+      text-decoration: none; transition: background 0.18s ease, padding-left 0.18s ease;
+    }
+    a.index-row:hover { background: var(--accent-light); padding-left: 20px; }
+    .row-no { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; color: var(--text-muted); }
+    .row-icon {
+      width: 38px; height: 38px; border: 1px solid var(--border-color); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; background: var(--bg-card);
+    }
+    .row-icon svg { width: 18px; height: 18px; color: var(--success-color); }
+    .row-text h3 { font-size: 18px; font-weight: 700; color: var(--text-main); margin: 0 0 3px 0; letter-spacing: -0.02em; }
+    .row-text p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+    .row-badge { font-size: 11px; font-weight: 600; color: var(--text-muted); border: 1px solid var(--border-color); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+    .row-badge.hot { color: #0a7d33; border-color: rgba(16, 163, 74, 0.35); }
+    .row-arrow { width: 20px; height: 20px; color: var(--text-muted); transition: transform 0.18s ease, color 0.18s ease; }
+    a.index-row:hover .row-arrow { transform: translateX(4px); color: var(--success-color); }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    a.chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13.5px; font-weight: 500; color: var(--text-main);
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 999px; padding: 9px 16px; text-decoration: none; transition: var(--transition);
+    }
+    a.chip:hover { border-color: var(--success-color); color: var(--success-color); }
+    a.chip svg { width: 15px; height: 15px; color: var(--success-color); }
+    .stance { margin-top: 56px; }
+    .stance .eyebrow { margin-bottom: 10px; }
+    @media (max-width: 640px) {
+      .trust-item { padding: 4px 12px; }
+      .hero { padding: 52px 16px 44px; }
+      a.index-row { grid-template-columns: 40px 1fr 20px; }
+      .row-no, .row-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="about.html" id="nav-about" data-i18n="nav.about">About</a>
+      </nav>
+      <div class="controls">
+        <button class="lang-btn" id="lang-btn">CN</button>
+      </div>
+    </header>
+
+    <div class="ad-container ad-banner-hub" id="adsense-top-banner">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5108296372072915"
+           data-ad-slot="7256193048"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <main class="portal">
+      <section class="hero">
+        <div class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Privacy-first · Zero upload · No sign-up
+        </div>
+        <h1>Online Tools That<br><span class="accent">Never See Your Data</span></h1>
+        <p class="hero-sub">
+          Plobi-kit is a free suite of 17 utilities that run entirely inside your browser.
+          Your JWTs, <code>.env</code> files, API keys, and private documents never leave your device — not once, not ever.
+        </p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="tools/index.html">
+            Browse all tools
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="btn-ghost" href="deals/games">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            Today's free games
+          </a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            100% client-side
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            No account, ever
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            Works offline as a PWA
+          </div>
+        </div>
+      </section>
+
+      <section class="index-section">
+        <div class="index-head">
+          <h2>Explore Plobi-kit</h2>
+          <span class="mono-note">Index / 05</span>
+        </div>
+        <div class="index-rows">
+          <a class="index-row" href="tools/index.html">
+            <span class="row-no">01</span>
+            <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+            <span class="row-text">
+              <h3>Tools</h3>
+              <p>Encoders, formatters, generators, and compressors — categorized and ready to use.</p>
+            </span>
+            <span class="row-badge">17 tools</span>
+            <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="index-row" href="cheatsheets/">
+            <span class="row-no">02</span>
+            <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+            <span class="row-text">
+              <h3>Cheat Sheets</h3>
+              <p>Cron, Git, regex, Markdown, HTTP codes — quick reference that pairs with the tools.</p>
+            </span>
+            <span class="row-badge">8 sheets</span>
+            <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="index-row" href="guides/index.html">
+            <span class="row-no">03</span>
+            <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+            <span class="row-text">
+              <h3>Guides</h3>
+              <p>Practical deep-dives on privacy, security, design, and free web infrastructure.</p>
+            </span>
+            <span class="row-badge">7 articles</span>
+            <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="index-row" href="deals">
+            <span class="row-no">04</span>
+            <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+            <span class="row-text">
+              <h3>Deals</h3>
+              <p>Free game giveaways and software promotions, pulled from official APIs daily.</p>
+            </span>
+            <span class="row-badge hot">Auto-updated</span>
+            <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="index-row" href="collection/index.html">
+            <span class="row-no">05</span>
+            <span class="row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+            <span class="row-text">
+              <h3>Collection</h3>
+              <p>A hand-picked directory of genuinely useful websites, each with an honest review.</p>
+            </span>
+            <span class="row-badge">19 entries</span>
+            <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <section style="margin-top: 48px;">
+        <div class="index-head">
+          <h2>Popular tools</h2>
+          <span class="mono-note">Direct access</span>
+        </div>
+        <div class="chips">
+          <a class="chip" href="tools/base64.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>Base64</a>
+          <a class="chip" href="tools/qrcode.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>QR Code</a>
+          <a class="chip" href="tools/json.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg>JSON</a>
+          <a class="chip" href="tools/cron.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Cron</a>
+          <a class="chip" href="tools/regex.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Regex</a>
+          <a class="chip" href="tools/colorpalette.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>Color Palette</a>
+          <a class="chip" href="tools/image.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Image Compressor</a>
+          <a class="chip" href="tools/jwt.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>JWT Decoder</a>
+        </div>
+      </section>
+
+      <section class="stance" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px;">
+        <div class="eyebrow">Our stance</div>
+        <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main); margin: 0 0 14px 0; letter-spacing: -0.03em;">
+          Why Most "Free" Tools Are a Privacy Trap — And What We Did Differently
+        </h2>
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 16px;">
+          The dirty secret of the online-tools industry: if a converter, formatter, or decoder is free and asks you to paste data, that data is almost always the product. Server-side logging, training-data harvesting, and downstream resale are the default business model. A single pasted <code>.env</code> file or live JWT can hand an attacker your entire production environment. We built Plobi-kit to make that risk disappear entirely.
+        </p>
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 16px;">
+          Every tool processes your input <strong>entirely inside your browser</strong> — nothing you type is transmitted, logged, or profiled. The only server-side actions are the ones you explicitly trigger: creating a share link or sending a contact message, both described plainly in our <a href="privacy.html">privacy policy</a>. Local-first is not a feature we bolted on — it is the foundation the site is built on.
+        </p>
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 20px;">
+          We are a small, independent team of developers and designers who believe productivity utilities should be instant, beautiful, and trustless. Plobi-kit is open about its source and its limits, and we publish security guides (like our <a href="guides/never-paste-secrets.html" style="color: var(--success-color); text-decoration: underline;">survival guide on never pasting secrets</a>) so the whole community builds safer habits — not just our own users.
+        </p>
+        <h3 style="font-size: 16px; font-weight: 600; color: var(--text-main); margin: 24px 0 12px 0;">Recently Published</h3>
+        <ul style="padding-left: 20px; margin-bottom: 8px; line-height: 2; font-size: 14px;">
+          <li><a href="guides/never-paste-secrets.html" style="color: var(--success-color);">Never Paste Secrets Into Random Online Tools</a> — <span style="color: var(--text-muted);">Aug 2026 · Security &amp; Privacy</span></li>
+          <li><a href="guides/cloudflare-email.html" style="color: var(--success-color);">Free Custom-Domain Email via Cloudflare Routing</a> — <span style="color: var(--text-muted);">Jun 2026 · Infrastructure</span></li>
+          <li><a href="guides/ai-agent-workflows.html" style="color: var(--success-color);">Optimizing Prompts for LLM Coding Agents</a> — <span style="color: var(--text-muted);">Jun 2026 · AI Workflows</span></li>
+        </ul>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 16px;">
+          Last updated: September 5, 2026 · Built and maintained by the Plobi-kit team.
+        </p>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        &copy; 2026 Plobi. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>
