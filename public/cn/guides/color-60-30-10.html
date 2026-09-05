@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The 60-30-10 Color Rule: A Practical System for Balanced UI Palettes | Plobi-kit</title>
-  <meta name="description" content="The 60-30-10 rule is the fastest way to make any UI palette look intentional instead of random. Learn the math, how to assign roles, pick the accent, and validate in light and dark themes — then generate a balanced palette locally.">
+  <title>60-30-10 配色法则:一套让 UI 配色不再随机的实用系统 | Plobi-kit</title>
+  <meta name="description" content="60-30-10 法则是让任何 UI 配色看起来"有意为之"而非"随手拼凑"的最快方法。学会比例分配、角色设定、强调色选择,以及在明暗两套主题下的验证——然后在本地生成平衡配色。">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
@@ -54,12 +54,12 @@
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">工具箱</a>
-        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
-        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">知识库</a>
-        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
-        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+        <a href="/cn/tools/" data-i18n="nav.tools">Tools</a>
+        <a href="/cn/cheatsheets/" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="/cn/guides/index.html" class="active" data-i18n="nav.library">Library</a>
+        <a href="/cn/deals" data-i18n="nav.deals">Deals</a>
+        <a href="/cn/collection/index.html" data-i18n="nav.collection">Collection</a>
+        <a href="/cn/about.html" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">EN</button>
@@ -76,77 +76,72 @@
           <time>2026-08-01</time>
           <span class="readtime">5 min</span>
         </div>
-        <h1>The 60-30-10 Color Rule: A Practical System for Balanced UI Palettes</h1>
-        <p class="lead">The 60-30-10 rule is the fastest way to make any UI palette look intentional instead of random. Learn the math, how to assign roles, pick the accent, and validate in light and dark themes — then generate a balanced palette locally.</p>
+        <h1>60-30-10 配色法则:一套让 UI 配色不再随机的实用系统</h1>
+        <p class="lead">60-30-10 法则是让任何 UI 配色看起来"有意为之"而非"随手拼凑"的最快方法。学会比例分配、角色设定、强调色选择,以及在明暗两套主题下的验证——然后在本地生成平衡配色。</p>
       </header>
       <div class="article-body">
-<p>&lt;div style="background: rgba(0,112,243,.08); border: 1px solid rgba(0,112,243,.25); border-radius: 6px; padding: 12px 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px;"&gt;该文章暂无中文版本,以下为英文原文。&lt;/div&gt;</p>
 
-<p>&lt;p&gt;The 60-30-10 Color Rule: A Practical System for Balanced UI Palettes&lt;/p&gt;</p>
+<p>你挑了五个喜欢的颜色,一股脑铺到设置页上,结果看起来……很吵。不算坏,就是噪——像整个设计在喊叫。解法几乎从来不是"换个更好的颜色",而是"少用几个,并且给每个颜色分配职责"。这就是 <strong>60-30-10 法则</strong>的全部思想——它是区分"设计出来的配色"和"拼出来的配色"的唯一比例系统。</p>
 
-<p>&lt;p&gt;            &lt;strong&gt;Author:&lt;/strong&gt; David Deng             &lt;strong&gt;Updated:&lt;/strong&gt; August 2026             &lt;strong&gt;Category:&lt;/strong&gt; Design &amp; UI             &lt;strong&gt;Reading time:&lt;/strong&gt; ~9 min&lt;/p&gt;</p>
+<p>本指南讲清这套数学、如何给每个颜色分配角色、如何挑选真正扛大旗的那一个强调色,以及如何在明暗两套主题下验证结果。想动手时,我们的<a href="../../tools/colorpalette.html">本地配色生成器</a>会自动按比例拆分,并在真实 UI 元素上预览——完全在你的浏览器里完成。</p>
 
-<p>&lt;p&gt;            You have five colors you like. You drop them all onto a settings page and it looks... busy. Not broken, just noisy — like the design is shouting. The fix is almost never "pick better colors." It is "use fewer of them, and give each a job." That is the entire idea behind the &lt;strong&gt;60-30-10 rule&lt;/strong&gt;, the single proportional system that separates a palette that looks designed from one that looks assembled.&lt;/p&gt;</p>
+<h2>法则本身</h2>
 
-<p>&lt;p&gt;            This guide walks through the math, how to assign each color a role, how to choose the one accent that does the heavy lifting, and how to validate the result in both light and dark themes. When you are ready to build, our &lt;a href="../tools/colorpalette.html"&gt;local color palette generator&lt;/a&gt; applies the split for you and previews it on real UI elements — entirely in your browser.&lt;/p&gt;</p>
+<p>百分之六十、三十、十。这是每个色彩家族应占据的表面积:</p>
 
-<p>&lt;p&gt;            ## The Rule, Plainly&lt;/p&gt;</p>
+<ul><li><strong>60% —— 主色。</strong>通常是一个中性色:米白、浅灰,或(深色模式下)近黑。它构成背景、大卡片,以及让内容得以呼吸的留白。</li><li><strong>30% —— 次色。</strong>第二个中性色或低饱和色调,负责页面结构:文字、分隔线、侧栏、边框和次级表面。</li><li><strong>10% —— 强调色。</strong>饱和度最高的颜色,只留给少数你希望视线最先找到的元素:主按钮、活跃链接、焦点环和关键行动点。</li></ul>
 
-<p>&lt;p&gt;            Sixty percent, thirty percent, ten percent. Those are the surface areas each color family should occupy:&lt;/p&gt;</p>
+<p>这套法则的力量在于克制。强调色之所以"跳",恰恰因为它稀有。把它铺满半个页面,它就什么也不是了。</p>
 
-<p>&lt;ul&gt;&lt;li&gt;&lt;strong&gt;60% — Dominant.&lt;/strong&gt; Usually a neutral: off-white, light gray, or (in dark mode) near-black. This is your background, large cards, and the empty space that lets content breathe.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;30% — Secondary.&lt;/strong&gt; A second neutral or a low-saturation tint that structures the page: text, dividers, sidebars, borders, and secondary surfaces.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;10% — Accent.&lt;/strong&gt; Your most saturated color, reserved for the few elements you want the eye to find first: the primary button, active link, focus ring, and key call-to-action.&lt;/li&gt;&lt;/ul&gt;</p>
+<h2>为什么有效(一点点数学)</h2>
 
-<p>&lt;p&gt;            The power of the rule is restraint. The accent only pops &lt;em&gt;because&lt;/em&gt; it is rare. Spread it across half the page and it stops meaning anything.&lt;/p&gt;</p>
+<p>人眼通过对比度和稀缺度判断重要性。当屏幕上 90% 的区域共享一个平静、低对比的色彩家族时,剩下 10% 的高饱和色就成了磁铁。设计师从室内设计和电影摄影里借来这套思路:受控的色彩场让单点高光显得有意为之。60-30-10 只是那个稳定产出这种效果、又不至于滑向单调或混乱的比例。</p>
 
-<p>&lt;p&gt;            ## Why It Works (A Tiny Bit of Math)&lt;/p&gt;</p>
+<h2>角色分配,一步一步来</h2>
 
-<p>&lt;p&gt;            The human eye reads importance through contrast and rarity. When 90 percent of a screen shares a calm, low-contrast family, the remaining 10 percent of saturated color becomes a magnet. Designers borrow this from interior design and cinematography, where a controlled color field makes a single highlight feel intentional. The 60-30-10 split is simply the ratio that consistently produces that effect without tipping into monotony or chaos.&lt;/p&gt;</p>
+<p>不要从强调色开始。从主色开始,因为它定调整体情绪:</p>
 
-<p>&lt;p&gt;            ## Assigning Roles, Step by Step&lt;/p&gt;</p>
+<ol><li><strong>先选主色中性色。</strong>亲和型产品用暖米白,技术型产品用冷灰,重专注的仪表盘用近黑。</li><li><strong>从主色派生次色。</strong>通常是主色明度偏移 8–15%。它必须足够区分以显出结构,但永远不能和内容抢戏。</li><li><strong>有目的地选一个强调色。</strong>匹配品牌或想唤起的情绪:蓝代表信任,绿代表增长,橙/红代表能量或紧迫。饱和度保持高,面积保持小。</li><li><strong>语义色最多加一个。</strong>错误的红、成功的绿可以有,但把它们算进 10%,不要当成额外的强调色。</li></ol>
 
-<p>&lt;p&gt;            Do not start by picking the accent. Start with the dominant, because it sets the mood:&lt;/p&gt;</p>
+<h2>明暗主题:翻转角色,保留强调色</h2>
 
-<p>&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Pick the dominant neutral first.&lt;/strong&gt; Warm off-white for a friendly product, cool gray for a technical one, near-black for focus-heavy dashboards.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Derive the secondary from it.&lt;/strong&gt; Usually the dominant shifted in lightness by 8-15 percent. It must be distinct enough to show structure but never compete with content.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Choose one accent with purpose.&lt;/strong&gt; Match it to your brand or to the emotion you want: blue for trust, green for growth, orange/red for energy or urgency. Keep its saturation high and its area small.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Add at most one semantic color.&lt;/strong&gt; A red for errors and a green for success are fine, but treat them as part of the 10 percent, not extra accents.&lt;/li&gt;&lt;/ol&gt;</p>
+<p>法则可以干净地迁移到深色模式,但比例要向背景翻转:</p>
 
-<p>&lt;p&gt;            ## Light vs Dark: Invert the Roles, Keep the Accent&lt;/p&gt;</p>
+<ul><li>亮色模式的 60% 是浅色表面;深色模式的 60% 是深色表面。</li><li>30% 变成稍亮的表面(卡片、文字),而不是更暗的。</li><li>10% 强调色保持同一色相——但确保明度足够高,能在深色底上读清。一个在白底上很亮的午夜蓝,在纯黑上可能直接消失。</li></ul>
 
-<p>&lt;p&gt;            The rule transfers cleanly to dark mode, but the proportions flip to the background:&lt;/p&gt;</p>
+<p>两套主题都要预览。亮色模式下平衡的配色,到深色模式经常崩掉,因为对比度关系全变了。修法几乎总是微调明度,而不是换色相。</p>
 
-<p>&lt;ul&gt;&lt;li&gt;In light mode the 60% is a light surface; in dark mode the 60% is a dark surface.&lt;/li&gt;&lt;li&gt;The 30% becomes lighter surfaces (cards, text) instead of darker ones.&lt;/li&gt;&lt;li&gt;The 10% accent stays the same hue — just make sure its lightness is high enough to read on a dark field. A midnight-blue accent that sang on white can disappear on black.&lt;/li&gt;&lt;/ul&gt;</p>
+<h2>常见错误</h2>
 
-<p>&lt;p&gt;            Always preview both. A palette that looks balanced in light mode frequently breaks in dark mode because contrast ratios shift. The fix is almost always a lightness nudge, not a hue change.&lt;/p&gt;</p>
+<ul><li><strong>强调色膨胀。</strong>每个按钮、徽章、边框都染成强调色,页面失去锚点。把强调色控制在 10% 左右。</li><li><strong>两个大声的强调色。</strong>红和蓝都在喊,结果互相抵消。选一个主角。</li><li><strong>追色相,忽视对比度。</strong>再漂亮的颜色,正文达不到 WCAG AA(4.5:1)就没用。定稿前先查对比。</li><li><strong>在空白样机上测试。</strong>颜色在真实内容前的表现完全不同。用真实文本和组件验证。</li></ul>
 
-<p>&lt;p&gt;            ## Common Mistakes&lt;/p&gt;</p>
+<h2>本地生成与预览</h2>
 
-<p>&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Accent inflation.&lt;/strong&gt; Every button, badge, and border turns accent-colored. The page loses its anchor. Keep the accent at ~10 percent.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Two loud accents.&lt;/strong&gt; Red and blue both screaming for attention cancels both out. Pick one hero.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Chasing hue, ignoring contrast.&lt;/strong&gt; A beautiful color is useless if body text fails WCAG AA (4.5:1). Check contrast before you commit.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Testing on a blank mockup.&lt;/strong&gt; Colors behave differently against real content. Validate against actual text and components.&lt;/li&gt;&lt;/ul&gt;</p>
+<p>我们的<a href="../../tools/colorpalette.html">配色生成器</a>默认按 60-30-10 模型生成,并把你的颜色渲染在示例 UI 区块上(按钮、卡片、文本),写一行 CSS 之前就能看到平衡效果。由于 100% 运行在浏览器里,你尚未发布的品牌色永远不会离开你的机器——当配色属于未发布产品的一部分时,这件事比想象中重要。</p>
 
-<p>&lt;p&gt;            ## Generate and Preview Locally&lt;/p&gt;</p>
+<h2>常见问题</h2>
 
-<p>&lt;p&gt;            Our &lt;a href="../tools/colorpalette.html"&gt;palette generator&lt;/a&gt; applies the 60-30-10 model by default and renders your colors on sample UI blocks — buttons, cards, text — so you see the balance before writing a line of CSS. Because it runs 100% in your browser, your in-progress brand colors never leave your machine, which matters more than people think when a palette is part of unreleased product work.&lt;/p&gt;</p>
+<p><strong>问:60-30-10 配色法则到底是什么?</strong> 答:它是一个比例系统:大约 60% 的表面使用主色(通常是中性色),30% 使用承担结构作用的次色,10% 留给高饱和强调色——只用在少数你希望视线最先找到的元素上,比如主按钮或活跃链接。</p>
 
-<p>&lt;p&gt;            ## Frequently Asked Questions&lt;/p&gt;</p>
+<p><strong>问:60-30-10 也适用于深色模式吗?</strong> 答:适用,但角色要翻转。深色模式下 60% 是近黑背景,30% 是稍亮的表面和正文,10% 强调色保持同一饱和色。强调色明度要够高才能在深底上保持可读。</p>
 
-<p>&lt;p&gt;            &lt;strong&gt;Q: What exactly is the 60-30-10 color rule?&lt;/strong&gt; A: It is a proportional system: roughly 60 percent of a surface uses a dominant (usually neutral) color, 30 percent a secondary color for structure, and 10 percent a high-saturation accent reserved for the few elements you want the eye to find first, such as the primary button or active link.&lt;/p&gt;</p>
+<p><strong>问:可以用不止一个强调色吗?</strong> 答:可以,但所有强调色的总面积要控制在 10% 附近。多个强调色会稀释焦点。常见的安全做法是一个主强调色,加一个用于错误/成功的语义色,克制使用。</p>
 
-<p>&lt;p&gt;            &lt;strong&gt;Q: Does the 60-30-10 rule apply to dark mode too?&lt;/strong&gt; A: Yes, but the roles invert. In dark mode the 60 percent is your near-black background, the 30 percent is slightly lighter surfaces and body text, and the 10 percent accent stays the same saturated color. Keep the accent's lightness high enough to stay readable on a dark field.&lt;/p&gt;</p>
+<p><strong>问:怎么确保配色可访问?</strong> 答:查对比度,而不只是色相。正文相对背景应达到 WCAG AA(普通文本 4.5:1)。对比度不达标时先调明度再考虑换色相,因为明度对可读性影响最大,还能保住整体情绪。</p>
 
-<p>&lt;p&gt;            &lt;strong&gt;Q: Can I use more than one accent color?&lt;/strong&gt; A: You can, but keep the combined accent area near 10 percent. Multiple accents dilute focus. A common safe pattern is one primary accent plus a single semantic color for errors or success, used sparingly.&lt;/p&gt;</p>
-
-<p>&lt;p&gt;            &lt;strong&gt;Q: How do I make sure my palette is accessible?&lt;/strong&gt; A: Check contrast, not just hue. Body text should meet WCAG AA against its background (4.5:1 for normal text). Nudge lightness before changing hue when contrast fails, because lightness has the biggest impact on readability while preserving the mood.&lt;/p&gt;</p>
-
-<p>&lt;p&gt;            &lt;strong&gt;Q: Is there a tool to generate a 60-30-10 balanced palette?&lt;/strong&gt; A: Yes. Plobi-kit's color palette generator builds balanced sets locally in your browser and lets you preview them on UI mock elements, so you can see the 60-30-10 split in context before writing any CSS. Nothing you design is uploaded.&lt;/p&gt;</p>
+<p><strong>问:有没有工具能生成 60-30-10 平衡配色?</strong> 答:有。Plobi-kit 的配色生成器在浏览器本地生成平衡配色,并支持在 UI 样例元素上预览,写任何 CSS 之前就能看到 60-30-10 的实际效果。你的设计不会被上传。</p>
 
       </div>
-      
+      <section class="article-related"><h3 data-i18n="lib.related">相关文章</h3><div class="related-grid"><a class="related-card" href="cn/guides/privacy-workflow.html">How to Build an Ad-Free, Privacy-First Digital Workflow</a><a class="related-card" href="cn/guides/never-paste-secrets.html">Never Paste Secrets Into Random Online Tools</a></div></section>
     </article>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+        <a href="/cn/privacy.html" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="/cn/terms.html" data-i18n="nav-footer.terms">Terms</a>
+        <a href="/cn/about.html" data-i18n="nav-footer.about">About</a>
+        <a href="/cn/contact.html" data-i18n="nav-footer.contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

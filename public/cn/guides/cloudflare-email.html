@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing | Plobi-kit</title>
-  <meta name="description" content="A comprehensive tutorial on setting up free business email hosting using a custom domain with Cloudflare Email Routing and Gmail.">
+  <title>用 Cloudflare Email Routing 免费搭建自定义域名企业邮箱 | Plobi-kit</title>
+  <meta name="description" content="一份完整教程:用自定义域名 + Cloudflare Email Routing + Gmail,零成本搭建企业邮箱收发。">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
@@ -54,12 +54,12 @@
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">工具箱</a>
-        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
-        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">知识库</a>
-        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
-        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+        <a href="/cn/tools/" data-i18n="nav.tools">Tools</a>
+        <a href="/cn/cheatsheets/" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="/cn/guides/index.html" class="active" data-i18n="nav.library">Library</a>
+        <a href="/cn/deals" data-i18n="nav.deals">Deals</a>
+        <a href="/cn/collection/index.html" data-i18n="nav.collection">Collection</a>
+        <a href="/cn/about.html" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">EN</button>
@@ -76,41 +76,36 @@
           <time>2026-08-01</time>
           <span class="readtime">5 min</span>
         </div>
-        <h1>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing</h1>
-        <p class="lead">A comprehensive tutorial on setting up free business email hosting using a custom domain with Cloudflare Email Routing and Gmail.</p>
+        <h1>用 Cloudflare Email Routing 免费搭建自定义域名企业邮箱</h1>
+        <p class="lead">一份完整教程:用自定义域名 + Cloudflare Email Routing + Gmail,零成本搭建企业邮箱收发。</p>
       </header>
       <div class="article-body">
-<p>&lt;div style="background: rgba(0,112,243,.08); border: 1px solid rgba(0,112,243,.25); border-radius: 6px; padding: 12px 20px; font-size: 13px; color: var(--text-muted); margin-bottom: 20px;"&gt;该文章暂无中文版本,以下为英文原文。&lt;/div&gt;</p>
 
-<p>&lt;p&gt;How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing&lt;/p&gt;</p>
+<p>对任何现代开发者、设计师或创业者来说,一个专业的邮箱地址(比如 <code>contact@yourdomain.com</code>)是建立品牌信任的必需品。但 Google Workspace 或 Microsoft 365 的企业邮箱托管要花每位用户每月 6 到 18 美元。</p>
 
-<p>&lt;p&gt;            &lt;strong&gt;Author:&lt;/strong&gt; David             &lt;strong&gt;Updated:&lt;/strong&gt; June 2026             &lt;strong&gt;Category:&lt;/strong&gt; Cloud Infrastructure&lt;/p&gt;</p>
+<p>如果你已经为项目注册了自定义域名,完全可以零成本收发所有企业邮件。我们把 Cloudflare 的免费 Email Routing 和一个免费 Gmail 收件箱组合起来,无缝搞定一切。</p>
 
-<p>&lt;p&gt;            For any modern developer, designer, or startup founder, having a professional email address (like &lt;code&gt;contact@yourdomain.com&lt;/code&gt;) is essential for building brand authority. However, dedicated business email hosting from providers like Google Workspace or Microsoft 365 can cost $6 to $18 per user every single month.&lt;/p&gt;</p>
+<h2>阶段一:配置 Cloudflare Email Routing</h2>
 
-<p>&lt;p&gt;            If you have registered a custom domain for your project, you can route all inbound and outbound business emails completely free of charge. We will combine Cloudflare's free Email Routing with a free Gmail inbox to handle everything seamlessly.&lt;/p&gt;</p>
+<p>前提:你的域名 DNS 已托管在 Cloudflare。然后按以下步骤配置邮件转发:</p>
 
-<p>&lt;p&gt;            ## Phase 1: Configure Cloudflare Email Routing&lt;/p&gt;</p>
+<ol><li>登录 <strong>Cloudflare Dashboard</strong>,选择你的域名。</li><li>左侧边栏点击 <strong>Email</strong> → <strong>Email Routing</strong>。</li><li>点击 <strong>Enable Email Routing</strong>。Cloudflare 会提示自动添加所需的 MX 和 TXT 记录,确认应用。</li><li>进入 <strong>Destination Addresses</strong> 标签,点 <strong>Add Destination</strong>,填入你的个人 Gmail 地址,并到收件箱完成验证。</li><li>进入 <strong>Routing Rules</strong> 标签,点 <strong>Create Rule</strong>。自定义地址填你想要的品牌用户名(如 <code>contact@yourdomain.com</code>),转发到已验证的 Gmail 地址。</li></ol>
 
-<p>&lt;p&gt;            First, make sure your domain's DNS nameservers are managed by Cloudflare. If they are, follow these steps to configure email redirection:&lt;/p&gt;</p>
+<h2>阶段二:以自定义域名身份发信</h2>
 
-<p>&lt;ol&gt;&lt;li&gt;Log in to your &lt;strong&gt;Cloudflare Dashboard&lt;/strong&gt; and select your active website domain.&lt;/li&gt;&lt;li&gt;In the left sidebar, click on &lt;strong&gt;Email&lt;/strong&gt; -&gt; &lt;strong&gt;Email Routing&lt;/strong&gt;.&lt;/li&gt;&lt;li&gt;Click &lt;strong&gt;Enable Email Routing&lt;/strong&gt;. Cloudflare will prompt you to automatically add the required MX and TXT records to your DNS settings. Confirm and apply the changes.&lt;/li&gt;&lt;li&gt;Go to the &lt;strong&gt;Destination Addresses&lt;/strong&gt; tab, click &lt;strong&gt;Add Destination&lt;/strong&gt;, and enter your personal Gmail address (e.g. &lt;code&gt;myaddress@gmail.com&lt;/code&gt;). Verify the verification email sent to your inbox.&lt;/li&gt;&lt;li&gt;Go to the &lt;strong&gt;Routing Rules&lt;/strong&gt; tab, click &lt;strong&gt;Create Rule&lt;/strong&gt;. Set the Custom Address to your desired brand username (e.g. &lt;code&gt;contact@yourdomain.com&lt;/code&gt;) and forward it to your verified Gmail destination address.&lt;/li&gt;&lt;/ol&gt;</p>
+<p>收件已经通了,但如果直接用 Gmail 回信,会暴露你的个人邮箱地址。要以 <code>contact@yourdomain.com</code> 发信,需要用 Google 应用专用密码配置 Gmail 的 SMTP:</p>
 
-<p>&lt;p&gt;            ## Phase 2: Enable Sending Email as Your Custom Domain&lt;/p&gt;</p>
+<ol><li>打开 <strong>Google 账号设置</strong>(myaccount.google.com)。</li><li>进入<strong>安全性</strong>标签,确认<strong>两步验证</strong>已开启。</li><li>搜索或进入<strong>应用专用密码(App passwords)</strong>,新建一个描述性的密码(如 "Plobi Email Routing"),复制生成的 16 位代码。</li><li>打开 <strong>Gmail 收件箱</strong>,点齿轮图标 → <strong>查看所有设置</strong>。</li><li>进入<strong>账号和导入</strong>标签,在<strong>用这个地址发送邮件</strong>处点<strong>添加其他电子邮件地址</strong>。</li><li>填显示名和自定义域名地址(<code>contact@yourdomain.com</code>),勾选"用作别名",点下一步。</li><li>SMTP 服务器配置:</li></ol>
+<ul><li><strong>SMTP 服务器:</strong><code>smtp.gmail.com</code></li><li><strong>端口:</strong><code>587</code></li><li><strong>用户名:</strong>你的完整 Gmail 地址</li><li><strong>密码:</strong>第 3 步生成的 16 位应用专用密码</li><li>选择 <strong>TLS 加密连接</strong></li></ul>
+<ol><li>点<strong>添加账号</strong>。Gmail 会向你的自定义地址发确认码——由于 Cloudflare 已在转发,回到 Gmail 收件箱查收,填入即完成验证。</li></ol>
 
-<p>&lt;p&gt;            Receiving emails is now active, but replying from your personal Gmail address will leak your personal account address. To send emails as &lt;code&gt;contact@yourdomain.com&lt;/code&gt;, we will configure Google's SMTP servers using a Google App Password:&lt;/p&gt;</p>
+<h2>阶段三:保证送达率(SPF 与 DKIM)</h2>
 
-<p>&lt;ol&gt;&lt;li&gt;Go to your &lt;strong&gt;Google Account Settings&lt;/strong&gt; (myaccount.google.com).&lt;/li&gt;&lt;li&gt;Click on the &lt;strong&gt;Security&lt;/strong&gt; tab. Ensure that &lt;strong&gt;2-Step Verification&lt;/strong&gt; is turned ON.&lt;/li&gt;&lt;li&gt;Search for or navigate to &lt;strong&gt;App passwords&lt;/strong&gt;. Create a new app password, naming it something descriptive like "Plobi Email Routing", and copy the generated 16-character code.&lt;/li&gt;&lt;li&gt;Open your &lt;strong&gt;Gmail Inbox&lt;/strong&gt;, click the gear icon to open &lt;strong&gt;Settings&lt;/strong&gt;, and select &lt;strong&gt;See all settings&lt;/strong&gt;.&lt;/li&gt;&lt;li&gt;Navigate to the &lt;strong&gt;Accounts and Import&lt;/strong&gt; tab. Under &lt;strong&gt;Send mail as&lt;/strong&gt;, click &lt;strong&gt;Add another email address&lt;/strong&gt;.&lt;/li&gt;&lt;li&gt;Enter your display name and your custom domain email address (&lt;code&gt;contact@yourdomain.com&lt;/code&gt;). Make sure the box "Treat as an alias" is checked, then click Next Step.&lt;/li&gt;&lt;li&gt;Configure the SMTP Server settings as follows:&lt;/li&gt;&lt;/ol&gt;</p>
+<p>为避免你的自定义域名邮件进垃圾箱,确认 Cloudflare DNS 设置里的 SPF 记录明确包含 Google。SPF TXT 记录值应类似:</p>
 
-<p>&lt;ul&gt;&lt;li&gt;&lt;strong&gt;SMTP Server:&lt;/strong&gt; &lt;code&gt;smtp.gmail.com&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Port:&lt;/strong&gt; &lt;code&gt;587&lt;/code&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Username:&lt;/strong&gt; Your full personal Gmail address (e.g. &lt;code&gt;myaddress@gmail.com&lt;/code&gt;)&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Password:&lt;/strong&gt; The 16-character Google App Password you generated in step 3&lt;/li&gt;&lt;li&gt;Select &lt;strong&gt;Secured connection using TLS&lt;/strong&gt;&lt;/li&gt;&lt;/ul&gt;</p>
+<pre class="codeblock"><code>v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all</code></pre>
 
-<p>&lt;ol&gt;&lt;li&gt;Click &lt;strong&gt;Add Account&lt;/strong&gt;. Gmail will send a confirmation code to your custom address. Since Cloudflare is already routing emails, check your Gmail inbox for this code, copy it, and paste it to complete verification.&lt;/li&gt;&lt;/ol&gt;</p>
-
-<p>&lt;p&gt;            ## Phase 3: Ensure Email Deliverability (SPF &amp; DKIM)&lt;/p&gt;</p>
-
-<p>&lt;p&gt;            To prevent your outgoing custom domain emails from landing in spam, verify that your SPF record in Cloudflare DNS settings explicitly includes Google. Your SPF TXT record value should look like this:&lt;/p&gt;</p>
-
-<p>&lt;p&gt;            v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all             This tells receiving mail servers that both Cloudflare and Google's servers are legally authorized to transmit mail on behalf of your domain name.&lt;/p&gt;</p>
+<p>这告诉收件方邮件服务器:Cloudflare 和 Google 的服务器都有权代表你的域名发送邮件。</p>
 
       </div>
       
@@ -119,10 +114,10 @@
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+        <a href="/cn/privacy.html" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="/cn/terms.html" data-i18n="nav-footer.terms">Terms</a>
+        <a href="/cn/about.html" data-i18n="nav-footer.about">About</a>
+        <a href="/cn/contact.html" data-i18n="nav-footer.contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

@@ -31,35 +31,39 @@
 
 ---
 
-## 二、当前状态快照（2026-09-04）
+## 二、当前状态快照（2026-09-06）
 
-**已完成并本地验证：**
+**已上线生产（https://plobikit.com）：**
 
+- **生产部署完成**：Cloudflare Workers + D1（id 已配置）+ 自定义域名绑定，
+  16 条核心路由全 200，分享闭环（创建/落地/恢复）在生产实测通过
 - 阶段 0 全站清理：假广告位（52 处）、MFA 页脚话术（32 处）、破损 HTML、canonical、
-  干净 URL sitemap、robots.txt、sw.js 修复
-- Worker 后端骨架：`POST /api/share`、`GET /s/:id`（带 OG 标签的 SSR 落地页）、
-  `GET /api/share/:id`、`POST /api/contact`、`GET /api/health`；
-  按 IP 限流（D1 计数）、蜜罐反垃圾、30 天过期 + 每日 cron 清理
-- 分享按钮接入 15/17 工具（中央注册表 `public/js/shareTools.js`，零 HTML 改动；
-  image/colorpalette 因无可恢复状态刻意跳过）
-- **阶段 1a**：优质网站合集上线（`/collection/` hub + 开发者工具 11 条 + 设计资源 8 条，
-  全部手写编辑描述；仅英文）
-- **阶段 1b**：Epic 喜加一管线全通（`worker/deals.js`：官方 API → 每日 cron → D1 `deals`
-  表 → `run_worker_first` SSR `/deals` + `/deals/games`；过期 7 天自动删除；
-  `GET /api/deals` JSON feed）；本地实测抓到真实数据
-- 全站导航接入 Deals/Collection 链接（60 页，`scripts/add-nav.mjs` 幂等自修复）
-- 浏览器端到端验证：cron/base64（含模式）/metatags 的分享→落地→恢复闭环、
-  品牌化 404、无双按钮、限流精确触发、蜜罐不入库
-- 目录重构：站点文件移入 `public/`（标准 Workers 布局）；`npm run dev/deploy/db:*` 脚本
-- privacy.html（en+cn）如实披露分享/表单的数据行为
+  干净 URL sitemap（90 URLs）、robots.txt、sw.js v3
+- Worker 后端：`POST /api/share`、`GET /s/:id`（SSR 落地页 + OG 标签）、
+  `GET /api/share/:id`、`POST /api/contact`（蜜罐反垃圾）、`GET /api/health`、
+  `GET /api/deals` JSON feed；按 IP 限流（D1 计数）、每日 cron 清理 + Epic 抓取
+- **阶段 1a**：优质网站合集（`/collection/`，开发者工具 11 条 + 设计资源 8 条，手写编辑描述）
+- **阶段 1b**：Epic 喜加一管线（官方 API → 每日 cron → D1 → SSR `/deals` + `/deals/games`，
+  过期 7 天自动删除）；生产已有真实数据（FREE NOW ×1 + UPCOMING ×2）
+- **阶段 1c**：配方页集群 17 篇（cron 11 + git 6），速查表行内链接互通
+- **Library 知识库**（原 Guides 板块）：markdown 驱动的双语生成器
+  （`content/guides/*.md` → `scripts/gen-guides.mjs`），6 篇文章 + EN/CN hub；
+  CN 端无翻译时自动显示提示条 + 英文原文
+- **全量国际化**：四级语言判定（localStorage > URL > html lang > 默认 en），
+  `data-i18n` 字典系统（`js/i18n-content.js`），全站 90+ 页 nav/footer 可跟随偏好，
+  SSR 页面服务端 cookie/Accept-Language 检测；语言切换持久化（localStorage + cookie 镜像）
+- **门户首页**（编辑风图纸美学，全矢量图标零 emoji）+ `/tools/` 工具 hub +
+  `/cheatsheets/` hub + 8 张速查表；4 个 CSS 模块合并修复跨目录加载
+- AdSense 卫生：无假广告位、无 MFA 话术、品牌门口文案去身份化、
+  privacy 页如实披露分享/表单数据行为
 
-**未完成：**
+**未完成（按优先级）：**
 
-- 代码尚未部署到生产（步骤：`npx wrangler login` → `npx wrangler d1 create plobikit` →
-  把 database_id 填进 wrangler.jsonc → `npm run db:remote` → `npm run deploy`）
-- OG 图片卡（satori）、每日挑战、Passkey 账户、片段库、AI 排行榜未开工；
-  配方页集群（1c）与工具支柱页加深（1d）未开工；
-  合集其他分类与 Steam/VPS 优惠源未接入
+- Library 6 篇文章的 `.zh.md` 中文版（当前 CN 端为 stub 提示条）
+- 配方页扩展（17 → 50+）；工具支柱页加深（1d）
+- Steam / VPS 优惠数据源；AI 免费档排行榜（阶段 2d）
+- OG 图片卡（satori）、每日挑战、Passkey 账户、片段库（阶段 2）
+- 部署自动化（GitHub Actions push→deploy）；文章翻译 AI 辅助管线
 
 ---
 

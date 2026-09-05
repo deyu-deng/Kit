@@ -152,10 +152,20 @@ function collectArticles() {
     const slug = basename(fn, '.md');
     const text = readFileSync(join(SRC, fn), 'utf-8');
     const { meta, body } = parseFrontmatter(text);
-    out.push({ slug, meta, body, enText: text, zhText: readIfExists(join(SRC, `${slug}.zh.md`)) });
+    const zhPath = join(SRC, `${slug}.zh.md`);
+    const zhText = readIfExists(zhPath);
+    let zhMeta = null;
+    if (zhText) zhMeta = parseFrontmatter(zhText).meta;
+    out.push({ slug, meta, body, enText: text, zhText, zhMeta });
   }
   out.sort((a, b) => (b.meta.published || '').localeCompare(a.meta.published || ''));
   return out;
+}
+
+/** Localized metadata: prefer the .zh.md frontmatter when lang is cn. */
+function localizedMeta(a, lang) {
+  if (lang === 'cn' && a.zhMeta) return { ...a.meta, ...a.zhMeta };
+  return a.meta;
 }
 
 function readIfExists(p) {
@@ -310,7 +320,7 @@ function buildHub(all, lang) {
     : { title: 'Library', intro: 'Practical guides on privacy, recipes, comparisons, and how-tos — answering the questions you actually search for.', cat: 'Categories', read: 'read', all: 'All' };
 
   const cards = all.map((a) => {
-    const m = a.meta;
+    const m = localizedMeta(a, lang);
     return `<a class="lib-card" href="${dir}guides/${a.slug}.html">
       <div class="lib-card-meta">
         <span class="tag">${ESC((CATEGORIES[m.category] || { en: '' })[lang] || m.category || '')}</span>

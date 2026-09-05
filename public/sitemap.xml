@@ -52,14 +52,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/"/>
   </url>
   <url>
-    <loc>https://plobikit.com/cn/cheatsheet</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheet"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheet"/>
-  </url>
-  <url>
     <loc>https://plobikit.com/cn/about</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
