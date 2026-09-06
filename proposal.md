@@ -42,7 +42,8 @@
 - Worker 后端：`POST /api/share`、`GET /s/:id`（SSR 落地页 + OG 标签）、
   `GET /api/share/:id`、`POST /api/contact`（蜜罐反垃圾）、`GET /api/health`、
   `GET /api/deals` JSON feed；按 IP 限流（D1 计数）、每日 cron 清理 + Epic 抓取
-- **阶段 1a**：优质网站合集（`/collection/`，开发者工具 11 条 + 设计资源 8 条，手写编辑描述）
+- **阶段 1a**：优质网站合集（`/collection/`，开发者工具 11 + 设计资源 8 +
+  平台与托管 12 = 31 条目，手写编辑描述）
 - **阶段 1b**：Epic 喜加一管线（官方 API → 每日 cron → D1 → SSR `/deals` + `/deals/games`，
   过期 7 天自动删除）；生产已有真实数据（FREE NOW ×1 + UPCOMING ×2）
 - **阶段 1c**：配方页集群 17 篇（cron 11 + git 6），速查表行内链接互通
