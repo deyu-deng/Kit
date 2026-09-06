@@ -9,8 +9,10 @@
  *   GET  /s/:id            server-rendered share page (social-crawler friendly)
  *   POST /api/contact      contact form submission                  → D1
  *   GET  /api/deals        deals JSON feed (?category=games)        → D1
+ *   GET  /api/deals/refresh  manual deals refresh (gated by DEBUG_KEY)
  *   GET  /deals            deals hub (SSR)                          → D1
  *   GET  /deals/games      Epic free games (SSR)                    → D1
+ *   GET  /deals/:cat       servers | software | ai (SSR)            → D1
  *   GET  /api/health       liveness probe
  *
  * Design notes:
@@ -25,7 +27,7 @@
  *    as JSON and applies it locally, honoring the privacy-first contract.
  */
 
-import { refreshEpicDeals, apiDeals, dealsHubPage, dealsGamesPage } from './deals.js';
+import { refreshAllDeals, apiDeals, dealsHubPage, dealsGamesPage, dealsCategoryPage } from './deals.js';
 
 const SITE_URL = 'https://plobikit.com';
 const SHARE_TTL_SECONDS = 30 * 24 * 60 * 60;
@@ -65,7 +67,7 @@ export default {
 
   // Daily housekeeping (see triggers.crons in wrangler.jsonc):
   // purge expired share links + stale rate-limit windows, then refresh
-  // the deals pipeline. A failed upstream fetch must never block cleanup.
+  // every deals source. A failed upstream fetch never blocks cleanup.
   async scheduled(_event, env, _ctx) {
     const now = nowSec();
     await env.DB.batch([
@@ -73,10 +75,10 @@ export default {
       env.DB.prepare('DELETE FROM rate_counters WHERE w < ?').bind(Math.floor(now / 60) - 10),
     ]);
     try {
-      const n = await refreshEpicDeals(env);
-      console.log(`epic deals refreshed: ${n} offer(s) upserted`);
+      const out = await refreshAllDeals(env);
+      console.log('deals refresh:', JSON.stringify(out));
     } catch (err) {
-      console.error('epic deals refresh failed:', (err && err.message) || err);
+      console.error('deals refresh failed:', (err && err.message) || err);
     }
   },
 };
@@ -111,9 +113,23 @@ async function route(request, env, ctx) {
   }
 
   // Deals vertical (worker-first SSR — see run_worker_first in wrangler.jsonc)
-  if (path === '/deals' || path === '/deals/') return html(await dealsHubPage(request, env), 200);
+  if (path === '/deals') return html(await dealsHubPage(request, env), 200);
   if (path === '/deals/games') return html(await dealsGamesPage(request, env), 200);
+  const catMatch = path.match(/^\/deals\/(servers|software|ai)$/);
+  if (catMatch) {
+    const page = await dealsCategoryPage(request, env, catMatch[1]);
+    if (page) return html(page, 200);
+  }
   if (path === '/api/deals') return apiDeals(env, request);
+
+  // Manual deals refresh for ops (gated by DEBUG_KEY secret; cron runs daily anyway).
+  if (path === '/api/deals/refresh') {
+    if (!env.DEBUG_KEY || url.searchParams.get('key') !== env.DEBUG_KEY) {
+      return json({ ok: false, error: 'forbidden' }, 403);
+    }
+    const out = await refreshAllDeals(env);
+    return json({ ok: true, out });
+  }
 
   if (path.startsWith('/api/')) return json({ ok: false, error: 'not_found' }, 404);
 

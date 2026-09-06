@@ -81,6 +81,158 @@ export async function refreshEpicDeals(env) {
   return stmts.length;
 }
 
+/* ---------------------------- RSS feed sources ---------------------------- */
+
+const SOURCES = {
+  leb: { feed: 'https://lowendbox.com/feed/', category: 'servers', windowDays: 30 },
+  gotd: { feed: 'http://feeds.feedburner.com/giveawayoftheday/feed', category: 'software', windowDays: 2 },
+};
+
+const AI_KEYWORDS = /\b(ai|a\.i\.|gpt|llm|chatgpt|copilot|claude|gemini|machine learning|neural)\b/i;
+
+function stripHtml(html) {
+  return String(html || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;|&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Minimal RSS 2.0 parser — enough for the WordPress feeds we consume.
+ *  Uses regex LITERALS only: template-built `new RegExp` with escaped
+ *  classes (\s\S) loses its backslashes in the worker build pipeline. */
+function parseRSS(xml) {
+  const items = [];
+  const blocks = String(xml || '').match(/<item[\s\S]*?<\/item>/g) || [];
+  for (const block of blocks) {
+    const field = (re) => {
+      const m = block.match(re);
+      if (!m) return '';
+      return m[1].replace(/<!\[CDATA\[|\]\]>/g, '').trim();
+    };
+    items.push({
+      title: stripHtml(field(/<title[^>]*>([\s\S]*?)<\/title>/i)),
+      link: stripHtml(field(/<link[^>]*>([\s\S]*?)<\/link>/i)),
+      description: stripHtml(field(/<description[^>]*>([\s\S]*?)<\/description>/i)),
+      pubDate: field(/<pubDate[^>]*>([\s\S]*?)<\/pubDate>/i),
+    });
+  }
+  return items;
+}
+
+function upsertDealStmt(env, d) {
+  return env.DB.prepare(
+    `INSERT INTO deals (id, source, category, title, description, url, image_url, original_price, starts_at, ends_at, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT(id) DO UPDATE SET
+       title = excluded.title,
+       description = excluded.description,
+       url = excluded.url,
+       original_price = excluded.original_price,
+       starts_at = excluded.starts_at,
+       ends_at = excluded.ends_at,
+       updated_at = excluded.updated_at`
+  ).bind(d.id, d.source, d.category, d.title, d.description, d.url, d.image_url || '', d.original_price || '', d.starts_at, d.ends_at, d.updated_at);
+}
+
+function slugFromUrl(url) {
+  try {
+    const p = new URL(url).pathname.replace(/\/+$/, '');
+    return (p.split('/').pop() || p).slice(0, 80) || 'item';
+  } catch {
+    return 'item';
+  }
+}
+
+/**
+ * Fetch an RSS deals feed, normalize rows into the deals table.
+ * Items whose title matches AI_KEYWORDS are routed to the 'ai' category
+ * instead of the feed's default — cheap but effective triage.
+ */
+export async function refreshFeedDeals(env, sourceKey) {
+  const src = SOURCES[sourceKey];
+  if (!src) throw new Error(`unknown source ${sourceKey}`);
+  const res = await fetch(src.feed, { headers: { 'user-agent': 'plobikit-bot/1.0' } });
+  if (!res.ok) throw new Error(`${sourceKey} feed ${res.status}`);
+  const xml = await res.text();
+  const items = parseRSS(xml);
+  const now = nowSec();
+
+  const stmts = [];
+  for (const it of items.slice(0, 15)) {
+    if (!it.title || !it.link) continue;
+    const pub = ts(it.pubDate) || now;
+    const category = AI_KEYWORDS.test(it.title) ? 'ai' : src.category;
+    stmts.push(
+      upsertDealStmt(env, {
+        id: `${sourceKey}:${slugFromUrl(it.link)}`,
+        source: sourceKey,
+        category,
+        title: it.title.slice(0, 120),
+        description: it.description.slice(0, 300),
+        url: it.link,
+        starts_at: pub,
+        ends_at: pub + src.windowDays * 86400,
+        updated_at: now,
+      })
+    );
+  }
+  if (stmts.length) await env.DB.batch(stmts);
+  await env.DB.prepare('DELETE FROM deals WHERE source = ? AND ends_at < ?').bind(sourceKey, now - 7 * 86400).run();
+  return stmts.length;
+}
+
+/* ------------------------- Evergreen AI free tiers ------------------------ */
+
+/**
+ * AI "deals" are mostly evergreen free tiers rather than timed promotions,
+ * so there is no API to poll. These are hand-curated seeds, refreshed daily:
+ * each run bumps ends_at, so a seed removed from this list quietly expires.
+ */
+const AI_SEEDS = [
+  { slug: 'google-ai-studio', title: 'Google AI Studio — free Gemini API tier', description: 'Free access to Gemini models with generous rate limits via AI Studio; pay only if you scale past the free quota.', url: 'https://aistudio.google.com/', price: '$0 / free tier' },
+  { slug: 'openrouter-free-models', title: 'OpenRouter — free-tier LLM models', description: 'Route to dozens of models with several available at $0 (rate-limited). One API key, pay-as-you-go beyond free.', url: 'https://openrouter.ai/models?max_price=0', price: '$0 / free tier' },
+  { slug: 'groq-free', title: 'Groq — free API tier for open models', description: 'Blazing-fast inference for Llama and Mixtral family models with a free developer tier.', url: 'https://console.groq.com/', price: '$0 / free tier' },
+  { slug: 'cloudflare-workers-ai', title: 'Cloudflare Workers AI — free daily neurons', description: 'Run LLMs, image and speech models at the edge. Free allocation of neurons every day.', url: 'https://developers.cloudflare.com/workers-ai/', price: '$0 / free tier' },
+  { slug: 'github-copilot-free', title: 'GitHub Copilot — free tier', description: 'Free monthly completions and chat for individual developers, no subscription required.', url: 'https://github.com/features/copilot', price: '$0 / free tier' },
+  { slug: 'huggingface-free', title: 'Hugging Face — free hosting & inference', description: 'Free model hosting, Spaces demos, and limited serverless inference on open models.', url: 'https://huggingface.co/', price: '$0 / free tier' },
+];
+
+export async function refreshAiSeeds(env) {
+  const now = nowSec();
+  const stmts = AI_SEEDS.map((s) =>
+    upsertDealStmt(env, {
+      id: 'ai-curate:' + s.slug,
+      source: 'ai-curate',
+      category: 'ai',
+      title: s.title,
+      description: s.description,
+      url: s.url,
+      starts_at: now - 86400,
+      ends_at: now + 365 * 86400,
+      updated_at: now,
+      original_price: s.price,
+    })
+  );
+  await env.DB.batch(stmts);
+  return stmts.length;
+}
+
+/** Refresh every source; one failure never blocks the others. */
+export async function refreshAllDeals(env) {
+  const out = {};
+  out.epic = await refreshEpicDeals(env).then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+  out.leb = await refreshFeedDeals(env, 'leb').then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+  out.gotd = await refreshFeedDeals(env, 'gotd').then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+  out.aiSeeds = await refreshAiSeeds(env).then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+  return out;
+}
+
 /* -------------------------------- JSON API ------------------------------- */
 
 export async function apiDeals(env, request) {
@@ -105,34 +257,31 @@ export async function apiDeals(env, request) {
 
 export async function dealsHubPage(request, env) {
   const now = nowSec();
-  const games = await env.DB.prepare('SELECT COUNT(*) AS n FROM deals WHERE category = ? AND ends_at > ?')
-    .bind('games', now)
-    .first('n');
-
   const cats = [
-    { slug: 'games', name: 'Free Games', live: true, desc: 'Giveaways you can claim and keep forever — Epic Games Store free promotions, refreshed daily from the official store API.' },
-    { slug: 'ai', name: 'AI Software Deals', live: false, desc: 'Free tiers, credits, and discounts on AI tools and model APIs.' },
-    { slug: 'servers', name: 'Server & VPS Deals', live: false, desc: 'Cloud credits and cheap-VPS promotions for homelabbers and developers.' },
-    { slug: 'software', name: 'Software Giveaways', live: false, desc: 'Time-limited free licenses for productivity apps.' },
+    { slug: 'games', name: 'Free Games', desc: 'Giveaways you can claim and keep forever — Epic Games Store free promotions, refreshed daily from the official store API.' },
+    { slug: 'ai', name: 'AI Software Deals', desc: 'Evergreen free tiers and credits on AI tools and model APIs, hand-checked — plus AI-related giveaways as they appear.' },
+    { slug: 'servers', name: 'Server & VPS Deals', desc: 'Cheap-VPS and hosting promotions from LowEndBox, the longest-running deals feed in the scene — refreshed daily.' },
+    { slug: 'software', name: 'Software Giveaways', desc: 'Time-limited free licenses for Windows productivity apps from Giveaway of the Day, refreshed daily.' },
   ];
 
   // Honor the visitor's stored language preference (set via the static
   // site). Falls back to Accept-Language, then default English.
   const lang = await resolveLang(request, env);
 
-  const cards = cats
-    .map((c) => {
-      const badge = c.live
-        ? `<span class="badge live">${c.slug === 'games' ? `${games} live` : 'live'}</span>`
-        : '<span class="badge soon">coming soon</span>';
-      return `
+  const cards = [];
+  for (const c of cats) {
+    const n = await env.DB.prepare('SELECT COUNT(*) AS n FROM deals WHERE category = ? AND starts_at <= ? AND ends_at > ?')
+      .bind(c.slug, nowSec(), nowSec())
+      .first('n');
+    const badge = `<span class="badge live">${n} live</span>`;
+    cards.push(`
         <div class="cat-card">
           <div class="cat-head"><h2>${c.name}</h2>${badge}</div>
           <p>${c.desc}</p>
-          ${c.live ? `<a class="cta" href="/deals/${c.slug}">Browse free games &rarr;</a>` : ''}
-        </div>`;
-    })
-    .join('\n');
+          <a class="cta" href="/deals/${c.slug}">Browse ${c.name.toLowerCase()} &rarr;</a>
+        </div>`);
+  }
+  const cardsHtml = cards.join('\n');
 
   return shell({
     title: 'Free Deals & Giveaways | Plobi-kit',
@@ -213,6 +362,75 @@ export async function dealsGamesPage(request, env) {
         <p><strong>How this works:</strong> we query Epic's public store API on a daily schedule,
         keep only 100%-discount offers, and delete listings a week after they end. Claim windows
         are shown in UTC — double-check the store page before the deadline.</p>
+      </div>`,
+  });
+}
+
+const CATEGORY_COPY = {
+  servers: {
+    title: 'VPS & Server Deals — Cloud Promotions | Plobi-kit',
+    h1: 'VPS & Server Deals',
+    description: 'Cheap-VPS and hosting promotions aggregated from LowEndBox daily. No affiliate padding, expired offers removed.',
+    intro: 'Hosting promotions from LowEndBox — the longest-running deals feed in the low-end server scene — refreshed daily. Windows are estimated from publication date; always confirm on the provider page before buying.',
+    sourceNote: '<strong>How this works:</strong> we parse the LowEndBox RSS feed on a daily schedule and keep listings for 30 days from publication. Items mentioning AI tools are routed to the <a href="/deals/ai" style="color:var(--success-color);">AI deals</a> page.',
+  },
+  software: {
+    title: 'Software Giveaways — Free Licenses Daily | Plobi-kit',
+    h1: 'Software Giveaways',
+    description: 'Time-limited free licenses for Windows productivity apps from Giveaway of the Day, refreshed daily. Expired offers removed automatically.',
+    intro: 'Daily software giveaways from Giveaway of the Day — full licenses, free to activate within the window. These expire fast (usually 24–48 hours), so grab them the day they appear.',
+    sourceNote: '<strong>How this works:</strong> we parse the Giveaway of the Day RSS feed daily and keep each listing for 48 hours. AI-related giveaways are routed to the <a href="/deals/ai" style="color:var(--success-color);">AI deals</a> page.',
+  },
+  ai: {
+    title: 'AI Software Deals — Free Tiers & Credits | Plobi-kit',
+    h1: 'AI Software Deals',
+    description: 'Evergreen free tiers and credits on AI tools and model APIs — Google AI Studio, OpenRouter, Groq, Cloudflare Workers AI and more — hand-checked and refreshed daily.',
+    intro: 'Most AI "deals" are evergreen free tiers rather than timed promotions, so this page is hand-curated and refreshed daily — plus any AI-related giveaway that flows through our software and hosting feeds.',
+    sourceNote: '<strong>How this works:</strong> the free-tier list is maintained by hand (it changes rarely), and items from our other feeds matching AI keywords are routed here automatically.',
+  },
+};
+
+/** Generic category listing for servers / software / ai. */
+export async function dealsCategoryPage(request, env, category) {
+  const copy = CATEGORY_COPY[category];
+  if (!copy) return null;
+  const lang = await resolveLang(request, env);
+  const now = nowSec();
+  const active = await env.DB.prepare(
+    'SELECT * FROM deals WHERE category = ? AND starts_at <= ? AND ends_at > ? ORDER BY ends_at'
+  )
+    .bind(category, now, now)
+    .all();
+
+  const card = (d) => {
+    const price = d.original_price ? `<span class="price">${escapeHtml(d.original_price)}</span> ` : '';
+    const img = d.image_url
+      ? `<img src="${escapeHtml(d.image_url)}" alt="${escapeHtml(d.title)}" loading="lazy">`
+      : '';
+    return `
+      <article class="deal-card">
+        ${img}
+        <div class="deal-body">
+          <div class="deal-head"><h2>${escapeHtml(d.title)}</h2><span class="badge live">LIVE</span></div>
+          <p class="deal-when">${price}listed ${fmtDate(d.starts_at)} · source: ${escapeHtml(d.source)}</p>
+          <p class="deal-desc">${escapeHtml(d.description)}</p>
+          <a class="cta" href="${escapeHtml(d.url)}" target="_blank" rel="noopener nofollow">Open offer &rarr;</a>
+        </div>
+      </article>`;
+  };
+
+  return shell({
+    title: copy.title,
+    description: copy.description,
+    canonical: `https://plobikit.com/deals/${category}`,
+    active: 'deals',
+    lang,
+    content: `
+      <h1>${copy.h1}</h1>
+      <p class="intro">${copy.intro}</p>
+      ${(active.results || []).map(card).join('\n') || '<p class="empty">Nothing live right now — check back tomorrow, the feeds refresh daily.</p>'}
+      <div class="note">
+        <p>${copy.sourceNote}</p>
       </div>`,
   });
 }
