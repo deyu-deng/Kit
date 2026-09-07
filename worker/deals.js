@@ -86,6 +86,7 @@ export async function refreshEpicDeals(env) {
 const SOURCES = {
   leb: { feed: 'https://lowendbox.com/feed/', category: 'servers', windowDays: 30 },
   gotd: { feed: 'http://feeds.feedburner.com/giveawayoftheday/feed', category: 'software', windowDays: 2 },
+  sos: { feed: 'https://www.sharewareonsale.com/feed', category: 'software', windowDays: 7 },
 };
 
 const AI_KEYWORDS = /\b(ai|a\.i\.|gpt|llm|chatgpt|copilot|claude|gemini|machine learning|neural)\b/i;
@@ -187,6 +188,53 @@ export async function refreshFeedDeals(env, sourceKey) {
   return stmts.length;
 }
 
+/* ---------------------- Reddit FGF & GOG (games) -------------------------- */
+
+/**
+ * r/FreeGameFindings — the fastest community tracker for Steam/GOG/itch
+ * free-to-keep promos. Reddit often 403s datacenter IPs, so this source is
+ * best-effort: any failure is caught upstream and logged, never fatal.
+ */
+export async function refreshRedditFGF(env) {
+  const res = await fetch('https://www.reddit.com/r/FreeGameFindings/new.json?limit=25', {
+    headers: { 'user-agent': 'plobikit-deals/1.0 (website aggregator; contact via plobikit.com)' },
+  });
+  if (!res.ok) throw new Error(`fgf ${res.status}`);
+  const data = await res.json();
+  const posts = data?.data?.children || [];
+  const now = nowSec();
+
+  const SKIP_FLAIRS = /ended|expired|discussion|request|mega ?thread|question/i;
+  const stmts = [];
+  for (const child of posts) {
+    const p = child.data || {};
+    const flair = String(p.link_flair_text || '');
+    if (SKIP_FLAIRS.test(flair)) continue;
+    const title = String(p.title || '').replace(/^.*?\]\s*/, '').slice(0, 120) || 'Free game';
+    const store = (p.title.match(/^\s*\[([^\]]+)\]/) || [])[1] || 'Reddit FGF';
+    const url = p.url_overridden_by_dest && /^https?:\/\//.test(p.url_overridden_by_dest)
+      ? p.url_overridden_by_dest
+      : 'https://www.reddit.com' + String(p.permalink || '');
+    const created = Math.floor(p.created_utc || now);
+    stmts.push(
+      upsertDealStmt(env, {
+        id: 'fgf:' + p.id,
+        source: 'fgf',
+        category: 'games',
+        title,
+        description: `${store} free-to-keep promotion, tracked by r/FreeGameFindings. Verify the claim window on the store page — community-reported windows can be short.`,
+        url,
+        starts_at: created,
+        ends_at: created + 7 * 86400,
+        updated_at: now,
+      })
+    );
+  }
+  if (stmts.length) await env.DB.batch(stmts);
+  await env.DB.prepare('DELETE FROM deals WHERE source = ? AND ends_at < ?').bind('fgf', now - 7 * 86400).run();
+  return stmts.length;
+}
+
 /* ------------------------- Evergreen AI free tiers ------------------------ */
 
 /**
@@ -227,8 +275,10 @@ export async function refreshAiSeeds(env) {
 export async function refreshAllDeals(env) {
   const out = {};
   out.epic = await refreshEpicDeals(env).then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+  out.fgf = await refreshRedditFGF(env).then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
   out.leb = await refreshFeedDeals(env, 'leb').then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
   out.gotd = await refreshFeedDeals(env, 'gotd').then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+  out.sos = await refreshFeedDeals(env, 'sos').then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
   out.aiSeeds = await refreshAiSeeds(env).then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
   return out;
 }
@@ -258,7 +308,7 @@ export async function apiDeals(env, request) {
 export async function dealsHubPage(request, env) {
   const now = nowSec();
   const cats = [
-    { slug: 'games', name: 'Free Games', desc: 'Giveaways you can claim and keep forever — Epic Games Store free promotions, refreshed daily from the official store API.' },
+    { slug: 'games', name: 'Free Games', desc: 'Free-to-keep giveaways from Epic and Steam — official APIs plus community trackers, refreshed daily.' },
     { slug: 'ai', name: 'AI Software Deals', desc: 'Evergreen free tiers and credits on AI tools and model APIs, hand-checked — plus AI-related giveaways as they appear.' },
     { slug: 'servers', name: 'Server & VPS Deals', desc: 'Cheap-VPS and hosting promotions from LowEndBox, the longest-running deals feed in the scene — refreshed daily.' },
     { slug: 'software', name: 'Software Giveaways', desc: 'Time-limited free licenses for Windows productivity apps from Giveaway of the Day, refreshed daily.' },
@@ -344,7 +394,7 @@ export async function dealsGamesPage(request, env) {
 
   return shell({
     title: 'Free Games Giveaway — Claim & Keep | Plobi-kit',
-    description: 'Epic Games Store games currently free to claim and keep forever, plus upcoming giveaways. Refreshed daily from the official API; expired offers are removed automatically.',
+    description: 'Games currently free to claim and keep on Epic and Steam — aggregated daily from official APIs and community trackers. Expired offers are removed automatically.',
     canonical: 'https://plobikit.com/deals/games',
     active: 'deals',
     lang,

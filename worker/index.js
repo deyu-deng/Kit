@@ -127,6 +127,15 @@ async function route(request, env, ctx) {
     if (!env.DEBUG_KEY || url.searchParams.get('key') !== env.DEBUG_KEY) {
       return json({ ok: false, error: 'forbidden' }, 403);
     }
+    const source = url.searchParams.get('source');
+    if (source) {
+      if (!/^(epic|gog|fgf|leb|let|gotd|sos|ai)$/.test(source)) return json({ ok: false, error: 'bad_source' }, 400);
+      const out = source === 'epic'
+        ? await refreshAllDeals(env).then(() => 'epic done')
+        : await import('./deals.js').then((m) => m.refreshFeedDeals(env, source))
+            .then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
+      return json({ ok: true, out });
+    }
     const out = await refreshAllDeals(env);
     return json({ ok: true, out });
   }
