@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cron Last Day of the Month — Crontab Example | Plobi-kit</title>
   <meta name="description" content="How to schedule a cron job on the last day of the month: the L syntax (59 23 L * *), which crons support it, and the portable daily-check fallback.">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#fafafa">
   <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-last-day-of-month">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,18 +38,18 @@
   <div class="app-container">
     <header class="app-header">
       <div class="logo">
-        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="../index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
           <span class="logo-icon" style="background:var(--success-color);">P</span>
           <span id="txt-logo-name">Plobi-kit</span>
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="../tools/index.html" id="nav-tools">Tools</a>
+        <a href="index.html" class="active" id="nav-cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-guides">Guides</a>
+        <a href="../deals" id="nav-deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection">Collection</a>
+        <a href="../about.html" id="nav-about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -92,10 +92,10 @@
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about">About</a>
+        <a href="../contact.html" id="nav-footer-contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.
@@ -112,11 +112,6 @@
       });
     }
   </script>
-  <script type="module" src="/app.js"></script>
-<script type="module">
-    import { applyTranslations, currentLang } from '/js/i18n-content.js';
-    import '/app.js';
-    applyTranslations(currentLang());
-  </script>
+  <script type="module" src="../app.js"></script>
 </body>
 </html>

@@ -4,12 +4,12 @@
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git Undo Last Commit — 3 Safe Ways | Plobi-kit</title>
-  <meta name="description" content="Undo your last Git commit without losing work: git reset --soft/--mixed/--hard compared, when amend is better, and how reflog saves you from mistakes.">
+  <title>Git Switch Branch — Modern Branch Navigation | Plobi-kit</title>
+  <meta name="description" content="How to switch branches in Git: git switch vs git checkout, creating new branches with -c, and detaching HEAD.">
   <link rel="stylesheet" href="../styles.css">
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-undo-last-commit">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-switch-branch">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,28 +57,26 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Undo Last Commit — 3 Safe Ways</p>
-      <h1>Git Undo Last Commit — 3 Safe Ways</h1>
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Switch Branch — Modern Branch Navigation</p>
+      <h1>Git Switch Branch — Modern Branch Navigation</h1>
       
       <div class="answer">
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset --soft HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Kept, still staged</p>
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Kept, unstaged</p>
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset --hard HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Deleted</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git switch &lt;branch></code><p class="plain" style="margin:0 0 6px 0;">Switch to an existing local branch</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git switch -c &lt;new-branch></code><p class="plain" style="margin:0 0 6px 0;">Create and switch to a new branch (replaces checkout -b)</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git switch -</code><p class="plain" style="margin:0 0 6px 0;">Switch back to the previous branch you were on</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git switch --detach &lt;sha></code><p class="plain" style="margin:0 0 6px 0;">Switch to a specific commit in detached HEAD state</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">The three resets</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Switch branch patterns</h2>
       <table class="ref">
-        <thead><tr><th>Command</th><th>Changes in the commit</th><th>Use when</th></tr></thead>
-        <tbody><tr><td><code>git reset --soft HEAD~1</code></td><td><code>Kept, still staged</code></td><td><code>You want to re-commit with a different message or grouping</code></td></tr><tr><td><code>git reset HEAD~1</code></td><td><code>Kept, unstaged</code></td><td><code>You want to re-stage selectively</code></td></tr><tr><td><code>git reset --hard HEAD~1</code></td><td><code>Deleted</code></td><td><code>The commit was garbage and so is its content</code></td></tr></tbody>
+        <thead><tr><th>Command</th><th>Action</th></tr></thead>
+        <tbody><tr><td><code>git switch &lt;branch></code></td><td><code>Switch to an existing local branch</code></td></tr><tr><td><code>git switch -c &lt;new-branch></code></td><td><code>Create and switch to a new branch (replaces checkout -b)</code></td></tr><tr><td><code>git switch -</code></td><td><code>Switch back to the previous branch you were on</code></td></tr><tr><td><code>git switch --detach &lt;sha></code></td><td><code>Switch to a specific commit in detached HEAD state</code></td></tr></tbody>
       </table>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related moves</h2>
-      <table class="ref">
-        <thead><tr><th>Command</th><th>Does</th></tr></thead>
-        <tbody><tr><td><code>git commit --amend -m "better message"</code></td><td><code>Rewrite the last commit instead of undoing it</code></td></tr><tr><td><code>git reflog</code></td><td><code>Time machine — find any commit HEAD has ever pointed to</code></td></tr><tr><td><code>git revert &lt;sha></code></td><td><code>Undo a commit that was already pushed (safe on shared branches)</code></td></tr></tbody>
-      </table>
-      <p class="prose">Undoing the last commit has three flavors — the difference is what happens to your changes. Pick by how much you want to keep.</p>
+      
+      <p class="prose">Introduced in Git 2.23, git switch replaces git checkout for branch switching, eliminating the confusion of mixing file restoration with branch checkout.</p>
       
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
       <div class="chips">
+        <a class="chip" href="git-undo-last-commit">Undo Last Commit — 3 Safe Ways</a>
         <a class="chip" href="git-discard-local-changes">Discard Local Changes — Safely and Completely</a>
         <a class="chip" href="git-delete-branch">Delete a Branch — Local and Remote</a>
         <a class="chip" href="git-stash-changes">Stash — Park Changes Without Committing</a>
@@ -94,7 +92,6 @@
         <a class="chip" href="git-unstage-file">Unstage File — Remove from Staging Area</a>
         <a class="chip" href="git-view-commit-history-graph">Log Graph — Visual Commit History in Terminal</a>
         <a class="chip" href="git-clean-untracked-files">Clean Untracked Files — Remove Clutter Safely</a>
-        <a class="chip" href="git-switch-branch">Switch Branch — Modern Branch Navigation</a>
         <a class="chip" href="git-create-branch-from-commit">Create Branch from Commit — Branch Off History</a>
         <a class="chip" href="git-stash-include-untracked">Stash Untracked Files (-u and -a Flags)</a>
         <a class="chip" href="git-pull-overwrite-local">Force Pull — Overwrite Local Changes with Remote</a>
@@ -103,12 +100,12 @@
         <a class="chip" href="git-tag-release">Tag a Release — Lightweight & Annotated Tags</a>
       </div>
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">I ran --hard by mistake — is my work gone?</strong><br>Probably not. <code>git reflog</code> lists every position HEAD has held; find the commit before the reset and <code>git reset --hard HEAD@{n}</code> back to it. Reflog entries live for ~90 days.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Can I undo a pushed commit with reset?</strong><br>Do not. Rewriting shared history forces everyone to fix their clones. Use <code>git revert <sha></code> — it creates a new commit that undoes the old one cleanly.</p>
-      <p class="prose"><strong style="color: var(--text-main);">reset vs revert in one line?</strong><br>reset rewrites history (local work only); revert adds new history (safe to share).</p>
+      <p class="prose"><strong style="color: var(--text-main);">Why was git switch introduced?</strong><br>git checkout handled both branch navigation AND file reverting. Git 2.23 split these into <code>git switch</code> (branches) and <code>git restore</code> (files).</p>
+      <p class="prose"><strong style="color: var(--text-main);">What does git switch - do?</strong><br>The hyphen <code>-</code> switches to whatever branch you were on previously — exactly like <code>cd -</code> in bash.</p>
+      <p class="prose"><strong style="color: var(--text-main);">What if I have uncommitted changes?</strong><br>If your changes do not conflict with the target branch, Git carries them over. If there are conflicts, Git halts and asks you to stash or commit first.</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Generate the exact command in the Git Builder</a>
+        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Build branch workflows in the Git Builder</a>
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="git.html" style="color: var(--success-color);">Git Cheat Sheet</a></p>
     </main>

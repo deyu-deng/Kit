@@ -4,12 +4,12 @@
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git Undo Last Commit — 3 Safe Ways | Plobi-kit</title>
-  <meta name="description" content="Undo your last Git commit without losing work: git reset --soft/--mixed/--hard compared, when amend is better, and how reflog saves you from mistakes.">
+  <title>Git Resolve Merge Conflict — Complete Workflow | Plobi-kit</title>
+  <meta name="description" content="How to resolve Git merge conflicts step by step: understand conflict markers (<<<<<<<, =======, >>>>>>>), stage resolved files, and complete the merge.">
   <link rel="stylesheet" href="../styles.css">
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-undo-last-commit">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,28 +57,27 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Undo Last Commit — 3 Safe Ways</p>
-      <h1>Git Undo Last Commit — 3 Safe Ways</h1>
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Resolve Merge Conflict — Complete Workflow</p>
+      <h1>Git Resolve Merge Conflict — Complete Workflow</h1>
       
       <div class="answer">
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset --soft HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Kept, still staged</p>
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Kept, unstaged</p>
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset --hard HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Deleted</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">1. Check status</code><p class="plain" style="margin:0 0 6px 0;">git status</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">2. Edit files</code><p class="plain" style="margin:0 0 6px 0;">Manual / IDE</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">3. Stage resolved</code><p class="plain" style="margin:0 0 6px 0;">git add <file></p>
+        <code class="expr" style="display:block; margin-bottom:8px;">4. Complete merge</code><p class="plain" style="margin:0 0 6px 0;">git commit</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">Abort if needed</code><p class="plain" style="margin:0 0 6px 0;">git merge --abort</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">The three resets</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Conflict resolution workflow</h2>
       <table class="ref">
-        <thead><tr><th>Command</th><th>Changes in the commit</th><th>Use when</th></tr></thead>
-        <tbody><tr><td><code>git reset --soft HEAD~1</code></td><td><code>Kept, still staged</code></td><td><code>You want to re-commit with a different message or grouping</code></td></tr><tr><td><code>git reset HEAD~1</code></td><td><code>Kept, unstaged</code></td><td><code>You want to re-stage selectively</code></td></tr><tr><td><code>git reset --hard HEAD~1</code></td><td><code>Deleted</code></td><td><code>The commit was garbage and so is its content</code></td></tr></tbody>
+        <thead><tr><th>Step</th><th>Command</th><th>Description</th></tr></thead>
+        <tbody><tr><td><code>1. Check status</code></td><td><code>git status</code></td><td><code>Identify all files marked "both modified"</code></td></tr><tr><td><code>2. Edit files</code></td><td><code>Manual / IDE</code></td><td><code>Open files, choose content, remove &lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, >>>>>>> markers</code></td></tr><tr><td><code>3. Stage resolved</code></td><td><code>git add &lt;file></code></td><td><code>Mark conflict as resolved in Git index</code></td></tr><tr><td><code>4. Complete merge</code></td><td><code>git commit</code></td><td><code>Finalize merge commit with default message</code></td></tr><tr><td><code>Abort if needed</code></td><td><code>git merge --abort</code></td><td><code>Cancel merge and revert to pre-merge state</code></td></tr></tbody>
       </table>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related moves</h2>
-      <table class="ref">
-        <thead><tr><th>Command</th><th>Does</th></tr></thead>
-        <tbody><tr><td><code>git commit --amend -m "better message"</code></td><td><code>Rewrite the last commit instead of undoing it</code></td></tr><tr><td><code>git reflog</code></td><td><code>Time machine — find any commit HEAD has ever pointed to</code></td></tr><tr><td><code>git revert &lt;sha></code></td><td><code>Undo a commit that was already pushed (safe on shared branches)</code></td></tr></tbody>
-      </table>
-      <p class="prose">Undoing the last commit has three flavors — the difference is what happens to your changes. Pick by how much you want to keep.</p>
+      
+      <p class="prose">Merge conflicts occur when two branches modify the same lines of a file. Git pauses and inserts conflict markers so you can decide which version to keep.</p>
       
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
       <div class="chips">
+        <a class="chip" href="git-undo-last-commit">Undo Last Commit — 3 Safe Ways</a>
         <a class="chip" href="git-discard-local-changes">Discard Local Changes — Safely and Completely</a>
         <a class="chip" href="git-delete-branch">Delete a Branch — Local and Remote</a>
         <a class="chip" href="git-stash-changes">Stash — Park Changes Without Committing</a>
@@ -98,17 +97,16 @@
         <a class="chip" href="git-create-branch-from-commit">Create Branch from Commit — Branch Off History</a>
         <a class="chip" href="git-stash-include-untracked">Stash Untracked Files (-u and -a Flags)</a>
         <a class="chip" href="git-pull-overwrite-local">Force Pull — Overwrite Local Changes with Remote</a>
-        <a class="chip" href="git-resolve-merge-conflict">Resolve Merge Conflict — Complete Workflow</a>
         <a class="chip" href="git-show-commit-diff">Show Commit — Inspect Changes in a Commit</a>
         <a class="chip" href="git-tag-release">Tag a Release — Lightweight & Annotated Tags</a>
       </div>
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">I ran --hard by mistake — is my work gone?</strong><br>Probably not. <code>git reflog</code> lists every position HEAD has held; find the commit before the reset and <code>git reset --hard HEAD@{n}</code> back to it. Reflog entries live for ~90 days.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Can I undo a pushed commit with reset?</strong><br>Do not. Rewriting shared history forces everyone to fix their clones. Use <code>git revert <sha></code> — it creates a new commit that undoes the old one cleanly.</p>
-      <p class="prose"><strong style="color: var(--text-main);">reset vs revert in one line?</strong><br>reset rewrites history (local work only); revert adds new history (safe to share).</p>
+      <p class="prose"><strong style="color: var(--text-main);">What does <<<<<<< HEAD mean?</strong><br>HEAD marks the code currently on your active branch. The code after ======= and before >>>>>>> comes from the branch you are merging in.</p>
+      <p class="prose"><strong style="color: var(--text-main);">How do I abort a conflict during a rebase?</strong><br>Run <code>git rebase --abort</code>.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Can I choose one branch's version entirely?</strong><br>Yes: <code>git checkout --ours <file></code> keeps current branch, <code>git checkout --theirs <file></code> accepts incoming branch.</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Generate the exact command in the Git Builder</a>
+        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Try conflict resolution in the Git Builder</a>
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="git.html" style="color: var(--success-color);">Git Cheat Sheet</a></p>
     </main>

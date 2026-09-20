@@ -4,12 +4,12 @@
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git Undo Last Commit — 3 Safe Ways | Plobi-kit</title>
-  <meta name="description" content="Undo your last Git commit without losing work: git reset --soft/--mixed/--hard compared, when amend is better, and how reflog saves you from mistakes.">
+  <title>Git Log Graph — Visual Commit History in Terminal | Plobi-kit</title>
+  <meta name="description" content="How to view a visual branch and commit tree in terminal with git log --oneline --graph --decorate --all.">
   <link rel="stylesheet" href="../styles.css">
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-undo-last-commit">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,28 +57,25 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Undo Last Commit — 3 Safe Ways</p>
-      <h1>Git Undo Last Commit — 3 Safe Ways</h1>
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="git.html">Git Cheat Sheet</a> · Git Log Graph — Visual Commit History in Terminal</p>
+      <h1>Git Log Graph — Visual Commit History in Terminal</h1>
       
       <div class="answer">
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset --soft HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Kept, still staged</p>
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Kept, unstaged</p>
-        <code class="expr" style="display:block; margin-bottom:8px;">git reset --hard HEAD~1</code><p class="plain" style="margin:0 0 6px 0;">Deleted</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git log --oneline --graph --all</code><p class="plain" style="margin:0 0 6px 0;">Compact single-line graph for all branches and tags</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git log --graph --decorate --oneline -n 15</code><p class="plain" style="margin:0 0 6px 0;">Show the last 15 commits with branch labels</p>
+        <code class="expr" style="display:block; margin-bottom:8px;">git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an>%Creset"</code><p class="plain" style="margin:0 0 6px 0;">Colorful custom formatted log with relative dates and authors</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">The three resets</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Log graph variations</h2>
       <table class="ref">
-        <thead><tr><th>Command</th><th>Changes in the commit</th><th>Use when</th></tr></thead>
-        <tbody><tr><td><code>git reset --soft HEAD~1</code></td><td><code>Kept, still staged</code></td><td><code>You want to re-commit with a different message or grouping</code></td></tr><tr><td><code>git reset HEAD~1</code></td><td><code>Kept, unstaged</code></td><td><code>You want to re-stage selectively</code></td></tr><tr><td><code>git reset --hard HEAD~1</code></td><td><code>Deleted</code></td><td><code>The commit was garbage and so is its content</code></td></tr></tbody>
+        <thead><tr><th>Command</th><th>Features</th></tr></thead>
+        <tbody><tr><td><code>git log --oneline --graph --all</code></td><td><code>Compact single-line graph for all branches and tags</code></td></tr><tr><td><code>git log --graph --decorate --oneline -n 15</code></td><td><code>Show the last 15 commits with branch labels</code></td></tr><tr><td><code>git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an>%Creset"</code></td><td><code>Colorful custom formatted log with relative dates and authors</code></td></tr></tbody>
       </table>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related moves</h2>
-      <table class="ref">
-        <thead><tr><th>Command</th><th>Does</th></tr></thead>
-        <tbody><tr><td><code>git commit --amend -m "better message"</code></td><td><code>Rewrite the last commit instead of undoing it</code></td></tr><tr><td><code>git reflog</code></td><td><code>Time machine — find any commit HEAD has ever pointed to</code></td></tr><tr><td><code>git revert &lt;sha></code></td><td><code>Undo a commit that was already pushed (safe on shared branches)</code></td></tr></tbody>
-      </table>
-      <p class="prose">Undoing the last commit has three flavors — the difference is what happens to your changes. Pick by how much you want to keep.</p>
+      
+      <p class="prose">Turn the plain git log output into an ASCII branch graph showing merges, branch divergences, and commit tags right in your CLI.</p>
       
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
       <div class="chips">
+        <a class="chip" href="git-undo-last-commit">Undo Last Commit — 3 Safe Ways</a>
         <a class="chip" href="git-discard-local-changes">Discard Local Changes — Safely and Completely</a>
         <a class="chip" href="git-delete-branch">Delete a Branch — Local and Remote</a>
         <a class="chip" href="git-stash-changes">Stash — Park Changes Without Committing</a>
@@ -92,7 +89,6 @@
         <a class="chip" href="git-delete-remote-tag">Delete Remote Tag — Local and Remote</a>
         <a class="chip" href="git-change-commit-author">Change Commit Author — Email & Name</a>
         <a class="chip" href="git-unstage-file">Unstage File — Remove from Staging Area</a>
-        <a class="chip" href="git-view-commit-history-graph">Log Graph — Visual Commit History in Terminal</a>
         <a class="chip" href="git-clean-untracked-files">Clean Untracked Files — Remove Clutter Safely</a>
         <a class="chip" href="git-switch-branch">Switch Branch — Modern Branch Navigation</a>
         <a class="chip" href="git-create-branch-from-commit">Create Branch from Commit — Branch Off History</a>
@@ -103,12 +99,12 @@
         <a class="chip" href="git-tag-release">Tag a Release — Lightweight & Annotated Tags</a>
       </div>
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">I ran --hard by mistake — is my work gone?</strong><br>Probably not. <code>git reflog</code> lists every position HEAD has held; find the commit before the reset and <code>git reset --hard HEAD@{n}</code> back to it. Reflog entries live for ~90 days.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Can I undo a pushed commit with reset?</strong><br>Do not. Rewriting shared history forces everyone to fix their clones. Use <code>git revert <sha></code> — it creates a new commit that undoes the old one cleanly.</p>
-      <p class="prose"><strong style="color: var(--text-main);">reset vs revert in one line?</strong><br>reset rewrites history (local work only); revert adds new history (safe to share).</p>
+      <p class="prose"><strong style="color: var(--text-main);">How do I create a permanent alias for this?</strong><br>Run: <code>git config --global alias.lg "log --oneline --graph --all"</code>. Then you can just type <code>git lg</code>.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Why is --all important?</strong><br>Without <code>--all</code>, git log only shows commits reachable from the current branch. --all includes all local and remote branches.</p>
+      <p class="prose"><strong style="color: var(--text-main);">How to search commit messages in the log?</strong><br>Use <code>git log --grep="search term"</code>.</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Generate the exact command in the Git Builder</a>
+        <a class="btn" href="../tools/git.html" style="text-decoration: none;">Try log options in the Git Builder</a>
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="git.html" style="color: var(--success-color);">Git Cheat Sheet</a></p>
     </main>

@@ -46,7 +46,7 @@
   平台与托管 12 = 31 条目，手写编辑描述）
 - **阶段 1b**：Epic 喜加一管线（官方 API → 每日 cron → D1 → SSR `/deals` + `/deals/games`，
   过期 7 天自动删除）；生产已有真实数据（FREE NOW ×1 + UPCOMING ×2）
-- **阶段 1c**：配方页集群 17 篇（cron 11 + git 6），速查表行内链接互通
+- **阶段 1c**：配方页集群 52 篇（cron 29 + git 23，超过 50+ 目标），速查表行内链接互通
 - **Library 知识库**（原 Guides 板块）：markdown 驱动的双语生成器
   （`content/guides/*.md` → `scripts/gen-guides.mjs`），6 篇文章 + EN/CN hub；
   CN 端无翻译时自动显示提示条 + 英文原文
@@ -60,8 +60,7 @@
 
 **未完成（按优先级）：**
 
-- Library 6 篇文章的 `.zh.md` 中文版（当前 CN 端为 stub 提示条）
-- 配方页扩展（17 → 50+）；工具支柱页加深（1d）
+- 工具支柱页加深（1d：每工具 1500–2500 字，原理、对比表、常见报错、8–10 FAQ）
 - Steam / VPS 优惠数据源；AI 免费档排行榜（阶段 2d）
 - OG 图片卡（satori）、每日挑战、Passkey 账户、片段库（阶段 2）
 - 部署自动化（GitHub Actions push→deploy）；文章翻译 AI 辅助管线

@@ -4,12 +4,12 @@
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cron Every Minute — Crontab Example | Plobi-kit</title>
-  <meta name="description" content="How to run a cron job every minute: the expression * * * * *, what each field means, and how to prevent overlapping runs.">
+  <title>Cron Every 12 Hours — Crontab Example | Plobi-kit</title>
+  <meta name="description" content="Schedule a cron job twice a day: 0 */12 * * *. Runs at 00:00 and 12:00 (midnight and noon).">
   <link rel="stylesheet" href="../styles.css">
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-every-minute">
+  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-every-12-hours">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,35 +57,35 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="cron.html">Cron Cheat Sheet</a> · Cron Every Minute — Crontab Example</p>
-      <h1>Cron Every Minute — Crontab Example</h1>
+      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="cron.html">Cron Cheat Sheet</a> · Cron Every 12 Hours — Crontab Example</p>
+      <h1>Cron Every 12 Hours — Crontab Example</h1>
       
       <div class="answer">
-        <code class="expr">* * * * *</code>
-        <p class="plain">Runs once every minute — 1,440 times a day.</p>
+        <code class="expr">0 */12 * * *</code>
+        <p class="plain">Runs twice a day — at 00:00 (midnight) and 12:00 (noon).</p>
       </div>
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
       <table class="ref">
         <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
-        <tbody><tr><td><code>Minute</code></td><td><code>*</code></td><td>Every minute (0–59)</td></tr><tr><td><code>Hour</code></td><td><code>*</code></td><td>Every hour</td></tr><tr><td><code>Day of month</code></td><td><code>*</code></td><td>Every day</td></tr><tr><td><code>Month</code></td><td><code>*</code></td><td>Every month</td></tr><tr><td><code>Day of week</code></td><td><code>*</code></td><td>Every day of the week</td></tr></tbody>
+        <tbody><tr><td><code>Minute</code></td><td><code>0</code></td><td>At minute 0</td></tr><tr><td><code>Hour</code></td><td><code>*/12</code></td><td>Hours 0 and 12</td></tr><tr><td><code>Day of month</code></td><td><code>*</code></td><td>Every day</td></tr><tr><td><code>Month</code></td><td><code>*</code></td><td>Every month</td></tr><tr><td><code>Day of week</code></td><td><code>*</code></td><td>Every day of the week</td></tr></tbody>
       </table>
-      <p class="prose">A fully wildcarded expression fires every minute of every day. That is the right choice for queue workers, health-check pings, and cache warmers — anything that should notice new work within seconds.</p>
-      <p class="prose">At this frequency, guard against overlap: if one run takes longer than a minute, the next starts anyway and runs pile up. Wrap the command with <code>flock</code> so a busy run makes the next one skip instead of stacking:</p>
-      <pre class="cmdbox">* * * * * flock -n /tmp/myjob.lock /usr/local/bin/myjob.sh</pre>
+      <p class="prose">Twice-daily schedules divide day and night cleanly. The expressions <code>0 */12 * * *</code> and <code>0 0,12 * * *</code> are completely equivalent.</p>
+      <p class="prose">If you prefer to align with business hours (such as 9 AM and 6 PM), use an explicit list: <code>0 9,18 * * *</code>.</p>
+      <pre class="cmdbox">0 */12 * * * /usr/local/bin/sync-external.sh</pre>
       
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
       <div class="chips">
-        <a class="chip" href="cron-every-5-minutes"><code>*/5 * * * *</code> Every 5 minutes</a>
-        <a class="chip" href="cron-every-30-minutes"><code>*/30 * * * *</code> Every 30 minutes</a>
-        <a class="chip" href="cron-every-hour"><code>0 * * * *</code> Every hour, on the hour</a>
+        <a class="chip" href="cron-daily-at-midnight-and-noon"><code>0 0,12 * * *</code> Explicit list syntax (identical)</a>
+        <a class="chip" href="cron-every-6-hours"><code>0 */6 * * *</code> Every 6 hours</a>
+        <a class="chip" href="cron-daily-midnight"><code>0 0 * * *</code> Daily at midnight</a>
       </div>
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">Is every minute too much?</strong><br>For lightweight idempotent jobs, no — it is the standard polling cadence. Add <code>flock -n</code> (skip if locked) so slow runs never stack. If the work can tolerate delay, step up to <code>*/5</code>.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Which timezone does it use?</strong><br>The timezone of the machine running cron — UTC on most servers. Cloud schedulers (GitHub Actions, Vercel Cron, Cloudflare) are also UTC unless configured otherwise.</p>
-      <p class="prose"><strong style="color: var(--text-main);">How do I pause it without deleting the line?</strong><br>Comment the line out with <code>#</code> in <code>crontab -e</code>, or add a gate file the script checks at startup.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Is 0 */12 * * * identical to 0 0,12 * * *?</strong><br>Yes, both fire at 00:00 and 12:00.</p>
+      <p class="prose"><strong style="color: var(--text-main);">How to run at 6 AM and 6 PM instead?</strong><br>Write <code>0 6,18 * * *</code>.</p>
+      <p class="prose"><strong style="color: var(--text-main);">Does it run on weekends?</strong><br>Yes, the day-of-week field is wildcarded (*). To run only on weekdays, change the last field to 1-5.</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="../tools/cron.html" style="text-decoration: none;">Build it visually in the Cron Editor</a>
+        <a class="btn" href="../tools/cron.html" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="cron.html" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
     </main>
