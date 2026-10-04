@@ -1,18 +1,18 @@
 /**
- * Plobi-kit Worker — the dynamic layer behind the static toolkit.
+ * Plobi-kit Worker â the dynamic layer behind the static toolkit.
  *
  * Handled here (anything else falls through to static assets, which are
  * served directly by the assets binding and never invoke this Worker):
  *
- *   POST /api/share        create a share link                     → D1
- *   GET  /api/share/:id    share payload as JSON (tool page restore) → D1
+ *   POST /api/share        create a share link                     â D1
+ *   GET  /api/share/:id    share payload as JSON (tool page restore) â D1
  *   GET  /s/:id            server-rendered share page (social-crawler friendly)
- *   POST /api/contact      contact form submission                  → D1
- *   GET  /api/deals        deals JSON feed (?category=games)        → D1
+ *   POST /api/contact      contact form submission                  â D1
+ *   GET  /api/deals        deals JSON feed (?category=games)        â D1
  *   GET  /api/deals/refresh  manual deals refresh (gated by DEBUG_KEY)
- *   GET  /deals            deals hub (SSR)                          → D1
- *   GET  /deals/games      Epic free games (SSR)                    → D1
- *   GET  /deals/:cat       servers | software | ai (SSR)            → D1
+ *   GET  /deals            deals hub (SSR)                          â D1
+ *   GET  /deals/games      Epic free games (SSR)                    â D1
+ *   GET  /deals/:cat       servers | software | ai (SSR)            â D1
  *   GET  /api/health       liveness probe
  *
  * Design notes:
@@ -23,7 +23,7 @@
  *    bucket + client IP. Approximate by design (D1 has one writer), which
  *    is fine for abuse damping.
  *  - The share page only renders whitelisted, escaped text server-side.
- *    Tool state is never interpolated into HTML — the tool page fetches it
+ *    Tool state is never interpolated into HTML â the tool page fetches it
  *    as JSON and applies it locally, honoring the privacy-first contract.
  */
 
@@ -36,23 +36,23 @@ const MAX_STATE_BYTES = 12 * 1024;
 const ID_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
 
 const TOOLS = {
-  base64: { en: 'Base64 Encoder / Decoder', cn: 'Base64 编解码器' },
-  codeimage: { en: 'Code Screenshot Generator', cn: '代码截图生成器' },
-  colorpalette: { en: 'Color Palette Generator', cn: '配色方案生成器' },
-  cron: { en: 'Cron Expression Visualizer', cn: 'Cron 表达式可视化' },
-  flexgrid: { en: 'Flexbox Grid Builder', cn: 'Flexbox 网格生成器' },
-  git: { en: 'Git Command Builder', cn: 'Git 命令生成器' },
-  glassmorphism: { en: 'Glassmorphism Generator', cn: '毛玻璃效果生成器' },
-  image: { en: 'Image Compressor', cn: '图片压缩工具' },
-  json: { en: 'JSON Formatter', cn: 'JSON 格式化工具' },
-  jwt: { en: 'JWT Decoder', cn: 'JWT 解码器' },
-  markdown: { en: 'Markdown Previewer', cn: 'Markdown 预览器' },
-  metatags: { en: 'Meta Tag Generator', cn: 'Meta 标签生成器' },
-  prompt: { en: 'Prompt Helper', cn: 'Prompt 助手' },
-  qrcode: { en: 'QR Code Generator', cn: '二维码生成器' },
-  regex: { en: 'Regex Tester', cn: '正则表达式测试器' },
-  svg: { en: 'SVG Icon Library', cn: 'SVG 图标库' },
-  url: { en: 'URL Encoder / Decoder', cn: 'URL 编解码器' },
+  base64: { en: 'Base64 Encoder / Decoder', cn: 'Base64 ç¼è§£ç å¨' },
+  codeimage: { en: 'Code Screenshot Generator', cn: 'ä»£ç æªå¾çæå¨' },
+  colorpalette: { en: 'Color Palette Generator', cn: 'éè²æ¹æ¡çæå¨' },
+  cron: { en: 'Cron Expression Visualizer', cn: 'Cron è¡¨è¾¾å¼å¯è§å' },
+  flexgrid: { en: 'Flexbox Grid Builder', cn: 'Flexbox ç½æ ¼çæå¨' },
+  git: { en: 'Git Command Builder', cn: 'Git å½ä»¤çæå¨' },
+  glassmorphism: { en: 'Glassmorphism Generator', cn: 'æ¯ç»çææçæå¨' },
+  image: { en: 'Image Compressor', cn: 'å¾çåç¼©å·¥å·' },
+  json: { en: 'JSON Formatter', cn: 'JSON æ ¼å¼åå·¥å·' },
+  jwt: { en: 'JWT Decoder', cn: 'JWT è§£ç å¨' },
+  markdown: { en: 'Markdown Previewer', cn: 'Markdown é¢è§å¨' },
+  metatags: { en: 'Meta Tag Generator', cn: 'Meta æ ç­¾çæå¨' },
+  prompt: { en: 'Prompt Helper', cn: 'Prompt å©æ' },
+  qrcode: { en: 'QR Code Generator', cn: 'äºç»´ç çæå¨' },
+  regex: { en: 'Regex Tester', cn: 'æ­£åè¡¨è¾¾å¼æµè¯å¨' },
+  svg: { en: 'SVG Icon Library', cn: 'SVG å¾æ åº' },
+  url: { en: 'URL Encoder / Decoder', cn: 'URL ç¼è§£ç å¨' },
 };
 
 export default {
@@ -112,7 +112,7 @@ async function route(request, env, ctx) {
     return submitContact(request, env, ctx);
   }
 
-  // Deals vertical (worker-first SSR — see run_worker_first in wrangler.jsonc)
+  // Deals vertical (worker-first SSR â see run_worker_first in wrangler.jsonc)
   if (path === '/deals') return html(await dealsHubPage(request, env), 200);
   if (path === '/deals/games') return html(await dealsGamesPage(request, env), 200);
   const catMatch = path.match(/^\/deals\/(servers|software|ai)$/);
@@ -296,14 +296,14 @@ function sharePageHTML(share) {
   const toolName = (TOOLS[share.tool] && TOOLS[share.tool][lang]) || share.tool;
   const title = escapeHtml(share.title);
   const description = escapeHtml(share.description) ||
-    (isCN ? '一个通过 Plobi-kit 分享的配置。' : 'A setup shared via Plobi-kit.');
+    (isCN ? 'ä¸ä¸ªéè¿ Plobi-kit åäº«çéç½®ã' : 'A setup shared via Plobi-kit.');
   const toolUrl = `${isCN ? '/cn' : ''}/tools/${share.tool}.html?share=${encodeURIComponent(share.id)}`;
-  const openLabel = isCN ? `在${toolName}中打开` : `Open in ${toolName}`;
+  const openLabel = isCN ? `å¨${toolName}ä¸­æå¼` : `Open in ${toolName}`;
   const note = isCN
-    ? '此分享链接将在 30 天后过期。打开工具时，配置仅在你的浏览器中本地恢复。'
+    ? 'æ­¤åäº«é¾æ¥å°å¨ 30 å¤©åè¿æãæå¼å·¥å·æ¶ï¼éç½®ä»å¨ä½ çæµè§å¨ä¸­æ¬å°æ¢å¤ã'
     : 'This share link expires in 30 days. When you open the tool, the setup is restored locally in your browser.';
   const home = isCN ? '/cn/' : '/';
-  const tagline = isCN ? '隐私优先、全部在浏览器中运行的开发者工具箱。' : 'Privacy-first tools that run in your browser.';
+  const tagline = isCN ? 'éç§ä¼åãå¨é¨å¨æµè§å¨ä¸­è¿è¡çå¼åèå·¥å·ç®±ã' : 'Privacy-first tools that run in your browser.';
 
   return `<!DOCTYPE html>
 <html lang="${isCN ? 'zh' : 'en'}">
@@ -357,7 +357,7 @@ function sharePageHTML(share) {
     <a class="cta" href="${toolUrl}">${openLabel} &rarr;</a>
     <p class="note">${note}</p>
   </main>
-  <footer>Powered by <a href="${home}">Plobi-kit</a> — ${tagline}</footer>
+  <footer>Powered by <a href="${home}">Plobi-kit</a> â ${tagline}</footer>
 </body>
 </html>`;
 }
@@ -381,9 +381,9 @@ function expiredHTML() {
 </style>
 </head>
 <body>
-  <h1>Link expired · 链接已过期</h1>
-  <p>This share link has expired or does not exist.<br>该分享链接已过期或不存在。</p>
-  <a href="/">Go to Plobi-kit · 返回首页</a>
+  <h1>Link expired Â· é¾æ¥å·²è¿æ</h1>
+  <p>This share link has expired or does not exist.<br>è¯¥åäº«é¾æ¥å·²è¿ææä¸å­å¨ã</p>
+  <a href="/">Go to Plobi-kit Â· è¿åé¦é¡µ</a>
 </body>
 </html>`;
 }
@@ -407,9 +407,9 @@ function notFoundHTML() {
 </style>
 </head>
 <body>
-  <h1>404 · Page not found</h1>
-  <p>The page you are looking for does not exist.<br>页面不存在。</p>
-  <a href="/">Go to Plobi-kit · 返回首页</a>
+  <h1>404 Â· Page not found</h1>
+  <p>The page you are looking for does not exist.<br>é¡µé¢ä¸å­å¨ã</p>
+  <a href="/">Go to Plobi-kit Â· è¿åé¦é¡µ</a>
 </body>
 </html>`;
 }

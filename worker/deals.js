@@ -1,7 +1,7 @@
 /**
- * deals.js — freebie/deals vertical (Stage 1b of proposal.md).
+ * deals.js â freebie/deals vertical (Stage 1b of proposal.md).
  *
- * Pipeline: Workers Cron → refreshEpicDeals() → D1 `deals` table →
+ * Pipeline: Workers Cron â refreshEpicDeals() â D1 `deals` table â
  *           SSR pages (/deals, /deals/games) served worker-first.
  *
  * Data source: Epic Games Store public promotions API. Only 100%-discount
@@ -76,7 +76,7 @@ export async function refreshEpicDeals(env) {
 
   if (stmts.length) await env.DB.batch(stmts);
 
-  // Purge offers that ended over a week ago — never show stale deals.
+  // Purge offers that ended over a week ago â never show stale deals.
   await env.DB.prepare('DELETE FROM deals WHERE source = ? AND ends_at < ?').bind('epic', now - 7 * 86400).run();
   return stmts.length;
 }
@@ -104,7 +104,7 @@ function stripHtml(html) {
     .trim();
 }
 
-/** Minimal RSS 2.0 parser — enough for the WordPress feeds we consume.
+/** Minimal RSS 2.0 parser â enough for the WordPress feeds we consume.
  *  Uses regex LITERALS only: template-built `new RegExp` with escaped
  *  classes (\s\S) loses its backslashes in the worker build pipeline. */
 function parseRSS(xml) {
@@ -153,7 +153,7 @@ function slugFromUrl(url) {
 /**
  * Fetch an RSS deals feed, normalize rows into the deals table.
  * Items whose title matches AI_KEYWORDS are routed to the 'ai' category
- * instead of the feed's default — cheap but effective triage.
+ * instead of the feed's default â cheap but effective triage.
  */
 export async function refreshFeedDeals(env, sourceKey) {
   const src = SOURCES[sourceKey];
@@ -191,7 +191,7 @@ export async function refreshFeedDeals(env, sourceKey) {
 /* ---------------------- Reddit FGF & GOG (games) -------------------------- */
 
 /**
- * r/FreeGameFindings — the fastest community tracker for Steam/GOG/itch
+ * r/FreeGameFindings â the fastest community tracker for Steam/GOG/itch
  * free-to-keep promos. Reddit often 403s datacenter IPs, so this source is
  * best-effort: any failure is caught upstream and logged, never fatal.
  */
@@ -222,7 +222,7 @@ export async function refreshRedditFGF(env) {
         source: 'fgf',
         category: 'games',
         title,
-        description: `${store} free-to-keep promotion, tracked by r/FreeGameFindings. Verify the claim window on the store page — community-reported windows can be short.`,
+        description: `${store} free-to-keep promotion, tracked by r/FreeGameFindings. Verify the claim window on the store page â community-reported windows can be short.`,
         url,
         starts_at: created,
         ends_at: created + 7 * 86400,
@@ -243,12 +243,12 @@ export async function refreshRedditFGF(env) {
  * each run bumps ends_at, so a seed removed from this list quietly expires.
  */
 const AI_SEEDS = [
-  { slug: 'google-ai-studio', title: 'Google AI Studio — free Gemini API tier', description: 'Free access to Gemini models with generous rate limits via AI Studio; pay only if you scale past the free quota.', url: 'https://aistudio.google.com/', price: '$0 / free tier' },
-  { slug: 'openrouter-free-models', title: 'OpenRouter — free-tier LLM models', description: 'Route to dozens of models with several available at $0 (rate-limited). One API key, pay-as-you-go beyond free.', url: 'https://openrouter.ai/models?max_price=0', price: '$0 / free tier' },
-  { slug: 'groq-free', title: 'Groq — free API tier for open models', description: 'Blazing-fast inference for Llama and Mixtral family models with a free developer tier.', url: 'https://console.groq.com/', price: '$0 / free tier' },
-  { slug: 'cloudflare-workers-ai', title: 'Cloudflare Workers AI — free daily neurons', description: 'Run LLMs, image and speech models at the edge. Free allocation of neurons every day.', url: 'https://developers.cloudflare.com/workers-ai/', price: '$0 / free tier' },
-  { slug: 'github-copilot-free', title: 'GitHub Copilot — free tier', description: 'Free monthly completions and chat for individual developers, no subscription required.', url: 'https://github.com/features/copilot', price: '$0 / free tier' },
-  { slug: 'huggingface-free', title: 'Hugging Face — free hosting & inference', description: 'Free model hosting, Spaces demos, and limited serverless inference on open models.', url: 'https://huggingface.co/', price: '$0 / free tier' },
+  { slug: 'google-ai-studio', title: 'Google AI Studio â free Gemini API tier', description: 'Free access to Gemini models with generous rate limits via AI Studio; pay only if you scale past the free quota.', url: 'https://aistudio.google.com/', price: '$0 / free tier' },
+  { slug: 'openrouter-free-models', title: 'OpenRouter â free-tier LLM models', description: 'Route to dozens of models with several available at $0 (rate-limited). One API key, pay-as-you-go beyond free.', url: 'https://openrouter.ai/models?max_price=0', price: '$0 / free tier' },
+  { slug: 'groq-free', title: 'Groq â free API tier for open models', description: 'Blazing-fast inference for Llama and Mixtral family models with a free developer tier.', url: 'https://console.groq.com/', price: '$0 / free tier' },
+  { slug: 'cloudflare-workers-ai', title: 'Cloudflare Workers AI â free daily neurons', description: 'Run LLMs, image and speech models at the edge. Free allocation of neurons every day.', url: 'https://developers.cloudflare.com/workers-ai/', price: '$0 / free tier' },
+  { slug: 'github-copilot-free', title: 'GitHub Copilot â free tier', description: 'Free monthly completions and chat for individual developers, no subscription required.', url: 'https://github.com/features/copilot', price: '$0 / free tier' },
+  { slug: 'huggingface-free', title: 'Hugging Face â free hosting & inference', description: 'Free model hosting, Spaces demos, and limited serverless inference on open models.', url: 'https://huggingface.co/', price: '$0 / free tier' },
 ];
 
 export async function refreshAiSeeds(env) {
@@ -308,9 +308,9 @@ export async function apiDeals(env, request) {
 export async function dealsHubPage(request, env) {
   const now = nowSec();
   const cats = [
-    { slug: 'games', name: 'Free Games', desc: 'Free-to-keep giveaways from Epic and Steam — official APIs plus community trackers, refreshed daily.' },
-    { slug: 'ai', name: 'AI Software Deals', desc: 'Evergreen free tiers and credits on AI tools and model APIs, hand-checked — plus AI-related giveaways as they appear.' },
-    { slug: 'servers', name: 'Server & VPS Deals', desc: 'Cheap-VPS and hosting promotions from LowEndBox, the longest-running deals feed in the scene — refreshed daily.' },
+    { slug: 'games', name: 'Free Games', desc: 'Free-to-keep giveaways from Epic and Steam â official APIs plus community trackers, refreshed daily.' },
+    { slug: 'ai', name: 'AI Software Deals', desc: 'Evergreen free tiers and credits on AI tools and model APIs, hand-checked â plus AI-related giveaways as they appear.' },
+    { slug: 'servers', name: 'Server & VPS Deals', desc: 'Cheap-VPS and hosting promotions from LowEndBox, the longest-running deals feed in the scene â refreshed daily.' },
     { slug: 'software', name: 'Software Giveaways', desc: 'Time-limited free licenses for Windows productivity apps from Giveaway of the Day, refreshed daily.' },
   ];
 
@@ -335,7 +335,7 @@ export async function dealsHubPage(request, env) {
 
   return shell({
     title: 'Free Deals & Giveaways | Plobi-kit',
-    description: 'Curated freebies with zero junk: free game giveaways, AI software deals, and server promotions — refreshed automatically, expired offers removed.',
+    description: 'Curated freebies with zero junk: free game giveaways, AI software deals, and server promotions â refreshed automatically, expired offers removed.',
     canonical: 'https://plobikit.com/deals',
     active: 'deals',
     lang,
@@ -344,7 +344,7 @@ export async function dealsHubPage(request, env) {
       <p class="intro">
         Hand-checked freebies, aggregated automatically. We pull directly from official
         store APIs on a daily schedule, list only 100%-off offers, and remove anything
-        expired — no dead links, no fake discounts, no affiliate padding.
+        expired â no dead links, no fake discounts, no affiliate padding.
       </p>
       ${cards}`,
   });
@@ -367,7 +367,7 @@ export async function dealsGamesPage(request, env) {
   const card = (d, state) => {
     const when =
       state === 'live'
-        ? `Free until ${fmtDate(d.ends_at)} · ${daysLeft(d.ends_at)} left`
+        ? `Free until ${fmtDate(d.ends_at)} Â· ${daysLeft(d.ends_at)} left`
         : `Free from ${fmtDate(d.starts_at)}`;
     const price = d.original_price ? `<span class="price">${escapeHtml(d.original_price)}</span> ` : '';
     const badge =
@@ -393,49 +393,49 @@ export async function dealsGamesPage(request, env) {
   const upcomingHtml = (upcoming.results || []).map((d) => card(d, 'upcoming')).join('\n');
 
   return shell({
-    title: 'Free Games Giveaway — Claim & Keep | Plobi-kit',
-    description: 'Games currently free to claim and keep on Epic and Steam — aggregated daily from official APIs and community trackers. Expired offers are removed automatically.',
+    title: 'Free Games Giveaway â Claim & Keep | Plobi-kit',
+    description: 'Games currently free to claim and keep on Epic and Steam â aggregated daily from official APIs and community trackers. Expired offers are removed automatically.',
     canonical: 'https://plobikit.com/deals/games',
     active: 'deals',
     lang,
     content: `
       <h1>Free Games Giveaway</h1>
       <p class="intro">
-        Every game below is 100% off on the Epic Games Store right now or soon — claim it
+        Every game below is 100% off on the Epic Games Store right now or soon â claim it
         during the window and it stays in your library forever. This page refreshes
         automatically every day from Epic's official store API.
       </p>
       <h2 class="section-title">Free right now</h2>
-      ${activeHtml || '<p class="empty">No giveaways are live at this exact moment — new ones usually land every Thursday. Check the upcoming list below.</p>'}
+      ${activeHtml || '<p class="empty">No giveaways are live at this exact moment â new ones usually land every Thursday. Check the upcoming list below.</p>'}
       ${upcomingHtml ? '<h2 class="section-title">Upcoming</h2>' + upcomingHtml : ''}
       <div class="note">
         <p><strong>How this works:</strong> we query Epic's public store API on a daily schedule,
         keep only 100%-discount offers, and delete listings a week after they end. Claim windows
-        are shown in UTC — double-check the store page before the deadline.</p>
+        are shown in UTC â double-check the store page before the deadline.</p>
       </div>`,
   });
 }
 
 const CATEGORY_COPY = {
   servers: {
-    title: 'VPS & Server Deals — Cloud Promotions | Plobi-kit',
+    title: 'VPS & Server Deals â Cloud Promotions | Plobi-kit',
     h1: 'VPS & Server Deals',
     description: 'Cheap-VPS and hosting promotions aggregated from LowEndBox daily. No affiliate padding, expired offers removed.',
-    intro: 'Hosting promotions from LowEndBox — the longest-running deals feed in the low-end server scene — refreshed daily. Windows are estimated from publication date; always confirm on the provider page before buying.',
+    intro: 'Hosting promotions from LowEndBox â the longest-running deals feed in the low-end server scene â refreshed daily. Windows are estimated from publication date; always confirm on the provider page before buying.',
     sourceNote: '<strong>How this works:</strong> we parse the LowEndBox RSS feed on a daily schedule and keep listings for 30 days from publication. Items mentioning AI tools are routed to the <a href="/deals/ai" style="color:var(--success-color);">AI deals</a> page.',
   },
   software: {
-    title: 'Software Giveaways — Free Licenses Daily | Plobi-kit',
+    title: 'Software Giveaways â Free Licenses Daily | Plobi-kit',
     h1: 'Software Giveaways',
     description: 'Time-limited free licenses for Windows productivity apps from Giveaway of the Day, refreshed daily. Expired offers removed automatically.',
-    intro: 'Daily software giveaways from Giveaway of the Day — full licenses, free to activate within the window. These expire fast (usually 24–48 hours), so grab them the day they appear.',
+    intro: 'Daily software giveaways from Giveaway of the Day â full licenses, free to activate within the window. These expire fast (usually 24â48 hours), so grab them the day they appear.',
     sourceNote: '<strong>How this works:</strong> we parse the Giveaway of the Day RSS feed daily and keep each listing for 48 hours. AI-related giveaways are routed to the <a href="/deals/ai" style="color:var(--success-color);">AI deals</a> page.',
   },
   ai: {
-    title: 'AI Software Deals — Free Tiers & Credits | Plobi-kit',
+    title: 'AI Software Deals â Free Tiers & Credits | Plobi-kit',
     h1: 'AI Software Deals',
-    description: 'Evergreen free tiers and credits on AI tools and model APIs — Google AI Studio, OpenRouter, Groq, Cloudflare Workers AI and more — hand-checked and refreshed daily.',
-    intro: 'Most AI "deals" are evergreen free tiers rather than timed promotions, so this page is hand-curated and refreshed daily — plus any AI-related giveaway that flows through our software and hosting feeds.',
+    description: 'Evergreen free tiers and credits on AI tools and model APIs â Google AI Studio, OpenRouter, Groq, Cloudflare Workers AI and more â hand-checked and refreshed daily.',
+    intro: 'Most AI "deals" are evergreen free tiers rather than timed promotions, so this page is hand-curated and refreshed daily â plus any AI-related giveaway that flows through our software and hosting feeds.',
     sourceNote: '<strong>How this works:</strong> the free-tier list is maintained by hand (it changes rarely), and items from our other feeds matching AI keywords are routed here automatically.',
   },
 };
@@ -462,7 +462,7 @@ export async function dealsCategoryPage(request, env, category) {
         ${img}
         <div class="deal-body">
           <div class="deal-head"><h2>${escapeHtml(d.title)}</h2><span class="badge live">LIVE</span></div>
-          <p class="deal-when">${price}listed ${fmtDate(d.starts_at)} · source: ${escapeHtml(d.source)}</p>
+          <p class="deal-when">${price}listed ${fmtDate(d.starts_at)} Â· source: ${escapeHtml(d.source)}</p>
           <p class="deal-desc">${escapeHtml(d.description)}</p>
           <a class="cta" href="${escapeHtml(d.url)}" target="_blank" rel="noopener nofollow">Open offer &rarr;</a>
         </div>
@@ -478,7 +478,7 @@ export async function dealsCategoryPage(request, env, category) {
     content: `
       <h1>${copy.h1}</h1>
       <p class="intro">${copy.intro}</p>
-      ${(active.results || []).map(card).join('\n') || '<p class="empty">Nothing live right now — check back tomorrow, the feeds refresh daily.</p>'}
+      ${(active.results || []).map(card).join('\n') || '<p class="empty">Nothing live right now â check back tomorrow, the feeds refresh daily.</p>'}
       <div class="note">
         <p>${copy.sourceNote}</p>
       </div>`,
@@ -495,10 +495,10 @@ export async function dealsCategoryPage(request, env, category) {
  * until these pages get i18n (a CN button would 404).
  */
 function shell({ title, description, canonical, active, content, lang = 'en' }) {
-  // Localised nav labels. EN-only hub is fine — the *next* click in CN
+  // Localised nav labels. EN-only hub is fine â the *next* click in CN
   // lands on /cn/?lang=cn (handled by client-side language switch).
   const L = lang === 'cn'
-    ? { home: '工具首页', cheatsheets: '速查表', guides: '技术教程', deals: '优惠活动', collection: '精选合集', about: '关于我们' }
+    ? { home: 'å·¥å·é¦é¡µ', cheatsheets: 'éæ¥è¡¨', guides: 'ææ¯æç¨', deals: 'ä¼æ æ´»å¨', collection: 'ç²¾éåé', about: 'å³äºæä»¬' }
     : { home: 'Home', cheatsheets: 'Cheat Sheets', guides: 'Guides', deals: 'Deals', collection: 'Collection', about: 'About' };
 
   const nav = [
@@ -588,13 +588,13 @@ function shell({ title, description, canonical, active, content, lang = 'en' }) 
     <!-- Footer (slim: legal + meta, per site nav spec) -->
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">${lang === 'cn' ? '隐私政策' : 'Privacy Policy'}</a>
-        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">${lang === 'cn' ? '服务条款' : 'Terms'}</a>
-        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">${lang === 'cn' ? '关于我们' : 'About'}</a>
-        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">${lang === 'cn' ? '联系我们' : 'Contact'}</a>
+        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">${lang === 'cn' ? 'éç§æ¿ç­' : 'Privacy Policy'}</a>
+        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">${lang === 'cn' ? 'æå¡æ¡æ¬¾' : 'Terms'}</a>
+        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">${lang === 'cn' ? 'å³äºæä»¬' : 'About'}</a>
+        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">${lang === 'cn' ? 'èç³»æä»¬' : 'Contact'}</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
-        &copy; 2026 Plobi. ${lang === 'cn' ? '保留所有权利。' : 'All rights reserved.'}
+        &copy; 2026 Plobi. ${lang === 'cn' ? 'ä¿çæææå©ã' : 'All rights reserved.'}
       </div>
     </footer>
   </div>

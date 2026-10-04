@@ -1,0 +1,14 @@
+# Every text file is stored with LF in the repository and checked out as LF,
+# so `npm run build` produces byte-identical output on Windows and on CI.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+*.ttf binary
