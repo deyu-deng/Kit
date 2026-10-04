@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/guides/cloudflare-email.html">
+  <link rel="canonical" href="https://plobikit.com/guides/cloudflare-email">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -54,12 +54,12 @@
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="/cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="/guides/" class="active" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -81,36 +81,35 @@
       </header>
       <div class="article-body">
 
+<p>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing</p>
 
-<p>How to Set Up Free Custom Domain Business Email via Cloudflare Email Routing</p>
+<p>            <strong>Author:</strong> David             <strong>Updated:</strong> June 2026             <strong>Category:</strong> Cloud Infrastructure</p>
 
-<p>            <strong>Author:</strong> David             <strong>Updated:</strong> June 2026             <strong>Category:</strong> Cloud Infrastructure</p>
+<p>            For any modern developer, designer, or startup founder, having a professional email address (like <code>contact@yourdomain.com</code>) is essential for building brand authority. However, dedicated business email hosting from providers like Google Workspace or Microsoft 365 can cost $6 to $18 per user every single month.</p>
 
-<p>            For any modern developer, designer, or startup founder, having a professional email address (like <code>contact@yourdomain.com</code>) is essential for building brand authority. However, dedicated business email hosting from providers like Google Workspace or Microsoft 365 can cost $6 to $18 per user every single month.</p>
+<p>            If you have registered a custom domain for your project, you can route all inbound and outbound business emails completely free of charge. We will combine Cloudflare's free Email Routing with a free Gmail inbox to handle everything seamlessly.</p>
 
-<p>            If you have registered a custom domain for your project, you can route all inbound and outbound business emails completely free of charge. We will combine Cloudflare's free Email Routing with a free Gmail inbox to handle everything seamlessly.</p>
+<p>            ## Phase 1: Configure Cloudflare Email Routing</p>
 
-<p>            ## Phase 1: Configure Cloudflare Email Routing</p>
+<p>            First, make sure your domain's DNS nameservers are managed by Cloudflare. If they are, follow these steps to configure email redirection:</p>
 
-<p>            First, make sure your domain's DNS nameservers are managed by Cloudflare. If they are, follow these steps to configure email redirection:</p>
+<ol><li>Log in to your <strong>Cloudflare Dashboard</strong> and select your active website domain.</li><li>In the left sidebar, click on <strong>Email</strong> -&gt; <strong>Email Routing</strong>.</li><li>Click <strong>Enable Email Routing</strong>. Cloudflare will prompt you to automatically add the required MX and TXT records to your DNS settings. Confirm and apply the changes.</li><li>Go to the <strong>Destination Addresses</strong> tab, click <strong>Add Destination</strong>, and enter your personal Gmail address (e.g. <code>myaddress@gmail.com</code>). Verify the verification email sent to your inbox.</li><li>Go to the <strong>Routing Rules</strong> tab, click <strong>Create Rule</strong>. Set the Custom Address to your desired brand username (e.g. <code>contact@yourdomain.com</code>) and forward it to your verified Gmail destination address.</li></ol>
 
-<ol><li>Log in to your <strong>Cloudflare Dashboard</strong> and select your active website domain.</li><li>In the left sidebar, click on <strong>Email</strong> -&gt; <strong>Email Routing</strong>.</li><li>Click <strong>Enable Email Routing</strong>. Cloudflare will prompt you to automatically add the required MX and TXT records to your DNS settings. Confirm and apply the changes.</li><li>Go to the <strong>Destination Addresses</strong> tab, click <strong>Add Destination</strong>, and enter your personal Gmail address (e.g. <code>myaddress@gmail.com</code>). Verify the verification email sent to your inbox.</li><li>Go to the <strong>Routing Rules</strong> tab, click <strong>Create Rule</strong>. Set the Custom Address to your desired brand username (e.g. <code>contact@yourdomain.com</code>) and forward it to your verified Gmail destination address.</li></ol>
+<p>            ## Phase 2: Enable Sending Email as Your Custom Domain</p>
 
-<p>            ## Phase 2: Enable Sending Email as Your Custom Domain</p>
+<p>            Receiving emails is now active, but replying from your personal Gmail address will leak your personal account address. To send emails as <code>contact@yourdomain.com</code>, we will configure Google's SMTP servers using a Google App Password:</p>
 
-<p>            Receiving emails is now active, but replying from your personal Gmail address will leak your personal account address. To send emails as <code>contact@yourdomain.com</code>, we will configure Google's SMTP servers using a Google App Password:</p>
+<ol><li>Go to your <strong>Google Account Settings</strong> (myaccount.google.com).</li><li>Click on the <strong>Security</strong> tab. Ensure that <strong>2-Step Verification</strong> is turned ON.</li><li>Search for or navigate to <strong>App passwords</strong>. Create a new app password, naming it something descriptive like "Plobi Email Routing", and copy the generated 16-character code.</li><li>Open your <strong>Gmail Inbox</strong>, click the gear icon to open <strong>Settings</strong>, and select <strong>See all settings</strong>.</li><li>Navigate to the <strong>Accounts and Import</strong> tab. Under <strong>Send mail as</strong>, click <strong>Add another email address</strong>.</li><li>Enter your display name and your custom domain email address (<code>contact@yourdomain.com</code>). Make sure the box "Treat as an alias" is checked, then click Next Step.</li><li>Configure the SMTP Server settings as follows:</li></ol>
 
-<ol><li>Go to your <strong>Google Account Settings</strong> (myaccount.google.com).</li><li>Click on the <strong>Security</strong> tab. Ensure that <strong>2-Step Verification</strong> is turned ON.</li><li>Search for or navigate to <strong>App passwords</strong>. Create a new app password, naming it something descriptive like "Plobi Email Routing", and copy the generated 16-character code.</li><li>Open your <strong>Gmail Inbox</strong>, click the gear icon to open <strong>Settings</strong>, and select <strong>See all settings</strong>.</li><li>Navigate to the <strong>Accounts and Import</strong> tab. Under <strong>Send mail as</strong>, click <strong>Add another email address</strong>.</li><li>Enter your display name and your custom domain email address (<code>contact@yourdomain.com</code>). Make sure the box "Treat as an alias" is checked, then click Next Step.</li><li>Configure the SMTP Server settings as follows:</li></ol>
+<ul><li><strong>SMTP Server:</strong> <code>smtp.gmail.com</code></li><li><strong>Port:</strong> <code>587</code></li><li><strong>Username:</strong> Your full personal Gmail address (e.g. <code>myaddress@gmail.com</code>)</li><li><strong>Password:</strong> The 16-character Google App Password you generated in step 3</li><li>Select <strong>Secured connection using TLS</strong></li></ul>
 
-<ul><li><strong>SMTP Server:</strong> <code>smtp.gmail.com</code></li><li><strong>Port:</strong> <code>587</code></li><li><strong>Username:</strong> Your full personal Gmail address (e.g. <code>myaddress@gmail.com</code>)</li><li><strong>Password:</strong> The 16-character Google App Password you generated in step 3</li><li>Select <strong>Secured connection using TLS</strong></li></ul>
+<ol><li>Click <strong>Add Account</strong>. Gmail will send a confirmation code to your custom address. Since Cloudflare is already routing emails, check your Gmail inbox for this code, copy it, and paste it to complete verification.</li></ol>
 
-<ol><li>Click <strong>Add Account</strong>. Gmail will send a confirmation code to your custom address. Since Cloudflare is already routing emails, check your Gmail inbox for this code, copy it, and paste it to complete verification.</li></ol>
+<p>            ## Phase 3: Ensure Email Deliverability (SPF &amp; DKIM)</p>
 
-<p>            ## Phase 3: Ensure Email Deliverability (SPF &amp; DKIM)</p>
+<p>            To prevent your outgoing custom domain emails from landing in spam, verify that your SPF record in Cloudflare DNS settings explicitly includes Google. Your SPF TXT record value should look like this:</p>
 
-<p>            To prevent your outgoing custom domain emails from landing in spam, verify that your SPF record in Cloudflare DNS settings explicitly includes Google. Your SPF TXT record value should look like this:</p>
-
-<p>            v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all             This tells receiving mail servers that both Cloudflare and Google's servers are legally authorized to transmit mail on behalf of your domain name.</p>
+<p>            v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all             This tells receiving mail servers that both Cloudflare and Google's servers are legally authorized to transmit mail on behalf of your domain name.</p>
 
       </div>
       
@@ -119,10 +118,10 @@
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

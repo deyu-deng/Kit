@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cron Every 30 Minutes — Crontab Example | Plobi-kit</title>
   <meta name="description" content="The cron expression for every 30 minutes: */30 * * * *. Runs at :00 and :30 — plus how to shift to :05/:35 and what happens on DST days.">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
   <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-every-30-minutes">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,18 +38,18 @@
   <div class="app-container">
     <header class="app-header">
       <div class="logo">
-        <a href="../index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
           <span class="logo-icon" style="background:var(--success-color);">P</span>
           <span id="txt-logo-name">Plobi-kit</span>
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools">Tools</a>
-        <a href="index.html" class="active" id="nav-cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" id="nav-guides">Guides</a>
-        <a href="../deals" id="nav-deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection">Collection</a>
-        <a href="../about.html" id="nav-about">About</a>
+        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="/guides/" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -57,7 +57,7 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="cron.html">Cron Cheat Sheet</a> · Cron Every 30 Minutes — Crontab Example</p>
+      <p class="crumb"><a href="/cheatsheets/">Cheat Sheets</a> · <a href="/cheatsheets/cron">Cron Cheat Sheet</a> · Cron Every 30 Minutes — Crontab Example</p>
       <h1>Cron Every 30 Minutes — Crontab Example</h1>
       
       <div class="answer">
@@ -74,9 +74,9 @@
       
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
       <div class="chips">
-        <a class="chip" href="cron-every-15-minutes"><code>*/15 * * * *</code> Every 15 minutes</a>
-        <a class="chip" href="cron-every-hour"><code>0 * * * *</code> Every hour, on the hour</a>
-        <a class="chip" href="cron-every-10-minutes"><code>*/10 * * * *</code> Every 10 minutes</a>
+        <a class="chip" href="/cheatsheets/cron-every-15-minutes"><code>*/15 * * * *</code> Every 15 minutes</a>
+        <a class="chip" href="/cheatsheets/cron-every-hour"><code>0 * * * *</code> Every hour, on the hour</a>
+        <a class="chip" href="/cheatsheets/cron-every-10-minutes"><code>*/10 * * * *</code> Every 10 minutes</a>
       </div>
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
       <p class="prose"><strong style="color: var(--text-main);">Why does my 00:30 run vanish twice a year?</strong><br>Daylight saving. When clocks spring forward, 02:30 local does not exist; fall back, it happens twice. Schedule in UTC to make it deterministic.</p>
@@ -84,17 +84,17 @@
       <p class="prose"><strong style="color: var(--text-main);">Can I run it only during business hours?</strong><br>Constrain the hour field: <code>*/30 9-17 * * 1-5</code> runs every half hour, 9:00–17:59, Monday to Friday.</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="../tools/cron.html" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
+        <a class="btn" href="/tools/cron" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="cron.html" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="/cheatsheets/cron" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about">About</a>
-        <a href="../contact.html" id="nav-footer-contact">Contact</a>
+        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.
@@ -111,6 +111,11 @@
       });
     }
   </script>
-  <script type="module" src="../app.js"></script>
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
 </body>
 </html>

@@ -26,12 +26,12 @@
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="../cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="/guides/" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -39,7 +39,7 @@
     </header>
 
     <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
-      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="index.html" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="/cheatsheets/" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
       <h1 style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">Cron Expression Cheat Sheet</h1>
       <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">A cron expression has five space-separated fields. Together they define every moment a scheduled job fires.</p>
 
@@ -83,17 +83,17 @@
             <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Expression</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">Means</th></tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">* * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every minute — <a href="cron-every-minute">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/5 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 5 minutes — <a href="cron-every-5-minutes">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/10 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 10 minutes — <a href="cron-every-10-minutes">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/15 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 15 minutes — <a href="cron-every-15-minutes">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/30 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 30 minutes — <a href="cron-every-30-minutes">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every hour, on the hour — <a href="cron-every-hour">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 0 * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Midnight every day — <a href="cron-daily-midnight">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 9 * * 1-5</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">9:00 AM, Monday to Friday — <a href="cron-every-weekday-9am">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 10 * * 6,0</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">10:00 AM, weekends only — <a href="cron-weekends-only">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 0 1 * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Midnight on the 1st of every month — <a href="cron-first-day-of-month">recipe</a></td></tr>
-            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">59 23 L * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">23:59 on the last day of the month — <a href="cron-last-day-of-month">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">* * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every minute — <a href="/cheatsheets/cron-every-minute">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/5 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 5 minutes — <a href="/cheatsheets/cron-every-5-minutes">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/10 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 10 minutes — <a href="/cheatsheets/cron-every-10-minutes">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/15 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 15 minutes — <a href="/cheatsheets/cron-every-15-minutes">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*/30 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every 30 minutes — <a href="/cheatsheets/cron-every-30-minutes">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 * * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Every hour, on the hour — <a href="/cheatsheets/cron-every-hour">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 0 * * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Midnight every day — <a href="/cheatsheets/cron-daily-midnight">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 9 * * 1-5</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">9:00 AM, Monday to Friday — <a href="/cheatsheets/cron-every-weekday-9am">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 10 * * 6,0</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">10:00 AM, weekends only — <a href="/cheatsheets/cron-weekends-only">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 0 1 * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Midnight on the 1st of every month — <a href="/cheatsheets/cron-first-day-of-month">recipe</a></td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">59 23 L * *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">23:59 on the last day of the month — <a href="/cheatsheets/cron-last-day-of-month">recipe</a></td></tr>
             <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">30 2 * * 0</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">2:30 AM every Sunday</td></tr>
             <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 0 1 1 *</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Midnight on January 1st (yearly)</td></tr>
           </tbody>
@@ -107,16 +107,16 @@
       
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
         <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Try it instead of memorizing it</p>
-        <a class="btn" href="../tools/cron.html" style="text-decoration: none;">Build it visually in the Cron Expression Editor</a>
+        <a class="btn" href="/tools/cron" style="text-decoration: none;">Build it visually in the Cron Expression Editor</a>
       </div>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

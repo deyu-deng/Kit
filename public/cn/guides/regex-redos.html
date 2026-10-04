@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cn/guides/regex-redos.html">
+  <link rel="canonical" href="https://plobikit.com/cn/guides/regex-redos">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -54,12 +54,12 @@
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">工具箱</a>
-        <a href="../../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
-        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">知识库</a>
-        <a href="../../deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
-        <a href="../../collection/index.html" id="nav-collection" data-i18n="nav.collection">精选合集</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">关于我们</a>
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" class="active" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">EN</button>
@@ -83,7 +83,7 @@
 
 <p>你从 Stack Overflow 复制了一条友好的单行正则来"验证邮箱"。测试里一切正常。六个月后,一位安全研究员给你发邮件:一个精心构造的字符串能让你的 API 卡死九十秒。元凶不是你的服务器,不是你的框架——是正则里三个字符在悄悄做指数级的工作。这就是 <strong>ReDoS</strong>(正则表达式拒绝服务),生产代码里最被低估的 Bug 之一。</p>
 
-<p>本指南从引擎层面讲清:为什么一个看起来无害的模式会爆炸、如何在上线前识别危险、以及如何重写模式让它保持线性。这里的每个例子都可以在我们的<a href="../../tools/regex.html">100% 客户端正则测试器</a>里实时验证,不会向服务器发送你数据的任何一个字节。</p>
+<p>本指南从引擎层面讲清:为什么一个看起来无害的模式会爆炸、如何在上线前识别危险、以及如何重写模式让它保持线性。这里的每个例子都可以在我们的<a href="/tools/regex">100% 客户端正则测试器</a>里实时验证,不会向服务器发送你数据的任何一个字节。</p>
 
 <h2>正则引擎到底怎么匹配</h2>
 
@@ -121,9 +121,9 @@
 
 <h2>用纯本地工具安全测试</h2>
 
-<p>直觉做法——"把模式和测试字符串粘进一个在线正则测试器"——有和<a href="never-paste-secrets.html">永不粘贴密钥指南</a>里一样的隐私问题:很多此类网站会把你的输入送到服务器。如果你的正则里包着一段真实用户数据样本,那次上传就是一次泄露。</p>
+<p>直觉做法——"把模式和测试字符串粘进一个在线正则测试器"——有和<a href="/cn/guides/never-paste-secrets">永不粘贴密钥指南</a>里一样的隐私问题:很多此类网站会把你的输入送到服务器。如果你的正则里包着一段真实用户数据样本,那次上传就是一次泄露。</p>
 
-<p>我们的<a href="../../tools/regex.html">正则测试器</a>完全运行在你的浏览器里。你可以对一个模式投掷对抗性的"差一点就匹配"的字符串来证明它是线性的,最坏结果只是你自己的标签页卡住——数据从不离开页面。这才是做这类对抗性测试的正确场所。</p>
+<p>我们的<a href="/tools/regex">正则测试器</a>完全运行在你的浏览器里。你可以对一个模式投掷对抗性的"差一点就匹配"的字符串来证明它是线性的,最坏结果只是你自己的标签页卡住——数据从不离开页面。这才是做这类对抗性测试的正确场所。</p>
 
 <h2>常见问题</h2>
 
@@ -138,16 +138,16 @@
 <p><strong>问:如何修复一条不安全的正则?</strong> 答:优先用原子分组或占有量词,让引擎无法回溯进捕获组。用字符类替换有歧义的分支,两端锚定,避免在重叠内容上嵌套量词。可能的话,用专门的解析库代替一条巨型模式。</p>
 
       </div>
-      <section class="article-related"><h3 data-i18n="lib.related">相关文章</h3><div class="related-grid"><a class="related-card" href="cn/guides/never-paste-secrets.html">Never Paste Secrets Into Random Online Tools</a></div></section>
+      <section class="article-related"><h3 data-i18n="lib.related">相关文章</h3><div class="related-grid"><a class="related-card" href="/cn/guides/never-paste-secrets">Never Paste Secrets Into Random Online Tools</a></div></section>
     </article>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

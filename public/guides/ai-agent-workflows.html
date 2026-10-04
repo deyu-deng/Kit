@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/guides/ai-agent-workflows.html">
+  <link rel="canonical" href="https://plobikit.com/guides/ai-agent-workflows">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -54,12 +54,12 @@
         </a>
       </div>
       <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="../cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" class="active" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="../deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="../about.html" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
+        <a href="/cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
+        <a href="/guides/" class="active" id="nav-library" data-i18n="nav.library">Library</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
+        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -81,34 +81,33 @@
       </header>
       <div class="article-body">
 
+<p>Optimizing Prompts and Cursor Workflows for LLM Coding Agents</p>
 
-<p>Optimizing Prompts and Cursor Workflows for LLM Coding Agents</p>
+<p>            <strong>Author:</strong> David             <strong>Updated:</strong> June 2026             <strong>Category:</strong> AI &amp; Development</p>
 
-<p>            <strong>Author:</strong> David             <strong>Updated:</strong> June 2026             <strong>Category:</strong> AI &amp; Development</p>
+<p>            Coding with LLMs has shifted from simple autocomplete to sophisticated multi-file agentic code generation. Tools like Cursor, Copilot Workspace, and custom coding scripts have made it possible to build complex web apps in hours. However, without structured prompting and context controls, LLM agents often hallucinate, introduce bugs, or overwrite existing features.</p>
 
-<p>            Coding with LLMs has shifted from simple autocomplete to sophisticated multi-file agentic code generation. Tools like Cursor, Copilot Workspace, and custom coding scripts have made it possible to build complex web apps in hours. However, without structured prompting and context controls, LLM agents often hallucinate, introduce bugs, or overwrite existing features.</p>
+<p>            In this guide, we will break down professional workflows for managing AI context, configuring coding guidelines, and structuring system instructions to get the best outputs from modern LLMs.</p>
 
-<p>            In this guide, we will break down professional workflows for managing AI context, configuring coding guidelines, and structuring system instructions to get the best outputs from modern LLMs.</p>
+<p>            ## 1. Strict Context Control: Feed the AI Only What it Needs</p>
 
-<p>            ## 1. Strict Context Control: Feed the AI Only What it Needs</p>
+<p>            LLMs have large context windows, but the more irrelevant code you pass to them, the higher the likelihood of distraction and syntax errors. Follow these rules to keep context tight:</p>
 
-<p>            LLMs have large context windows, but the more irrelevant code you pass to them, the higher the likelihood of distraction and syntax errors. Follow these rules to keep context tight:</p>
+<ul><li><strong>Use .cursorrules or System Guides:</strong> Create a project-specific guidelines file in your root directory. Define the tech stack, component rules, and coding style. This forces the LLM to write consistent code.</li><li><strong>Exclusion Patterns:</strong> Exclude large build directories, dependencies (like <code>node_modules/</code>), and compiled assets from the agent's view. In Cursor, configure your settings to ignore these paths for search indexing.</li><li><strong>Targeted References:</strong> Instead of asking the AI to read your entire codebase, reference specific files using symbols (like <code>@filename</code> or <code>@functionName</code>).</li></ul>
 
-<ul><li><strong>Use .cursorrules or System Guides:</strong> Create a project-specific guidelines file in your root directory. Define the tech stack, component rules, and coding style. This forces the LLM to write consistent code.</li><li><strong>Exclusion Patterns:</strong> Exclude large build directories, dependencies (like <code>node_modules/</code>), and compiled assets from the agent's view. In Cursor, configure your settings to ignore these paths for search indexing.</li><li><strong>Targeted References:</strong> Instead of asking the AI to read your entire codebase, reference specific files using symbols (like <code>@filename</code> or <code>@functionName</code>).</li></ul>
+<p>            ## 2. How to Structure Coding Rules (.cursorrules)</p>
 
-<p>            ## 2. How to Structure Coding Rules (.cursorrules)</p>
+<p>            A good <code>.cursorrules</code> file instructs the model on architectural constraints, styling preferences, and debugging procedures. Below is a highly effective, minimal template for a frontend project:</p>
 
-<p>            A good <code>.cursorrules</code> file instructs the model on architectural constraints, styling preferences, and debugging procedures. Below is a highly effective, minimal template for a frontend project:</p>
+<p>            # Plobi-kit Coding Rules</p>
 
-<p>            # Plobi-kit Coding Rules</p>
+<ul><li>Core Tech: Vanilla HTML, CSS, JavaScript (ES6 Modules)</li><li>Code Style: Minimal intervention. Target only necessary lines. Avoid unsolicited cleanups.</li><li>Styling: Vanilla CSS inside css/*.css files. Avoid framework configurations unless asked.</li><li>Platform constraints: Node.js/Windows paths compatibility. Use absolute imports or local modules.</li><li>Verification: Always check outputs against active scripts before presenting.</li></ul>
 
-<ul><li>Core Tech: Vanilla HTML, CSS, JavaScript (ES6 Modules)</li><li>Code Style: Minimal intervention. Target only necessary lines. Avoid unsolicited cleanups.</li><li>Styling: Vanilla CSS inside css/*.css files. Avoid framework configurations unless asked.</li><li>Platform constraints: Node.js/Windows paths compatibility. Use absolute imports or local modules.</li><li>Verification: Always check outputs against active scripts before presenting.</li></ul>
+<p>            ## 3. Interacting with Coding Agents: The Iterative Loop</p>
 
-<p>            ## 3. Interacting with Coding Agents: The Iterative Loop</p>
+<p>            Treat AI agents as junior engineers. Do not expect them to build a complex feature in one single prompt. Instead, guide them through an iterative loop:</p>
 
-<p>            Treat AI agents as junior engineers. Do not expect them to build a complex feature in one single prompt. Instead, guide them through an iterative loop:</p>
-
-<ol><li><strong>Plan First:</strong> Ask the AI to research and list out the files that need modification and the implementation logic. Do not allow it to edit files during this stage.</li><li><strong>Approve the Design:</strong> Review the plan and clarify any ambiguities.</li><li><strong>Incremental Execution:</strong> Let the AI write code for one file or component at a time. Compile or run tests between edits to verify changes.</li><li><strong>Verify and Refine:</strong> Verify the result manually or via tests, and instruct the agent to make adjustments if issues occur.</li></ol>
+<ol><li><strong>Plan First:</strong> Ask the AI to research and list out the files that need modification and the implementation logic. Do not allow it to edit files during this stage.</li><li><strong>Approve the Design:</strong> Review the plan and clarify any ambiguities.</li><li><strong>Incremental Execution:</strong> Let the AI write code for one file or component at a time. Compile or run tests between edits to verify changes.</li><li><strong>Verify and Refine:</strong> Verify the result manually or via tests, and instruct the agent to make adjustments if issues occur.</li></ol>
 
       </div>
       
@@ -117,10 +116,10 @@
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="../contact.html" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
+        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
+        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
+        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.
