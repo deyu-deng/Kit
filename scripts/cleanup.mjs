@@ -11,24 +11,17 @@
  *
  * Run: node scripts/cleanup.mjs
  */
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { toLf, walkHtml } from './lib/urls.mjs';
 
 const ROOT = process.cwd();
-const DIRS = ['.', 'cn', 'tools', 'cn/tools', 'guides', 'cn/guides'].map((d) => join('public', d));
+const SITE = join(ROOT, 'public');
 const H2_STYLE = 'style="font-size:20px;color:var(--text-main);margin:24px 0 12px;"';
 
-function listHtmlFiles() {
-  const files = [];
-  for (const dir of DIRS) {
-    for (const entry of readdirSync(join(ROOT, dir), { withFileTypes: true })) {
-      if (entry.isFile() && entry.name.endsWith('.html')) {
-        files.push(join(ROOT, dir, entry.name));
-      }
-    }
-  }
-  return files;
-}
+// Every page at any depth: a hand-written directory list silently skips new
+// sections, which is how cheatsheets/ and collection/ went unchecked.
+const listHtmlFiles = () => walkHtml(SITE).map((rel) => join(SITE, rel));
 
 function canonicalUrl(absPath) {
   const rel = relative(join(ROOT, 'public'), absPath).replace(/\\/g, '/');
@@ -98,6 +91,7 @@ for (const file of listHtmlFiles()) {
   out = removeMfaFooter(out, changes);
   out = fixBrokenHeadings(out, changes);
   out = addCanonical(out, changes, file);
+  out = toLf(out);
   if (out !== original) {
     writeFileSync(file, out, 'utf8');
     totalChanged++;

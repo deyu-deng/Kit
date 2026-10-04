@@ -455,8 +455,8 @@ for (const sheet of SHEETS) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${sheet.title} | Plobi-kit</title>
   <meta name="description" content="${sheet.metaDesc}">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
   <link rel="canonical" href="https://plobikit.com/cheatsheets/${sheet.slug}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -484,7 +484,7 @@ for (const sheet of SHEETS) {
     </header>
 
     <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
-      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="index.html" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="/cheatsheets/" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
       <h1 style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">${sheet.title}</h1>
       <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">${sheet.intro}</p>
 ${sheet.tables.map(tableHTML).join('\n')}
@@ -518,7 +518,7 @@ ${sheet.tables.map(tableHTML).join('\n')}
       });
     }
   </script>
-  <script type="module" src="../app.js"></script>
+  <script type="module" src="/app.js"></script>
 </body>
 </html>`;
   writeFileSync(join(OUT, `${sheet.slug}.html`), html, 'utf8');

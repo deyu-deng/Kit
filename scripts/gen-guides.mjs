@@ -24,6 +24,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { join, basename } from 'node:path';
+import { toLf } from './lib/urls.mjs';
 
 const ROOT = process.cwd();
 const SRC = join(ROOT, 'content', 'guides');
@@ -150,7 +151,9 @@ function collectArticles() {
   for (const fn of readdirSync(SRC)) {
     if (!fn.endsWith('.md') || fn.endsWith('.zh.md')) continue;
     const slug = basename(fn, '.md');
-    const text = readFileSync(join(SRC, fn), 'utf-8');
+    // markdown authored on Windows may carry CRLF; splitting on \n alone would
+    // leave a bare CR inside the rendered paragraph
+    const text = toLf(readFileSync(join(SRC, fn), 'utf-8'));
     const { meta, body } = parseFrontmatter(text);
     const zhPath = join(SRC, `${slug}.zh.md`);
     const zhText = readIfExists(zhPath);
@@ -169,7 +172,7 @@ function localizedMeta(a, lang) {
 }
 
 function readIfExists(p) {
-  return existsSync(p) ? readFileSync(p, 'utf-8') : null;
+  return existsSync(p) ? toLf(readFileSync(p, 'utf-8')) : null;
 }
 
 /* ------------------------------- single page ----------------------------- */
@@ -184,7 +187,7 @@ const page = (a, lang, all) => {
   const related = (m.related || []).map((slug) => {
     const r = all.find((x) => x.slug === slug);
     if (!r) return '';
-    return `<a class="related-card" href="${dir}guides/${r.slug}.html">${ESC(r.meta.title || slug)}</a>`;
+    return `<a class="related-card" href="/${dir}guides/${r.slug}">${ESC(r.meta.title || slug)}</a>`;
   }).filter(Boolean).join('');
 
   const cat = CATEGORIES[m.category] || { en: m.category || '', cn: m.category || '' };
@@ -217,7 +220,7 @@ ${renderMarkdown(a.body)}
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/${dir}guides/${a.slug}.html">
+  <link rel="canonical" href="https://plobikit.com/${dir}guides/${a.slug}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -321,7 +324,7 @@ function buildHub(all, lang) {
 
   const cards = all.map((a) => {
     const m = localizedMeta(a, lang);
-    return `<a class="lib-card" href="${dir}guides/${a.slug}.html">
+    return `<a class="lib-card" href="/${dir}guides/${a.slug}">
       <div class="lib-card-meta">
         <span class="tag">${ESC((CATEGORIES[m.category] || { en: '' })[lang] || m.category || '')}</span>
         ${m.readTime ? `<span class="readtime">${ESC(m.readTime)}</span>` : ''}

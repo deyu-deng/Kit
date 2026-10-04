@@ -7,12 +7,21 @@
  * avoid directory/file collisions: cheatsheets/cron-every-5-minutes.html
  *
  * Output is committed static HTML — add a recipe by adding data + rerun.
+ *
+ * Bilingual: give a recipe a `zh` block (title, metaDesc, plain, fields,
+ * variations, tables, intro, body, code, faq — anything you have translated;
+ * missing pieces fall back to the English text) and it also renders to
+ * /cn/cheatsheets/. Recipes without `zh` stay English-only, and the Chinese
+ * hubs keep linking to the English page. No template edit is needed to add a
+ * translation.
+ *
  * Run: node scripts/gen-recipes.mjs
  */
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const OUT = join(process.cwd(), 'public', 'cheatsheets');
+const OUT_CN = join(process.cwd(), 'public', 'cn', 'cheatsheets');
 
 /* ------------------------------ content ---------------------------------- */
 
@@ -45,7 +54,7 @@ const CRON_RECIPES = [
       ['Which timezone does it use?', 'The timezone of the machine running cron — UTC on most servers. Cloud schedulers (GitHub Actions, Vercel Cron, Cloudflare) are also UTC unless configured otherwise.'],
       ['How do I pause it without deleting the line?', 'Comment the line out with <code>#</code> in <code>crontab -e</code>, or add a gate file the script checks at startup.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Build it visually in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Build it visually in the Cron Editor' },
   },
 
   {
@@ -76,7 +85,7 @@ const CRON_RECIPES = [
       ['Why did my job also fire at midnight?', 'It fires at :00 of every hour including 00:00 — that is expected. If you want "every 5 minutes but never at midnight exactly", exclude it in the script itself.'],
       ['Does it catch up after downtime?', 'No. Cron has no memory — if the machine was off at 12:05, that run is simply skipped. Use a job queue or anacron-style tooling when catch-up matters.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -106,7 +115,7 @@ const CRON_RECIPES = [
       ['What happens if a run takes 10+ minutes?', 'Runs can overlap. Serialize with <code>flock -n /tmp/sync.lock cmd</code> or accept idempotent double-processing.'],
       ['Does the day-of-week field matter here?', 'It is *, so no — every day. Restrict it (e.g. <code>1-5</code>) to run only on weekdays.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -136,7 +145,7 @@ const CRON_RECIPES = [
       ['Four runs a day skipped during DST change?', 'On DST transition days a local-time cron can fire twice or not at all for one hour. UTC scheduling avoids it entirely.'],
       ['Is this too frequent for an API poller?', '96 calls per day per endpoint is modest. Add jitter via an offset step if you are one of many clients hitting the same vendor.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -166,7 +175,7 @@ const CRON_RECIPES = [
       ['Is "twice an hour" exactly the same thing?', 'Functionally yes for cron. Some schedulers also accept <code>0,30 * * * *</code> — identical result, written as a list.'],
       ['Can I run it only during business hours?', 'Constrain the hour field: <code>*/30 9-17 * * 1-5</code> runs every half hour, 9:00–17:59, Monday to Friday.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -197,7 +206,7 @@ const CRON_RECIPES = [
       ['Is there an @hourly shorthand?', 'Yes — <code>@hourly</code> is equivalent to <code>0 * * * *</code>. Shorthands exist for @daily, @weekly, @monthly, @yearly too.'],
       ['How do I avoid clashing with other hourly jobs?', 'Offset the minute (25 * * * *) or add jitter inside the script. Everything firing at :00 creates thundering-herd load on shared dependencies.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -228,7 +237,7 @@ const CRON_RECIPES = [
       ['Is @daily exactly the same?', 'Yes: <code>@daily</code> expands to <code>0 0 * * *</code>. Use whichever reads better in your crontab.'],
       ['What if the server is down at midnight?', 'The run is skipped — cron does not catch up. For must-run daily jobs (billing, retention), have the job itself check its last-run timestamp, or use anacron / a scheduler with catch-up semantics.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -259,7 +268,7 @@ const CRON_RECIPES = [
       ['Can I write MON-FRI instead of numbers?', 'Yes in Vixie cron and most modern implementations: <code>0 9 * * MON-FRI</code>. Some minimal cron builds only accept numbers — test on your target system.'],
       ['How do I skip public holidays?', 'Cron alone cannot. Guard the command with a holiday lookup (an API, a calendar file, or a wrapper like <code>skip-holiday.sh</code>) and exit early on non-working days.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -290,7 +299,7 @@ const CRON_RECIPES = [
       ['Saturday = 6, Sunday = 0 — can I write 7?', 'Yes, 7 is also Sunday in most implementations. Within a comma list, 0,6 and 6,7 both mean Sat+Sun — but do not mix 0 and 7 in ranges.'],
       ['Every Sunday specifically?', '<code>0 10 * * 0</code> — a single 0 in day-of-week gives you Sundays only.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -321,7 +330,7 @@ const CRON_RECIPES = [
       ['What if the 1st falls while the server is down?', 'The run is skipped for that month. If it must happen, have the job check its last success timestamp and catch up, or run nightly with an "is today the 1st?" guard.'],
       ['Can I run at 6 PM on the 1st instead?', 'Set the hour field: <code>0 18 1 * *</code> — minute 0, hour 18, day 1.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -352,7 +361,7 @@ const CRON_RECIPES = [
       ['Why is % doubled in the crontab line?', 'In crontab, a raw % starts the STDIN section of the command. Escape it as \\% whenever date/format strings need a literal percent sign.'],
       ['Is 23:59 chosen for a reason?', 'It keeps the run inside the last day. Midnight-plus-one (00:00) technically fires on the FIRST day of the next month — which breaks "last day" semantics for anything reading the date.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try schedules in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try schedules in the Cron Editor' },
   },
 
   {
@@ -383,7 +392,7 @@ const CRON_RECIPES = [
       ['Does it run at midnight?', 'Yes, hour 0 is midnight. If you want to skip midnight, use an explicit list like <code>0 2,4,6,8,10,12,14,16,18,20,22 * * *</code>.'],
       ['Why minute 0 instead of *?', 'Writing <code>* */2 * * *</code> means every minute during those hours (60 runs per active hour). Always fix the minute field for hourly cadences.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -413,7 +422,7 @@ const CRON_RECIPES = [
       ['Can I run only during daytime?', 'Use an explicit range or list: <code>0 9-18/3 * * *</code> runs at 09:00, 12:00, 15:00, and 18:00.'],
       ['Is 0,3,6,9,12,15,18,21 the same as */3?', 'Yes, exactly identical. The step syntax <code>*/3</code> is the concise shorthand.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -443,7 +452,7 @@ const CRON_RECIPES = [
       ['Does cron handle daylight saving changes here?', 'If your server runs on local time, DST transition days may duplicate or skip one run. Always use UTC on server infrastructure.'],
       ['How do I log output?', 'Append <code>>> /var/log/myjob.log 2>&1</code> to redirect both standard output and error output.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -473,7 +482,7 @@ const CRON_RECIPES = [
       ['Is this expression supported on all Linux distros?', 'Yes. The step syntax */6 is supported by Vixie cron, Cronie, systemd timers, and modern cloud schedulers.'],
       ['What if a run takes 7 hours?', 'A second instance will launch. Protect against overlapping runs using <code>flock -n /tmp/job.lock</code>.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -504,7 +513,7 @@ const CRON_RECIPES = [
       ['How to run at 6 AM and 6 PM instead?', 'Write <code>0 6,18 * * *</code>.'],
       ['Does it run on weekends?', 'Yes, the day-of-week field is wildcarded (*). To run only on weekdays, change the last field to 1-5.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -534,7 +543,7 @@ const CRON_RECIPES = [
       ['Is flock mandatory?', 'Highly recommended. If any task takes longer than 120 seconds, flock ensures the next invocation exits immediately rather than accumulating duplicate processes.'],
       ['How many times does this run daily?', 'Exactly 720 times (30 runs per hour × 24 hours).'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -564,7 +573,7 @@ const CRON_RECIPES = [
       ['How do I run at :10, :30, :50?', 'Use a ranged step: <code>10-59/20 * * * *</code>.'],
       ['Can I restrict to working hours?', 'Yes: <code>*/20 9-17 * * 1-5</code> runs every 20 minutes between 9 AM and 5:59 PM on weekdays.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -594,7 +603,7 @@ const CRON_RECIPES = [
       ['How do I run this only on weekdays?', 'Change day-of-week to 1-5: <code>0 9,18 * * 1-5</code>.'],
       ['Does cron support AM/PM syntax?', 'No, standard cron requires 24-hour notation (0 to 23). 6 PM must be written as 18.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -624,7 +633,7 @@ const CRON_RECIPES = [
       ['What happens during daylight saving time (fall back)?', 'On fall-back day, 01:00 AM may occur twice in local timezones. Running your server in UTC eliminates this issue.'],
       ['How do I run at 1:30 AM instead?', 'Change the minute field: <code>30 1 * * *</code>.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -654,7 +663,7 @@ const CRON_RECIPES = [
       ['How to run at 8:15 AM?', 'Set minute to 15: <code>15 8 * * *</code>.'],
       ['How to make sure the script ran successfully?', 'Check system mail or redirect output to a webhook (e.g. Slack/Discord) upon completion.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -684,7 +693,7 @@ const CRON_RECIPES = [
       ['How to run at 12:30 PM?', 'Set minute to 30: <code>30 12 * * *</code>.'],
       ['Does it run on weekends too?', 'Yes, the day-of-week field is *. Use <code>0 12 * * 1-5</code> for weekdays only.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -714,7 +723,7 @@ const CRON_RECIPES = [
       ['Can I add a third time, like 6 PM?', 'Yes: simply write <code>0 0,12,18 * * *</code>.'],
       ['Can I offset the minutes?', 'Yes: <code>15 0,12 * * *</code> fires at 00:15 and 12:15.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -744,7 +753,7 @@ const CRON_RECIPES = [
       ['Is @weekly identical to 0 0 * * 0?', 'Yes, @weekly is the standardized shorthand.'],
       ['What if I want Sunday at 11 PM?', 'Write <code>0 23 * * 0</code>.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -774,7 +783,7 @@ const CRON_RECIPES = [
       ['How do I run on Monday and Wednesday?', 'Use a list in the day-of-week field: <code>0 9 * * 1,3</code>.'],
       ['What if Monday is a public holiday?', 'Cron does not check holidays. Use an internal script guard to skip execution on bank holidays.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -804,7 +813,7 @@ const CRON_RECIPES = [
       ['Can I write FRI instead of 5?', 'Yes, most modern crons accept <code>0 17 * * FRI</code>.'],
       ['How to run at 4:30 PM on Friday?', 'Set minute to 30 and hour to 16: <code>30 16 * * 5</code>.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -834,7 +843,7 @@ const CRON_RECIPES = [
       ['What if the 15th falls on a weekend?', 'Standard cron runs regardless of whether it is a weekend. If you want the nearest weekday, add a check inside your shell script.'],
       ['How do I run at noon on the 15th?', 'Set the hour to 12: <code>0 12 15 * *</code>.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -864,7 +873,7 @@ const CRON_RECIPES = [
       ['Can I run at the end of each quarter instead?', 'End-of-quarter months are March (31), June (30), September (30), and December (31). Because day counts differ, run on the 1st of the following quarter or use a script check.'],
       ['Does cron have an @quarterly shorthand?', 'No standard @quarterly shorthand exists in POSIX cron; use the explicit expression.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 
   {
@@ -894,7 +903,7 @@ const CRON_RECIPES = [
       ['What if the server is offline at Jan 1 00:00?', 'The job will not run until the next year unless you use anacron or an internal catch-up check.'],
       ['How do I run on December 31 at 23:59 instead?', 'Write <code>59 23 31 12 *</code>.'],
     ],
-    tool: { href: '../tools/cron.html', label: 'Try this schedule in the Cron Editor' },
+    tool: { href: '/tools/cron', label: 'Try this schedule in the Cron Editor' },
   },
 ];
 
@@ -929,7 +938,7 @@ const GIT_RECIPES = [
       ['Can I undo a pushed commit with reset?', 'Do not. Rewriting shared history forces everyone to fix their clones. Use <code>git revert <sha></code> — it creates a new commit that undoes the old one cleanly.'],
       ['reset vs revert in one line?', 'reset rewrites history (local work only); revert adds new history (safe to share).'],
     ],
-    tool: { href: '../tools/git.html', label: 'Generate the exact command in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Generate the exact command in the Git Builder' },
   },
 
   {
@@ -962,7 +971,7 @@ const GIT_RECIPES = [
       ['Can I recover discarded changes?', 'Tracked-file discards: sometimes, via <code>git fsck --lost-found</code> (dangling blobs) or your IDE\'s local history. Untracked files removed by clean: gone, unless your editor kept copies.'],
       ['How do I discard only SOME changes in a file?', '<code>git restore -p <file></code> walks you through hunk by hunk, y/n per change.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build the discard workflow in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build the discard workflow in the Git Builder' },
   },
 
   {
@@ -994,7 +1003,7 @@ const GIT_RECIPES = [
       ['The branch still shows after deletion — why?', 'Your local remote-tracking reference is stale. <code>git fetch --prune</code> (or <code>git remote prune origin</code>) syncs the list.'],
       ['Can I delete main/master?', 'Git will refuse the branch you are on; the remote side is usually protected by the host. Feature branches are the ones meant to be deleted.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Generate branch commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Generate branch commands in the Git Builder' },
   },
 
   {
@@ -1029,7 +1038,7 @@ const GIT_RECIPES = [
       ['Can I stash on one branch and pop on another?', 'Yes — a stash is branch-agnostic. Pop it wherever the changes belong; conflicts are resolved like a merge.'],
       ['Stash or branch?', 'Stash for minutes-to-hours parking; a real branch for anything that might survive past today. Stashes are easy to forget and painfully easy to drop.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Generate stash commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Generate stash commands in the Git Builder' },
   },
 
   {
@@ -1061,7 +1070,7 @@ const GIT_RECIPES = [
       ['Does amend change the commit date?', 'The author date is kept by default; the committer date becomes now. Add --reset-author if you want both refreshed.'],
       ['Amend vs fixup?', '--amend fixes the TOP commit interactively. For older commits, use <code>git rebase -i</code> and mark commits as fixup/squash.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Generate amend & push commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Generate amend & push commands in the Git Builder' },
   },
 
   {
@@ -1086,7 +1095,7 @@ const GIT_RECIPES = [
       ['Why does reverting a merge need -m 1?', 'A merge has two parents; Git needs to know which line of history to keep. -m 1 keeps the branch you were on (usually main) and undoes the merged-in side.'],
       ['What if I revert and then want the change back?', 'Revert the revert — or cherry-pick the original commit again. History stays additive either way.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Generate revert commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Generate revert commands in the Git Builder' },
   },
 
   {
@@ -1110,7 +1119,7 @@ const GIT_RECIPES = [
       ['What if -m fails with "already exists"?', 'If you are certain you want to overwrite an existing branch, use capital <code>-M</code>.'],
       ['How do I verify the rename worked?', 'Run <code>git branch --show-current</code> to inspect your active branch name.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build branch commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build branch commands in the Git Builder' },
   },
 
   {
@@ -1134,7 +1143,7 @@ const GIT_RECIPES = [
       ['What should teammates do after a remote rename?', 'Collaborators should run: <code>git fetch --prune</code> and <code>git checkout -b <new> origin/<new></code>.'],
       ['Can I rename the default branch (main/master)?', 'Yes, but change the default branch setting in your GitHub/GitLab repository settings first before deleting the old one.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Generate remote branch commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Generate remote branch commands in the Git Builder' },
   },
 
   {
@@ -1168,7 +1177,7 @@ const GIT_RECIPES = [
       ['Why does cherry-pick give a new commit SHA?', 'Because commit SHAs are hashes of their tree, message, timestamp, AND parent commit. Changing parents means a new SHA.'],
       ['What if I cherry-pick an already merged commit?', 'Git detects an empty patch and prompts you to skip it with <code>git cherry-pick --skip</code>.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try cherry-pick in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try cherry-pick in the Git Builder' },
   },
 
   {
@@ -1191,7 +1200,7 @@ const GIT_RECIPES = [
       ['Can I squash commits that were already pushed?', 'Only on private feature branches. If pushed, you must push with <code>--force-with-lease</code>. Never squash on shared branches.'],
       ['How to squash all commits on a feature branch against main?', 'Run <code>git reset $(git merge-base main HEAD)</code> and commit.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build squash workflows in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build squash workflows in the Git Builder' },
   },
 
   {
@@ -1216,7 +1225,7 @@ const GIT_RECIPES = [
       ['Should I merge or rebase against upstream?', 'For main, merge (or fast-forward) is standard. For your feature branches, rebase against upstream/main to keep clean linear history.'],
       ['Can I use the GitHub UI "Sync fork" button?', 'Yes, the GitHub UI button does the same fast-forward merge on the remote side. Afterwards, run <code>git pull</code> locally.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build remote workflows in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build remote workflows in the Git Builder' },
   },
 
   {
@@ -1240,7 +1249,7 @@ const GIT_RECIPES = [
       ['How do I list all existing tags?', 'Run <code>git tag -l</code> or <code>git tag -n</code> to see tags with their annotations.'],
       ['How do I delete all local tags that do not exist on remote?', 'Run <code>git tag -l | xargs git tag -d && git fetch --tags</code>.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try tag commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try tag commands in the Git Builder' },
   },
 
   {
@@ -1264,7 +1273,7 @@ const GIT_RECIPES = [
       ['Can I change author on older pushed commits?', 'Yes, via interactive rebase or <code>git-filter-repo</code>, but it rewrites history. Use caution on shared branches.'],
       ['What is the difference between author and committer?', 'Author wrote the code; committer applied the commit (e.g. cherry-pick or rebase). --amend updates author; committer becomes the current user.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try author commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try author commands in the Git Builder' },
   },
 
   {
@@ -1288,7 +1297,7 @@ const GIT_RECIPES = [
       ['How do I discard the edits entirely?', 'Run <code>git restore <file></code> (without --staged) to revert working directory changes to HEAD.'],
       ['What is the difference between git restore --staged and git rm --cached?', '<code>restore --staged</code> keeps the file tracked in Git. <code>rm --cached</code> stages the file for complete removal from Git tracking.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build staging workflows in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build staging workflows in the Git Builder' },
   },
 
   {
@@ -1312,7 +1321,7 @@ const GIT_RECIPES = [
       ['Why is --all important?', 'Without <code>--all</code>, git log only shows commits reachable from the current branch. --all includes all local and remote branches.'],
       ['How to search commit messages in the log?', 'Use <code>git log --grep="search term"</code>.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try log options in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try log options in the Git Builder' },
   },
 
   {
@@ -1336,7 +1345,7 @@ const GIT_RECIPES = [
       ['What does the -d flag mean?', 'It instructs clean to remove untracked whole directories in addition to individual files.'],
       ['How to clean only a specific subdirectory?', 'Pass the path: <code>git clean -fd ./dist</code>.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try clean commands in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try clean commands in the Git Builder' },
   },
 
   {
@@ -1361,7 +1370,7 @@ const GIT_RECIPES = [
       ['What does git switch - do?', 'The hyphen <code>-</code> switches to whatever branch you were on previously — exactly like <code>cd -</code> in bash.'],
       ['What if I have uncommitted changes?', 'If your changes do not conflict with the target branch, Git carries them over. If there are conflicts, Git halts and asks you to stash or commit first.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build branch workflows in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build branch workflows in the Git Builder' },
   },
 
   {
@@ -1385,7 +1394,7 @@ const GIT_RECIPES = [
       ['What happens to commits after that SHA?', 'They remain on their original branches. Your new branch diverges from the specified commit.'],
       ['How do I find the commit SHA to branch from?', 'Use <code>git log --oneline</code> to locate the 7-character hash of the desired commit.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build history branches in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build history branches in the Git Builder' },
   },
 
   {
@@ -1409,7 +1418,7 @@ const GIT_RECIPES = [
       ['When should I use -a instead of -u?', 'Only when you want to stash files listed in .gitignore (like node_modules or .env). Usually -u is what you want.'],
       ['How to name a stash with untracked files?', 'Combine options: <code>git stash push -u -m "wip: new components"</code>.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try stash options in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try stash options in the Git Builder' },
   },
 
   {
@@ -1433,7 +1442,7 @@ const GIT_RECIPES = [
       ['Are my local commits lost?', 'Unpushed local commits are removed from the branch pointer. You can still recover them via <code>git reflog</code> for up to 90 days.'],
       ['Can I save my uncommitted work before force pulling?', 'Yes: run <code>git stash -u</code> before resetting, then apply it later if needed.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build force sync in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build force sync in the Git Builder' },
   },
 
   {
@@ -1459,7 +1468,7 @@ const GIT_RECIPES = [
       ['How do I abort a conflict during a rebase?', 'Run <code>git rebase --abort</code>.'],
       ['Can I choose one branch\'s version entirely?', 'Yes: <code>git checkout --ours <file></code> keeps current branch, <code>git checkout --theirs <file></code> accepts incoming branch.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try conflict resolution in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try conflict resolution in the Git Builder' },
   },
 
   {
@@ -1484,7 +1493,7 @@ const GIT_RECIPES = [
       ['How to view the parent of a commit?', 'Use <code>git show <sha>^</code>.'],
       ['Can I see just the commit message without the diff?', 'Yes: <code>git show -s <sha></code> (--no-patch).'],
     ],
-    tool: { href: '../tools/git.html', label: 'Try git show in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Try git show in the Git Builder' },
   },
 
   {
@@ -1509,11 +1518,16 @@ const GIT_RECIPES = [
       ['Can I tag an older historical commit?', 'Yes: append the commit SHA: <code>git tag -a v1.0.0 <sha> -m "Release v1.0.0"</code>.'],
       ['How to check out a tag?', 'Run <code>git checkout v1.0.0</code> (puts you in detached HEAD) or <code>git switch -c release-1.0 v1.0.0</code> to start a branch from the tag.'],
     ],
-    tool: { href: '../tools/git.html', label: 'Build tag workflows in the Git Builder' },
+    tool: { href: '/tools/git', label: 'Build tag workflows in the Git Builder' },
   },
 ];
 
 /* ------------------------------ template --------------------------------- */
+
+const bySlug = {
+  cron: Object.fromEntries(CRON_RECIPES.map((r) => [r.slug, r])),
+  git: Object.fromEntries(GIT_RECIPES.map((r) => [r.slug, r])),
+};
 
 const W = (inner) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
 const ICONS = {
@@ -1522,9 +1536,40 @@ const ICONS = {
 };
 const ESC = (s) => String(s).replace(/&(?!(amp|lt|gt|quot|#\d+);)/g, '&amp;').replace(/</g, '&lt;');
 
-function page(kind, r) {
-  const sheetHref = kind === 'cron' ? 'cron.html' : 'git.html';
-  const sheetName = kind === 'cron' ? 'Cron Cheat Sheet' : 'Git Cheat Sheet';
+/* Strings the template itself owns. Recipe text comes from the data; anything
+   not present in r.zh falls back to the English field, per field. */
+const UI = {
+  en: {
+    crumb: 'Cheat Sheets', sheet: { cron: 'Cron Cheat Sheet', git: 'Git Cheat Sheet' },
+    fields: 'Field by field', thField: 'Field', thValue: 'Value', thMeaning: 'Meaning',
+    related: { cron: 'Related schedules', git: 'Related Git recipes' },
+    faq: 'FAQ', cta: 'Stop memorizing — build it interactively', fullRef: 'Full reference: ',
+  },
+  cn: {
+    crumb: '速查表', sheet: { cron: 'Cron 速查表', git: 'Git 速查表' },
+    fields: '逐字段解释', thField: '字段', thValue: '值', thMeaning: '含义',
+    related: { cron: '相关调度', git: '相关 Git 配方' },
+    faq: '常见问题', cta: '别死记语法 — 用可视化生成器', fullRef: '完整速查表：',
+  },
+};
+
+/**
+ * A recipe page. lang 'cn' is only rendered for recipes that carry r.zh; the
+ * Chinese tree lives at /cn/cheatsheets/ and links back to the English sheets
+ * and to whichever siblings are already translated.
+ */
+function page(kind, r, lang = 'en') {
+  const U = UI[lang];
+  const Z = (lang === 'cn' && r.zh) || {};
+  const text = (key) => (Z[key] !== undefined ? Z[key] : r[key]);
+  const at = (slug) => (slug === r.slug ? lang : (bySlug[kind][slug]?.zh ? 'cn' : 'en'));
+  const href = (slug) => (at(slug) === 'cn' ? `/cn/cheatsheets/${slug}` : `/cheatsheets/${slug}`);
+  const self = `https://plobikit.com/${lang === 'cn' ? 'cn/' : ''}cheatsheets/${r.slug}`;
+  const hubHref = lang === 'cn' ? '/cn/cheatsheets/' : '/cheatsheets/';
+  // the paired tool keeps its English URL unless the translation overrides it
+  const tool = { ...r.tool, ...(Z.tool ?? {}) };
+  const sheetHref = `/cheatsheets/${kind}`;
+  const sheetName = U.sheet[kind];
   const siblings = (kind === 'cron' ? CRON_RECIPES : GIT_RECIPES).filter((x) => x.slug !== r.slug);
 
   const main =
@@ -1532,56 +1577,63 @@ function page(kind, r) {
       ? `
       <div class="answer">
         <code class="expr">${r.expr}</code>
-        <p class="plain">${r.plain}</p>
+        <p class="plain">${text('plain')}</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${U.fields}</h2>
       <table class="ref">
-        <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
-        <tbody>${r.fields.map((f) => `<tr><td><code>${f[0]}</code></td><td><code>${ESC(f[1])}</code></td><td>${f[2]}</td></tr>`).join('')}</tbody>
+        <thead><tr><th>${U.thField}</th><th>${U.thValue}</th><th>${U.thMeaning}</th></tr></thead>
+        <tbody>${text('fields').map((f) => `<tr><td><code>${f[0]}</code></td><td><code>${ESC(f[1])}</code></td><td>${f[2]}</td></tr>`).join('')}</tbody>
       </table>
-      ${r.body.map((p) => `<p class="prose">${p}</p>`).join('\n      ')}
-      ${r.code ? `<pre class="cmdbox">${ESC(r.code)}</pre>` : ''}`
+      ${text('body').map((p) => `<p class="prose">${p}</p>`).join('\n      ')}
+      ${text('code') ? `<pre class="cmdbox">${ESC(text('code'))}</pre>` : ''}`
       : `
       <div class="answer">
-        ${r.tables[0].rows.map((row) => `<code class="expr" style="display:block; margin-bottom:8px;">${ESC(row[0])}</code><p class="plain" style="margin:0 0 6px 0;">${row[1]}</p>`).join('\n        ')}
+        ${text('tables')[0].rows.map((row) => `<code class="expr" style="display:block; margin-bottom:8px;">${ESC(row[0])}</code><p class="plain" style="margin:0 0 6px 0;">${row[1]}</p>`).join('\n        ')}
       </div>
-      ${r.tables[0].caption ? `<h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${r.tables[0].caption}</h2>` : ''}
+      ${text('tables')[0].caption ? `<h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${text('tables')[0].caption}</h2>` : ''}
       <table class="ref">
-        <thead><tr>${r.tables[0].headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
-        <tbody>${r.tables[0].rows.map((row) => `<tr>${row.map((c) => `<td><code>${ESC(c)}</code></td>`).join('')}</tr>`).join('')}</tbody>
+        <thead><tr>${text('tables')[0].headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${text('tables')[0].rows.map((row) => `<tr>${row.map((c) => `<td><code>${ESC(c)}</code></td>`).join('')}</tr>`).join('')}</tbody>
       </table>
-      ${r.tables[1] ? `<h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${r.tables[1].caption}</h2>
+      ${text('tables')[1] ? `<h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${text('tables')[1].caption}</h2>
       <table class="ref">
-        <thead><tr>${r.tables[1].headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
-        <tbody>${r.tables[1].rows.map((row) => `<tr>${row.map((c) => `<td><code>${ESC(c)}</code></td>`).join('')}</tr>`).join('')}</tbody>
+        <thead><tr>${text('tables')[1].headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${text('tables')[1].rows.map((row) => `<tr>${row.map((c) => `<td><code>${ESC(c)}</code></td>`).join('')}</tr>`).join('')}</tbody>
       </table>` : ''}
-      <p class="prose">${r.intro}</p>`;
+      <p class="prose">${text('intro')}</p>`;
+
+  const chipLabel = (x) => ((lang === 'cn' && x.zh?.title) ? x.zh.title : x.title)
+    .replace(' — .*', '').replace('Git ', '');
 
   const variations =
     kind === 'cron'
       ? `
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${U.related.cron}</h2>
       <div class="chips">
-        ${r.variations.map(([expr, label, slug]) => `<a class="chip" href="${slug}"><code>${expr}</code> ${label}</a>`).join('\n        ')}
+        ${text('variations').map(([expr, label, slug]) => `<a class="chip" href="${href(slug)}"><code>${expr}</code> ${label}</a>`).join('\n        ')}
       </div>`
       : `
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related Git recipes</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${U.related.git}</h2>
       <div class="chips">
-        ${siblings.map((x) => `<a class="chip" href="${x.slug}">${x.title.replace(' — .*', '').replace('Git ', '')}</a>`).join('\n        ')}
+        ${siblings.map((x) => `<a class="chip" href="${href(x.slug)}">${chipLabel(x)}</a>`).join('\n        ')}
       </div>`;
 
+  const alts = lang === 'en'
+    ? (r.zh ? `\n  <link rel="alternate" hreflang="en" href="${self}">\n  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/${r.slug}">` : '')
+    : `\n  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/${r.slug}">\n  <link rel="alternate" hreflang="zh" href="${self}"`;
+
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${lang === 'cn' ? 'zh' : 'en'}">
 <head>
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${r.title} | Plobi-kit</title>
-  <meta name="description" content="${r.metaDesc}">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="manifest" href="../manifest.json">
+  <title>${text('title')} | Plobi-kit</title>
+  <meta name="description" content="${text('metaDesc')}">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/${r.slug}">
+  <link rel="canonical" href="${self}">${alts}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1629,17 +1681,17 @@ function page(kind, r) {
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="index.html">Cheat Sheets</a> · <a href="${sheetHref}">${sheetName}</a> · ${r.title}</p>
-      <h1>${r.title}</h1>
+      <p class="crumb"><a href="${hubHref}">${U.crumb}</a> · <a href="${sheetHref}">${sheetName}</a> · ${text('title')}</p>
+      <h1>${text('title')}</h1>
       ${main}
       ${variations}
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      ${r.faq.map(([q, a]) => `<p class="prose"><strong style="color: var(--text-main);">${q}</strong><br>${a}</p>`).join('\n      ')}
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${U.faq}</h2>
+      ${text('faq').map(([q, a]) => `<p class="prose"><strong style="color: var(--text-main);">${q}</strong><br>${a}</p>`).join('\n      ')}
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="${r.tool.href}" style="text-decoration: none;">${r.tool.label}</a>
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">${U.cta}</p>
+        <a class="btn" href="${tool.href}" style="text-decoration: none;">${tool.label}</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="${sheetHref}" style="color: var(--success-color);">${sheetName}</a></p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">${U.fullRef}<a href="${sheetHref}" style="color: var(--success-color);">${sheetName}</a></p>
     </main>
 
     <footer class="app-footer">
@@ -1664,12 +1716,24 @@ function page(kind, r) {
       });
     }
   </script>
-  <script type="module" src="../app.js"></script>
+  <script type="module" src="/app.js"></script>
 </body>
 </html>`;
 }
 
-let n = 0;
-for (const r of CRON_RECIPES) { writeFileSync(join(OUT, `${r.slug}.html`), page('cron', r), 'utf8'); n++; }
-for (const r of GIT_RECIPES) { writeFileSync(join(OUT, `${r.slug}.html`), page('git', r), 'utf8'); n++; }
-console.log(`${n} recipe page(s) generated.`);
+let en = 0;
+let cn = 0;
+mkdirSync(OUT_CN, { recursive: true });
+for (const [kind, list] of [['cron', CRON_RECIPES], ['git', GIT_RECIPES]]) {
+  for (const r of list) {
+    writeFileSync(join(OUT, `${r.slug}.html`), page(kind, r, 'en'), 'utf8');
+    en++;
+    // a recipe joins the Chinese tree as soon as its data carries a zh block —
+    // translating is a data change, never a template change
+    if (r.zh) {
+      writeFileSync(join(OUT_CN, `${r.slug}.html`), page(kind, r, 'cn'), 'utf8');
+      cn++;
+    }
+  }
+}
+console.log(`${en} recipe page(s) generated, ${cn} in Chinese.`);

@@ -53,42 +53,41 @@ const NAV_PATH = {
   cn: { tools: 'index.html', cheatsheets: '../../cheatsheets/', guides: '../guides/index.html', deals: '../../deals', collection: '../../collection/index.html', about: '../about.html' },
 };
 const ICONS = {
-  base64:       '<line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>',
-  json:         '<path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/><path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>',
-  jwt:          '<path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>',
-  url:          '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
-  markdown:     '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
-  regex:        '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
-  cron:         '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
-  git:          '<line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
-  colorpalette: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
-  glassmorphism:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
-  flexgrid:     '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
-  svg:          '<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>',
-  metatags:     '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>',
-  codeimage:    '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+  base64:       '<polyline points="14 2 14 8 20 8"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M10 16H8"/><path d="M16 16h-2"/>',
+  json:         '<polyline points="7 8 3 12 7 16"/><polyline points="17 8 21 12 17 16"/><line x1="14" y1="4" x2="10" y2="20"/>',
+  jwt:          '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  url:          '<path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/>',
+  markdown:     '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13v-1h6v1"/><path d="M9 17h6"/>',
+  regex:        '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/>',
+  cron:         '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><polyline points="16 2 18 0 21 3"/>',
+  git:          '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>',
+  colorpalette: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><path d="M12 22V12"/><path d="M9 12h6"/>',
+  glassmorphism:'<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/>',
+  flexgrid:     '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',
+  svg:          '<path d="M3 3h18v6H3z"/><path d="M3 11h18v6H3z"/><circle cx="6" cy="6" r="0.5"/><circle cx="6" cy="14" r="0.5"/>',
+  metatags:     '<line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>',
+  codeimage:    '<rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="7 8 4 12 7 16"/><polyline points="17 8 20 12 17 16"/><line x1="11" y1="8" x2="13" y2="16"/>',
   image:        '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
-  qrcode:       '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
-  prompt:       '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>',
+  qrcode:       '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="7" y1="7" x2="7" y2="7.01"/>',
+  prompt:       '<circle cx="12" cy="12" r="3"/><path d="M12 1v6"/><path d="M12 17v6"/><path d="M4.22 4.22l4.24 4.24"/><path d="M15.54 15.54l4.24 4.24"/><path d="M1 12h6"/><path d="M17 12h6"/><path d="M4.22 19.78l4.24-4.24"/><path d="M15.54 8.46l4.24-4.24"/>',
 };
 
 const head = (lang) => {
   const hreflangEn = lang === 'en' ? '' : `  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/">\n  `;
   const hreflangCn = lang === 'cn' ? `  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/">\n  ` : '';
-  const isCN = lang === 'cn';
   return `<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${TITLES.base64[lang]}</title>
 <meta name="description" content="${DESCS.tools[lang]}">
-<link rel="stylesheet" href="${isCN ? '../' : ''}styles.css">
-<link rel="manifest" href="${isCN ? '../' : ''}manifest.json">
+<link rel="stylesheet" href="/styles.css">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#fafafa">
 <link rel="canonical" href="${TITLES.tools[lang]}">
 ${hreflangEn}${hreflangCn}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
-<style>.tool-card-icon svg { width: 22px; height: 22px; color: var(--success-color); }</style>`;
+<style>.tool-card-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; } .tool-card-icon svg { width: 28px; height: 28px; color: var(--success-color); stroke-width: 1.75; }</style>`;
 };
 
 const navBlock = (lang) => {
@@ -175,9 +174,9 @@ ${SECTIONS.map((s) => section(lang, s)).join('\n')}
     }
   </script>
   <script type="module">
-    import { applyTranslations, currentLang } from './js/i18n-content.js';
-    document.addEventListener('DOMContentLoaded', () => applyTranslations(currentLang()));
-    import('./app.js');
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
   </script>
 </body>
 </html>`;

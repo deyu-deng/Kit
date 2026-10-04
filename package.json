@@ -3,8 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build.mjs",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
+    "check:sitemap": "node scripts/check-sitemap.mjs",
+    "check:links": "node scripts/check-links.mjs",
     "db:local": "wrangler d1 execute DB --local --file=db/schema.sql",
     "db:remote": "wrangler d1 execute DB --remote --file=db/schema.sql"
   },

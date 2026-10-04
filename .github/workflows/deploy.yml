@@ -22,6 +22,21 @@ jobs:
         with:
           node-version: 22
 
+      - name: Build the static site
+        run: node scripts/build.mjs
+
+      - name: Verify committed output matches the build
+        run: |
+          git diff --exit-code -- public/ || {
+            echo "::error::public/ is not what the generators produce. Run 'npm run build' and commit the result."
+            exit 1
+          }
+
+      - name: Check sitemap and internal links
+        run: |
+          node scripts/check-sitemap.mjs
+          node scripts/check-links.mjs
+
       - name: Install wrangler
         run: npm install --no-save wrangler@^4
 

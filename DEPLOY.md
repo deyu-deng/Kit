@@ -30,6 +30,49 @@ npm run db:local   # 本地 D1 建表（首次运行 + schema 变更后）
 npm run dev        # http://localhost:8787
 ```
 
+## 构建与校验
+
+```bash
+npm run build          # 重新生成 public/ 的全部静态页
+npm run check:sitemap  # sitemap 与磁盘页面是否一一对应
+node scripts/check-links.mjs  # 内链与 canonical 自检
+```
+
+`scripts/build.mjs` 是唯一正确的顺序，顺序错了就会退化（历史上就退化过一次：
+52 个配方页掉了 i18n 启动脚本，中文界面在那些页面上完全不生效）：
+
+1. `gen-cheatsheets` / `gen-recipes` / `gen-guides` / `gen-tool-hub` — 由数据生成页面
+2. `cleanup` — 全站卫生检查（假广告位、坏标题、缺失 canonical）
+3. `normalize-nav` — 外壳契约：导航、页脚、logo、语言按钮、资源路径、
+   内链规范化、i18n 启动脚本，**每次构建都会重写所有页面**
+4. `update-sitemap` — 刷新 lastmod，并把新增页面补进 sitemap
+
+页面分两类：
+
+| 类别 | 位置 | 能不能手改 |
+|---|---|---|
+| 生成页 | `cheatsheets/`（除 index）、`tools/index.html`、`cn/tools/index.html`、`guides/`、`cn/guides/` | 改数据或模板，改了要重跑 `npm run build` |
+| 手写页 | `index.html`、`cn/index.html`、`about/contact/privacy/terms` 及其 `cn/` 版、`collection/`、两个速查表 hub | 直接改；第 3 步仍会统一它们的外壳 |
+
+中英双语：**加译文是改数据，不是改代码。**
+
+- 教程：`content/guides/<slug>.md` 旁边放 `<slug>.zh.md`，自动生成 `/cn/guides/<slug>`
+- 配方：给某条数据加 `zh` 块（`title / metaDesc / plain / fields / variations /
+  tables / intro / body / code / faq`，能给多少给多少），自动生成 `/cn/cheatsheets/<slug>`；
+  没给 `zh` 的配方保持纯英文，中文入口自动链到英文页
+- 导航不需要维护"哪些栏目有中文"这张表：`normalize-nav` 按 `public/` 里实际存在的
+  页面决定链接目标
+
+`deploy.yml` 在部署前设三道闸，任一失败就不发布：
+
+1. 构建产物与提交内容必须一致（说明有人改了数据没重跑构建）
+2. sitemap 与磁盘页面一一对应、URL 全为规范形式
+3. 站内链接无死链、无 `.html` / `index.html` 这类要多跳一次 307 的写法
+
+`scripts/` 里原先的四个一次性迁移（`restructure-home.mjs`、`reposition-copy.mjs`、
+`add-nav.mjs`、`fix-logo-hrefs.py`）已删除：它们的效果要么已经固化进手写页（手写页是
+源文件，不是构建产物），要么已由 `normalize-nav` 每次重建，留着只会误导人重跑。
+
 ## 路由一览
 
 | 路由 | 方法 | 说明 |

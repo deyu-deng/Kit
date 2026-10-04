@@ -1,144 +1,157 @@
 /**
- * Navigation normalization (idempotent — safe to re-run).
+ * Chrome contract — the last pass over every static page. Idempotent.
  *
- * Regenerates the whole <nav class="nav-links"> block and the footer-nav
- * div on every static page from ONE canonical spec, so header/footer can
- * never drift apart again (labels, order, active state, depth prefixes).
+ * Owns, for all of public/:
+ *   1. header nav + footer nav (labels, order, active state, data-i18n keys)
+ *   2. the logo link -> the language homepage
+ *   3. the language toggle button inside .controls
+ *   4. every internal link and asset URL rewritten into its canonical,
+ *      root-absolute form, so no page depends on its own depth and no link
+ *      costs a 307 hop
+ *   5. the i18n activation script, so /js/i18n-content.js actually runs
  *
- * Spec:
- *   header: Home · Cheat Sheet · Guides · Deals · Collection · About
- *           (frequency order; About last; no Contact — it lives in the footer)
- *   footer: Privacy Policy · Terms · About · Contact  (+ © line untouched)
+ * Generators are free to write chrome and links the old way: this pass fixes
+ * every page afterwards, and scripts/check-links.mjs proves it stayed fixed.
+ * Inline <script> bodies are left untouched — their string literals are not
+ * markup.
  *
- * CN pages keep Chinese labels and link within the /cn/ subtree for site
- * pages; Deals/Collection (en-only) always point at the site root.
+ * Sections that exist in English only (Cheat Sheets, Deals, Collection) always
+ * link to the site root, never to a /cn/ twin.
  *
  * Run: node scripts/normalize-nav.mjs
  */
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { buildIndex, fileToUrl, walkHtml, resolveFrom, toLf, EXTERNAL } from './lib/urls.mjs';
 
-const ROOT = process.cwd();
-const DIRS = ['.', 'cn', 'tools', 'cn/tools', 'guides', 'cn/guides', 'collection', 'cheatsheets'].map((d) => join('public', d));
+const SITE = join(process.cwd(), 'public');
 
-function listHtmlFiles() {
-  const files = [];
-  for (const dir of DIRS) {
-    for (const entry of readdirSync(join(ROOT, dir), { withFileTypes: true })) {
-      if (entry.isFile() && entry.name.endsWith('.html')) files.push(join(ROOT, dir, entry.name));
-    }
-  }
-  return files;
-}
+const EN_LABELS = {
+  tools: 'Tools', cheatsheets: 'Cheat Sheets', library: 'Library', deals: 'Deals',
+  collection: 'Collection', about: 'About',
+  privacy: 'Privacy Policy', terms: 'Terms', contact: 'Contact',
+};
+const CN_LABELS = {
+  tools: '工具箱', cheatsheets: '速查表', library: '知识库', deals: '优惠活动',
+  collection: '精选合集', about: '关于我们',
+  privacy: '隐私政策', terms: '服务条款', contact: '联系我们',
+};
 
-function buildNav(file) {
-  const rel = relative(join(ROOT, 'public'), file).replace(/\\/g, '/');
-  const depth = rel.split('/').length - 1;
-  const rootPrefix = '../'.repeat(depth);          // reaches site root from this file
+// section -> [enUrl, cnUrl]. The Chinese URL is used only when a page actually
+// exists there, so a section that gains a translation needs no edit here, and a
+// section that never has one keeps linking to the English tree.
+const SECTIONS = [
+  ['tools', '/tools/', '/cn/tools/'],
+  ['cheatsheets', '/cheatsheets/', '/cn/cheatsheets/'],
+  ['library', '/guides/', '/cn/guides/'],
+  ['deals', '/deals', '/cn/deals'],
+  ['collection', '/collection/', '/cn/collection/'],
+  ['about', '/about', '/cn/about'],
+];
+const FOOTER_LINKS = [
+  ['privacy', '/privacy', '/cn/privacy'],
+  ['terms', '/terms', '/cn/terms'],
+  ['about', '/about', '/cn/about'],
+  ['contact', '/contact', '/cn/contact'],
+];
+
+// A page links to a section in its own language when that section actually has
+// a page there; otherwise it links to the English one.
+const sectionUrl = ([, enUrl, cnUrl], cnSub, index) => (cnSub && index.pages.has(cnUrl) ? cnUrl : enUrl);
+
+function pageContext(file) {
+  const rel = file.slice(SITE.length + 1).replace(/\\/g, '/');
   const cnSub = rel.startsWith('cn/');
-  const cnPrefix = '../'.repeat(Math.max(0, depth - 1)); // reaches /cn/ from a cn file
-  const cn = cnSub || /<html lang="zh"/.test(readFileSync(file, 'utf8').slice(0, 200));
-
-  // Site-page links stay inside the current language subtree.
-  const site = (name) => (cnSub ? cnPrefix : rootPrefix) + name;
-  // En-only sections always live at the site root.
-  const rootLink = (name) => rootPrefix + name;
-
-  const L = cn
-    ? { tools: '工具箱', cheatsheets: '速查表', library: '知识库', guides: '技术教程', deals: '优惠活动', collection: '精选合集', about: '关于我们', privacy: '隐私政策', terms: '服务条款', contact: '联系我们' }
-    : { tools: 'Tools', cheatsheets: 'Cheat Sheets', library: 'Library', guides: 'Guides', deals: 'Deals', collection: 'Collection', about: 'About', privacy: 'Privacy Policy', terms: 'Terms', contact: 'Contact' };
-
-  const items = [
-    ['tools', L.tools, site('tools/index.html')],
-    ['cheatsheets', L.cheatsheets, rootLink('cheatsheets/')],
-    ['library', L.library, site('guides/index.html')],
-    ['deals', L.deals, rootLink('deals')],
-    ['collection', L.collection, rootLink('collection/index.html')],
-    ['about', L.about, site('about.html')],
-  ];
-
-  // Which section is this page in? (for the active highlight)
+  const cn = cnSub || /<html lang="zh"/.test(readFileSync(file, 'utf8').slice(0, 400));
   let active = '';
-  if (rel === 'tools/index.html' || rel.startsWith('tools/') || rel.startsWith('cn/tools/')) active = 'tools';
+  if (rel.startsWith('tools/') || rel.startsWith('cn/tools/')) active = 'tools';
   else if (rel.startsWith('cheatsheets/')) active = 'cheatsheets';
   else if (rel === 'about.html' || rel === 'cn/about.html') active = 'about';
   else if (rel.startsWith('guides/') || rel.startsWith('cn/guides/')) active = 'library';
   else if (rel.startsWith('collection/')) active = 'collection';
-
-  const header = items
-    .map(([key, label, href]) => {
-      const cls = key === active ? ' class="active"' : '';
-      return `<a href="${href}"${cls} id="nav-${key}" data-i18n="nav.${key}">${label}</a>`;
-    })
-    .join('\n        ');
-
-  const footer = [
-    `<a href="${site('privacy.html')}" id="nav-footer-privacy" data-i18n="nav-footer.privacy">${L.privacy}</a>`,
-    `<a href="${site('terms.html')}" id="nav-footer-terms" data-i18n="nav-footer.terms">${L.terms}</a>`,
-    `<a href="${site('about.html')}" id="nav-footer-about" data-i18n="nav-footer.about">${L.about}</a>`,
-    `<a href="${site('contact.html')}" id="nav-footer-contact" data-i18n="nav-footer.contact">${L.contact}</a>`,
-  ].join('\n        ');
-
-  return { header, footer, rel, cnSub, cnPrefix, rootPrefix, cn };
+  return { rel, cn, cnSub, active };
 }
 
-let changed = 0;
-for (const file of listHtmlFiles()) {
-  const s = readFileSync(file, 'utf8');
-  const { header, footer, rel, cnSub, cnPrefix, rootPrefix, cn } = buildNav(file);
+function navBlocks(ctx, index) {
+  const L = ctx.cn ? CN_LABELS : EN_LABELS;
+  const link = (section) => sectionUrl(section, ctx.cnSub, index);
+  const header = SECTIONS
+    .map((section) => {
+      const [key] = section;
+      const cls = key === ctx.active ? ' class="active"' : '';
+      return `<a href="${link(section)}"${cls} id="nav-${key}" data-i18n="nav.${key}">${L[key]}</a>`;
+    })
+    .join('\n        ');
+  const footer = FOOTER_LINKS
+    .map((section) => {
+      const [key] = section;
+      return `<a href="${link(section)}" id="nav-footer-${key}" data-i18n="nav-footer.${key}">${L[key]}</a>`;
+    })
+    .join('\n        ');
+  return { header, footer };
+}
 
-  let out = s;
-  let touched = false;
+/** rewrite href/src outside <script> bodies */
+function canonicalizeUrls(html, selfUrl, index) {
+  return html
+    .split(/(<script[\s\S]*?<\/script>)/g)
+    .map((part) => (/^<script/.test(part) ? part : part.replace(/((?:href|src)=")([^"]+)"/g, (m, prefix, raw) => {
+      if (EXTERNAL.test(raw)) return m;
+      const served = index.resolve(resolveFrom(selfUrl, raw));
+      return served ? `${prefix}${served}"` : m;
+    })))
+    .join('');
+}
+
+const BARE_LOGO = /<div class="logo">\s*<span class="logo-icon"[^>]*>[^<]*<\/span>\s*<span id="txt-logo-name">[^<]*<\/span>\s*<\/div>/;
+const LOGO_LINK = /<a href="[^"]*"\s+style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">/g;
+const I18N_BOOT = `<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>`;
+
+const index = buildIndex(SITE);
+let changed = 0;
+
+for (const rel of walkHtml(SITE)) {
+  const file = join(SITE, rel);
+  const before = readFileSync(file, 'utf8');
+  const ctx = pageContext(file);
+  const { header, footer } = navBlocks(ctx, index);
+  const home = ctx.cnSub ? '/cn/' : '/';
+  let out = before;
 
   const navBlock = out.match(/<nav class="nav-links">[\s\S]*?<\/nav>/);
-  if (navBlock) {
-    const next = `<nav class="nav-links">\n        ${header}\n      </nav>`;
-    if (navBlock[0] !== next) { out = out.replace(navBlock[0], next); touched = true; }
-  }
+  if (navBlock) out = out.replace(navBlock[0], `<nav class="nav-links">\n        ${header}\n      </nav>`);
 
   const footerBlock = out.match(/<div class="footer-nav">[\s\S]*?<\/div>/);
-  if (footerBlock) {
-    const next = `<div class="footer-nav">\n        ${footer}\n      </div>`;
-    if (footerBlock[0] !== next) { out = out.replace(footerBlock[0], next); touched = true; }
+  if (footerBlock) out = out.replace(footerBlock[0], `<div class="footer-nav">\n        ${footer}\n      </div>`);
+
+  // a logo without a link is chrome-incomplete: wrap it
+  out = out.replace(
+    BARE_LOGO,
+    `<div class="logo">\n        <a href="${home}" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">\n          <span class="logo-icon" style="background:var(--success-color);">P</span>\n          <span id="txt-logo-name">Plobi-kit</span>\n        </a>\n      </div>`
+  );
+  out = out.replace(LOGO_LINK, `<a href="${home}" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">`);
+
+  if (!/<button class="lang-btn"/.test(out)) {
+    out = out.replace(
+      /<div class="controls">\s*<\/div>/,
+      `<div class="controls">\n        <button class="lang-btn" id="lang-btn">${ctx.cn ? 'EN' : 'CN'}</button>\n      </div>`
+    );
   }
 
-  if (touched) {
+  out = canonicalizeUrls(out, fileToUrl(rel), index);
+
+  if (!/applyTranslations\s*\(/.test(out)) out = out.replace(/<\/body>/, I18N_BOOT);
+
+  out = toLf(out);
+  if (out !== before) {
     writeFileSync(file, out, 'utf8');
     changed++;
-    console.log(`normalized: ${rel}`);
-  }
-
-  // --- Logo must link to the language home (the nav has no Home item) ---
-  // --- Controls must contain the language toggle                       ---
-  const logoHome = cnSub ? cnPrefix + 'index.html' : rootPrefix + 'index.html';
-  const langLabel = cn ? 'EN' : 'CN';
-  let out2 = readFileSync(file, 'utf8');
-  let touched2 = false;
-
-  const bareLogo = out2.match(/<div class="logo">\s*<span class="logo-icon"[^>]*>[^<]*<\/span>\s*<span id="txt-logo-name">[^<]*<\/span>\s*<\/div>/);
-  if (bareLogo) {
-    out2 = out2.replace(
-      bareLogo[0],
-      `<div class="logo">\n        <a href="${logoHome}" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">\n          <span class="logo-icon" style="background:var(--success-color);">P</span>\n          <span id="txt-logo-name">Plobi-kit</span>\n        </a>\n      </div>`
-    );
-    touched2 = true;
-  }
-
-  if (!/<button class="lang-btn"/.test(out2)) {
-    const emptyControls = out2.match(/<div class="controls">\s*<\/div>/);
-    if (emptyControls) {
-      out2 = out2.replace(
-        emptyControls[0],
-        `<div class="controls">\n        <button class="lang-btn" id="lang-btn">${langLabel}</button>\n      </div>`
-      );
-      touched2 = true;
-    }
-  }
-
-  if (touched2) {
-    writeFileSync(file, out2, 'utf8');
-    if (!touched) changed++;
-    console.log(`chrome fixed: ${rel}`);
+    console.log(`chrome: ${rel}`);
   }
 }
 console.log(`\n${changed} file(s) updated.`);
