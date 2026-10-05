@@ -2,25 +2,20 @@
  * Refresh sitemap.xml:
  *   - clean URLs (drop .html / index.html — matches the assets layer's
  *     auto-trailing-slash html_handling)
- *   - real <lastmod> dates from each file's modification time
+ *   - keep every recorded <lastmod>; date entries that have none, and pass
+ *     --restamp when a batch of content really did change
  *   - append any page that is not listed yet, with hreflang alternates when the
  *     other language has a page too
  * Also ensures robots.txt declares the sitemap.
  *
- * Run after content changes: node scripts/update-sitemap.mjs
+ * Run after content changes: node scripts/update-sitemap.mjs [--restamp]
  */
-import { readFileSync, writeFileSync, statSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileToUrl, walkHtml, toLf } from './lib/urls.mjs';
 
 const ROOT = process.cwd();
 const SITE = join(ROOT, 'public');
-
-function urlToFile(pathname) {
-  if (pathname === '/') return join(SITE, 'index.html');
-  if (pathname.endsWith('/')) return join(SITE, pathname.slice(1), 'index.html');
-  return join(SITE, pathname.slice(1) + '.html');
-}
 
 let sitemap = toLf(readFileSync(join(SITE, 'sitemap.xml'), 'utf8'));
 
@@ -33,14 +28,22 @@ sitemap = sitemap.replace(/https:\/\/plobikit\.com\/(cn\/)?([^"<\s]*?)\.html/g, 
   return base + rest;
 });
 
-// Real lastmod per <url> block, from the file's mtime.
+// lastmod must be reproducible on any machine, and a file's mtime is not: a
+// fresh checkout stamps every page with "now", so a CI build rewrote all 155
+// dates and failed the drift gate. Recorded dates are therefore kept as
+// committed; --restamp (a deliberate, author-side step) re-dates everything to
+// today when a batch of content actually changed.
+const TODAY = new Date().toISOString().slice(0, 10);
+const restamp = process.argv.includes('--restamp');
+
 sitemap = sitemap.replace(/<url>[\s\S]*?<\/url>/g, (block) => {
-  const loc = (block.match(/<loc>([^<]+)<\/loc>/) || [])[1];
-  if (!loc) return block;
-  const file = urlToFile(new URL(loc).pathname);
-  if (!existsSync(file)) return block;
-  const iso = statSync(file).mtime.toISOString().slice(0, 10);
-  return block.replace(/<lastmod>[^<]*<\/lastmod>/, `<lastmod>${iso}</lastmod>`);
+  if (!block.includes('<loc>')) return block;
+  const dated = /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(block);
+  if (dated && !restamp) return block;
+  if (/<lastmod>[^<]*<\/lastmod>/.test(block)) {
+    return block.replace(/<lastmod>[^<]*<\/lastmod>/, `<lastmod>${TODAY}</lastmod>`);
+  }
+  return block.replace('</loc>', `</loc>\n    <lastmod>${TODAY}</lastmod>`);
 });
 
 // A page that exists on disk but is not listed yet gets appended, so adding a
@@ -59,7 +62,7 @@ function newEntry(u) {
     ? `\n    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com${zh}"/>`
       + `\n    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com${en}"/>`
     : '';
-  const lastmod = statSync(urlToFile(u)).mtime.toISOString().slice(0, 10);
+  const lastmod = TODAY;
   return `  <url>\n    <loc>https://plobikit.com${u}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>${alts}\n  </url>`;
 }
 

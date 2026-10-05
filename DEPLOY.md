@@ -45,7 +45,10 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 2. `cleanup` — 全站卫生检查（假广告位、坏标题、缺失 canonical）
 3. `normalize-nav` — 外壳契约：导航、页脚、logo、语言按钮、资源路径、
    内链规范化、i18n 启动脚本，**每次构建都会重写所有页面**
-4. `update-sitemap` — 刷新 lastmod，并把新增页面补进 sitemap
+4. `update-sitemap` — 把新增页面补进 sitemap；已有 `<lastmod>` 一律保留，
+   只有缺日期的条目和新增页面打今天的 UTC 日期（内容确实变了想整体重打日期：
+   `node scripts/update-sitemap.mjs --restamp`）。日期绝不取文件 mtime——
+   CI 的全新 checkout 会把每个文件的 mtime 变成"当下"，那样的产物在别的机器上复现不出来
 
 页面分两类：
 
