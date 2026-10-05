@@ -296,7 +296,11 @@ export function applyTranslations(lang) {
   document.documentElement.lang = lang === 'cn' ? 'zh' : 'en';
   for (const el of document.querySelectorAll('[data-i18n]')) {
     const key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) el.textContent = dict[key];
+    const value = dict[key];
+    if (value === undefined) continue;
+    // the dictionary is repo-authored, so a value carrying a tag is a deliberate
+    // link (the CN hub/tool CTAs) — writing it as text would show markup source
+    if (/<[a-z/]/i.test(value)) el.innerHTML = value; else el.textContent = value;
   }
 }
 
