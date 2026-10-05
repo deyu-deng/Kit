@@ -9,8 +9,10 @@
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { CRON_RECIPES, GIT_RECIPES } from './gen-recipes.mjs';
 
 const OUT = join(process.cwd(), 'public', 'cheatsheets');
+const OUT_CN = join(process.cwd(), 'public', 'cn', 'cheatsheets');
 mkdirSync(OUT, { recursive: true });
 
 const SHEETS = [
@@ -525,3 +527,161 @@ ${sheet.tables.map(tableHTML).join('\n')}
   console.log(`generated: cheatsheets/${sheet.slug}.html`);
 }
 console.log(`\n${SHEETS.length} sheet(s) generated.`);
+
+/* ------------------------------- hub pages ------------------------------- */
+/*
+ * /cheatsheets/ and /cn/cheatsheets/ live here too. They used to be copied by
+ * hand, which meant the Chinese hub could never learn that a recipe had been
+ * translated — the list below is derived from the recipe data, so each new
+ * translation batch shows up on its own.
+ */
+
+const WV = (inner) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+
+const HUB_CARDS = [
+  { slug: 'cron', en: 'Cron Expressions', cn: 'Cron 表达式', icon: WV('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><polyline points="16 2 18 0 21 3"/>') },
+  { slug: 'git', en: 'Git Commands', cn: 'Git 命令', icon: WV('<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>') },
+  { slug: 'regex', en: 'Regex Syntax', cn: '正则语法', icon: WV('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/>') },
+  { slug: 'flexgrid', en: 'Flexbox &amp; Grid', cn: 'Flexbox 与 Grid', icon: WV('<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>') },
+  { slug: 'markdown', en: 'Markdown Syntax', cn: 'Markdown 语法', icon: WV('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13v-1h6v1"/><path d="M9 17h6"/>') },
+  { slug: 'http-status', en: 'HTTP Status Codes', cn: 'HTTP 状态码', icon: WV('<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>') },
+  { slug: 'html-entities', en: 'HTML Entities', cn: 'HTML 实体', icon: WV('<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>') },
+  { slug: 'base64', en: 'Base64 Encoding', cn: 'Base64 编码', icon: WV('<polyline points="14 2 14 8 20 8"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M10 16H8"/><path d="M16 16h-2"/>') },
+];
+
+const HUB_TEXT = {
+  en: {
+    title: 'Cheat Sheets — Cron, Git, Regex, Markdown &amp; More | Plobi-kit',
+    metaDesc: 'Free printable-quality cheat sheets: cron expressions, Git commands, regex syntax, Markdown, Flexbox & Grid, HTTP status codes, HTML entities, and Base64. Each sheet pairs with an interactive browser tool.',
+    h1: 'Cheat Sheets',
+    intro: 'Quick-reference tables for the things you look up twice a week and never quite memorize.',
+    ctaGuides: 'Want to understand a topic instead of looking it up? Read the Guides.',
+    ctaTools: 'Want to try what you just looked up? Open the matching Tool.',
+    copy: '&copy; 2026 Plobi. All rights reserved.',
+  },
+  cn: {
+    title: '速查表 — Cron、Git、正则、Markdown 等 | Plobi-kit',
+    metaDesc: '免费的印刷级速查表:Cron 表达式、Git 命令、正则语法、Markdown、Flexbox 与 Grid、HTTP 状态码、HTML 实体、Base64。每张表都配套了浏览器内互动工具。',
+    h1: '速查表',
+    intro: '那些你每周要查两遍但又记不住的东西——我们这里的速查表一页搞定。',
+    ctaGuides: '想弄懂原理而不是查表?去看教程。',
+    ctaTools: '查完了想动手?打开对应的工具。',
+    copy: '&copy; 2026 Plobi. 保留所有权利。',
+  },
+};
+
+// only recipes that carry a Chinese block get a Chinese page, so only those are
+// worth a link in the Chinese hub
+const translatedRecipes = () =>
+  [...CRON_RECIPES, ...GIT_RECIPES]
+    .filter((r) => r.zh)
+    .map((r) => {
+      const short = r.zh.title.replace(/\s*—.*$/, '').replace(/^Cron /, '');
+      const expr = r.expr ? `<code style="color: var(--text-main);">${r.expr}</code> ` : '';
+      return `<a href="/cn/cheatsheets/${r.slug}" style="color: var(--success-color); text-decoration: none;">${expr}${short}</a>`;
+    });
+
+const recipeSection = () => {
+  const list = translatedRecipes();
+  if (!list.length) return '';
+  return `
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">分步配方</h2>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin: 0 0 16px 0;">一条问题一页答案：表达式、逐字段解释和常见问题。</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 24px; font-size: 14px;">
+        ${list.join('\n        ')}
+      </div>`;
+};
+
+const hubPage = (lang) => {
+  const T = HUB_TEXT[lang];
+  // the sheets themselves are English-only, so both hubs card-link /cheatsheets/;
+  // only the recipe list below has Chinese pages to point at
+  const base = '/cheatsheets/';
+  const cards = HUB_CARDS.map((c) => `
+        <a href="${base}${c.slug}" class="tool-card">
+          <div class="tool-card-icon">${c.icon}</div>
+          <h3 class="tool-card-title" data-i18n="cs.${c.slug}.title">${lang === 'cn' ? c.cn : c.en}</h3>
+          <p class="tool-card-desc" data-i18n="cs.${c.slug}.desc"></p>
+        </a>`).join('');
+  return `<!DOCTYPE html>
+<html lang="${lang === 'cn' ? 'zh' : 'en'}">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${T.title}</title>
+  <meta name="description" content="${T.metaDesc}">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/${lang === 'cn' ? 'cn/' : ''}cheatsheets/">
+  <link rel="alternate" hreflang="${lang === 'cn' ? 'en' : 'zh'}" href="https://plobikit.com/${lang === 'cn' ? '' : 'cn/'}cheatsheets/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <style>.tool-card-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; } .tool-card-icon svg { width: 28px; height: 28px; color: var(--success-color); stroke-width: 1.75; }</style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon" style="background:var(--success-color);">P</span>
+        <span id="txt-logo-name">Plobi-kit</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../tools/index.html" id="nav-tools">Tools</a>
+        <a href="index.html" class="active" id="nav-cheatsheets">Cheat Sheets</a>
+        <a href="../guides/index.html" id="nav-guides">Guides</a>
+        <a href="../deals" id="nav-deals">Deals</a>
+        <a href="../collection/index.html" id="nav-collection">Collection</a>
+        <a href="../about.html" id="nav-about">About</a>
+      </nav>
+      <div class="controls"></div>
+    </header>
+
+    <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
+      <h1 data-i18n="cs.h1" style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">${T.h1}</h1>
+      <p data-i18n="cs.intro" style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px;">${T.intro}</p>
+
+      <div class="tools-grid">${cards}
+      </div>
+${lang === 'cn' ? recipeSection() + '\n' : ''}
+      <div style="font-size: 13px; color: var(--text-muted); background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px 20px; line-height: 1.8; margin-top: 28px;">
+        <span data-i18n="cs.cta.guides">${T.ctaGuides}</span>
+        <br><br>
+        <span data-i18n="cs.cta.tools">${T.ctaTools}</span>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
+        <a href="../terms.html" id="nav-footer-terms">Terms</a>
+        <a href="../about.html" id="nav-footer-about">About</a>
+        <a href="../contact.html" id="nav-footer-contact">Contact</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">
+        ${T.copy}
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registered successfully.', reg))
+          .catch(err => console.log('Service Worker registration failed.', err));
+      });
+    }
+  </script>
+</body>
+</html>`;
+};
+
+writeFileSync(join(OUT, 'index.html'), hubPage('en'), 'utf8');
+mkdirSync(OUT_CN, { recursive: true });
+writeFileSync(join(OUT_CN, 'index.html'), hubPage('cn'), 'utf8');
+console.log(`hubs regenerated: /cheatsheets/ and /cn/cheatsheets/ (${translatedRecipes().length} translated recipe(s) listed).`);

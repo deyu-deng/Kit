@@ -8,24 +8,26 @@
  *
  * Output is committed static HTML — add a recipe by adding data + rerun.
  *
- * Bilingual: give a recipe a `zh` block (title, metaDesc, plain, fields,
- * variations, tables, intro, body, code, faq — anything you have translated;
- * missing pieces fall back to the English text) and it also renders to
- * /cn/cheatsheets/. Recipes without `zh` stay English-only, and the Chinese
- * hubs keep linking to the English page. No template edit is needed to add a
- * translation.
+ * Bilingual: add a slug's Chinese block to scripts/recipes-zh.mjs (title,
+ * metaDesc, plain, fields, variations, tables, intro, body, code, faq, tool —
+ * anything you have translated; missing pieces fall back to the English text)
+ * and the recipe also renders to /cn/cheatsheets/. Slugs absent from that file
+ * stay English-only, and the Chinese hubs keep linking to the English page.
+ * No template edit is needed to add a translation.
  *
  * Run: node scripts/gen-recipes.mjs
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import { RECIPE_ZH } from './recipes-zh.mjs';
 
 const OUT = join(process.cwd(), 'public', 'cheatsheets');
 const OUT_CN = join(process.cwd(), 'public', 'cn', 'cheatsheets');
 
 /* ------------------------------ content ---------------------------------- */
 
-const CRON_RECIPES = [
+export const CRON_RECIPES = [
   {
     slug: 'cron-every-minute',
     title: 'Cron Every Minute — Crontab Example',
@@ -907,7 +909,7 @@ const CRON_RECIPES = [
   },
 ];
 
-const GIT_RECIPES = [
+export const GIT_RECIPES = [
   {
     slug: 'git-undo-last-commit',
     title: 'Git Undo Last Commit — 3 Safe Ways',
@@ -1522,6 +1524,18 @@ const GIT_RECIPES = [
   },
 ];
 
+/* Chinese bodies are data, kept in recipes-zh.mjs and keyed by slug. A recipe
+   joins the /cn/ tree as soon as its block exists there; a block whose slug is
+   gone fails the build, so translations cannot rot silently. */
+for (const list of [CRON_RECIPES, GIT_RECIPES]) {
+  for (const r of list) if (RECIPE_ZH[r.slug]) r.zh = RECIPE_ZH[r.slug];
+}
+const knownSlugs = new Set([...CRON_RECIPES, ...GIT_RECIPES].map((r) => r.slug));
+const staleSlugs = Object.keys(RECIPE_ZH).filter((s) => !knownSlugs.has(s));
+if (staleSlugs.length) {
+  throw new Error(`recipes-zh.mjs translates unknown slug(s): ${staleSlugs.join(', ')}`);
+}
+
 /* ------------------------------ template --------------------------------- */
 
 const bySlug = {
@@ -1562,7 +1576,9 @@ function page(kind, r, lang = 'en') {
   const U = UI[lang];
   const Z = (lang === 'cn' && r.zh) || {};
   const text = (key) => (Z[key] !== undefined ? Z[key] : r[key]);
-  const at = (slug) => (slug === r.slug ? lang : (bySlug[kind][slug]?.zh ? 'cn' : 'en'));
+  // an English page always links English siblings (hreflang carries the CN pair);
+  // a Chinese page links CN where it exists and falls back to English otherwise
+  const at = (slug) => (lang === 'cn' && (slug === r.slug || bySlug[kind][slug]?.zh) ? 'cn' : 'en');
   const href = (slug) => (at(slug) === 'cn' ? `/cn/cheatsheets/${slug}` : `/cheatsheets/${slug}`);
   const self = `https://plobikit.com/${lang === 'cn' ? 'cn/' : ''}cheatsheets/${r.slug}`;
   const hubHref = lang === 'cn' ? '/cn/cheatsheets/' : '/cheatsheets/';
@@ -1602,8 +1618,7 @@ function page(kind, r, lang = 'en') {
       </table>` : ''}
       <p class="prose">${text('intro')}</p>`;
 
-  const chipLabel = (x) => ((lang === 'cn' && x.zh?.title) ? x.zh.title : x.title)
-    .replace(' — .*', '').replace('Git ', '');
+  const chipLabel = (x) => ((lang === 'cn' && x.zh?.title) ? x.zh.title : x.title).replace('Git ', '');
 
   const variations =
     kind === 'cron'
@@ -1721,19 +1736,26 @@ function page(kind, r, lang = 'en') {
 </html>`;
 }
 
-let en = 0;
-let cn = 0;
-mkdirSync(OUT_CN, { recursive: true });
-for (const [kind, list] of [['cron', CRON_RECIPES], ['git', GIT_RECIPES]]) {
-  for (const r of list) {
-    writeFileSync(join(OUT, `${r.slug}.html`), page(kind, r, 'en'), 'utf8');
-    en++;
-    // a recipe joins the Chinese tree as soon as its data carries a zh block —
-    // translating is a data change, never a template change
-    if (r.zh) {
-      writeFileSync(join(OUT_CN, `${r.slug}.html`), page(kind, r, 'cn'), 'utf8');
-      cn++;
+function writePages() {
+  let en = 0;
+  let cn = 0;
+  mkdirSync(OUT_CN, { recursive: true });
+  for (const [kind, list] of [['cron', CRON_RECIPES], ['git', GIT_RECIPES]]) {
+    for (const r of list) {
+      writeFileSync(join(OUT, `${r.slug}.html`), page(kind, r, 'en'), 'utf8');
+      en++;
+      // a recipe joins the Chinese tree as soon as its data carries a zh block —
+      // translating is a data change, never a template change
+      if (r.zh) {
+        writeFileSync(join(OUT_CN, `${r.slug}.html`), page(kind, r, 'cn'), 'utf8');
+        cn++;
+      }
     }
   }
+  console.log(`${en} recipe page(s) generated, ${cn} in Chinese.`);
 }
-console.log(`${en} recipe page(s) generated, ${cn} in Chinese.`);
+
+// gen-cheatsheets imports the recipe list to build the Chinese hub's recipe
+// section; importing must not rewrite pages
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMain) writePages();

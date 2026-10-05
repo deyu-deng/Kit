@@ -65,7 +65,7 @@ function pageContext(file) {
   const cn = cnSub || /<html lang="zh"/.test(readFileSync(file, 'utf8').slice(0, 400));
   let active = '';
   if (rel.startsWith('tools/') || rel.startsWith('cn/tools/')) active = 'tools';
-  else if (rel.startsWith('cheatsheets/')) active = 'cheatsheets';
+  else if (rel.startsWith('cheatsheets/') || rel.startsWith('cn/cheatsheets/')) active = 'cheatsheets';
   else if (rel === 'about.html' || rel === 'cn/about.html') active = 'about';
   else if (rel.startsWith('guides/') || rel.startsWith('cn/guides/')) active = 'library';
   else if (rel.startsWith('collection/')) active = 'collection';

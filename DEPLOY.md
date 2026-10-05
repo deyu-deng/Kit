@@ -51,15 +51,16 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 
 | 类别 | 位置 | 能不能手改 |
 |---|---|---|
-| 生成页 | `cheatsheets/`（除 index）、`tools/index.html`、`cn/tools/index.html`、`guides/`、`cn/guides/` | 改数据或模板，改了要重跑 `npm run build` |
-| 手写页 | `index.html`、`cn/index.html`、`about/contact/privacy/terms` 及其 `cn/` 版、`collection/`、两个速查表 hub | 直接改；第 3 步仍会统一它们的外壳 |
+| 生成页 | `cheatsheets/`（含两个速查表 hub）、`cn/cheatsheets/`、`tools/index.html`、`cn/tools/index.html`、`guides/`、`cn/guides/` | 改数据或模板，改了要重跑 `npm run build` |
+| 手写页 | `index.html`、`cn/index.html`、`about/contact/privacy/terms` 及其 `cn/` 版、`collection/` | 直接改；第 3 步仍会统一它们的外壳 |
 
 中英双语：**加译文是改数据，不是改代码。**
 
 - 教程：`content/guides/<slug>.md` 旁边放 `<slug>.zh.md`，自动生成 `/cn/guides/<slug>`
-- 配方：给某条数据加 `zh` 块（`title / metaDesc / plain / fields / variations /
-  tables / intro / body / code / faq`，能给多少给多少），自动生成 `/cn/cheatsheets/<slug>`；
-  没给 `zh` 的配方保持纯英文，中文入口自动链到英文页
+- 配方：在 `scripts/recipes-zh.mjs` 里按 slug 补一块中文（`title / metaDesc / plain /
+  fields / variations / tables / intro / body / code / faq / tool`，能给多少给多少，
+  缺的字段自动回退英文），自动生成 `/cn/cheatsheets/<slug>` 并出现在中文速查表 hub；
+  没给的配方保持纯英文。那里的 slug 若在上游已删除，构建会直接报错，译文不会烂在库里
 - 导航不需要维护"哪些栏目有中文"这张表：`normalize-nav` 按 `public/` 里实际存在的
   页面决定链接目标
 
