@@ -29,7 +29,7 @@
       </div>
       <nav class="nav-links">
         <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
-        <a href="/cn/cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
         <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
         <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
         <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
@@ -87,6 +87,40 @@
         </a>
       </div>
 
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">分步配方</h2>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin: 0 0 16px 0;">一条问题一页答案：表达式、逐字段解释和常见问题。</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 24px; font-size: 14px;">
+        <a href="/cn/cheatsheets/cron-every-minute" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">* * * * *</code> 每分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-5-minutes" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">*/5 * * * *</code> 每 5 分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-10-minutes" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">*/10 * * * *</code> 每 10 分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-15-minutes" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">*/15 * * * *</code> 每 15 分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-30-minutes" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">*/30 * * * *</code> 每 30 分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-hour" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 * * * *</code> 每小时执行一次</a>
+        <a href="/cn/cheatsheets/cron-daily-midnight" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0 * * *</code> 每天午夜执行</a>
+        <a href="/cn/cheatsheets/cron-every-weekday-9am" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 9 * * 1-5</code> 工作日每早 9 点</a>
+        <a href="/cn/cheatsheets/cron-weekends-only" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 10 * * 6,0</code> 只在周末执行</a>
+        <a href="/cn/cheatsheets/cron-first-day-of-month" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0 1 * *</code> 每月 1 号执行</a>
+        <a href="/cn/cheatsheets/cron-last-day-of-month" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">59 23 L * *</code> 每月最后一天执行</a>
+        <a href="/cn/cheatsheets/cron-every-2-hours" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 */2 * * *</code> 每 2 小时执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-3-hours" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 */3 * * *</code> 每 3 小时执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-4-hours" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 */4 * * *</code> 每 4 小时执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-6-hours" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 */6 * * *</code> 每 6 小时执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-12-hours" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 */12 * * *</code> 每 12 小时执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-2-minutes" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">*/2 * * * *</code> 每 2 分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-every-20-minutes" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">*/20 * * * *</code> 每 20 分钟执行一次</a>
+        <a href="/cn/cheatsheets/cron-twice-a-day" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 9,18 * * *</code> 一天两次</a>
+        <a href="/cn/cheatsheets/cron-daily-at-1am" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 1 * * *</code> 每天凌晨 1 点执行</a>
+        <a href="/cn/cheatsheets/cron-daily-at-8am" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 8 * * *</code> 每天早上 8 点执行</a>
+        <a href="/cn/cheatsheets/cron-daily-at-noon" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 12 * * *</code> 每天正午执行</a>
+        <a href="/cn/cheatsheets/cron-daily-at-midnight-and-noon" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0,12 * * *</code> 午夜与正午各一次</a>
+        <a href="/cn/cheatsheets/cron-every-sunday-midnight" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0 * * 0</code> 每周日午夜执行</a>
+        <a href="/cn/cheatsheets/cron-every-monday-9am" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 9 * * 1</code> 每周一早上 9 点执行</a>
+        <a href="/cn/cheatsheets/cron-every-friday-5pm" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 17 * * 5</code> 每周五下午 5 点执行</a>
+        <a href="/cn/cheatsheets/cron-every-month-on-the-15th" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0 15 * *</code> 每月 15 号执行</a>
+        <a href="/cn/cheatsheets/cron-quarterly" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0 1 1,4,7,10 *</code> 每季度执行（每 3 个月）</a>
+        <a href="/cn/cheatsheets/cron-yearly-jan-1st" style="color: var(--success-color); text-decoration: none;"><code style="color: var(--text-main);">0 0 1 1 *</code> 每年 1 月 1 日执行</a>
+      </div>
+
       <div style="font-size: 13px; color: var(--text-muted); background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px 20px; line-height: 1.8; margin-top: 28px;">
         <span data-i18n="cs.cta.guides">想弄懂原理而不是查表?去看教程。</span>
         <br><br>
@@ -116,8 +150,8 @@
       });
     }
   </script>
-  <script type="module">
-    import { applyTranslations, currentLang } from '../../js/i18n-content.js';
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
     import '/app.js';
     applyTranslations(currentLang());
   </script>

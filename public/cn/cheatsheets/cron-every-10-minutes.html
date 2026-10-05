@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cron Every 10 Minutes — Crontab Example | Plobi-kit</title>
-  <meta name="description" content="The cron expression for every 10 minutes: */10 * * * *. Field breakdown, custom offsets like 3-59/10, and catch-up behavior explained.">
+  <title>Cron 每 10 分钟执行一次 — Crontab 示例 | Plobi-kit</title>
+  <meta name="description" content="每 10 分钟的 Cron 表达式：*/10 * * * *。字段拆解、3-59/10 这类自定义起点，以及宕机后的补跑行为。">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-every-10-minutes">
+  <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/cron-every-10-minutes">
   <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-10-minutes">
-  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-10-minutes">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-10-minutes"
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,18 +40,18 @@
   <div class="app-container">
     <header class="app-header">
       <div class="logo">
-        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
           <span class="logo-icon" style="background:var(--success-color);">P</span>
           <span id="txt-logo-name">Plobi-kit</span>
         </a>
       </div>
       <nav class="nav-links">
-        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="/guides/" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -59,44 +59,44 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="/cheatsheets/">Cheat Sheets</a> · <a href="/cheatsheets/cron">Cron Cheat Sheet</a> · Cron Every 10 Minutes — Crontab Example</p>
-      <h1>Cron Every 10 Minutes — Crontab Example</h1>
+      <p class="crumb"><a href="/cn/cheatsheets/">速查表</a> · <a href="/cheatsheets/cron">Cron 速查表</a> · Cron 每 10 分钟执行一次 — Crontab 示例</p>
+      <h1>Cron 每 10 分钟执行一次 — Crontab 示例</h1>
       
       <div class="answer">
         <code class="expr">*/10 * * * *</code>
-        <p class="plain">Runs every 10 minutes — at minutes 0, 10, 20, 30, 40, 50.</p>
+        <p class="plain">每 10 分钟执行一次 — 在 0、10、20、30、40、50 分。</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">逐字段解释</h2>
       <table class="ref">
-        <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
-        <tbody><tr><td><code>Minute</code></td><td><code>*/10</code></td><td>Every 10th minute (0, 10, … 50)</td></tr><tr><td><code>Hour</code></td><td><code>*</code></td><td>Every hour</td></tr><tr><td><code>Day of month</code></td><td><code>*</code></td><td>Every day</td></tr><tr><td><code>Month</code></td><td><code>*</code></td><td>Every month</td></tr><tr><td><code>Day of week</code></td><td><code>*</code></td><td>Every day of the week</td></tr></tbody>
+        <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+        <tbody><tr><td><code>分钟</code></td><td><code>*/10</code></td><td>每第 10 分钟（0、10……50）</td></tr><tr><td><code>小时</code></td><td><code>*</code></td><td>每一小时</td></tr><tr><td><code>每月几号</code></td><td><code>*</code></td><td>每一天</td></tr><tr><td><code>月份</code></td><td><code>*</code></td><td>每个月</td></tr><tr><td><code>星期几</code></td><td><code>*</code></td><td>每周的每一天</td></tr></tbody>
       </table>
-      <p class="prose">Six runs per hour. If you would rather not align with the rest of the world, start the step from a different base: <code>3-59/10 * * * *</code> fires at 3, 13, 23, 33, 43, 53.</p>
+      <p class="prose">每小时 6 次。如果不想和全世界对齐，可以把步进的起点从 0 换成别的数：<code>3-59/10 * * * *</code> 在 3、13、23、33、43、53 分触发。</p>
       <pre class="cmdbox">*/10 * * * * /usr/local/bin/sync.sh</pre>
       
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">相关调度</h2>
       <div class="chips">
-        <a class="chip" href="/cheatsheets/cron-every-5-minutes"><code>*/5 * * * *</code> Every 5 minutes</a>
-        <a class="chip" href="/cheatsheets/cron-every-15-minutes"><code>*/15 * * * *</code> Every 15 minutes</a>
-        <a class="chip" href="/cheatsheets/cron-every-30-minutes"><code>*/30 * * * *</code> Every 30 minutes</a>
+        <a class="chip" href="/cn/cheatsheets/cron-every-5-minutes"><code>*/5 * * * *</code> 每 5 分钟</a>
+        <a class="chip" href="/cn/cheatsheets/cron-every-15-minutes"><code>*/15 * * * *</code> 每 15 分钟</a>
+        <a class="chip" href="/cn/cheatsheets/cron-every-30-minutes"><code>*/30 * * * *</code> 每 30 分钟</a>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">Can I start at an odd minute?</strong><br>Yes — combine a range with a step. <code>3-59/10</code> gives 3, 13, 23… A bare <code>*/10</code> always starts at 0.</p>
-      <p class="prose"><strong style="color: var(--text-main);">What happens if a run takes 10+ minutes?</strong><br>Runs can overlap. Serialize with <code>flock -n /tmp/sync.lock cmd</code> or accept idempotent double-processing.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Does the day-of-week field matter here?</strong><br>It is *, so no — every day. Restrict it (e.g. <code>1-5</code>) to run only on weekdays.</p>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">常见问题</h2>
+      <p class="prose"><strong style="color: var(--text-main);">能从奇数分钟开始吗？</strong><br>可以 — 把范围和步进组合起来。<code>3-59/10</code> 得到 3、13、23……，而单独的 <code>*/10</code> 永远从 0 开始。</p>
+      <p class="prose"><strong style="color: var(--text-main);">一次运行超过 10 分钟会怎样？</strong><br>会出现重叠。用 <code>flock -n /tmp/sync.lock cmd</code> 串行化，或者接受幂等的重复处理。</p>
+      <p class="prose"><strong style="color: var(--text-main);">这里的星期几字段有影响吗？</strong><br>它是 *，所以没有 — 每天都可以。需要限定就改成具体值（例如 <code>1-5</code> 表示工作日）。</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="/tools/cron" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">别死记语法 — 用可视化生成器</p>
+        <a class="btn" href="/cn/tools/cron" style="text-decoration: none;">在 Cron 编辑器里试用这条排程</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="/cheatsheets/cron" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">完整速查表：<a href="/cheatsheets/cron" style="color: var(--success-color);">Cron 速查表</a></p>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

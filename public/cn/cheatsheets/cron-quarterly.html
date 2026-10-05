@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cron Quarterly (Every 3 Months) — Crontab Example | Plobi-kit</title>
-  <meta name="description" content="Schedule a quarterly cron job: 0 0 1 1,4,7,10 *. Runs on the 1st of January, April, July, and October at midnight.">
+  <title>Cron 每季度执行（每 3 个月）— Crontab 示例 | Plobi-kit</title>
+  <meta name="description" content="季度 Cron 任务：0 0 1 1,4,7,10 *。在 1、4、7、10 月的 1 号午夜运行。">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-quarterly">
+  <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/cron-quarterly">
   <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-quarterly">
-  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-quarterly">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-quarterly"
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,18 +40,18 @@
   <div class="app-container">
     <header class="app-header">
       <div class="logo">
-        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
           <span class="logo-icon" style="background:var(--success-color);">P</span>
           <span id="txt-logo-name">Plobi-kit</span>
         </a>
       </div>
       <nav class="nav-links">
-        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="/guides/" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -59,44 +59,44 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="/cheatsheets/">Cheat Sheets</a> · <a href="/cheatsheets/cron">Cron Cheat Sheet</a> · Cron Quarterly (Every 3 Months) — Crontab Example</p>
-      <h1>Cron Quarterly (Every 3 Months) — Crontab Example</h1>
+      <p class="crumb"><a href="/cn/cheatsheets/">速查表</a> · <a href="/cheatsheets/cron">Cron 速查表</a> · Cron 每季度执行（每 3 个月）— Crontab 示例</p>
+      <h1>Cron 每季度执行（每 3 个月）— Crontab 示例</h1>
       
       <div class="answer">
         <code class="expr">0 0 1 1,4,7,10 *</code>
-        <p class="plain">Runs on the 1st of January, April, July, and October at 00:00 (midnight).</p>
+        <p class="plain">在 1 月、4 月、7 月、10 月的 1 号 00:00（午夜）执行。</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">逐字段解释</h2>
       <table class="ref">
-        <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
-        <tbody><tr><td><code>Minute</code></td><td><code>0</code></td><td>At minute 0</td></tr><tr><td><code>Hour</code></td><td><code>0</code></td><td>At midnight (00:00)</td></tr><tr><td><code>Day of month</code></td><td><code>1</code></td><td>1st day of the month</td></tr><tr><td><code>Month</code></td><td><code>1,4,7,10</code></td><td>January, April, July, October (Q1, Q2, Q3, Q4)</td></tr><tr><td><code>Day of week</code></td><td><code>*</code></td><td>Any day of the week</td></tr></tbody>
+        <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+        <tbody><tr><td><code>分钟</code></td><td><code>0</code></td><td>第 0 分</td></tr><tr><td><code>小时</code></td><td><code>0</code></td><td>午夜（00:00）</td></tr><tr><td><code>每月几号</code></td><td><code>1</code></td><td>每月 1 号</td></tr><tr><td><code>月份</code></td><td><code>1,4,7,10</code></td><td>1 月、4 月、7 月、10 月（Q1 到 Q4）</td></tr><tr><td><code>星期几</code></td><td><code>*</code></td><td>星期几都行</td></tr></tbody>
       </table>
-      <p class="prose">Quarterly cycles (financial quarters Q1, Q2, Q3, Q4) start on January 1, April 1, July 1, and October 1. Listing months <code>1,4,7,10</code> or writing <code>1-12/3</code> gives you this clean 4-times-a-year trigger.</p>
+      <p class="prose">财务季度（Q1、Q2、Q3、Q4）分别从 1 月 1 日、4 月 1 日、7 月 1 日、10 月 1 日开始。月份列成 <code>1,4,7,10</code>，或写 <code>1-12/3</code>，都能得到这条一年四次的干净触发。</p>
       <pre class="cmdbox">0 0 1 1,4,7,10 * /usr/local/bin/quarterly-tax-report.sh</pre>
       
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">相关调度</h2>
       <div class="chips">
-        <a class="chip" href="/cheatsheets/cron-first-day-of-month"><code>0 0 1 * *</code> Every month on the 1st</a>
-        <a class="chip" href="/cheatsheets/cron-yearly-jan-1st"><code>0 0 1 1 *</code> Yearly on Jan 1st</a>
-        <a class="chip" href="/cheatsheets/cron-every-sunday-midnight"><code>0 0 * * 0</code> Weekly on Sunday</a>
+        <a class="chip" href="/cn/cheatsheets/cron-first-day-of-month"><code>0 0 1 * *</code> 每月 1 号</a>
+        <a class="chip" href="/cn/cheatsheets/cron-yearly-jan-1st"><code>0 0 1 1 *</code> 每年 1 月 1 日</a>
+        <a class="chip" href="/cn/cheatsheets/cron-every-sunday-midnight"><code>0 0 * * 0</code> 每周日</a>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">Is 1,4,7,10 the same as 1-12/3?</strong><br>Yes, 1-12/3 starts at month 1 and steps every 3 months (1, 4, 7, 10). Both are valid.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Can I run at the end of each quarter instead?</strong><br>End-of-quarter months are March (31), June (30), September (30), and December (31). Because day counts differ, run on the 1st of the following quarter or use a script check.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Does cron have an @quarterly shorthand?</strong><br>No standard @quarterly shorthand exists in POSIX cron; use the explicit expression.</p>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">常见问题</h2>
+      <p class="prose"><strong style="color: var(--text-main);">1,4,7,10 和 1-12/3 一样吗？</strong><br>一样，1-12/3 从 1 月开始每 3 个月步进（1、4、7、10）。两种写法都成立。</p>
+      <p class="prose"><strong style="color: var(--text-main);">能改成每季度最后一天吗？</strong><br>季末月份分别是 3 月（31 天）、6 月（30 天）、9 月（30 天）、12 月（31 天）。因为天数不同，更稳的做法是在下季度 1 号跑，或者由脚本判断。</p>
+      <p class="prose"><strong style="color: var(--text-main);">cron 有 @quarterly 简写吗？</strong><br>没有，POSIX cron 里不存在标准的 @quarterly，请用显式表达式。</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="/tools/cron" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">别死记语法 — 用可视化生成器</p>
+        <a class="btn" href="/cn/tools/cron" style="text-decoration: none;">在 Cron 编辑器里试用这条排程</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="/cheatsheets/cron" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">完整速查表：<a href="/cheatsheets/cron" style="color: var(--success-color);">Cron 速查表</a></p>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cron Midnight and Noon — Crontab Example | Plobi-kit</title>
-  <meta name="description" content="Run a cron job twice daily at 00:00 and 12:00: 0 0,12 * * *. Explicit list format explained.">
+  <title>Cron 午夜与正午各一次 — Crontab 示例 | Plobi-kit</title>
+  <meta name="description" content="一天两次在 00:00 和 12:00 运行 Cron 任务：0 0,12 * * *。解释显式列表写法。">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon">
+  <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon">
   <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon">
-  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon"
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,18 +40,18 @@
   <div class="app-container">
     <header class="app-header">
       <div class="logo">
-        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
           <span class="logo-icon" style="background:var(--success-color);">P</span>
           <span id="txt-logo-name">Plobi-kit</span>
         </a>
       </div>
       <nav class="nav-links">
-        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="/guides/" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -59,44 +59,44 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="/cheatsheets/">Cheat Sheets</a> · <a href="/cheatsheets/cron">Cron Cheat Sheet</a> · Cron Midnight and Noon — Crontab Example</p>
-      <h1>Cron Midnight and Noon — Crontab Example</h1>
+      <p class="crumb"><a href="/cn/cheatsheets/">速查表</a> · <a href="/cheatsheets/cron">Cron 速查表</a> · Cron 午夜与正午各一次 — Crontab 示例</p>
+      <h1>Cron 午夜与正午各一次 — Crontab 示例</h1>
       
       <div class="answer">
         <code class="expr">0 0,12 * * *</code>
-        <p class="plain">Runs twice daily — at 00:00 (midnight) and 12:00 (noon).</p>
+        <p class="plain">一天两次 — 00:00（午夜）和 12:00（正午）。</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">逐字段解释</h2>
       <table class="ref">
-        <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
-        <tbody><tr><td><code>Minute</code></td><td><code>0</code></td><td>At minute 0</td></tr><tr><td><code>Hour</code></td><td><code>0,12</code></td><td>At 00:00 and 12:00</td></tr><tr><td><code>Day of month</code></td><td><code>*</code></td><td>Every day</td></tr><tr><td><code>Month</code></td><td><code>*</code></td><td>Every month</td></tr><tr><td><code>Day of week</code></td><td><code>*</code></td><td>Every day of the week</td></tr></tbody>
+        <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+        <tbody><tr><td><code>分钟</code></td><td><code>0</code></td><td>第 0 分</td></tr><tr><td><code>小时</code></td><td><code>0,12</code></td><td>00:00 和 12:00</td></tr><tr><td><code>每月几号</code></td><td><code>*</code></td><td>每一天</td></tr><tr><td><code>月份</code></td><td><code>*</code></td><td>每个月</td></tr><tr><td><code>星期几</code></td><td><code>*</code></td><td>每周的每一天</td></tr></tbody>
       </table>
-      <p class="prose">The expression <code>0 0,12 * * *</code> clearly states both target hours in a list. It is identical in execution to <code>0 */12 * * *</code> but many engineers prefer the explicit hour listing for readability.</p>
+      <p class="prose"><code>0 0,12 * * *</code> 用列表把两个目标时刻直接写明白。执行效果与 <code>0 */12 * * *</code> 完全一致，但很多工程师更喜欢显式列出小时，读起来不用心算步进。</p>
       <pre class="cmdbox">0 0,12 * * * /usr/local/bin/half-day-rollup.sh</pre>
       
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">相关调度</h2>
       <div class="chips">
-        <a class="chip" href="/cheatsheets/cron-every-12-hours"><code>0 */12 * * *</code> Step syntax (identical)</a>
-        <a class="chip" href="/cheatsheets/cron-twice-a-day"><code>0 9,18 * * *</code> Twice a day (9 AM & 6 PM)</a>
-        <a class="chip" href="/cheatsheets/cron-daily-midnight"><code>0 0 * * *</code> Daily at midnight</a>
+        <a class="chip" href="/cn/cheatsheets/cron-every-12-hours"><code>0 */12 * * *</code> 步进写法（完全等价）</a>
+        <a class="chip" href="/cn/cheatsheets/cron-twice-a-day"><code>0 9,18 * * *</code> 一天两次（早 9 点与晚 6 点）</a>
+        <a class="chip" href="/cn/cheatsheets/cron-daily-midnight"><code>0 0 * * *</code> 每天午夜</a>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">Why use 0,12 instead of */12?</strong><br>Both work identically. Writing 0,12 makes the exact hours immediately obvious without mental step calculation.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Can I add a third time, like 6 PM?</strong><br>Yes: simply write <code>0 0,12,18 * * *</code>.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Can I offset the minutes?</strong><br>Yes: <code>15 0,12 * * *</code> fires at 00:15 and 12:15.</p>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">常见问题</h2>
+      <p class="prose"><strong style="color: var(--text-main);">为什么用 0,12 而不是 */12？</strong><br>两者行为完全相同。写 0,12 能一眼看清具体时刻，不必在脑中推演步进。</p>
+      <p class="prose"><strong style="color: var(--text-main);">能加第三个时间，比如下午 6 点吗？</strong><br>可以：直接写 <code>0 0,12,18 * * *</code>。</p>
+      <p class="prose"><strong style="color: var(--text-main);">分钟能偏移吗？</strong><br>可以：<code>15 0,12 * * *</code> 在 00:15 和 12:15 触发。</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="/tools/cron" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">别死记语法 — 用可视化生成器</p>
+        <a class="btn" href="/cn/tools/cron" style="text-decoration: none;">在 Cron 编辑器里试用这条排程</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="/cheatsheets/cron" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">完整速查表：<a href="/cheatsheets/cron" style="color: var(--success-color);">Cron 速查表</a></p>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.

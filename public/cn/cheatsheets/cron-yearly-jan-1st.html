@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cron Every Sunday at Midnight — Crontab Example | Plobi-kit</title>
-  <meta name="description" content="Schedule a weekly job on Sunday at midnight: 0 0 * * 0. Equivalent to @weekly and ideal for weekly maintenance.">
+  <title>Cron 每年 1 月 1 日执行 — Crontab 示例 | Plobi-kit</title>
+  <meta name="description" content="每年一次的 Cron 任务，1 月 1 日午夜运行：0 0 1 1 *。与 @yearly 或 @annually 等价。">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/cron-every-sunday-midnight">
-  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-sunday-midnight">
-  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-sunday-midnight">
+  <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/cron-yearly-jan-1st">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-yearly-jan-1st">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-yearly-jan-1st"
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,18 +40,18 @@
   <div class="app-container">
     <header class="app-header">
       <div class="logo">
-        <a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
           <span class="logo-icon" style="background:var(--success-color);">P</span>
           <span id="txt-logo-name">Plobi-kit</span>
         </a>
       </div>
       <nav class="nav-links">
-        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Tools</a>
-        <a href="/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Cheat Sheets</a>
-        <a href="/guides/" id="nav-library" data-i18n="nav.library">Library</a>
-        <a href="/deals" id="nav-deals" data-i18n="nav.deals">Deals</a>
-        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Collection</a>
-        <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
         <button class="lang-btn" id="lang-btn">CN</button>
@@ -59,44 +59,44 @@
     </header>
 
     <main style="max-width: 860px; margin: 0 auto; margin-bottom: 40px;">
-      <p class="crumb"><a href="/cheatsheets/">Cheat Sheets</a> · <a href="/cheatsheets/cron">Cron Cheat Sheet</a> · Cron Every Sunday at Midnight — Crontab Example</p>
-      <h1>Cron Every Sunday at Midnight — Crontab Example</h1>
+      <p class="crumb"><a href="/cn/cheatsheets/">速查表</a> · <a href="/cheatsheets/cron">Cron 速查表</a> · Cron 每年 1 月 1 日执行 — Crontab 示例</p>
+      <h1>Cron 每年 1 月 1 日执行 — Crontab 示例</h1>
       
       <div class="answer">
-        <code class="expr">0 0 * * 0</code>
-        <p class="plain">Runs once a week on Sunday at 00:00 (midnight).</p>
+        <code class="expr">0 0 1 1 *</code>
+        <p class="plain">每年一次，在 1 月 1 日 00:00（午夜）执行。</p>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Field by field</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">逐字段解释</h2>
       <table class="ref">
-        <thead><tr><th>Field</th><th>Value</th><th>Meaning</th></tr></thead>
-        <tbody><tr><td><code>Minute</code></td><td><code>0</code></td><td>At minute 0</td></tr><tr><td><code>Hour</code></td><td><code>0</code></td><td>At midnight (00:00)</td></tr><tr><td><code>Day of month</code></td><td><code>*</code></td><td>Every day of the month</td></tr><tr><td><code>Month</code></td><td><code>*</code></td><td>Every month</td></tr><tr><td><code>Day of week</code></td><td><code>0</code></td><td>Sunday only</td></tr></tbody>
+        <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+        <tbody><tr><td><code>分钟</code></td><td><code>0</code></td><td>第 0 分</td></tr><tr><td><code>小时</code></td><td><code>0</code></td><td>午夜（00:00）</td></tr><tr><td><code>每月几号</code></td><td><code>1</code></td><td>1 号</td></tr><tr><td><code>月份</code></td><td><code>1</code></td><td>只有 1 月</td></tr><tr><td><code>星期几</code></td><td><code>*</code></td><td>星期几都行</td></tr></tbody>
       </table>
-      <p class="prose">Sunday midnight is the standard timestamp for weekly rollups, log archives, and database vacuuming. The shorthand <code>@weekly</code> expands to this exact schedule.</p>
-      <pre class="cmdbox">0 0 * * 0 /usr/local/bin/weekly-maintenance.sh</pre>
+      <p class="prose">年度归档分区、版权年份更新、年度汇总生成这类活儿，通常排在 1 月 1 日午夜执行。简写 <code>@yearly</code> 和 <code>@annually</code> 指的都是这条表达式。</p>
+      <pre class="cmdbox">0 0 1 1 * /usr/local/bin/annual-archive.sh</pre>
       
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Related schedules</h2>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">相关调度</h2>
       <div class="chips">
-        <a class="chip" href="/cheatsheets/cron-daily-midnight"><code>0 0 * * *</code> Daily at midnight</a>
-        <a class="chip" href="/cheatsheets/cron-every-monday-9am"><code>0 9 * * 1</code> Every Monday at 9 AM</a>
-        <a class="chip" href="/cheatsheets/cron-weekends-only"><code>0 10 * * 6,0</code> Weekends at 10 AM</a>
+        <a class="chip" href="/cn/cheatsheets/cron-quarterly"><code>0 0 1 1,4,7,10 *</code> 每季度排程</a>
+        <a class="chip" href="/cn/cheatsheets/cron-first-day-of-month"><code>0 0 1 * *</code> 每月 1 号</a>
+        <a class="chip" href="/cn/cheatsheets/cron-daily-midnight"><code>0 0 * * *</code> 每天午夜</a>
       </div>
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
-      <p class="prose"><strong style="color: var(--text-main);">Is 0 0 * * 7 the same as 0 0 * * 0?</strong><br>Yes, in most implementations both 0 and 7 represent Sunday. However, 0 is the POSIX standard.</p>
-      <p class="prose"><strong style="color: var(--text-main);">Is @weekly identical to 0 0 * * 0?</strong><br>Yes, @weekly is the standardized shorthand.</p>
-      <p class="prose"><strong style="color: var(--text-main);">What if I want Sunday at 11 PM?</strong><br>Write <code>0 23 * * 0</code>.</p>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">常见问题</h2>
+      <p class="prose"><strong style="color: var(--text-main);">@yearly 和 @annually 完全一样吗？</strong><br>一样，两个简写都展开成 <code>0 0 1 1 *</code>。</p>
+      <p class="prose"><strong style="color: var(--text-main);">1 月 1 日 00:00 服务器不在线呢？</strong><br>如果不借助 anacron 或脚本内的补偿检查，这个任务要等到下一年才会跑。</p>
+      <p class="prose"><strong style="color: var(--text-main);">想改成 12 月 31 日 23:59 呢？</strong><br>写 <code>59 23 31 12 *</code>。</p>
       <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Stop memorizing — build it interactively</p>
-        <a class="btn" href="/tools/cron" style="text-decoration: none;">Try this schedule in the Cron Editor</a>
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">别死记语法 — 用可视化生成器</p>
+        <a class="btn" href="/cn/tools/cron" style="text-decoration: none;">在 Cron 编辑器里试用这条排程</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">Full reference: <a href="/cheatsheets/cron" style="color: var(--success-color);">Cron Cheat Sheet</a></p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 20px;">完整速查表：<a href="/cheatsheets/cron" style="color: var(--success-color);">Cron 速查表</a></p>
     </main>
 
     <footer class="app-footer">
       <div class="footer-nav">
-        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacy Policy</a>
-        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
-        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
-        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.
