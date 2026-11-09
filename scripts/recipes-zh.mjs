@@ -805,4 +805,621 @@ export const RECIPE_ZH = {
     ],
     tool: { href: '/cn/tools/cron', label: '在 Cron 编辑器里试用这条排程' },
   },
+  'git-undo-last-commit': {
+    title: 'Git 撤销最后一次提交 — 三种安全做法',
+    metaDesc: '撤销最后一次 Git 提交又不丢工作：对比 git reset --soft/--mixed/--hard，什么情况用 amend 更好，以及 reflog 怎么救回误操作。',
+    intro: '撤销最后一次提交有三种方式，区别在于你的改动会变成什么状态。按你想保留多少来选。',
+    tables: [
+      {
+        caption: '三种 reset 的区别',
+        headers: ['命令', '提交里的改动', '适用场景'],
+        rows: [
+          ['git reset --soft HEAD~1', '保留，仍在暂存区', '想换提交信息或重新分组'],
+          ['git reset HEAD~1', '保留，退回未暂存', '想重新挑选要提交的内容'],
+          ['git reset --hard HEAD~1', '删除', '这次提交本身就是废的，内容也不要了'],
+        ],
+      },
+      {
+        caption: '相关操作',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git commit --amend -m "更好的说明"', '改写最后一次提交，而不是撤销'],
+          ['git reflog', '时光机 — 找出 HEAD 曾经指向的任何提交'],
+          ['git revert <sha>', '撤销已经推送的提交（共享分支上安全）'],
+        ],
+      },
+    ],
+    faq: [
+      ['我误跑了 --hard，工作没了吗？', '通常还在。<code>git reflog</code> 会列出 HEAD 走过的每个位置，找到 reset 之前的那次提交，再 <code>git reset --hard HEAD@{n}</code> 回去。reflog 一般保留约 90 天。'],
+      ['能用 reset 撤销已推送的提交吗？', '不要。改写共享历史会逼所有人修自己的 clone。用 <code>git revert <sha></code>，它会新建一次提交把旧的抵消掉。'],
+      ['reset 和 revert 一句话区别？', 'reset 改写历史（只适合本地）；revert 追加历史（可以共享）。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-discard-local-changes': {
+    title: 'Git 丢弃本地改动 — 安全且彻底',
+    metaDesc: '丢弃未提交的改动：用 git restore 处理已跟踪文件，git clean 处理未跟踪文件，先跑 dry-run，以及哪些其实还能救回来。',
+    intro: '丢弃未提交的工作是 Git 里少数没有内置撤销的操作，所以值得弄清楚每个命令到底扔掉什么。',
+    tables: [
+      {
+        caption: '已跟踪文件（改过但没提交）',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git restore <file>', '丢弃单个文件的改动'],
+          ['git restore .', '丢弃整个工作区的改动'],
+          ['git restore --staged <file>', '保留改动，只把它移出暂存区'],
+        ],
+      },
+      {
+        caption: '未跟踪文件（Git 没在管的新文件）',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git clean -n', '试运行 — 列出会被删掉的东西（永远先跑这个）'],
+          ['git clean -fd', '删除未跟踪的文件和目录'],
+          ['git clean -fdx', '连被忽略的文件一起删（node_modules、.env…）— 格外小心'],
+        ],
+      },
+    ],
+    faq: [
+      ['restore 和以前的 checkout -- 有什么区别？', '效果一样。restore 是 Git 2.23 引入的，用来拆分 checkout 身上过多的职责；checkout 还能用，但 restore 语义更清楚。'],
+      ['丢弃的改动还能恢复吗？', '已跟踪文件：有时可以，用 <code>git fsck --lost-found</code> 找悬空对象，或者看编辑器的本地历史。clean 删掉的未跟踪文件：基本没了，除非编辑器留了副本。'],
+      ['只想丢弃文件里的一部分改动？', '<code>git restore -p <file></code> 会逐块问你，每块 y/n。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-delete-branch': {
+    title: 'Git 删除分支 — 本地与远端',
+    metaDesc: '删除本地和远端分支：-d 与 -D 的区别、远端分支怎么删、删完列表还显示怎么办。',
+    intro: '删分支删的是一个指针，通常不是提交 — 只有提交变成不可达之后，Git 才会真正回收。',
+    tables: [
+      {
+        caption: '本地分支',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git branch -d <name>', '删除 — 分支有未合并的提交时会拒绝'],
+          ['git branch -D <name>', '强制删除 — 即使有未合并的提交（那些提交会变成不可达）'],
+          ['git branch -a', '列出所有分支，包括本地和远端跟踪分支'],
+        ],
+      },
+      {
+        caption: '远端分支',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git push origin --delete <name>', '删除远端分支'],
+          ['git fetch --prune', '清掉本地已经失效的远端跟踪引用'],
+        ],
+      },
+    ],
+    faq: [
+      ['-d 拒绝删除，为什么？', '分支里有提交没合并到任何地方。确定不要了就 <code>-D</code>；否则先 merge 或 rebase。'],
+      ['删完分支列表里还有？', '本地的远端跟踪引用过期了。<code>git fetch --prune</code>（或 <code>git remote prune origin</code>）同步一下。'],
+      ['能删 main/master 吗？', 'Git 不会让你删当前所在的分支；远端一般也有保护。该删的是功能分支。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-stash-changes': {
+    title: 'Git Stash — 不提交也能暂存改动',
+    metaDesc: 'git stash 把未提交的改动收起来，还你一个干净工作区：stash/pop/apply/list/drop 的完整用法。',
+    intro: 'stash 把未提交的改动先搁到一边，工作区立刻变干净 — 适合「我得先修别的东西」。',
+    tables: [
+      {
+        caption: 'stash 基本流程',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git stash', '收起所有已跟踪文件的改动，工作区变干净'],
+          ['git stash pop', '取回最近一次 stash，并从栈里删除'],
+          ['git stash apply', '取回但保留栈里的副本'],
+          ['git stash list', '列出所有 stash（stash@{0} 是最新的）'],
+          ['git stash drop stash@{1}', '删除指定的一条 stash'],
+        ],
+      },
+      {
+        caption: '包含更多文件',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git stash -u', '连未跟踪的新文件一起收起'],
+          ['git stash -a', '连被 .gitignore 忽略的文件也一起收起'],
+          ['git stash show -p stash@{0}', '查看这条 stash 的具体改动'],
+        ],
+      },
+    ],
+    faq: [
+      ['stash 会包含新文件吗？', '默认不会，只处理已跟踪文件。加 <code>-u</code> 包含未跟踪文件，<code>-a</code> 连被忽略的也包含。'],
+      ['能在 A 分支 stash、B 分支 pop 吗？', '可以，stash 与分支无关。在哪里 pop 都行，冲突按合并的方式解决。'],
+      ['用 stash 还是开分支？', '几分钟到几小时用 stash；可能活过今天的改动，开真正的分支。stash 很容易忘，也容易误删。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-amend-last-commit': {
+    title: 'Git 修改最后一次提交（amend）',
+    metaDesc: 'git commit --amend 用修正版替换最后一次提交：改提交信息、补漏掉的文件、重置作者信息，以及已推送后怎么处理。',
+    intro: 'amend 用修正后的版本替换最后一次提交 — 改动不变，加上你要补的东西。比留一堆「oops」提交干净。',
+    tables: [
+      {
+        caption: '常见 amend 用法',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git commit --amend -m "新的说明"', '只改提交信息'],
+          ['git add forgotten.txt && git commit --amend --no-edit', '把漏掉的文件补进这次提交，信息不动'],
+          ['git commit --amend --reset-author', '把作者和时间更新为当前'],
+        ],
+      },
+      {
+        caption: '已推送之后',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git push --force-with-lease', '安全地覆盖远端（比 --force 多一层保护）'],
+          ['git revert <sha>', '受保护分支上更稳妥的替代做法'],
+        ],
+      },
+    ],
+    faq: [
+      ['我 amend 了已经推送的提交，怎么办？', '你改写了历史：用 <code>--force-with-lease</code> 推（不要裸 --force），并通知协作者 rebase 本地副本。受保护分支上，优先追加一个修复提交。'],
+      ['amend 会改提交日期吗？', '作者日期默认保留，提交者日期变成现在。想两个都刷新就加 --reset-author。'],
+      ['amend 和 fixup 的区别？', '--amend 只修最上面那次提交。更早的提交用 <code>git rebase -i</code>，把它们标成 fixup/squash。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-revert-pushed-commit': {
+    title: '撤销已推送的提交 — 安全做法（git revert）',
+    metaDesc: '提交已经在共享分支上时，不要改写历史，要追加历史。git revert 生成一次反向提交，别人的 clone 不会坏。',
+    intro: '提交一旦到了共享分支，就别改写历史 — 追加历史。<code>git revert</code> 算出一次提交的完全反向操作并提交，谁的 clone 都不会坏。',
+    tables: [
+      {
+        caption: 'revert 用法',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git revert <sha>', '新建一次提交，精确抵消那次提交'],
+          ['git revert <old>..<new>', '撤销一个区间的提交，从旧到新'],
+          ['git revert -m 1 <merge-sha>', '撤销一次合并提交（1 = 保留你合并进去的那条线）'],
+          ['git push', '像普通提交一样推送，不需要 force'],
+        ],
+      },
+      {
+        caption: '选 revert 还是 reset',
+        headers: ['情况', '选择'],
+        rows: [
+          ['提交还没推送', 'reset 可以'],
+          ['提交已推送 / 共享分支', '一律 revert'],
+          ['受保护分支', '只能 revert，通常还要走 PR'],
+        ],
+      },
+    ],
+    faq: [
+      ['revert 和 reset 怎么选？', '没推送、私有：reset 可以。已推送或共享：一律 revert。reset 共享分支会逼每个协作者收拾自己的副本。'],
+      ['撤销合并提交为什么要 -m 1？', '合并有两个父提交，Git 要知道保留哪条历史线。-m 1 保留你当时所在的分支（通常是 main），抵消被合并进来的那一侧。'],
+      ['revert 之后又想要回这次改动？', 'revert 那个 revert，或者重新 cherry-pick 原提交。历史始终是追加式的。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-rename-local-branch': {
+    title: 'Git 重命名本地分支 — 安全且即时',
+    metaDesc: '重命名本地分支只改 .git/refs/heads 里的指针，不影响提交历史；附改名后如何同步远端。',
+    intro: '重命名本地分支只是改 .git/refs/heads 里的指针，安全、即时，不碰提交历史。',
+    tables: [
+      {
+        caption: '重命名命令',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git branch -m <new-name>', '重命名当前所在的分支'],
+          ['git branch -m <old-name> <new-name>', '不用切过去，直接重命名任意分支'],
+          ['git branch -M <new-name>', '强制重命名 — 即使新名字已存在'],
+        ],
+      },
+      {
+        caption: '改名之后',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git branch --show-current', '确认当前分支名'],
+          ['git push origin -u <new-name>', '把新名字推到远端并设 upstream'],
+          ['git push origin --delete <old-name>', '删掉远端旧名字'],
+        ],
+      },
+    ],
+    faq: [
+      ['重命名本地分支会影响远端吗？', '不会。本地改名只改本地引用。要同步 GitHub/GitLab，推送新名字再删掉旧的远端分支。'],
+      ['-m 报 already exists 怎么办？', '确定要覆盖已有分支就用大写的 <code>-M</code>。'],
+      ['怎么确认改成功了？', '<code>git branch --show-current</code> 看当前分支名。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-rename-remote-branch': {
+    title: 'Git 重命名远端分支 — 三步完整流程',
+    metaDesc: 'Git 没有直接的远端重命名命令：推送新分支名、重设 upstream、删除旧远端分支，三步完成。',
+    intro: 'Git 没有「远端重命名」这个命令。标准做法是推送新分支名、设置 upstream 跟踪、再删掉旧的远端分支。',
+    tables: [
+      {
+        caption: '远端重命名三步',
+        headers: ['命令', '步骤说明'],
+        rows: [
+          ['git branch -m <old> <new>', '1. 本地重命名'],
+          ['git push origin -u <new>', '2. 推送新分支并重设 upstream'],
+          ['git push origin --delete <old>', '3. 删除远端旧分支'],
+        ],
+      },
+      {
+        caption: '队友同步',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git fetch --prune', '清掉失效的远端引用'],
+          ['git checkout -b <new> origin/<new>', '基于新远端分支建本地分支'],
+        ],
+      },
+    ],
+    faq: [
+      ['会关掉已有的 Pull Request 吗？', '会。如果 PR 是基于旧分支名开的，改名或删分支会让它关闭或失效。先把 PR 合并或改目标分支。'],
+      ['远端改名后队友要做什么？', '跑 <code>git fetch --prune</code>，再 <code>git checkout -b <new> origin/<new></code>。'],
+      ['能重命名默认分支 main/master 吗？', '可以，但要先在 GitHub/GitLab 的仓库设置里改默认分支，再删旧分支。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-cherry-pick-commit': {
+    title: 'Git Cherry-pick — 把某次提交搬到别处',
+    metaDesc: 'cherry-pick 把一次提交的改动复制到当前分支并生成新的 SHA：单条、多条、区间、只应用不提交的用法。',
+    intro: 'cherry-pick 复制某次提交引入的差异，直接在当前分支上重新提交，生成一个新的 SHA。',
+    tables: [
+      {
+        caption: 'cherry-pick 命令',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git cherry-pick <sha>', '把单条提交应用到当前分支'],
+          ['git cherry-pick <sha-1> <sha-2>', '按顺序应用多条提交'],
+          ['git cherry-pick <old>..<new>', '应用一个区间（不含 old）'],
+          ['git cherry-pick -n <sha>', '只把改动放进工作区，不提交'],
+        ],
+      },
+      {
+        caption: '出问题时',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git cherry-pick --continue', '解决冲突后继续'],
+          ['git cherry-pick --skip', '跳过这条（比如已经合并过）'],
+          ['git cherry-pick --abort', '放弃整个操作'],
+        ],
+      },
+    ],
+    faq: [
+      ['cherry-pick 会把原分支的提交删掉吗？', '不会。它复制改动，原提交在原分支上原封不动。'],
+      ['为什么 SHA 变了？', '提交 SHA 是树、信息、时间戳和父提交的哈希；父提交变了，SHA 自然变。'],
+      ['cherry-pick 一条已经合并过的提交会怎样？', 'Git 会检测到空补丁，提示你用 <code>git cherry-pick --skip</code> 跳过。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-squash-last-n-commits': {
+    title: 'Git 合并最近 N 次提交（squash）',
+    metaDesc: '把一堆 wip/typo/fix 提交压成一条干净的提交：soft reset 与交互式 rebase 两种做法，以及已推送时怎么处理。',
+    intro: 'squash 把杂乱的 wip、typo、fix 提交压成一条，再合并进 main 或开 PR。',
+    tables: [
+      {
+        caption: '两种 squash 做法',
+        headers: ['做法', '命令', '适合'],
+        rows: [
+          ['soft reset', 'git reset --soft HEAD~N && git commit -m "feat: 干净的说明"', '快速把最近 N 条压成一条'],
+          ['交互式 rebase', 'git rebase -i HEAD~N（第一条 pick，其余 squash）', '需要挑选、重排或改提交信息'],
+          ['合并到 main 前', 'git reset $(git merge-base main HEAD) && git commit', '把整个功能分支压成一条'],
+        ],
+      },
+    ],
+    faq: [
+      ['soft reset 和 rebase -i 有什么区别？', 'soft reset 一步搞定、不弹提示；rebase -i 可以逐条重排、压缩或丢弃。'],
+      ['已推送的提交能 squash 吗？', '只建议在私有功能分支上做。已推送就必须 <code>--force-with-lease</code>；共享分支永远不要 squash。'],
+      ['怎么把功能分支所有提交压成一条？', '<code>git reset $(git merge-base main HEAD)</code> 然后再 commit。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-sync-fork': {
+    title: 'Git 同步 Fork 与上游 — 分步操作',
+    metaDesc: '保持 fork 与上游同步，避免提 PR 时产生冲突：添加 upstream、fetch、合并 main、推送四步。',
+    intro: '保持 fork 更新，向原仓库提 PR 时才不会一堆冲突。',
+    tables: [
+      {
+        caption: '完整同步流程',
+        headers: ['命令', '步骤'],
+        rows: [
+          ['git remote add upstream <原仓库地址>', '1. 添加上游远端（只需一次）'],
+          ['git fetch upstream', '2. 拉取上游最新提交和分支'],
+          ['git checkout main && git merge upstream/main', '3. 快进本地 main'],
+          ['git push origin main', '4. 推回你的 GitHub fork'],
+        ],
+      },
+    ],
+    faq: [
+      ['怎么确认 upstream 配好了？', '<code>git remote -v</code>，应该同时看到 <code>origin</code>（你的 fork）和 <code>upstream</code>（原仓库）。'],
+      ['用 merge 还是 rebase？', 'main 用 merge（或快进）是标准做法；功能分支对 upstream/main 做 rebase，历史更线性。'],
+      ['能用 GitHub 的 Sync fork 按钮吗？', '可以，效果等价于远端快进合并，之后本地 <code>git pull</code> 即可。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-delete-remote-tag': {
+    title: 'Git 删除远端标签 — 本地与远端',
+    metaDesc: '标签打错提交或拼错名字时，本地和远端都要删：git tag -d 与 git push --delete 的正确用法。',
+    intro: '发布标签打到错误的提交上、或者名字打错时，本地和远端都要清掉。',
+    tables: [
+      {
+        caption: '删除标签',
+        headers: ['目标', '命令', '作用'],
+        rows: [
+          ['本地', 'git tag -d <tagname>', '删除本地标签引用'],
+          ['远端', 'git push origin --delete <tagname>', '删除远端标签（现代写法）'],
+          ['远端（旧写法）', 'git push origin :refs/tags/<tagname>', '旧 refspec，效果相同'],
+        ],
+      },
+    ],
+    faq: [
+      ['为什么 fetch 之后标签又回来了？', '队友本地还留着这个标签，并且用 <code>git push --tags</code> 推了。让协作者也本地删掉。'],
+      ['怎么列出所有标签？', '<code>git tag -l</code>，或 <code>git tag -n</code> 连注释一起看。'],
+      ['怎么删掉所有远端不存在的本地标签？', '<code>git tag -l | xargs git tag -d && git fetch --tags</code>。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-change-commit-author': {
+    title: 'Git 修改提交作者 — 邮箱与姓名',
+    metaDesc: '推送前把误用的私人邮箱或错误作者名改掉：单条提交、未来提交、全局默认三种范围。',
+    intro: '推送到公开仓库前，把误用的私人邮箱或错误的作者名改掉。',
+    tables: [
+      {
+        caption: '修改作者',
+        headers: ['范围', '命令', '用途'],
+        rows: [
+          ['最近一条', 'git commit --amend --author="Name <email@example.com>" --no-edit', '只改作者，不动提交信息'],
+          ['未来提交', 'git config user.email "email@example.com"', '修正当前仓库后续提交的邮箱'],
+          ['全局默认', 'git config --global user.name "Name"', '设置整台机器的默认身份'],
+        ],
+      },
+    ],
+    faq: [
+      ['改作者会改 SHA 吗？', '会。作者、邮箱、时间戳、提交信息任何一项变化都会产生新的 SHA。'],
+      ['能改更早的已推送提交吗？', '可以，用交互式 rebase 或 <code>git-filter-repo</code>，但会改写历史，共享分支上慎用。'],
+      ['author 和 committer 有什么区别？', 'author 写代码，committer 应用这次提交（比如 cherry-pick 或 rebase）。--amend 改 author，committer 变成当前用户。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-unstage-file': {
+    title: 'Git 取消暂存 — 把文件移出暂存区',
+    metaDesc: '误 git add 了文件？取消暂存只把它从索引里拿出来，工作区的修改完全保留。',
+    intro: '误把文件 git add 了？取消暂存会把它从索引（暂存区）拿出来，工作区的改动一点不丢。',
+    tables: [
+      {
+        caption: '取消暂存',
+        headers: ['命令', 'Git 版本', '作用'],
+        rows: [
+          ['git restore --staged <file>', '>= 2.23（现代）', '取消单个文件的暂存，保留改动'],
+          ['git restore --staged .', '>= 2.23', '一次取消所有已暂存文件'],
+          ['git reset HEAD <file>', '< 2.23（旧写法）', '经典做法，效果相同'],
+        ],
+      },
+    ],
+    faq: [
+      ['取消暂存会删掉我的修改吗？', '不会。它只把文件从下一次提交里拿出来，工作区改动 100% 保留。'],
+      ['想连改动一起丢掉呢？', '<code>git restore <file></code>（不带 --staged）把工作区恢复到 HEAD。'],
+      ['restore --staged 和 rm --cached 有什么区别？', '<code>restore --staged</code> 仍让 Git 跟踪这个文件；<code>rm --cached</code> 是把它从跟踪列表里移除并暂存这次移除。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-view-commit-history-graph': {
+    title: 'Git 提交图 — 在终端看分支历史',
+    metaDesc: '把平淡的 git log 变成 ASCII 分支图，直观看合并、分叉和标签：常用参数与自定义格式。',
+    intro: '把平淡的 git log 输出变成 ASCII 分支图，合并、分叉和标签在命令行里一眼看清。',
+    tables: [
+      {
+        caption: '几种 log 图',
+        headers: ['命令', '特点'],
+        rows: [
+          ['git log --oneline --graph --all', '所有分支和标签的紧凑单行图'],
+          ['git log --graph --decorate --oneline -n 15', '最近 15 条，带分支标签'],
+          ['git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)"', '带颜色、相对时间和作者的格式'],
+        ],
+      },
+    ],
+    faq: [
+      ['怎么给它设个永久别名？', '<code>git config --global alias.lg "log --oneline --graph --all"</code>，以后直接 <code>git lg</code>。'],
+      ['--all 为什么重要？', '不加 <code>--all</code> 只看当前分支可达的提交；加上才会包含所有本地和远端分支。'],
+      ['怎么按提交信息搜索？', '<code>git log --grep="关键词"</code>。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-clean-untracked-files': {
+    title: 'Git 清理未跟踪文件 — 安全地删干净',
+    metaDesc: '清掉构建产物、临时文件和未跟踪垃圾：永远先 dry-run，再决定删到什么程度。',
+    intro: '清理构建产物、临时文件和未跟踪的杂物。永远先试运行，避免删掉还要用的文件。',
+    tables: [
+      {
+        caption: 'clean 命令',
+        headers: ['命令', '安全性', '作用'],
+        rows: [
+          ['git clean -n', '安全（试运行）', '只列出会删什么，不真删'],
+          ['git clean -fd', '破坏性', '强制删除未跟踪文件和目录'],
+          ['git clean -fdx', '高破坏性', '连被忽略的文件一起删（node_modules、.env、build/）'],
+        ],
+      },
+    ],
+    faq: [
+      ['clean 删掉的文件能恢复吗？', '不能。未跟踪文件从没进过 Git，对象库里没有副本。永远先 <code>-n</code>。'],
+      ['-d 是什么意思？', '让 clean 连整个未跟踪目录一起删，而不只是单个文件。'],
+      ['只清理某个子目录？', '把路径传进去：<code>git clean -fd ./dist</code>。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-switch-branch': {
+    title: 'Git 切换分支 — 现代写法',
+    metaDesc: 'Git 2.23 引入的 git switch 专门用于切分支，把「切分支」和「恢复文件」两件事分开。',
+    intro: 'Git 2.23 引入的 <code>git switch</code> 取代 checkout 来切分支，不再和「恢复文件」混在一起。',
+    tables: [
+      {
+        caption: '切换分支',
+        headers: ['命令', '作用'],
+        rows: [
+          ['git switch <branch>', '切到已有的本地分支'],
+          ['git switch -c <new-branch>', '新建并切过去（取代 checkout -b）'],
+          ['git switch -', '切回上一个分支'],
+          ['git switch --detach <sha>', '切到某个提交（detached HEAD）'],
+        ],
+      },
+    ],
+    faq: [
+      ['为什么要引入 switch？', 'checkout 同时管切分支和恢复文件，容易误操作。2.23 拆成 <code>switch</code>（分支）和 <code>restore</code>（文件）。'],
+      ['git switch - 是什么？', '切回上一个分支，就像 bash 里的 <code>cd -</code>。'],
+      ['有未提交的改动怎么办？', '和目标分支不冲突就带过去；冲突时 Git 会停下，让你先 stash 或提交。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-create-branch-from-commit': {
+    title: 'Git 从某次提交建分支 — 回到历史分叉',
+    metaDesc: '需要从旧版本实验或修 bug？从任意历史提交 SHA 拉出新分支：现代与经典两种写法。',
+    intro: '想从某个旧版本做实验，或修一个特定时间点的 bug？可以从任意历史提交的 SHA 拉新分支。',
+    tables: [
+      {
+        caption: '从历史建分支',
+        headers: ['命令', '说明'],
+        rows: [
+          ['git switch -c <new-branch> <sha>', '现代写法：在 <sha> 建分支并切过去'],
+          ['git checkout -b <new-branch> <sha>', '经典写法，效果相同'],
+          ['git branch <new-branch> <sha>', '只建分支，不切过去'],
+        ],
+      },
+    ],
+    faq: [
+      ['能从标签建分支吗？', '可以，<code>git switch -c hotfix-v1.0 v1.0.0</code>，标签和 SHA 一样能用。'],
+      ['那个 SHA 之后的提交会怎样？', '仍在原分支上。新分支从指定提交处分叉。'],
+      ['怎么找到要用的 SHA？', '<code>git log --oneline</code> 找到 7 位短哈希。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-stash-include-untracked': {
+    title: 'Git stash 未跟踪文件（-u 与 -a）',
+    metaDesc: '默认 stash 不处理未暂存的新文件；-u 连新文件一起收，-a 连被忽略的也收。',
+    intro: '默认情况下，git stash 不会管还没被跟踪的新文件。用 -u 把新文件也一起收起来。',
+    tables: [
+      {
+        caption: 'stash 范围对比',
+        headers: ['命令', '已修改', '新文件', '被忽略的'],
+        rows: [
+          ['git stash', '是', '否', '否'],
+          ['git stash -u', '是', '是', '否'],
+          ['git stash -a', '是', '是', '是'],
+        ],
+      },
+    ],
+    faq: [
+      ['为什么普通 stash 没保存我的新文件？', '普通 stash 只处理 Git 已经在跟踪的文件。有新文件时用 <code>git stash -u</code>。'],
+      ['什么时候用 -a 而不是 -u？', '只有想把 .gitignore 里的文件（node_modules、.env）也收起来时才用 -a，通常 -u 就够。'],
+      ['怎么给带未跟踪文件的 stash 起名？', '<code>git stash push -u -m "wip: 新组件"</code>。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-pull-overwrite-local': {
+    title: 'Git 强制拉取 — 用远端覆盖本地',
+    metaDesc: '本地分支乱到没法救，或想要和远端完全一致：fetch + reset --hard 的完整流程。',
+    intro: '本地分支乱得没法收拾，或者想和远端完全一致时，直接硬重置到 origin。',
+    tables: [
+      {
+        caption: '强制拉取流程',
+        headers: ['命令', '步骤'],
+        rows: [
+          ['git fetch origin', '1. 只下载远端最新提交，不合并'],
+          ['git reset --hard origin/main', '2. 把本地 main 指针强制对到 origin/main'],
+          ['git clean -fd', '3.（可选）删掉本地新增的未跟踪文件'],
+        ],
+      },
+    ],
+    faq: [
+      ['为什么没有 git pull --force？', 'pull 是 fetch + merge，合并没有办法直接覆盖未提交或分叉的工作。fetch + reset --hard 才是明确的做法。'],
+      ['本地提交会丢吗？', '未推送的提交会从分支指针上移除，但还能用 <code>git reflog</code> 找回（约 90 天）。'],
+      ['强制拉取前能先保存未提交的改动吗？', '可以，先 <code>git stash -u</code>，之后需要再 apply。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-resolve-merge-conflict': {
+    title: 'Git 解决合并冲突 — 完整流程',
+    metaDesc: '两个分支改了同一文件的同一行就会冲突：查看状态、编辑、暂存、提交，或中止合并。',
+    intro: '两个分支改了同一文件的同一行时就会冲突。Git 会停下来插入冲突标记，让你决定保留哪一版。',
+    tables: [
+      {
+        caption: '解决冲突流程',
+        headers: ['步骤', '命令', '说明'],
+        rows: [
+          ['1. 看状态', 'git status', '找出所有 both modified 的文件'],
+          ['2. 编辑文件', '手动 / IDE', '选内容，删掉冲突标记'],
+          ['3. 暂存', 'git add <file>', '标记为已解决'],
+          ['4. 完成合并', 'git commit', '用默认信息生成合并提交'],
+          ['需要放弃', 'git merge --abort', '回到合并前'],
+        ],
+      },
+    ],
+    faq: [
+      ['HEAD 那一侧的标记是什么意思？', 'HEAD 是当前分支的代码；分隔线另一侧是被合并分支的代码。选完内容后把三行标记都删掉。'],
+      ['rebase 过程中怎么中止？', '<code>git rebase --abort</code>。'],
+      ['能整份文件选一边吗？', '可以：<code>git checkout --ours <file></code> 保留当前分支，<code>--theirs</code> 用对方分支。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-show-commit-diff': {
+    title: 'Git 查看某次提交 — 看它改了什么',
+    metaDesc: 'git show 显示任意提交的作者、日期、信息和完整补丁：只看统计、看整份文件、只看某个文件。',
+    intro: '<code>git show</code> 会显示任意提交哈希、标签或分支头的作者、日期、提交信息和完整补丁。',
+    tables: [
+      {
+        caption: 'show 的几种用法',
+        headers: ['命令', '显示什么'],
+        rows: [
+          ['git show <sha>', '完整元信息 + 所有改动文件的 unified diff'],
+          ['git show --stat <sha>', '改动文件列表和增删行数'],
+          ['git show <sha>:<file-path>', '该提交时点的整份文件内容'],
+          ['git show <sha> -- <file-path>', '只看这个文件在本次提交里的 diff'],
+        ],
+      },
+    ],
+    faq: [
+      ['怎么看最新一次提交的 diff？', '<code>git show HEAD</code>，或者直接 <code>git show</code>。'],
+      ['怎么看它的父提交？', '<code>git show <sha>^</code>。'],
+      ['只看提交信息、不要 diff？', '<code>git show -s <sha></code>（--no-patch）。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
+  'git-tag-release': {
+    title: 'Git 打发布标签 — 轻量与附注标签',
+    metaDesc: '标签指向历史中的某个点，通常用来标版本号：附注标签与轻量标签的区别、单个与批量推送。',
+    intro: '标签指向 Git 历史中的某个点，通常用来标记发布版本（如 v1.0.0），配合语义化版本。',
+    tables: [
+      {
+        caption: '打标签与推送',
+        headers: ['命令', '类型', '说明'],
+        rows: [
+          ['git tag -a v1.0.0 -m "Release v1.0.0"', '附注（推荐）', '包含打标签的人、邮箱、日期和说明'],
+          ['git tag v1.0.0', '轻量', '只是指向当前提交的书签，没有元信息'],
+          ['git push origin v1.0.0', '推送单个', '把指定标签推到远端'],
+          ['git push origin --tags', '推送全部', '一次推所有本地标签'],
+        ],
+      },
+    ],
+    faq: [
+      ['为什么优先用附注标签？', '附注标签是完整的 Git 对象，带作者、时间戳和发布说明，也能签名验证，发布场景的标准做法。'],
+      ['能给更早的历史提交打标签吗？', '可以，把 SHA 加上：<code>git tag -a v1.0.0 <sha> -m "Release v1.0.0"</code>。'],
+      ['怎么检出某个标签？', '<code>git checkout v1.0.0</code>（detached HEAD），或 <code>git switch -c release-1.0 v1.0.0</code> 从标签开分支。'],
+    ],
+    tool: { href: '/cn/tools/git', label: '在 Git 生成器里拼出准确命令' },
+  },
+
 };

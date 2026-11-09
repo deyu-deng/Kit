@@ -41,7 +41,7 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 `scripts/build.mjs` 是唯一正确的顺序，顺序错了就会退化（历史上就退化过一次：
 52 个配方页掉了 i18n 启动脚本，中文界面在那些页面上完全不生效）：
 
-1. `gen-cheatsheets` / `gen-recipes` / `gen-guides` / `gen-tool-hub` — 由数据生成页面
+1. `gen-cheatsheets` / `gen-recipes` / `gen-guides` / `gen-tool-hub` / `gen-collection` — 由数据生成页面
 2. `cleanup` — 全站卫生检查（假广告位、坏标题、缺失 canonical）
 3. `normalize-nav` — 外壳契约：导航、页脚、logo、语言按钮、资源路径、
    内链规范化、i18n 启动脚本，**每次构建都会重写所有页面**
@@ -54,8 +54,8 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 
 | 类别 | 位置 | 能不能手改 |
 |---|---|---|
-| 生成页 | `cheatsheets/`（含两个速查表 hub）、`cn/cheatsheets/`、`tools/index.html`、`cn/tools/index.html`、`guides/`、`cn/guides/` | 改数据或模板，改了要重跑 `npm run build` |
-| 手写页 | `index.html`、`cn/index.html`、`about/contact/privacy/terms` 及其 `cn/` 版、`collection/` | 直接改；第 3 步仍会统一它们的外壳 |
+| 生成页 | `cheatsheets/`（含两个速查表 hub）、`cn/cheatsheets/`、`tools/index.html`、`cn/tools/index.html`、`guides/`、`cn/guides/`、`collection/`、`cn/collection/` | 改数据或模板，改了要重跑 `npm run build` |
+| 手写页 | `index.html`、`cn/index.html`、`about/contact/privacy/terms` 及其 `cn/` 版 | 直接改；第 3 步仍会统一它们的外壳 |
 
 中英双语：**加译文是改数据，不是改代码。**
 
@@ -64,6 +64,10 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
   fields / variations / tables / intro / body / code / faq / tool`，能给多少给多少，
   缺的字段自动回退英文），自动生成 `/cn/cheatsheets/<slug>` 并出现在中文速查表 hub；
   没给的配方保持纯英文。那里的 slug 若在上游已删除，构建会直接报错，译文不会烂在库里
+- 基础速查表：`scripts/gen-cheatsheets.mjs` 的 `SHEET_ZH` 按 slug 给标题 / 描述 / 引言 /
+  表头，生成 `/cn/cheatsheets/<slug>`；没给的表保持纯英文
+- 精选合集：`scripts/gen-collection.mjs` 里一个条目一份数据（`en` + `zh` 两段文案），
+  同时生成 `/collection/` 与 `/cn/collection/` 四页；加一条只需要写数据，别去改 HTML
 - 导航不需要维护"哪些栏目有中文"这张表：`normalize-nav` 按 `public/` 里实际存在的
   页面决定链接目标
 

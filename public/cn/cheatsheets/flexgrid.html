@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox 与 Grid 速查表 | Plobi-kit</title>
+  <meta name="description" content="Flexbox 沿一个轴排列，Grid 在二维网格里布局：容器属性、项目属性与常用值对照。">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/flexgrid">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/flexgrid">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/flexgrid">
+  <link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/flexgrid">
+</head>
+<body data-available-langs="en,cn">
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/cn/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/cn/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
+      </nav>
+      <div class="controls">
+        <div class="lang-switch" role="group" aria-label="Language"><a href="/cheatsheets/flexgrid" data-lang="en" hreflang="en">EN</a><a href="/cn/cheatsheets/flexgrid" class="active" data-lang="cn" hreflang="zh">中文</a><a href="/es/" data-lang="es" hreflang="es">ES</a></div>
+      </div>
+    </header>
+
+    <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="/cn/cheatsheets/" style="color: var(--accent-hover);">&larr; 速查表</a></p>
+      <h1 style="font-size: 32px; margin-bottom: 12px; letter-spacing: -0.02em; color: var(--text-main);">Flexbox 与 Grid 速查表</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">Flexbox 沿一个轴排列项目，Grid 在二维平面里摆放。同一套盒模型，不同的能力。</p>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Flexbox — 容器属性</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">属性</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">常用值</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">作用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">display</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Enables flex layout</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex-direction</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">row · column · row-reverse</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Main axis direction</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">justify-content</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex-start · center · space-between · space-around</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Distribution along the main axis</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">align-items</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">stretch · center · flex-start · flex-end</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Alignment on the cross axis</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex-wrap</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">nowrap · wrap</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Whether items can line-break</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">gap</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">12px · 8px 16px</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Spacing between items (row column)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Flexbox — 项目属性</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">属性</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">常用值</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">作用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex-grow</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 · 1 · 2</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">How much free space an item absorbs</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex-shrink</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">1 · 0</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">How willingly an item shrinks</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex-basis</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">auto · 200px · 0</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Initial size before growing/shrinking</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">flex</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">1 · 0 auto · 1 1 0</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Shorthand for grow shrink basis</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">align-self</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">auto · center · flex-end</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Per-item cross-axis override</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">order</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 · 1 · -1</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Visual reordering without touching HTML</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">Grid — 容器属性</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">属性</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">常用值</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">作用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">display</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">grid</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Enables grid layout</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">grid-template-columns</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">repeat(3, 1fr) · 200px 1fr · auto-fill minmax(240px, 1fr)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Defines the columns</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">grid-template-rows</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">auto · repeat(2, minmax(0, 1fr))</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Defines the rows</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">gap</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">16px · 8px 24px</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Gutters between tracks</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">justify-items / align-items</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">start · center · stretch</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Placement inside each cell</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">place-items</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">center</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Shorthand for align + justify items</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">常见问题</h2>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Flexbox or Grid — how do I choose?</strong><br>One-dimensional (a toolbar, a nav, a card row that should stretch) → Flexbox. Two-dimensional or explicit rows AND columns → Grid. Most real layouts use both.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Why do my grid images overflow?</strong><br>Grid tracks default to auto, so wide content expands the track. Use minmax(0, 1fr) instead of 1fr to force tracks to shrink below content size.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">justify-content vs align-items?</strong><br>justify = main axis, align = cross axis — and the main axis is whichever direction flex-direction points. Flip the direction and the two swap roles.</p>
+      
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: 3px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">别死记，直接用工具</p>
+        <a class="btn" href="/cn/tools/flexgrid" style="text-decoration: none;">Preview it visually in the Flexbox & Grid Playground</a>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">&copy; 2026 Plobi.</div>
+    </footer>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

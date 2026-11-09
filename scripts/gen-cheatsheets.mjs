@@ -448,19 +448,101 @@ const faqHTML = (faq) => `
       <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">FAQ</h2>
       ${faq.map(([q, a]) => `<p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">${q}</strong><br>${a}</p>`).join('\n      ')}`;
 
-for (const sheet of SHEETS) {
-  const html = `<!DOCTYPE html>
-<html lang="en">
+
+/* Chinese layer for the sheet pages: titles, intros, captions and table
+   headers are translated; command/term rows stay in their original form
+   because that is what people copy. Anything missing falls back to English. */
+const SHEET_ZH = {
+  cron: {
+    title: 'Cron 表达式速查表',
+    metaDesc: '一页看完 cron：五个字段、特殊字符，以及最常被抄的调度写法（每 5 分钟、工作日 9 点、每月 1 号）。',
+    intro: '一条 cron 表达式由五个用空格分隔的字段组成，合起来定义任务触发的每一个时刻。',
+    captions: ['五个字段', '特殊字符', '大家最常抄的调度'],
+    headers: [['字段', '允许值', '特殊字符'], ['字符', '含义', '示例'], ['表达式', '含义']],
+  },
+  git: {
+    title: 'Git 命令速查表',
+    metaDesc: '覆盖日常 95% 场景的 Git 命令，按你想做的事分组：日常流程、撤销、分支与 stash、分步配方。',
+    intro: '覆盖真实使用中 95% 场景的 Git 命令，按你想做的事情分组。',
+    captions: ['日常流程', '撤销操作', '分支与 stash', '分步配方'],
+    headers: [['命令', '作用'], ['命令', '作用'], ['命令', '作用'], ['指南', '涵盖']],
+  },
+  regex: {
+    title: '正则语法速查表',
+    metaDesc: '正则用两打符号解决大部分文本匹配：核心符号、量词、分组与断言、标志位。',
+    intro: '正则表达式用来匹配文本中的模式。实际使用中九成的正则，都由下面这两打符号构成。',
+    captions: ['核心符号', '量词', '分组、字符类与断言', '标志位'],
+    headers: [['符号', '匹配', '示例'], ['符号', '含义', '示例'], ['符号', '含义', '示例'], ['标志', '含义']],
+  },
+  flexgrid: {
+    title: 'Flexbox 与 Grid 速查表',
+    metaDesc: 'Flexbox 沿一个轴排列，Grid 在二维网格里布局：容器属性、项目属性与常用值对照。',
+    intro: 'Flexbox 沿一个轴排列项目，Grid 在二维平面里摆放。同一套盒模型，不同的能力。',
+    captions: ['Flexbox — 容器属性', 'Flexbox — 项目属性', 'Grid — 容器属性'],
+    headers: [['属性', '常用值', '作用'], ['属性', '常用值', '作用'], ['属性', '常用值', '作用']],
+  },
+  markdown: {
+    title: 'Markdown 语法速查表',
+    metaDesc: 'Markdown 用纯文本标点生成格式化文档：标题、列表、链接、代码块、表格的写法对照。',
+    intro: 'Markdown 把纯文本里的标点变成格式。下面这些在 GitHub、大多数编辑器和本站都能用。',
+    captions: ['语法'],
+    headers: [['你输入', '你得到']],
+  },
+  'http-status': {
+    title: 'HTTP 状态码速查表',
+    metaDesc: '每个 HTTP 响应都带三位状态码，第一位是类别：1xx 信息、2xx 成功、3xx 重定向、4xx 客户端错、5xx 服务端错。',
+    intro: '每个 HTTP 响应都带一个三位状态码。第一位表示类别：1xx 信息、2xx 成功、3xx 重定向、4xx 你这边出错、5xx 服务器出错。',
+    captions: ['2xx — 成功', '3xx — 重定向', '4xx — 客户端错误', '5xx — 服务端错误'],
+    headers: [['状态码', '名称', '什么时候见到'], ['状态码', '名称', '什么时候见到'], ['状态码', '名称', '什么时候见到'], ['状态码', '名称', '什么时候见到']],
+  },
+  'html-entities': {
+    title: 'HTML 实体速查表',
+    metaDesc: 'HTML 里有些字符有特殊含义，要显示它们本身就得写实体：&、名称或编号、分号。',
+    intro: '有些字符在 HTML 里有特殊含义。想把它们当作文本显示，就要写实体：一个 &、名称或编号、一个分号。',
+    captions: ['保留字符 — 内容里必须转义', '符号与排版'],
+    headers: [['实体', '数字形式', '渲染结果'], ['实体', '渲染结果']],
+  },
+  base64: {
+    title: 'Base64 速查表',
+    metaDesc: 'Base64 用 64 个可打印 ASCII 字符表示二进制数据，让文本、图片、密钥能通过只支持文本的通道传输。',
+    intro: 'Base64 用 64 个可打印的 ASCII 字符表示二进制数据，于是任何东西——文本、图片、密钥——都能通过只接受文本的通道传输。',
+    captions: ['核心事实', '命令行一行搞定'],
+    headers: [['事实', '说明'], ['任务', '命令']],
+  },
+};
+
+const SHEET_UI = {
+  en: { lang: 'en', back: '&larr; Cheat Sheets', faq: 'FAQ', cta: 'Try it instead of memorizing it', prefix: '' },
+  cn: { lang: 'zh', back: '&larr; 速查表', faq: '常见问题', cta: '别死记，直接用工具', prefix: 'cn/' },
+};
+
+function sheetPage(sheet, lang) {
+  const U = SHEET_UI[lang];
+  const Z = (lang === 'cn' && SHEET_ZH[sheet.slug]) || {};
+  const title = Z.title || sheet.title;
+  const metaDesc = Z.metaDesc || sheet.metaDesc;
+  const intro = Z.intro || sheet.intro;
+  const tables = sheet.tables.map((t, i) => ({
+    ...t,
+    caption: (Z.captions && Z.captions[i]) || t.caption,
+    headers: (Z.headers && Z.headers[i]) || t.headers,
+  }));
+  // Tool links are relative (../tools/x.html) and the /cn/ tree mirrors the
+  // English one, so the same href already resolves to /cn/tools/x.html from a
+  // Chinese sheet. Rewriting it here would emit /cn/cn/tools/... .
+  const toolHref = sheet.tool ? sheet.tool.href : '';
+  return `<!DOCTYPE html>
+<html lang="${U.lang}">
 <head>
   <meta name="google-adsense-account" content="ca-pub-5108296372072915">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${sheet.title} | Plobi-kit</title>
-  <meta name="description" content="${sheet.metaDesc}">
+  <title>${title} | Plobi-kit</title>
+  <meta name="description" content="${metaDesc}">
   <link rel="stylesheet" href="/styles.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/cheatsheets/${sheet.slug}">
+  <link rel="canonical" href="https://plobikit.com/${U.prefix}cheatsheets/${sheet.slug}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -474,214 +556,42 @@ for (const sheet of SHEETS) {
         <span class="logo-icon" style="background:var(--success-color);">P</span>
         <span id="txt-logo-name">Plobi-kit</span>
       </div>
-      <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools">Tools</a>
-        <a href="index.html" class="active" id="nav-cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" id="nav-guides">Guides</a>
-        <a href="../deals" id="nav-deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection">Collection</a>
-        <a href="../about.html" id="nav-about">About</a>
-      </nav>
+      <nav class="nav-links"></nav>
       <div class="controls"></div>
     </header>
 
     <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
-      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="/cheatsheets/" style="color: var(--success-color);">&larr; Cheat Sheets</a></p>
-      <h1 style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">${sheet.title}</h1>
-      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">${sheet.intro}</p>
-${sheet.tables.map(tableHTML).join('\n')}
-      ${faqHTML(sheet.faq)}
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="/${U.prefix}cheatsheets/" style="color: var(--accent-hover);">${U.back}</a></p>
+      <h1 style="font-size: 32px; margin-bottom: 12px; letter-spacing: -0.02em; color: var(--text-main);">${title}</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">${intro}</p>
+${tables.map(tableHTML).join('\n')}
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">${U.faq}</h2>
+      ${sheet.faq.map(([q, a]) => `<p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">${q}</strong><br>${a}</p>`).join('\n      ')}
       ${sheet.tool ? `
-      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">Try it instead of memorizing it</p>
-        <a class="btn" href="${sheet.tool.href}" style="text-decoration: none;">${sheet.tool.label}</a>
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: 3px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">${U.cta}</p>
+        <a class="btn" href="${toolHref}" style="text-decoration: none;">${sheet.tool.label}</a>
       </div>` : ''}
     </main>
 
     <footer class="app-footer">
-      <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about">About</a>
-        <a href="../contact.html" id="nav-footer-contact">Contact</a>
-      </div>
-      <div class="copyright" id="nav-footer-copy">
-        &copy; 2026 Plobi. All rights reserved.
-      </div>
+      <div class="footer-nav"></div>
+      <div class="copyright" id="nav-footer-copy">&copy; 2026 Plobi.</div>
     </footer>
   </div>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('Service Worker registered successfully.', reg))
-          .catch(err => console.log('Service Worker registration failed.', err));
-      });
-    }
-  </script>
   <script type="module" src="/app.js"></script>
 </body>
 </html>`;
-  writeFileSync(join(OUT, `${sheet.slug}.html`), html, 'utf8');
-  console.log(`generated: cheatsheets/${sheet.slug}.html`);
 }
-console.log(`\n${SHEETS.length} sheet(s) generated.`);
 
-/* ------------------------------- hub pages ------------------------------- */
-/*
- * /cheatsheets/ and /cn/cheatsheets/ live here too. They used to be copied by
- * hand, which meant the Chinese hub could never learn that a recipe had been
- * translated — the list below is derived from the recipe data, so each new
- * translation batch shows up on its own.
- */
-
-const WV = (inner) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
-
-const HUB_CARDS = [
-  { slug: 'cron', en: 'Cron Expressions', cn: 'Cron 表达式', icon: WV('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/><polyline points="16 2 18 0 21 3"/>') },
-  { slug: 'git', en: 'Git Commands', cn: 'Git 命令', icon: WV('<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>') },
-  { slug: 'regex', en: 'Regex Syntax', cn: '正则语法', icon: WV('<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/>') },
-  { slug: 'flexgrid', en: 'Flexbox &amp; Grid', cn: 'Flexbox 与 Grid', icon: WV('<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>') },
-  { slug: 'markdown', en: 'Markdown Syntax', cn: 'Markdown 语法', icon: WV('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13v-1h6v1"/><path d="M9 17h6"/>') },
-  { slug: 'http-status', en: 'HTTP Status Codes', cn: 'HTTP 状态码', icon: WV('<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>') },
-  { slug: 'html-entities', en: 'HTML Entities', cn: 'HTML 实体', icon: WV('<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>') },
-  { slug: 'base64', en: 'Base64 Encoding', cn: 'Base64 编码', icon: WV('<polyline points="14 2 14 8 20 8"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M10 16H8"/><path d="M16 16h-2"/>') },
-];
-
-const HUB_TEXT = {
-  en: {
-    title: 'Cheat Sheets — Cron, Git, Regex, Markdown &amp; More | Plobi-kit',
-    metaDesc: 'Free printable-quality cheat sheets: cron expressions, Git commands, regex syntax, Markdown, Flexbox & Grid, HTTP status codes, HTML entities, and Base64. Each sheet pairs with an interactive browser tool.',
-    h1: 'Cheat Sheets',
-    intro: 'Quick-reference tables for the things you look up twice a week and never quite memorize.',
-    ctaGuides: 'Want to understand a topic instead of looking it up? Read the Guides.',
-    ctaTools: 'Want to try what you just looked up? Open the matching Tool.',
-    copy: '&copy; 2026 Plobi. All rights reserved.',
-  },
-  cn: {
-    title: '速查表 — Cron、Git、正则、Markdown 等 | Plobi-kit',
-    metaDesc: '免费的印刷级速查表:Cron 表达式、Git 命令、正则语法、Markdown、Flexbox 与 Grid、HTTP 状态码、HTML 实体、Base64。每张表都配套了浏览器内互动工具。',
-    h1: '速查表',
-    intro: '那些你每周要查两遍但又记不住的东西——我们这里的速查表一页搞定。',
-    ctaGuides: '想弄懂原理而不是查表?去看教程。',
-    ctaTools: '查完了想动手?打开对应的工具。',
-    copy: '&copy; 2026 Plobi. 保留所有权利。',
-  },
-};
-
-// only recipes that carry a Chinese block get a Chinese page, so only those are
-// worth a link in the Chinese hub
-const translatedRecipes = () =>
-  [...CRON_RECIPES, ...GIT_RECIPES]
-    .filter((r) => r.zh)
-    .map((r) => {
-      const short = r.zh.title.replace(/\s*—.*$/, '').replace(/^Cron /, '');
-      const expr = r.expr ? `<code style="color: var(--text-main);">${r.expr}</code> ` : '';
-      return `<a href="/cn/cheatsheets/${r.slug}" style="color: var(--success-color); text-decoration: none;">${expr}${short}</a>`;
-    });
-
-const recipeSection = () => {
-  const list = translatedRecipes();
-  if (!list.length) return '';
-  return `
-      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">分步配方</h2>
-      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin: 0 0 16px 0;">一条问题一页答案：表达式、逐字段解释和常见问题。</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 24px; font-size: 14px;">
-        ${list.join('\n        ')}
-      </div>`;
-};
-
-const hubPage = (lang) => {
-  const T = HUB_TEXT[lang];
-  // the sheets themselves are English-only, so both hubs card-link /cheatsheets/;
-  // only the recipe list below has Chinese pages to point at
-  const base = '/cheatsheets/';
-  const cards = HUB_CARDS.map((c) => `
-        <a href="${base}${c.slug}" class="tool-card">
-          <div class="tool-card-icon">${c.icon}</div>
-          <h3 class="tool-card-title" data-i18n="cs.${c.slug}.title">${lang === 'cn' ? c.cn : c.en}</h3>
-          <p class="tool-card-desc" data-i18n="cs.${c.slug}.desc"></p>
-        </a>`).join('');
-  return `<!DOCTYPE html>
-<html lang="${lang === 'cn' ? 'zh' : 'en'}">
-<head>
-  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${T.title}</title>
-  <meta name="description" content="${T.metaDesc}">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#fafafa">
-  <link rel="canonical" href="https://plobikit.com/${lang === 'cn' ? 'cn/' : ''}cheatsheets/">
-  <link rel="alternate" hreflang="${lang === 'cn' ? 'en' : 'zh'}" href="https://plobikit.com/${lang === 'cn' ? '' : 'cn/'}cheatsheets/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
-  <style>.tool-card-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; } .tool-card-icon svg { width: 28px; height: 28px; color: var(--success-color); stroke-width: 1.75; }</style>
-</head>
-<body>
-
-  <div class="app-container">
-    <header class="app-header">
-      <div class="logo">
-        <span class="logo-icon" style="background:var(--success-color);">P</span>
-        <span id="txt-logo-name">Plobi-kit</span>
-      </div>
-      <nav class="nav-links">
-        <a href="../tools/index.html" id="nav-tools">Tools</a>
-        <a href="index.html" class="active" id="nav-cheatsheets">Cheat Sheets</a>
-        <a href="../guides/index.html" id="nav-guides">Guides</a>
-        <a href="../deals" id="nav-deals">Deals</a>
-        <a href="../collection/index.html" id="nav-collection">Collection</a>
-        <a href="../about.html" id="nav-about">About</a>
-      </nav>
-      <div class="controls"></div>
-    </header>
-
-    <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
-      <h1 data-i18n="cs.h1" style="font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main);">${T.h1}</h1>
-      <p data-i18n="cs.intro" style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px;">${T.intro}</p>
-
-      <div class="tools-grid">${cards}
-      </div>
-${lang === 'cn' ? recipeSection() + '\n' : ''}
-      <div style="font-size: 13px; color: var(--text-muted); background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px 20px; line-height: 1.8; margin-top: 28px;">
-        <span data-i18n="cs.cta.guides">${T.ctaGuides}</span>
-        <br><br>
-        <span data-i18n="cs.cta.tools">${T.ctaTools}</span>
-      </div>
-    </main>
-
-    <footer class="app-footer">
-      <div class="footer-nav">
-        <a href="../privacy.html" id="nav-footer-privacy">Privacy Policy</a>
-        <a href="../terms.html" id="nav-footer-terms">Terms</a>
-        <a href="../about.html" id="nav-footer-about">About</a>
-        <a href="../contact.html" id="nav-footer-contact">Contact</a>
-      </div>
-      <div class="copyright" id="nav-footer-copy">
-        ${T.copy}
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('Service Worker registered successfully.', reg))
-          .catch(err => console.log('Service Worker registration failed.', err));
-      });
-    }
-  </script>
-</body>
-</html>`;
-};
-
-writeFileSync(join(OUT, 'index.html'), hubPage('en'), 'utf8');
-mkdirSync(OUT_CN, { recursive: true });
-writeFileSync(join(OUT_CN, 'index.html'), hubPage('cn'), 'utf8');
-console.log(`hubs regenerated: /cheatsheets/ and /cn/cheatsheets/ (${translatedRecipes().length} translated recipe(s) listed).`);
+for (const sheet of SHEETS) {
+  writeFileSync(join(OUT, `${sheet.slug}.html`), sheetPage(sheet, 'en'), 'utf8');
+  console.log(`generated: cheatsheets/${sheet.slug}.html`);
+  if (SHEET_ZH[sheet.slug]) {
+    mkdirSync(OUT_CN, { recursive: true });
+    writeFileSync(join(OUT_CN, `${sheet.slug}.html`), sheetPage(sheet, 'cn'), 'utf8');
+    console.log(`generated: cn/cheatsheets/${sheet.slug}.html`);
+  }
+}
+console.log(`\n${SHEETS.length} sheet(s) generated (${Object.keys(SHEET_ZH).length} with Chinese).`);

@@ -577,6 +577,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/"/>
   </url>
   <url>
@@ -585,6 +586,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/developer-tools"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/developer-tools"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/developer-tools"/>
   </url>
   <url>
@@ -593,6 +595,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/design-resources"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/design-resources"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/design-resources"/>
   </url>
   <url>
@@ -632,6 +635,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron"/>
   </url>
   <url>
@@ -640,6 +644,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git"/>
   </url>
   <url>
@@ -648,6 +653,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/regex"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/regex"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/regex"/>
   </url>
   <url>
@@ -656,6 +662,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/flexgrid"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/flexgrid"/>
   </url>
   <url>
@@ -664,6 +671,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/markdown"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/markdown"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/markdown"/>
   </url>
   <url>
@@ -672,6 +680,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/http-status"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/http-status"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/http-status"/>
   </url>
   <url>
@@ -680,6 +689,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/html-entities"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/html-entities"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/html-entities"/>
   </url>
   <url>
@@ -688,6 +698,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/base64"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/base64"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/base64"/>
   </url>
 
@@ -959,6 +970,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-undo-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-undo-last-commit"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-undo-last-commit"/>
   </url>
   <url>
@@ -967,6 +979,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-discard-local-changes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-discard-local-changes"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-discard-local-changes"/>
   </url>
   <url>
@@ -975,6 +988,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-delete-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-delete-branch"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-delete-branch"/>
   </url>
   <url>
@@ -983,6 +997,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-stash-changes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-stash-changes"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-stash-changes"/>
   </url>
   <url>
@@ -991,6 +1006,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-amend-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-amend-last-commit"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-amend-last-commit"/>
   </url>
   <url>
@@ -999,6 +1015,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-revert-pushed-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-revert-pushed-commit"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-revert-pushed-commit"/>
   </url>
   <url>
@@ -1007,6 +1024,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-rename-local-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-rename-local-branch"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-rename-local-branch"/>
   </url>
   <url>
@@ -1015,6 +1033,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-rename-remote-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-rename-remote-branch"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-rename-remote-branch"/>
   </url>
   <url>
@@ -1023,6 +1042,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-cherry-pick-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-cherry-pick-commit"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-cherry-pick-commit"/>
   </url>
   <url>
@@ -1031,6 +1051,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-squash-last-n-commits"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-squash-last-n-commits"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-squash-last-n-commits"/>
   </url>
   <url>
@@ -1039,6 +1060,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-sync-fork"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-sync-fork"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-sync-fork"/>
   </url>
   <url>
@@ -1047,6 +1069,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-delete-remote-tag"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-delete-remote-tag"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-delete-remote-tag"/>
   </url>
   <url>
@@ -1055,6 +1078,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-change-commit-author"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-change-commit-author"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-change-commit-author"/>
   </url>
   <url>
@@ -1063,6 +1087,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-unstage-file"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-unstage-file"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-unstage-file"/>
   </url>
   <url>
@@ -1071,6 +1096,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-view-commit-history-graph"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph"/>
   </url>
   <url>
@@ -1079,6 +1105,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-clean-untracked-files"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-clean-untracked-files"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-clean-untracked-files"/>
   </url>
   <url>
@@ -1087,6 +1114,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-switch-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-switch-branch"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-switch-branch"/>
   </url>
   <url>
@@ -1095,6 +1123,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-create-branch-from-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-create-branch-from-commit"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-create-branch-from-commit"/>
   </url>
   <url>
@@ -1103,6 +1132,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-stash-include-untracked"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-stash-include-untracked"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-stash-include-untracked"/>
   </url>
   <url>
@@ -1111,6 +1141,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-pull-overwrite-local"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-pull-overwrite-local"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-pull-overwrite-local"/>
   </url>
   <url>
@@ -1119,6 +1150,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-resolve-merge-conflict"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict"/>
   </url>
   <url>
@@ -1127,6 +1159,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-show-commit-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-show-commit-diff"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-show-commit-diff"/>
   </url>
   <url>
@@ -1135,6 +1168,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-tag-release"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-tag-release"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-tag-release"/>
   </url>
 
@@ -1144,6 +1178,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/platforms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/platforms"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/platforms"/>
   </url>
   <url>
@@ -1576,5 +1611,320 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/ai/free-models"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/ai/free-models"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/ai/free-models"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/base64</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/base64"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/base64"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/base64"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/cron</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/flexgrid</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/flexgrid"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-amend-last-commit</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-amend-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-amend-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-amend-last-commit"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-change-commit-author</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-change-commit-author"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-change-commit-author"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-change-commit-author"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-cherry-pick-commit</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-cherry-pick-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-cherry-pick-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-cherry-pick-commit"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-clean-untracked-files</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-clean-untracked-files"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-clean-untracked-files"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-clean-untracked-files"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-create-branch-from-commit</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-create-branch-from-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-create-branch-from-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-create-branch-from-commit"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-delete-branch</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-delete-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-delete-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-delete-branch"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-delete-remote-tag</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-delete-remote-tag"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-delete-remote-tag"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-delete-remote-tag"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-discard-local-changes</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-discard-local-changes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-discard-local-changes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-discard-local-changes"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-pull-overwrite-local</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-pull-overwrite-local"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-pull-overwrite-local"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-pull-overwrite-local"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-rename-local-branch</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-rename-local-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-rename-local-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-rename-local-branch"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-rename-remote-branch</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-rename-remote-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-rename-remote-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-rename-remote-branch"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-resolve-merge-conflict</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-resolve-merge-conflict"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-revert-pushed-commit</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-revert-pushed-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-revert-pushed-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-revert-pushed-commit"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-show-commit-diff</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-show-commit-diff"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-show-commit-diff"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-show-commit-diff"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-squash-last-n-commits</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-squash-last-n-commits"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-squash-last-n-commits"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-squash-last-n-commits"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-stash-changes</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-stash-changes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-stash-changes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-stash-changes"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-stash-include-untracked</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-stash-include-untracked"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-stash-include-untracked"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-stash-include-untracked"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-switch-branch</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-switch-branch"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-switch-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-switch-branch"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-sync-fork</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-sync-fork"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-sync-fork"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-sync-fork"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-tag-release</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-tag-release"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-tag-release"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-tag-release"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-undo-last-commit</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-undo-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-undo-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-undo-last-commit"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-unstage-file</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-unstage-file"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-unstage-file"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-unstage-file"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git-view-commit-history-graph</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git-view-commit-history-graph"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/git</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/git"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/html-entities</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/html-entities"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/html-entities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/html-entities"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/http-status</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/http-status"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/http-status"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/http-status"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/markdown</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/markdown"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/markdown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/markdown"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/cheatsheets/regex</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/regex"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/regex"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/regex"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/collection/design-resources</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/design-resources"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/design-resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/design-resources"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/collection/developer-tools</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/developer-tools"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/developer-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/developer-tools"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/collection/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/collection/platforms</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/platforms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/platforms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/platforms"/>
   </url>
 </urlset>

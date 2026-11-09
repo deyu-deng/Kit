@@ -13,8 +13,10 @@
  * i18n boot script in the first place.
  *
  * Hand-written pages (home, about/contact/privacy/terms + their /cn/ twins, the
- * two cheat-sheet hubs, collection/) are source, not build output: the
- * generators never write them, and normalize-nav only re-chromes them.
+ * two cheat-sheet hubs) are source, not build output: the generators never
+ * write them, and normalize-nav only re-chromes them. The collection pages used
+ * to be hand-written too; they are generated now that the same four pages exist
+ * in two languages and were drifting apart.
  *
  * Run: node scripts/build.mjs          (or: npm run build)
  */
@@ -25,6 +27,7 @@ const STAGES = [
   ['gen-recipes', 'Recipe pages (cron + git clusters)'],
   ['gen-guides', 'Library articles, EN + CN'],
   ['gen-tool-hub', 'Tools hubs, EN + CN'],
+  ['gen-collection', 'Curated collection, EN + CN'],
   ['cleanup', 'Hygiene + canonicals'],
   ['normalize-nav', 'Chrome contract over every page'],
   ['update-sitemap', 'Sitemap lastmod + robots'],

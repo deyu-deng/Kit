@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-5108296372072915">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正则语法速查表 | Plobi-kit</title>
+  <meta name="description" content="正则用两打符号解决大部分文本匹配：核心符号、量词、分组与断言、标志位。">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/regex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/regex">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/regex">
+  <link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/regex">
+</head>
+<body data-available-langs="en,cn">
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/cn/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
+        <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
+        <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
+        <a href="/cn/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/cn/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
+        <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
+      </nav>
+      <div class="controls">
+        <div class="lang-switch" role="group" aria-label="Language"><a href="/cheatsheets/regex" data-lang="en" hreflang="en">EN</a><a href="/cn/cheatsheets/regex" class="active" data-lang="cn" hreflang="zh">中文</a><a href="/es/" data-lang="es" hreflang="es">ES</a></div>
+      </div>
+    </header>
+
+    <main style="max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;"><a href="/cn/cheatsheets/" style="color: var(--accent-hover);">&larr; 速查表</a></p>
+      <h1 style="font-size: 32px; margin-bottom: 12px; letter-spacing: -0.02em; color: var(--text-main);">正则语法速查表</h1>
+      <p style="font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">正则表达式用来匹配文本中的模式。实际使用中九成的正则，都由下面这两打符号构成。</p>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">核心符号</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">符号</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">匹配</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">示例</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">.</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Any character except newline</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">a.c → abc, a1c</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\d \D</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Digit / non-digit</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\d\d → 42</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\w \W</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Word char [A-Za-z0-9_] / non-word</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\w+ → hello_1</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\s \S</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Whitespace / non-whitespace</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">a\sb → a b</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">^ $</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Start / end of string (or line with m flag)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">^Hi → Hi there</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\b</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Word boundary</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\bcat\b → cat, not category</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">量词</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">符号</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">含义</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">示例</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 or more</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">ab*c → ac, abc, abbc</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">+</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">1 or more</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">ab+c → abc, abbc</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">?</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">0 or 1 (optional)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">colou?r → color, colour</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">{n}</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Exactly n times</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\d{4} → 2026</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">{n,} {n,m}</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">n or more / between n and m</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\d{2,4} → 12, 123, 1234</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">*? +? ??</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Lazy versions (match as little as possible)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;"><.+?> → first tag only</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">分组、字符类与断言</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">符号</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">含义</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">示例</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">[abc] [a-z]</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Character class (any listed char / range)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">[aeiou] → vowels</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">[^abc]</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Negated class (anything but)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">[^0-9] → non-digits</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(abc)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Capturing group</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(\d{4})-(\d{2}) → year, month</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(?:abc)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Non-capturing group</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(?:https?|ftp)://</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">a|b</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Alternation (or)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">cat|dog</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(?=…) (?!…)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Lookahead / negative lookahead</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">\d+(?=px) → 16 in "16px"</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(?<=…) (?<!…)</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Lookbehind / negative lookbehind</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">(?<=\$)\d+ → 16 in "$16"</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">标志位</h2>
+      <div style="overflow-x: auto; margin-bottom: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; background: var(--bg-card);">
+          <thead>
+            <tr><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">标志</th><th style="text-align: left; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--accent-light); color: var(--text-main);">含义</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">g</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Global — find all matches, not just the first</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">i</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Case-insensitive</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">m</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">^ and $ match line starts/ends</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">s</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Dot also matches newlines</td></tr>
+            <tr><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">u</td><td style="padding: 9px 12px; border: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.6;">Full Unicode support</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2 style="font-size: 18px; color: var(--text-main); margin: 28px 0 12px 0;">常见问题</h2>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Greedy vs lazy — when do I care?</strong><br>Quantifiers are greedy by default: <.+> swallows <b>bold</b> whole. Add ? (<.+?>) to stop at the first closing bracket. Rule of thumb: parsing-ish tasks want lazy quantifiers.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Why does my regex match inside longer words?</strong><br>You need boundaries: \bcat\b matches "cat" but not "category". Boundaries are zero-width — they assert position without consuming characters.</p>
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px;"><strong style="color: var(--text-main);">Can regex parse HTML?</strong><br>Badly and briefly. Regex cannot track nesting; anything tree-shaped needs a real parser. Use regex for flat-text validation, extraction, and replacement.</p>
+      
+      <div style="margin-top: 32px; background: var(--accent-light); border: 1px solid var(--border-color); border-radius: 3px; padding: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <p style="font-size: 14px; color: var(--text-main); font-weight: 600; margin: 0;">别死记，直接用工具</p>
+        <a class="btn" href="/cn/tools/regex" style="text-decoration: none;">Test it live in the Regex Tester</a>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="/cn/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">隐私政策</a>
+        <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
+        <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
+        <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">&copy; 2026 Plobi.</div>
+    </footer>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

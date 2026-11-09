@@ -10,16 +10,14 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
   <link rel="canonical" href="https://plobikit.com/collection/developer-tools">
-  <!-- Google Fonts Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <!-- Google AdSense Verification Code -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="alternate" hreflang="en" href="https://plobikit.com/collection/developer-tools">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/collection/developer-tools">
   <link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/developer-tools">
 </head>
-<body data-available-langs="en">
+<body data-available-langs="en,cn">
 
   <div class="app-container">
     <!-- Header -->
@@ -39,7 +37,7 @@
         <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
-        <div class="lang-switch" role="group" aria-label="Language"><a href="/collection/developer-tools" class="active" data-lang="en" hreflang="en">EN</a><a href="/cn/" data-lang="cn" hreflang="zh">中文</a><a href="/es/" data-lang="es" hreflang="es">ES</a></div>
+        <div class="lang-switch" role="group" aria-label="Language"><a href="/collection/developer-tools" class="active" data-lang="en" hreflang="en">EN</a><a href="/cn/collection/developer-tools" data-lang="cn" hreflang="zh">中文</a><a href="/es/" data-lang="es" hreflang="es">ES</a></div>
       </div>
     </header>
 
@@ -161,8 +159,6 @@
       });
     }
   </script>
-  <!-- Main entry JS -->
-  <script type="module" src="/app.js"></script>
 <script type="module">
     import { applyTranslations, currentLang } from '/js/i18n-content.js';
     import '/app.js';
