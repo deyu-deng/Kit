@@ -107,10 +107,18 @@ function navBlocks(ctx, index) {
   return { header, footer };
 }
 
-function langControl(lang) {
-  return `<select id="lang-select" class="lang-btn" aria-label="Language">\n`
-    + LANGS.map((l) => `          <option value="${l}"${l === lang ? ' selected' : ''}>${LANG_NAMES[l]}</option>`).join('\n')
-    + `\n        </select>`;
+/**
+ * Always-visible language switch. Each target is the same page in that
+ * language tree when it exists, otherwise that language's homepage — so a
+ * click can never land on a 404.
+ */
+function langControl(lang, selfUrl, variants) {
+  const items = LANGS.map((l) => {
+    const target = variants.includes(l) ? urlForLang(selfUrl, l) : urlForLang('/', l);
+    const cls = l === lang ? ' class="active"' : '';
+    return `<a href="${target}"${cls} data-lang="${l}" hreflang="${HREFLANG[l]}">${LANG_NAMES[l]}</a>`;
+  }).join('');
+  return `<div class="lang-switch" role="group" aria-label="Language">${items}</div>`;
 }
 
 /** Rebuild hreflang from the language versions that really exist. */
@@ -141,7 +149,7 @@ const LOGO_LINK = /<a href="[^"]*"\s+style="display: flex; align-items: center; 
 // newline and indentation, leaving alternates behind (and re-adding a new set
 // on every build). That made the build non-idempotent and failed the CI gate.
 const HREFLANG_LINK = /^[\t ]*<link[^>]*rel="alternate"[^>]*hreflang="[^"]+"[^>]*>[ \t]*\r?\n?/gim;
-const OLD_LANG_BUTTON = /<button class="lang-btn"[^>]*>[\s\S]*?<\/button>/;
+const OLD_LANG_BUTTON = /(?:<button class="lang-btn"[^>]*>[\s\S]*?<\/button>|<select id="lang-select"[^>]*>[\s\S]*?<\/select>)/;
 const I18N_BOOT = `<script type="module">
     import { applyTranslations, currentLang } from '/js/i18n-content.js';
     import '/app.js';
@@ -164,6 +172,7 @@ for (const rel of walkHtml(SITE)) {
   const ctx = pageContext(file);
   const { header, footer } = navBlocks(ctx, index);
   const home = urlForLang('/', ctx.lang);
+  const variants = langVariants(ctx.url, index.pages);
   let out = before;
 
   const navBlock = out.match(/<nav class="nav-links">[\s\S]*?<\/nav>/);
@@ -178,7 +187,7 @@ for (const rel of walkHtml(SITE)) {
   );
   out = out.replace(LOGO_LINK, `<a href="${home}" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">`);
 
-  const control = langControl(ctx.lang);
+  const control = langControl(ctx.lang, ctx.url, variants);
   if (OLD_LANG_BUTTON.test(out)) out = out.replace(OLD_LANG_BUTTON, control);
   else out = out.replace(/<div class="controls">\s*<\/div>/, `<div class="controls">\n        ${control}\n      </div>`);
 
@@ -190,9 +199,8 @@ for (const rel of walkHtml(SITE)) {
   out = out.replace(HREFLANG_LINK, '');
   out = out.replace(/<\/head>/, `  ${hreflangBlock(ctx.url, index)}\n</head>`);
 
-  const variants = langVariants(ctx.url, index.pages).join(',');
   out = out.replace(/<body([^>]*)>/, (m, attrs) =>
-    `<body${attrs.replace(/\s*data-available-langs="[^"]*"/g, '')} data-available-langs="${variants}">`);
+    `<body${attrs.replace(/\s*data-available-langs="[^"]*"/g, '')} data-available-langs="${variants.join(',')}">`);
 
   if (!/applyTranslations\s*\(/.test(out)) out = out.replace(/<\/body>/, I18N_BOOT);
 

@@ -160,6 +160,22 @@
       .row-icon, .row-badge { display: none; }
     }
   </style>
+  <script>
+    // First visit on a Chinese or Spanish browser goes straight to that tree.
+    // A stored choice always wins; ?nolang=1 opts out (crawlers, or anyone who
+    // prefers English while running a non-English browser).
+    (function () {
+      try {
+        if (location.pathname !== '/') return;
+        if (/[?&]nolang=1/.test(location.search)) return;
+        if (localStorage.getItem('plobi-lang')) return;
+        var tags = navigator.languages || [navigator.language || ''];
+        var first = String(tags[0] || '').toLowerCase();
+        var target = first.indexOf('zh') === 0 ? '/cn/' : first.indexOf('es') === 0 ? '/es/' : null;
+        if (target) location.replace(target);
+      } catch (e) { /* private mode: stay on English */ }
+    })();
+  </script>
   <link rel="alternate" hreflang="en" href="https://plobikit.com/">
   <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/">
   <link rel="alternate" hreflang="es" href="https://plobikit.com/es/">
@@ -184,11 +200,7 @@
         <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
-        <select id="lang-select" class="lang-btn" aria-label="Language">
-          <option value="en" selected>EN</option>
-          <option value="cn">中文</option>
-          <option value="es">ES</option>
-        </select>
+        <div class="lang-switch" role="group" aria-label="Language"><a href="/" class="active" data-lang="en" hreflang="en">EN</a><a href="/cn/" data-lang="cn" hreflang="zh">中文</a><a href="/es/" data-lang="es" hreflang="es">ES</a></div>
       </div>
     </header>
 

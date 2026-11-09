@@ -640,8 +640,8 @@ export function shell({ title, description, path, active, content, lang = 'en' }
     .concat(`<link rel="alternate" hreflang="x-default" href="${canonicalFor('en', path)}">`)
     .join('\n  ');
 
-  const options = SS_LANGS.map((l) =>
-    `<option value="${pageUrl(l, path)}"${l === lang ? ' selected' : ''}>${LANG_OPTIONS[l]}</option>`).join('\n          ');
+  const langSwitch = SS_LANGS.map((l) =>
+    `<a href="${pageUrl(l, path)}"${l === lang ? ' class="active"' : ''} data-lang="${l}" onclick="document.cookie='plobi-lang=${l}; max-age=31536000; path=/; SameSite=Lax'">${LANG_OPTIONS[l]}</a>`).join('');
 
   return `<!DOCTYPE html>
 <html lang="${SS_HTML_LANG[lang] || 'en'}">
@@ -732,9 +732,7 @@ ${alternates}
         ${nav}
       </nav>
       <div class="controls">
-        <select id="ssr-lang-select" class="lang-btn" aria-label="Language" onchange="location.href=this.value">
-          ${options}
-        </select>
+        <div class="lang-switch" role="group" aria-label="Language">${langSwitch}</div>
       </div>
     </header>
 

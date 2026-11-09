@@ -68,22 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
  * comes from <body data-available-langs>, written by normalize-nav from disk.
  */
 function setupLanguageHandler() {
-  const sel = document.getElementById('lang-select');
-  if (!sel) return;
+  const group = document.querySelector('.lang-switch');
+  if (!group) return;
 
-  sel.value = resolveLang();
-  sel.addEventListener('change', async () => {
-    const lang = sel.value;
+  group.addEventListener('click', (e) => {
+    const link = e.target.closest('a[data-lang]');
+    if (!link) return;
+    const lang = link.dataset.lang;
     if (!['en', 'cn', 'es'].includes(lang)) return;
-    const { pathForLang, hasLangPage } = await import('./js/i18n-content.js');
-    const path = location.pathname;
-    const params = new URLSearchParams(location.search);
-    params.delete('lang');
-    if (lang !== 'en') params.set('lang', lang);
-    const qs = params.toString() ? '?' + params.toString() : '';
+    // The href already points at the right tree — the same page when that
+    // translation exists, otherwise that language's homepage. Remember the
+    // choice and let the browser navigate normally (no 404, no JS redirect).
     setStoredLang(lang);
-    const target = hasLangPage(lang) ? pathForLang(path, lang) : pathForLang('/', lang);
-    window.location.href = target + qs;
   });
 }
 

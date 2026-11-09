@@ -996,6 +996,32 @@ select.lang-btn {
 }
 select.lang-btn:hover { border-color: var(--rule-strong); background: transparent; }
 
+/* Language switch: three always-visible targets instead of a collapsed
+   dropdown, so a visitor can see the site is multilingual without hunting. */
+.lang-switch {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+  background: transparent;
+}
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.lang-switch a + a { border-left: 1px solid var(--border-color); }
+.lang-switch a:hover { color: var(--accent-hover); background: var(--accent-light); }
+.lang-switch a.active { background: var(--text-main); color: var(--bg-card); }
+
 .app-footer {
   border-top: 1px solid var(--border-color);
   margin-top: 80px;
