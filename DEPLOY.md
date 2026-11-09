@@ -44,7 +44,8 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 1. `gen-cheatsheets` / `gen-recipes` / `gen-guides` / `gen-tool-hub` / `gen-collection` — 由数据生成页面
 2. `cleanup` — 全站卫生检查（假广告位、坏标题、缺失 canonical）
 3. `normalize-nav` — 外壳契约：导航、页脚、logo、语言按钮、资源路径、
-   内链规范化、i18n 启动脚本，**每次构建都会重写所有页面**
+   内链规范化、内链按语言归位（中文页里的 `/tools/regex` 自动改指 `/cn/tools/regex`，
+   没有对应译文的才落回英文）、i18n 启动脚本，**每次构建都会重写所有页面**
 4. `update-sitemap` — 把新增页面补进 sitemap；已有 `<lastmod>` 一律保留，
    只有缺日期的条目和新增页面打今天的 UTC 日期（内容确实变了想整体重打日期：
    `node scripts/update-sitemap.mjs --restamp`）。日期绝不取文件 mtime——
@@ -75,7 +76,8 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 
 1. 构建产物与提交内容必须一致（说明有人改了数据没重跑构建）
 2. sitemap 与磁盘页面一一对应、URL 全为规范形式
-3. 站内链接无死链、无 `.html` / `index.html` 这类要多跳一次 307 的写法
+3. 站内链接无死链、无 `.html` / `index.html` 这类要多跳一次 307 的写法，
+   也没有"译好的页面往英文页跳"的跨语言链接（语言切换按钮除外）
 
 `scripts/` 里原先的四个一次性迁移（`restructure-home.mjs`、`reposition-copy.mjs`、
 `add-nav.mjs`、`fix-logo-hrefs.py`）已删除：它们的效果要么已经固化进手写页（手写页是

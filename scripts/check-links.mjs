@@ -7,6 +7,9 @@
  *   - a non-canonical internal link — the .html and index.html forms answer
  *     307, so each one costs a visitor and a crawler an extra round trip
  *   - a page whose <link rel="canonical"> is not its own canonical URL
+ *   - a translated page linking into the English tree for a page that has a
+ *     translation (the language switcher is exempt: it is cross-language
+ *     on purpose)
  *   - a module specifier inside an inline script that serves nothing
  *
  * URL rules live in scripts/lib/urls.mjs (shared with the build).
@@ -15,7 +18,10 @@
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { buildIndex, fileToUrl, walkHtml, resolveFrom, EXTERNAL } from './lib/urls.mjs';
+import {
+  buildIndex, fileToUrl, walkHtml, resolveFrom, EXTERNAL,
+  langFromUrl, urlForLang,
+} from './lib/urls.mjs';
 
 const SITE = join(process.cwd(), 'public');
 const files = walkHtml(SITE);
@@ -25,7 +31,15 @@ const problems = [];
 
 for (const rel of files) {
   const self = fileToUrl(rel);
+  const lang = langFromUrl(self);
   const html = readFileSync(join(SITE, rel), 'utf8');
+
+  // hrefs written inside the language switcher, which must stay cross-language
+  const switcherHrefs = new Set();
+  for (const anchor of html.matchAll(/<a\b[^>]*data-lang="[^"]*"[^>]*>/g)) {
+    const href = anchor[0].match(/href="([^"]+)"/);
+    if (href) switcherHrefs.add(href[1]);
+  }
 
   for (const m of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const raw = m[1];
@@ -34,6 +48,10 @@ for (const rel of files) {
     const served = index.resolve(target);
     if (!served) problems.push(`${rel}: dead link -> ${raw}  (=> ${target})`);
     else if (served !== target) problems.push(`${rel}: non-canonical link -> ${raw}  (answers 307 for ${served})`);
+    else if (lang !== 'en' && langFromUrl(served) === 'en' && !switcherHrefs.has(raw)) {
+      const sibling = urlForLang(served, lang);
+      if (index.resolve(sibling)) problems.push(`${rel}: cross-language link -> ${raw}  (expected ${sibling})`);
+    }
   }
 
   // module specifiers inside inline scripts are not markup, so the build

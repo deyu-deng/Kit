@@ -131,14 +131,34 @@ function hreflangBlock(selfUrl, index) {
   return links.join('\n  ');
 }
 
-/** rewrite href/src outside <script> bodies */
-function canonicalizeUrls(html, selfUrl, index) {
+/**
+ * Keep a visitor inside their own language tree.
+ *
+ * A Chinese recipe page linking "related recipes" at /cheatsheets/git-stash is
+ * a dead end for a Chinese reader even though the URL resolves: the whole
+ * point of the translated page disappears on the first click. So every in-page
+ * link is re-pointed at the same page in the current language when that page
+ * exists, and left alone when it does not (a half-translated site is better
+ * than a 404).
+ *
+ * The language switcher is deliberately cross-language and is written after
+ * this pass, so its links are never rewritten.
+ */
+function localize(url, lang, index) {
+  if (lang === 'en' || langFromUrl(url) === lang) return url;
+  if (url.startsWith('/api/') || url.startsWith('/s/')) return url;
+  const sibling = urlForLang(url, lang);
+  return index.resolve(sibling) ? sibling : url;
+}
+
+/** rewrite href/src outside <script> bodies, and localize what has a twin */
+function canonicalizeUrls(html, selfUrl, index, lang) {
   return html
     .split(/(<script[\s\S]*?<\/script>)/g)
     .map((part) => (/^<script/.test(part) ? part : part.replace(/((?:href|src)=")([^"]+)"/g, (m, prefix, raw) => {
       if (EXTERNAL.test(raw)) return m;
       const served = index.resolve(resolveFrom(selfUrl, raw));
-      return served ? `${prefix}${served}"` : m;
+      return served ? `${prefix}${localize(served, lang, index)}"` : m;
     })))
     .join('');
 }
@@ -150,6 +170,9 @@ const LOGO_LINK = /<a href="[^"]*"\s+style="display: flex; align-items: center; 
 // on every build). That made the build non-idempotent and failed the CI gate.
 const HREFLANG_LINK = /^[\t ]*<link[^>]*rel="alternate"[^>]*hreflang="[^"]+"[^>]*>[ \t]*\r?\n?/gim;
 const OLD_LANG_BUTTON = /(?:<button class="lang-btn"[^>]*>[\s\S]*?<\/button>|<select id="lang-select"[^>]*>[\s\S]*?<\/select>)/;
+// The switcher written by this script on an earlier build. Refreshing it keeps
+// the "which language am I on" state honest if a page is moved or removed.
+const LANG_SWITCH = /<div class="lang-switch"[^>]*>[\s\S]*?<\/div>/;
 const I18N_BOOT = `<script type="module">
     import { applyTranslations, currentLang } from '/js/i18n-content.js';
     import '/app.js';
@@ -187,11 +210,14 @@ for (const rel of walkHtml(SITE)) {
   );
   out = out.replace(LOGO_LINK, `<a href="${home}" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">`);
 
-  const control = langControl(ctx.lang, ctx.url, variants);
-  if (OLD_LANG_BUTTON.test(out)) out = out.replace(OLD_LANG_BUTTON, control);
-  else out = out.replace(/<div class="controls">\s*<\/div>/, `<div class="controls">\n        ${control}\n      </div>`);
+  out = canonicalizeUrls(out, ctx.url, index, ctx.lang);
 
-  out = canonicalizeUrls(out, ctx.url, index);
+  // Written after canonicalization: these three links point at other language
+  // trees on purpose, so they must not be localized like content links.
+  const control = langControl(ctx.lang, ctx.url, variants);
+  if (LANG_SWITCH.test(out)) out = out.replace(LANG_SWITCH, control);
+  else if (OLD_LANG_BUTTON.test(out)) out = out.replace(OLD_LANG_BUTTON, control);
+  else out = out.replace(/<div class="controls">\s*<\/div>/, `<div class="controls">\n        ${control}\n      </div>`);
 
   out = out.replace(/<link[^>]*fonts\.googleapis\.com\/css2[^>]*>/g, FONT_LINK_TAG);
   if (!out.includes(FONT_LINK_TAG)) out = out.replace('</head>', `  ${FONT_LINK_TAG}\n</head>`);
