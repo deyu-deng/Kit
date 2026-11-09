@@ -71,41 +71,25 @@ function checkAdBlock() {
     if (!adsScriptLoaded) {
       console.log('AdSense blocked by AdBlock. Showing friendly notice.');
       const adContainers = document.querySelectorAll('.ad-container');
-      adContainers.forEach(container => {
-        // Clear skeleton before text and format like code comments
-        container.innerHTML = `
-          <div class="adblock-notice" style="padding: 20px; font-family: monospace; font-size: 11px; text-align: center; color: var(--text-muted); line-height: 1.5; width: 100%;">
-            // Note: This site runs 100% locally and has zero tracking cookies.<br>
-            // We show quiet ads to cover domain cost.<br>
-            // Please whitelist us if we saved you time. Thanks! :)
-          </div>
-        `;
-        // Remove skeleton class to avoid flashing double borders/backgrounds
-        container.style.borderStyle = 'solid';
-        container.style.borderColor = 'var(--border-color)';
-      });
+      adContainers.forEach(renderAdFallback);
     }
   }, 6000);
 }
 
 /**
- * Appends a friendly developer comment to all ad placeholders when blocked.
+ * Unfilled or blocked slot: one quiet editorial line instead of a warning box.
+ * The slot itself stays in place so layout and the AdSense placement contract
+ * do not change; only the placeholder copy does.
  */
-function handleAdBlockNotice() {
-  const containers = document.querySelectorAll('.ad-container');
-  containers.forEach(container => {
-    // Hide default ADVERTISEMENT text by marking it as blocked
-    container.classList.add('blocked');
-    // Render a clean monospace code-like notice
-    container.innerHTML = `
-      <div style="font-family: monospace; font-size: 11px; padding: 20px; color: var(--text-muted); text-align: left; line-height: 1.6; width: 100%; white-space: pre-wrap; box-sizing: border-box; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px dashed var(--border-color);">
-// Note: This site runs 100% locally and has zero tracking cookies.
-// We show quiet ads to cover domain cost.
-// Please whitelist us if we saved you time. Thanks! :)
-      </div>
-    `;
-    // Style adjustments for layout stability
-    container.style.border = 'none';
-  });
+function renderAdFallback(container) {
+  container.classList.add('blocked');
+  container.innerHTML = `
+    <div class="ad-fallback">
+      <span class="ad-fallback-label">Note</span>
+      <span>This site runs locally and sets no tracking cookies. The ad slot covers the domain; whitelisting is appreciated, not required.</span>
+    </div>`;
+  container.style.border = '';
+  container.style.borderStyle = '';
+  container.style.borderColor = '';
 }
 

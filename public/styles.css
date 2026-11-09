@@ -4,22 +4,30 @@
 /* base.css - Variables, Reset, and Core Typography */
 
 :root {
-  --bg-app: #fafafa;
-  --bg-card: #ffffff;
-  --text-main: #111111;
-  --text-muted: #666666;
-  --border-color: #eaeaea;
-  --accent-color: #000000;
-  --accent-hover: #333333;
-  --accent-light: #f3f4f6;
-  --success-color: #0070f3;
-  --danger-color: #ff0000;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* Art-directed editorial palette: warm paper, ink, one vermilion accent.
+     The accent is deliberately not blue — a generic SaaS blue was what made
+     the old chrome read as a template. */
+  --bg-app: #F3EEE4;
+  --bg-card: #FBF8F2;
+  --paper-2: #EAE2D2;
+  --text-main: #17130E;
+  --text-muted: #5F5749;
+  --border-color: #D8CEBD;
+  --rule-strong: #B5A88F;
+  --accent-color: #17130E;
+  --accent-hover: #A6401E;
+  --accent-light: #EDE6D8;
+  --success-color: #A6401E;
+  --danger-color: #8C2F1B;
+  --ok-color: #2F5D3A;
+  --shadow-sm: none;
+  --shadow-md: none;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --transition: color .18s ease, background-color .18s ease, border-color .18s ease;
 }
 
 * {
@@ -219,21 +227,9 @@ h1, h2, h3, h4 {
   color: var(--text-muted);
 }
 
-@media (max-width: 768px) {
-  .app-header {
-    height: auto;
-    min-height: 80px;
-    flex-wrap: wrap;
-    padding: 16px 24px;
-    gap: 12px;
-  }
-  .nav-links {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    gap: 16px;
-  }
-}
+/* Legacy 768px rule removed: it forced .nav-links to order:3 / width:100%,
+   which pushed navigation behind the language selector and fought the
+   single-row header below. The 900px block owns mobile chrome now. */
 
 
 /* ===== css/components.css ===== */
@@ -919,6 +915,356 @@ textarea.regex-input {
 .code-hl-comment { color: #5c6370; font-style: italic; }
 .code-hl-string { color: #98c379; }
 .code-hl-keyword { color: #c678dd; }
+
+/* ==========================================================================
+   2026 editorial redesign — appended override layer.
+   Warm paper, ink, one vermilion accent. Display type is Fraunces, data and
+   labels are JetBrains Mono. Near-square corners, hairline rules, no shadows.
+   Kept as an override layer so the tool-specific layouts above keep working.
+   ========================================================================== */
+
+body {
+  font-size: 16px;
+  line-height: 1.66;
+  color: var(--text-main);
+  background-color: var(--bg-app);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  color: var(--text-main);
+}
+h1 { font-size: clamp(38px, 5vw, 64px); line-height: 1.02; }
+h2 { font-size: clamp(25px, 2.6vw, 34px); line-height: 1.12; }
+h3 { font-family: var(--font-sans); font-weight: 600; font-size: 17px; letter-spacing: -0.008em; }
+p { color: var(--text-muted); }
+code, pre, kbd, samp { font-family: var(--font-mono); font-size: .92em; }
+::selection { background: #E7C9B8; color: var(--text-main); }
+
+/* --- chrome ------------------------------------------------------------- */
+.app-container { max-width: 1180px; padding: 0 24px; }
+
+.app-header {
+  height: 72px;
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border-color);
+  margin: 0 -24px 34px;
+  padding: 0 24px;
+}
+.logo-icon {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 2px !important;
+  background: var(--accent-hover) !important;
+  color: #FFF7EE;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+#txt-logo-name, .logo a {
+  font-family: var(--font-display) !important;
+  font-size: 19px !important;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+.nav-links { gap: 26px; }
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  color: var(--text-muted);
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--text-main);
+  border-bottom-color: var(--accent-hover);
+}
+select.lang-btn {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  padding: 4px 6px;
+}
+select.lang-btn:hover { border-color: var(--rule-strong); background: transparent; }
+
+.app-footer {
+  border-top: 1px solid var(--border-color);
+  margin-top: 80px;
+  padding: 26px 0 46px;
+}
+.footer-nav { gap: 24px; }
+.footer-nav a {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.footer-nav a:hover { color: var(--accent-hover); }
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  color: var(--rule-strong);
+}
+
+/* --- buttons ------------------------------------------------------------ */
+.btn, .btn-primary, .btn-ghost, .btn-secondary, .cta {
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+}
+.btn-primary, .cta {
+  background: var(--accent-color);
+  color: #FFF7EE;
+  border: 1px solid var(--accent-color);
+}
+.btn-primary:hover, .cta:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #FFF7EE;
+}
+.btn-ghost, .btn-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+.btn-ghost:hover, .btn-secondary:hover {
+  background: transparent;
+  border-color: var(--accent-hover);
+  color: var(--accent-hover);
+}
+
+/* --- forms -------------------------------------------------------------- */
+.form-group { margin-bottom: 20px; }
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 7px;
+}
+.form-control {
+  border: 1px solid var(--border-color);
+  border-bottom-color: var(--rule-strong);
+  border-radius: 0;
+  background: var(--bg-card);
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-main);
+}
+.form-control:focus {
+  border-color: var(--accent-hover);
+  box-shadow: none;
+  outline: none;
+}
+
+/* --- surfaces ----------------------------------------------------------- */
+.tool-card, .cat-card, .deal-card, .preview-card, .cheatsheet-section, .social-image-slot {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  box-shadow: none;
+}
+.tool-card:hover {
+  border-color: var(--rule-strong);
+  box-shadow: none;
+  transform: none;
+}
+.tool-card-icon {
+  border-radius: 2px;
+  background: var(--paper-2);
+  color: var(--accent-hover);
+}
+.tool-card-title { font-family: var(--font-display); font-size: 17px; font-weight: 500; }
+.tool-card-desc { color: var(--text-muted); font-size: 13px; }
+
+/* --- tool workspace ----------------------------------------------------- */
+.main-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 52px;
+  align-items: start;
+}
+/* An empty aside still holds whitespace, so :empty never matches; check for
+   element children instead. Without this the main column stops at 2/3 width
+   and leaves a blank 260px gutter on every tool page. */
+.main-layout:has(.sidebar-column:not(:has(*))) { grid-template-columns: minmax(0, 1fr); }
+/* With no sidebar, centre the workspace on a readable measure instead of
+   leaving a lopsided gutter on the right. */
+@media (min-width: 1001px) {
+  .main-layout:has(.sidebar-column:not(:has(*))) .primary-column {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+.tool-viewer { background: transparent; border: 0; box-shadow: none; padding: 0; }
+.tool-header { margin-bottom: 22px; }
+.tool-title, .tools-page-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
+.tool-description { font-size: 15px; color: var(--text-muted); max-width: 62ch; }
+.tool-panel { padding: 26px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 3px; max-width: 880px; }
+.back-to-grid {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.back-to-grid:hover { color: var(--accent-hover); }
+
+/* --- advertising: keep the slot, drop the grey placeholder look --------- */
+.ad-container {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0;
+  min-height: 88px;
+  margin: 0 0 40px;
+}
+.ad-container::before {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .3em;
+  color: var(--rule-strong);
+}
+.ad-sidebar { width: 260px; }
+
+/* --- editorial content --------------------------------------------------- */
+.article, .lib-wrap, .guide-content { color: var(--text-main); }
+.article-title, .guide-title, .lib-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; }
+.article-body, .guide-content { font-size: 16.5px; line-height: 1.78; max-width: 68ch; }
+.article-body p, .guide-content p { color: #2C261E; }
+.article-body h2, .guide-content h2, .guide-content h3 { margin-top: 2.1em; }
+.article-body a, .guide-content a {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.article-meta { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--rule-strong); }
+
+.cheatsheet-title { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; }
+.cheatsheet-table { border-collapse: collapse; }
+.cheatsheet-table th {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.cheatsheet-table td { border-bottom: 1px solid var(--border-color); }
+.cheatsheet-table td code, .article-body code, .guide-content code {
+  background: var(--paper-2);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: .88em;
+}
+
+/* Generated pages embed a max-width on <main>; keep them on the same grid. */
+main[style*="max-width"] {
+  max-width: 920px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 1000px) {
+  .main-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .sidebar-column { display: none; }
+}
+/* Ad-blocked / unfilled fallback: an editorial footnote, not a warning box. */
+.ad-container.blocked {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.ad-fallback {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  width: 100%;
+  padding: 18px 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: var(--rule-strong);
+  text-align: left;
+}
+.ad-fallback-label {
+  flex: 0 0 auto;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-hover);
+}
+
+@media (max-width: 900px) {
+  body { overflow-x: clip; }
+  .app-container { padding: 0 18px; }
+  .app-header {
+    height: auto;
+    min-height: 64px;
+    margin: 0 0 22px;
+    padding: 12px 0 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .logo { order: 1; }
+  .controls { order: 2; margin-left: auto; }
+  .logo-icon { width: 24px !important; height: 24px !important; }
+  #txt-logo-name, .logo a { font-size: 17px !important; }
+  .nav-links {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    gap: 18px;
+    padding-top: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { white-space: nowrap; font-size: 12px; }
+  .hero { padding: 40px 16px 30px !important; }
+  .hero h1 { font-size: clamp(28px, 8.2vw, 44px) !important; letter-spacing: -0.02em !important; }
+  .hero-sub { font-size: 15.5px !important; line-height: 1.7 !important; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .hero-cta .btn-primary, .hero-cta .btn-ghost { width: 100%; justify-content: center; }
+  .tool-panel { padding: 18px; }
+  .ad-container { min-height: 100px; margin-bottom: 28px; }
+}
+@media (max-width: 560px) {
+  .hero h1 { font-size: 30px !important; }
+  .tools-grid, .portal-grid { grid-template-columns: 1fr !important; }
+  h1 { font-size: 34px; }
+  .article-body, .guide-content { font-size: 16px; }
+}
 
 
 

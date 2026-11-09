@@ -149,6 +149,12 @@ const I18N_BOOT = `<script type="module">
   </script>
 </body>`;
 
+// One type system for every page: Fraunces for display, Inter for body,
+// JetBrains Mono for labels/data. Injected here so a new page can never ship
+// with a different font stack.
+const FONT_QUERY = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap';
+const FONT_LINK_TAG = `<link href="${FONT_QUERY}" rel="stylesheet">`;
+
 const index = buildIndex(SITE);
 let changed = 0;
 
@@ -177,6 +183,9 @@ for (const rel of walkHtml(SITE)) {
   else out = out.replace(/<div class="controls">\s*<\/div>/, `<div class="controls">\n        ${control}\n      </div>`);
 
   out = canonicalizeUrls(out, ctx.url, index);
+
+  out = out.replace(/<link[^>]*fonts\.googleapis\.com\/css2[^>]*>/g, FONT_LINK_TAG);
+  if (!out.includes(FONT_LINK_TAG)) out = out.replace('</head>', `  ${FONT_LINK_TAG}\n</head>`);
 
   out = out.replace(HREFLANG_LINK, '');
   out = out.replace(/<\/head>/, `  ${hreflangBlock(ctx.url, index)}\n</head>`);

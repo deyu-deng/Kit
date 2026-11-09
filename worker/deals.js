@@ -453,18 +453,24 @@ export async function dealsHubPage(request, env) {
     { slug: 'software', name: t.catSoftware, desc: t.catSoftwareDesc },
   ];
 
-  const cards = [];
+  const rows = [];
+  let index = 0;
   for (const c of cats) {
+    index += 1;
     const now = nowSec();
     const n = await env.DB.prepare('SELECT COUNT(*) AS n FROM deals WHERE category = ? AND starts_at <= ? AND ends_at > ?')
       .bind(c.slug, now, now)
       .first('n');
-    cards.push(`
-        <div class="cat-card">
-          <div class="cat-head"><h2>${c.name}</h2><span class="badge live">${n} ${t.liveSuffix}</span></div>
-          <p>${c.desc}</p>
-          <a class="cta" href="${pageUrl(lang, `/deals/${c.slug}`)}">${t.browse} ${c.name.toLowerCase()} &rarr;</a>
-        </div>`);
+    rows.push(`
+        <a class="deal-row" href="${pageUrl(lang, `/deals/${c.slug}`)}">
+          <span class="deal-no">${String(index).padStart(2, '0')}</span>
+          <span class="deal-main">
+            <span class="deal-name">${c.name}</span>
+            <span class="deal-desc">${c.desc}</span>
+          </span>
+          <span class="deal-count">${n} ${t.liveSuffix}</span>
+          <span class="deal-arrow" aria-hidden="true">&rarr;</span>
+        </a>`);
   }
 
   return shell({
@@ -476,7 +482,7 @@ export async function dealsHubPage(request, env) {
     content: `
       <h1>${t.hubH1}</h1>
       <p class="intro">${t.hubIntro}</p>
-      ${cards.join('\n')}
+      <div class="deal-index">${rows.join('')}</div>
       <div class="note"><p>${t.noteGames}</p></div>`,
   });
 }
@@ -653,7 +659,7 @@ ${alternates}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  main.deals-main { max-width: 860px; margin: 0 auto; padding: 12px 20px 64px; }
+  main.deals-main { max-width: 920px; margin: 0 auto; padding: 12px 20px 64px; }
   .intro { color: var(--text-muted); font-size: 15px; margin-bottom: 32px; max-width: 640px; line-height: 1.8; }
   .section-title { margin-top: 36px; }
   .cat-card, .deal-card {
@@ -681,6 +687,31 @@ ${alternates}
   .cta:hover { background: #0059c0; }
   .empty { color: var(--text-muted); font-size: 15px; padding: 16px 0; }
   .note { margin-top: 36px; font-size: 13px; color: var(--text-muted); background: var(--accent-light); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 16px 20px; }
+  .deal-index { border-top: 1px solid var(--rule-strong); margin-top: 6px; }
+  .deal-row {
+    display: grid; grid-template-columns: 44px minmax(0, 1fr) auto 18px;
+    align-items: baseline; gap: 16px; padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    text-decoration: none; color: inherit; transition: padding-left .16s ease;
+  }
+  .deal-row:hover { padding-left: 8px; }
+  .deal-no { font-family: var(--font-mono); font-size: 10.5px; color: var(--rule-strong); }
+  .deal-main { display: flex; flex-direction: column; gap: 4px; }
+  .deal-name {
+    font-family: var(--font-display); font-size: 22px; font-weight: 500;
+    letter-spacing: -0.015em; color: var(--text-main);
+  }
+  .deal-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+  .deal-count {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--rule-strong); white-space: nowrap;
+  }
+  .deal-arrow { font-size: 14px; color: var(--text-muted); }
+  .deal-row:hover .deal-arrow { color: var(--accent-hover); }
+  @media (max-width: 560px) {
+    .deal-row { grid-template-columns: 26px 1fr 16px; }
+    .deal-count { display: none; }
+  }
   .model-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .model-table th, .model-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border-color); }
   .model-table th { font-size: 12px; color: var(--text-muted); }
