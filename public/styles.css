@@ -301,6 +301,13 @@ h1, h2, h3, h4 {
   border-color: var(--text-muted);
 }
 
+/* Three-language selector (native control, no custom chrome needed) */
+select.lang-btn {
+  color: var(--text-main);
+  background-color: var(--bg-card);
+  padding: 6px 8px;
+}
+
 /* Inputs and Forms */
 .form-group {
   margin-bottom: 20px;

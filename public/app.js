@@ -61,37 +61,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Language toggle: persist user choice, then jump to the corresponding
- * path in the other language tree. EN-only sections (cheatsheets, deals,
- * collection) fall back to the user's *preferred* language homepage so they
- * stay in their chosen language. The path stays intact when both trees have it.
+ * Language selector (en / cn / es): persist the choice, then jump to the same
+ * page in the selected language tree when that page really exists. Otherwise
+ * land on that language's homepage and keep the preference, so the dictionary
+ * still localizes the chrome on pages without a translated twin. Availability
+ * comes from <body data-available-langs>, written by normalize-nav from disk.
  */
 function setupLanguageHandler() {
-  const btnLang = document.getElementById('lang-btn');
-  if (!btnLang) return;
+  const sel = document.getElementById('lang-select');
+  if (!sel) return;
 
-  btnLang.addEventListener('click', async () => {
-    const { currentLang, counterpartPath, setStoredLang, isEnOnlyPath } = await import('./js/i18n-content.js');
+  sel.value = resolveLang();
+  sel.addEventListener('change', async () => {
+    const lang = sel.value;
+    if (!['en', 'cn', 'es'].includes(lang)) return;
+    const { pathForLang, hasLangPage } = await import('./js/i18n-content.js');
     const path = location.pathname;
-    const search = location.search;
-    const inCN = path.startsWith('/cn');
-    const cur = currentLang();
-    const targetLang = cur === 'cn' ? 'en' : 'cn';
-    setStoredLang(targetLang);
-
-    if (inCN) {
-      window.location.href = counterpartPath(path) + search || '/';
-      return;
-    }
-    if (path === '/' || path === '/index.html') {
-      window.location.href = (targetLang === 'cn' ? '/cn/' : '/') + search.slice(1);
-      return;
-    }
-    if (isEnOnlyPath(path)) {
-      window.location.href = (targetLang === 'cn' ? '/cn/?lang=cn' : '/?lang=en');
-      return;
-    }
-    window.location.href = (targetLang === 'cn' ? '/cn' : '') + path + search;
+    const params = new URLSearchParams(location.search);
+    params.delete('lang');
+    if (lang !== 'en') params.set('lang', lang);
+    const qs = params.toString() ? '?' + params.toString() : '';
+    setStoredLang(lang);
+    const target = hasLangPage(lang) ? pathForLang(path, lang) : pathForLang('/', lang);
+    window.location.href = target + qs;
   });
 }
 

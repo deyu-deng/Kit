@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plobi-kit — Herramientas online privadas y gratis</title>
+  <meta name="description" content="Herramientas online rápidas y gratuitas que funcionan por completo en tu navegador: nada de lo que pegas sale de tu dispositivo. Codificador Base64, generador QR, paletas de color, regex, cron, compresión de imágenes y más.">
+  <link rel="canonical" href="https://plobikit.com/es/">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .portal { max-width: 1040px; margin: 0 auto; }
+    .hero { position: relative; text-align: center; padding: 72px 20px 56px; overflow: hidden; }
+    .hero > * { position: relative; }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.12; margin: 0 0 18px; letter-spacing: -0.02em; }
+    .hero h1 .accent { color: var(--success-color); }
+    .hero-sub { font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 640px; margin: 0 auto 30px auto; }
+    .hero-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 11px 20px; border-radius: var(--radius-sm);
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--border-color); color: var(--text-main); background: var(--bg-card);
+    }
+    .btn.primary { background: var(--success-color); color: #fff; border-color: var(--success-color); }
+    .portal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; padding: 8px 20px 64px; }
+    .portal-card {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); padding: 22px; text-decoration: none; color: inherit;
+    }
+    .portal-card h2 { font-size: 16px; margin: 0 0 8px; }
+    .portal-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .notice { max-width: 720px; margin: 0 auto; padding: 0 20px 32px; color: var(--text-muted); font-size: 13px; line-height: 1.7; text-align: center; }
+    @media (max-width: 560px) { .hero { padding: 52px 16px 44px; } }
+  </style>
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/">
+  <link rel="alternate" hreflang="es" href="https://plobikit.com/es/">
+  <link rel="alternate" hreflang="x-default" href="https://plobikit.com/">
+</head>
+<body data-available-langs="en,cn,es">
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <a href="/es/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+          <span class="logo-icon" style="background:var(--success-color);">P</span>
+          <span id="txt-logo-name">Plobi-kit</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="/tools/" id="nav-tools" data-i18n="nav.tools">Herramientas</a>
+        <a href="/cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">Guías rápidas</a>
+        <a href="/guides/" id="nav-library" data-i18n="nav.library">Biblioteca</a>
+        <a href="/es/deals" id="nav-deals" data-i18n="nav.deals">Ofertas</a>
+        <a href="/collection/" id="nav-collection" data-i18n="nav.collection">Colección</a>
+        <a href="/about" id="nav-about" data-i18n="nav.about">Acerca de</a>
+      </nav>
+      <div class="controls">
+        <select id="lang-select" class="lang-btn" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="cn">中文</option>
+          <option value="es" selected>ES</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="portal">
+      <section class="hero">
+        <h1>Herramientas que <span class="accent">no ven tus datos</span></h1>
+        <p class="hero-sub">
+          Plobi-kit reúne 17 utilidades gratuitas que se ejecutan por completo dentro de tu navegador.
+          Lo que pegas, comprimes o generas nunca se envía a un servidor. Sin registro, sin colas,
+          sin marcas de agua.
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="/tools/">Abrir las herramientas</a>
+          <a class="btn" href="/deals">Ver ofertas gratis</a>
+        </div>
+      </section>
+
+      <div class="portal-grid">
+        <a class="portal-card" href="/tools/">
+          <h2>Herramientas</h2>
+          <p>Base64, JSON, JWT, regex, cron, Git, QR, paletas de color, compresión de imágenes y más.</p>
+        </a>
+        <a class="portal-card" href="/cheatsheets/">
+          <h2>Guías rápidas</h2>
+          <p>Referencias concisas y recetas listas para copiar de cron, Git, regex y HTML.</p>
+        </a>
+        <a class="portal-card" href="/guides/">
+          <h2>Biblioteca</h2>
+          <p>Guías prácticas sobre privacidad, flujos de trabajo y seguridad al usar herramientas online.</p>
+        </a>
+        <a class="portal-card" href="/deals">
+          <h2>Ofertas</h2>
+          <p>Juegos gratis, niveles gratuitos de IA, VPS y software, actualizados cada día y retirados al caducar.</p>
+        </a>
+        <a class="portal-card" href="/collection/">
+          <h2>Recursos seleccionados</h2>
+          <p>Una colección revisada a mano de sitios y servicios útiles para desarrolladores y diseñadores.</p>
+        </a>
+        <a class="portal-card" href="/ai/free-models">
+          <h2>Modelos de IA gratis</h2>
+          <p>Qué modelos de lenguaje tienen nivel gratuito, su ventana de contexto y sus límites.</p>
+        </a>
+      </div>
+
+      <p class="notice">
+        Estamos traduciendo Plobi-kit al español página por página, con revisión editorial y no con
+        traducción automática masiva. Mientras tanto, la navegación y las herramientas ya están
+        disponibles en español y el resto del contenido permanece en inglés.
+      </p>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-nav">
+        <a href="/privacy" id="nav-footer-privacy" data-i18n="nav-footer.privacy">Privacidad</a>
+        <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Términos</a>
+        <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">Acerca de</a>
+        <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contacto</a>
+      </div>
+      <div class="copyright" id="nav-footer-copy">&copy; 2026 Plobi. Todos los derechos reservados.</div>
+    </footer>
+  </div>
+<script type="module">
+    import { applyTranslations, currentLang } from '/js/i18n-content.js';
+    import '/app.js';
+    applyTranslations(currentLang());
+  </script>
+</body>
+</html>

@@ -10,9 +10,6 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
   <link rel="canonical" href="https://plobikit.com/cn/cheatsheets/cron-every-minute">
-  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-minute">
-  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-minute"
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5108296372072915" crossorigin="anonymous"></script>
@@ -34,8 +31,11 @@
     .crumb a { color: var(--success-color); text-decoration: none; }
     h1 { font-size: 28px; margin-bottom: 12px; letter-spacing: -0.5px; color: var(--text-main); }
   </style>
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-minute">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-minute">
+  <link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-minute">
 </head>
-<body>
+<body data-available-langs="en,cn">
 
   <div class="app-container">
     <header class="app-header">
@@ -49,12 +49,16 @@
         <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
         <a href="/cn/cheatsheets/" class="active" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
         <a href="/cn/guides/" id="nav-library" data-i18n="nav.library">知识库</a>
-        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/cn/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
         <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
         <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
-        <button class="lang-btn" id="lang-btn">CN</button>
+        <select id="lang-select" class="lang-btn" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="cn" selected>中文</option>
+          <option value="es">ES</option>
+        </select>
       </div>
     </header>
 

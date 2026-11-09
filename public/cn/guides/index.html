@@ -25,8 +25,11 @@
     .lib-card h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; margin: 0 0 8px; color: var(--text-main); }
     .lib-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
   </style>
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/guides/">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/">
+  <link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/">
 </head>
-<body>
+<body data-available-langs="en,cn">
 
   <div class="app-container">
     <header class="app-header">
@@ -40,12 +43,16 @@
         <a href="/cn/tools/" id="nav-tools" data-i18n="nav.tools">工具箱</a>
         <a href="/cn/cheatsheets/" id="nav-cheatsheets" data-i18n="nav.cheatsheets">速查表</a>
         <a href="/cn/guides/" class="active" id="nav-library" data-i18n="nav.library">知识库</a>
-        <a href="/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
+        <a href="/cn/deals" id="nav-deals" data-i18n="nav.deals">优惠活动</a>
         <a href="/collection/" id="nav-collection" data-i18n="nav.collection">精选合集</a>
         <a href="/cn/about" id="nav-about" data-i18n="nav.about">关于我们</a>
       </nav>
       <div class="controls">
-        <button class="lang-btn" id="lang-btn">EN</button>
+        <select id="lang-select" class="lang-btn" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="cn" selected>中文</option>
+          <option value="es">ES</option>
+        </select>
       </div>
     </header>
 

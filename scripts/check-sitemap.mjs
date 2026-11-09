@@ -10,24 +10,10 @@
  */
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { isWorkerRoute, fileToUrl } from './lib/urls.mjs';
 
 const ROOT = process.cwd();
 const SITE = join(ROOT, 'public');
-
-// Worker-owned paths (wrangler.jsonc -> assets.run_worker_first).
-const WORKER_PREFIXES = ['/api/', '/s/', '/deals'];
-
-// public/a/b.html -> /a/b , public/a/index.html -> /a/ , public/index.html -> /
-function fileToUrl(rel) {
-  const clean = rel.replace(/\\/g, '/').replace(/\.html$/, '');
-  if (clean === 'index') return '/';
-  if (clean.endsWith('/index')) return '/' + clean.slice(0, -'index'.length);
-  return '/' + clean;
-}
-
-function isWorkerRoute(url) {
-  return WORKER_PREFIXES.some((p) => url === p.slice(0, -1) || url === p.slice(0, -1) + '/' || url.startsWith(p));
-}
 
 const pages = [];
 (function walk(dir, rel) {
@@ -40,7 +26,7 @@ const pages = [];
 
 const xml = readFileSync(join(SITE, 'sitemap.xml'), 'utf8');
 const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
-const hreflangs = [...xml.matchAll(/hreflang="(?:zh|en)" href="([^"]+)"/g)].map((m) => new URL(m[1]).pathname);
+const hreflangs = [...xml.matchAll(/hreflang="(?:zh|en|es)" href="([^"]+)"/g)].map((m) => new URL(m[1]).pathname);
 
 const listed = new Set(locs);
 const onDisk = new Set(pages);

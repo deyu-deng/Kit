@@ -87,11 +87,24 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 | `/api/contact` | POST | contact 表单。body: `{name, email, message, company?}`，`company` 为蜜罐字段 |
 | `/deals` | GET | 优惠栏目 hub（SSR，worker-first） |
 | `/deals/games` | GET | Epic 喜加一页面（SSR，每日 cron 自动更新，过期自动下架） |
+| `/deals/servers` `/deals/software` `/deals/ai` | GET | 分类优惠页（SSR） |
+| `/ai/free-models` | GET | AI 免费档排行榜（SSR，每日 OpenRouter 快照） |
 | `/api/deals` | GET | 优惠 JSON feed，`?category=games` |
+| `/api/ai-models` | GET | 免费模型 JSON feed |
+| `/api/deals/refresh?source=models` | GET | 手动刷新排行榜（需 DEBUG_KEY） |
 | `/api/health` | GET | 存活探测 |
 
-优惠抓取随每日 cron（`triggers.crons`）自动运行；本地手动触发：
+**语言前缀**：所有 SSR 页面在 `/cn/` 和 `/es/` 下都有真实 URL（如 `/cn/deals/games`、`/es/ai/free-models`），
+不是 cookie 变体，hreflang 可直接指向。`?lang=en|cn|es` 可作为一次性深链覆盖。
+静态页由 `scripts/normalize-nav.mjs` 按磁盘上实际存在的语言版本生成 hreflang 与语言选择器。
+
+优惠抓取与 AI 免费档快照随每日 cron（`triggers.crons`）自动运行；本地手动触发：
 `curl "http://127.0.0.1:8787/cdn-cgi/local/scheduled"`（需先 `npm run dev`）。
+
+排行榜数据源为 OpenRouter 公开 `/api/v1/models`（无需 key）：只保留 prompt 单价为 0 的模型，
+每次快照 upsert 并删除 `updated_at` 落伍的条目，模型不再免费即自动下架。
+`/api/deals/refresh?source=<name>` 的可用值：`epic | fgf | ai | models | leb | gotd | sos`；
+`fgf`（Reddit）对 Cloudflare 出口常返回 403，属 best-effort，失败会在返回值里明确标出。
 
 ## 运维
 

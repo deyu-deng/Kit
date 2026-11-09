@@ -16,13 +16,54 @@
 import { readdirSync, existsSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-// wrangler.jsonc -> assets.run_worker_first
-export const WORKER_PREFIXES = ['/api/', '/s/', '/deals'];
+// wrangler.jsonc -> assets.run_worker_first. Language-prefixed SSR routes are
+// first-class URLs (not cookie-only variants) so hreflang can point at them.
+export const WORKER_PREFIXES = [
+  '/api/', '/s/', '/deals', '/ai',
+  '/cn/deals', '/es/deals', '/cn/ai', '/es/ai',
+];
 
 export const EXTERNAL = /^(https?:|mailto:|tel:|data:|javascript:|\/\/|#|blob:)/i;
 
 /** The repo mixes CRLF and LF; every writer normalizes so a build is byte-stable. */
 export const toLf = (text) => text.replace(/\r\n/g, '\n');
+
+/* ------------------------------ Language rules ----------------------------- */
+
+export const LANGS = ['en', 'cn', 'es'];
+export const HTML_LANG = { en: 'en', cn: 'zh', es: 'es' };
+export const HREFLANG = { en: 'en', cn: 'zh', es: 'es' };
+const PREFIX_RE = /^\/(cn|es)(?=\/|$)/;
+
+/** /es/tools/ -> 'es', /cn/ -> 'cn', anything else -> 'en' */
+export function langFromUrl(url) {
+  const m = String(url).match(PREFIX_RE);
+  return m ? m[1] : 'en';
+}
+
+/** Strip a language prefix: /es/tools/ -> /tools/ , /cn/ -> / */
+export function stripLangPrefix(url) {
+  const m = String(url).match(PREFIX_RE);
+  if (!m) return url;
+  const rest = String(url).slice(m[0].length);
+  return rest.startsWith('/') ? rest : '/';
+}
+
+/** Canonical URL for the same page in another language tree. */
+export function urlForLang(url, lang) {
+  const bare = stripLangPrefix(url);
+  if (lang === 'en') return bare;
+  return `/${lang}${bare === '/' ? '/' : bare}`;
+}
+
+/** Which language versions of this URL are actually served. */
+export function langVariants(url, pages) {
+  const bare = stripLangPrefix(url);
+  return LANGS.filter((lang) => {
+    const candidate = urlForLang(bare, lang);
+    return pages.has(candidate) || isWorkerRoute(candidate);
+  });
+}
 
 export function walkHtml(siteDir, rel = '', out = []) {
   for (const e of readdirSync(join(siteDir, rel), { withFileTypes: true })) {

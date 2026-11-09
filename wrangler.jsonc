@@ -9,7 +9,12 @@
   "assets": {
     "directory": "public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*", "/s/*", "/deals", "/deals/*"],
+    "run_worker_first": [
+      "/api/*", "/s/*",
+      "/deals", "/deals/*", "/ai", "/ai/*",
+      "/cn/deals", "/cn/deals/*", "/es/deals", "/es/deals/*",
+      "/cn/ai", "/cn/ai/*", "/es/ai", "/es/ai/*"
+    ],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
   },

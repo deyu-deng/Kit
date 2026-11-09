@@ -10,9 +10,7 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
   <!-- International SEO Alternate Links -->
-  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image.html">
-  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image.html">
-  <!-- Google Fonts Inter -->
+<!-- Google Fonts Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -94,8 +92,11 @@
 }
 </script>
   <link rel="canonical" href="https://plobikit.com/tools/image">
+  <link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image">
+  <link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image">
+  <link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/image">
 </head>
-<body>
+<body data-available-langs="en,cn">
 
   <div class="app-container">
     <!-- Header -->
@@ -115,7 +116,11 @@
         <a href="/about" id="nav-about" data-i18n="nav.about">About</a>
       </nav>
       <div class="controls">
-        <button class="lang-btn" id="lang-btn">CN</button>
+        <select id="lang-select" class="lang-btn" aria-label="Language">
+          <option value="en" selected>EN</option>
+          <option value="cn">中文</option>
+          <option value="es">ES</option>
+        </select>
       </div>
     </header>
 

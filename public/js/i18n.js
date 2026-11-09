@@ -526,8 +526,53 @@ export const translations = {
 };
 
 /**
+ * Spanish (es) is rolled out incrementally, matching i18n-content.js:
+ * untranslated strings fall back to English rather than a placeholder. Every
+ * key therefore stays present in all three dictionaries.
+ */
+const ES_OVERRIDES = {
+  'nav-home': 'Inicio',
+  'nav-cheatsheet': 'Guía rápida',
+  'nav-about': 'Acerca de',
+  'nav-guides': 'Guías',
+  'back-grid': 'Volver a las herramientas',
+  'copy-success': '¡Copiado al portapapeles!',
+  'card-base64-title': 'Codificador / decodificador Base64',
+  'card-glass-title': 'Generador CSS glassmorphism',
+  'card-qr-title': 'Generador de códigos QR',
+  'card-palette-title': 'Generador de paletas de color',
+  'card-regex-title': 'Probador de expresiones regulares',
+  'card-git-title': 'Generador de comandos Git',
+  'card-cron-title': 'Visualizador de expresiones cron',
+  'card-image-title': 'Compresor de imágenes WebP',
+  'b64-title': 'Codificador / decodificador Base64',
+  'b64-desc': 'Convierte texto a Base64 estándar o revierte la codificación.',
+  'b64-mode': 'Modo de operación',
+  'b64-btn-encode': 'Codificar texto',
+  'b64-btn-decode': 'Decodificar texto',
+  'b64-lbl-input': 'Texto de entrada',
+  'b64-lbl-output': 'Resultado',
+  'b64-copy': 'Copiar resultado',
+  'b64-clear': 'Limpiar entrada',
+  'glass-copy': 'Copiar CSS',
+  'qr-download': 'Descargar QR (PNG)',
+  'qr-clear': 'Limpiar texto',
+  'palette-generate': 'Generar paleta',
+  'palette-copy-all': 'Copiar todo',
+  'git-copy': 'Copiar comando',
+  'cron-copy': 'Copiar expresión',
+  'image-download-btn': 'Descargar imagen',
+  'image-reset-btn': 'Reiniciar',
+  'nav-footer-privacy': 'Privacidad',
+  'nav-footer-terms': 'Términos',
+  'nav-footer-about': 'Acerca de'
+};
+
+translations.es = { ...translations.en, ...ES_OVERRIDES };
+
+/**
  * Update elements marked with specific data attributes to target translations
- * @param {string} lang 'en' or 'cn'
+ * @param {string} lang 'en', 'cn' or 'es'
  */
 export function updatePageLanguage(lang) {
   const dictionary = translations[lang] || translations.en;

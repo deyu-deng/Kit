@@ -47,3 +47,16 @@ CREATE TABLE IF NOT EXISTS deals (
 );
 
 CREATE INDEX IF NOT EXISTS idx_deals_cat_ends ON deals (category, ends_at);
+
+-- AI free-tier leaderboard (OpenRouter public catalogue, daily snapshot).
+-- A model that stops being free is deleted on the next refresh because its
+-- updated_at is no longer within the freshness window.
+CREATE TABLE IF NOT EXISTS ai_models (
+  id               TEXT PRIMARY KEY,
+  name             TEXT NOT NULL,
+  context_length   INTEGER NOT NULL DEFAULT 0,
+  prompt_price     TEXT NOT NULL DEFAULT '0',
+  completion_price TEXT NOT NULL DEFAULT '',
+  url              TEXT NOT NULL,
+  updated_at       INTEGER NOT NULL
+);

@@ -14,7 +14,7 @@
  * covers body content only.
  */
 
-export const LANGS = ['en', 'cn'];
+export const LANGS = ['en', 'cn', 'es'];
 export const DEFAULT_LANG = 'en';
 
 export const TRANSLATIONS = {
@@ -149,6 +149,9 @@ export const TRANSLATIONS = {
     'nav-footer.terms': 'Terms',
     'nav-footer.about': 'About',
     'nav-footer.contact': 'Contact',
+    'lib.cat.howto': 'How-To',
+    'lib.cat.privacy': 'Privacy & Security',
+    'lib.related': 'Related Articles',
   },
 
   cn: {
@@ -281,6 +284,9 @@ export const TRANSLATIONS = {
     'nav-footer.terms': '服务条款',
     'nav-footer.about': '关于我们',
     'nav-footer.contact': '联系我们',
+    'lib.cat.howto': '教程',
+    'lib.cat.privacy': '隐私与安全',
+    'lib.related': '相关文章',
   },
 };
 
@@ -293,7 +299,7 @@ export const TRANSLATIONS = {
 export function applyTranslations(lang) {
   if (!lang) lang = currentLang();
   const dict = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT_LANG];
-  document.documentElement.lang = lang === 'cn' ? 'zh' : 'en';
+  document.documentElement.lang = { en: 'en', cn: 'zh', es: 'es' }[lang] || 'en';
   for (const el of document.querySelectorAll('[data-i18n]')) {
     const key = el.getAttribute('data-i18n');
     const value = dict[key];
@@ -302,32 +308,35 @@ export function applyTranslations(lang) {
     // link (the CN hub/tool CTAs) — writing it as text would show markup source
     if (/<[a-z/]/i.test(value)) el.innerHTML = value; else el.textContent = value;
   }
+  const sel = document.getElementById('lang-select');
+  if (sel) sel.value = lang;
 }
 
 /**
  * Detect the active language. Resolution order (highest first):
- *   1. localStorage 'plobi-lang' — explicit user choice, persists across reloads
- *   2. URL path ('/cn/...') — explicit per-page choice
- *   3. <html lang="zh"> — static page declaration
- *   4. DEFAULT_LANG ('en') — safe fallback
+ *   1. '?lang=xx' — explicit one-off deep link
+ *   2. localStorage 'plobi-lang' — persisted user choice
+ *   3. URL path ('/cn/...', '/es/...') — explicit per-page choice
+ *   4. <html lang> — static page declaration
+ *   5. DEFAULT_LANG ('en') — safe fallback
  *
- * Pages that read this (i18n content, navigation links) get a consistent
- * experience: once the user picks a language, that choice wins until they
- * pick again. The URL path can still override for one-off deep links.
+ * A language preference is kept even on pages with no translated twin: the
+ * dictionary still localizes the chrome, so a visitor never gets bounced back
+ * to English just because one long-tail page is not translated yet.
  */
 const STORAGE_KEY = 'plobi-lang';
 
 export function getStoredLang() {
   try {
     const v = localStorage.getItem(STORAGE_KEY);
-    if (v === 'en' || v === 'cn') return v;
+    if (LANGS.includes(v)) return v;
   } catch {}
   return null;
 }
 
 export function setStoredLang(lang) {
   try { localStorage.setItem(STORAGE_KEY, lang); } catch {}
-  // Mirror into a cookie so SSR endpoints (deals, future /s) can read it.
+  // Mirror into a cookie so SSR endpoints (deals, /s) can read it.
   // 1 year, root path, same site = lax.
   try {
     document.cookie = `${STORAGE_KEY}=${lang}; max-age=31536000; path=/; SameSite=Lax`;
@@ -335,32 +344,129 @@ export function setStoredLang(lang) {
 }
 
 export function currentLang() {
+  try {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (q && LANGS.includes(q)) return q;
+  } catch {}
   const stored = getStoredLang();
   if (stored) return stored;
-  const path = location.pathname;
-  if (path === '/cn' || path === '/cn/') return 'cn';
-  if (path.startsWith('/cn/')) return 'cn';
+  const prefix = location.pathname.match(/^\/(cn|es)(?=\/|$)/);
+  if (prefix) return prefix[1];
   const htmlLang = document.documentElement.lang || '';
   if (htmlLang === 'zh' || htmlLang === 'cn') return 'cn';
+  if (htmlLang === 'es') return 'es';
   return DEFAULT_LANG;
 }
 
-/**
- * Map a path to its counterpart in the other language tree.
- * Returns the same path with /cn stripped or prepended.
- * For EN-only sections (cheatsheets|deals|collection) the caller should
- * use fallbackForMissingLang instead — there is no CN counterpart there.
- */
-export function counterpartPath(path) {
-  if (path === '/' || path === '') return null;
-  if (path.startsWith('/cn/')) return '/' + path.slice(4);
-  if (path === '/cn') return '/';
-  return '/cn' + path;
+/** Canonical URL of this page in another language tree. */
+export function pathForLang(path, lang) {
+  const bare = String(path || '/').replace(/^\/(cn|es)(?=\/|$)/, '') || '/';
+  const clean = bare.startsWith('/') ? bare : '/' + bare;
+  if (lang === 'en') return clean;
+  return `/${lang}${clean === '/' ? '/' : clean}`;
 }
 
 /**
- * True for sections that have no Chinese counterpart yet.
+ * Languages for which this exact page exists. Written into <body> by
+ * normalize-nav from the real filesystem, so the switcher never guesses.
  */
-export function isEnOnlyPath(path) {
-  return /^\/(cheatsheets|deals|collection)(\/|$)/.test(path);
+export function availableLangs() {
+  const raw = document.body?.dataset?.availableLangs;
+  return raw ? raw.split(',').filter((l) => LANGS.includes(l)) : [];
 }
+
+export function hasLangPage(lang) {
+  return availableLangs().includes(lang);
+}
+
+/** Kept for callers that predate the three-language switcher. */
+export function counterpartPath(path) {
+  return pathForLang(path, currentLang() === 'en' ? 'cn' : 'en');
+}
+
+/* ------------------------------ Spanish (es) ------------------------------ */
+/**
+ * Spanish is rolled out incrementally, by editorial choice rather than bulk
+ * machine translation (proposal.md principle 3/4). Untranslated keys fall back
+ * to the English value, so the UI is never blank or half-populated with
+ * placeholders. Add a key here as its page gets a real Spanish version.
+ */
+const ES_OVERRIDES = {
+  'tools.h1': 'Todas las herramientas',
+  'tools.intro': 'Las 17 herramientas de Plobi-kit en un solo lugar. Todas funcionan 100 % dentro de tu navegador: lo que pegas, comprimes o generas nunca sale de tu equipo. Sin cuenta, sin colas, sin marcas de agua.',
+  'tools.section.text': 'Texto y datos',
+  'tools.section.design': 'Diseño y frontend',
+  'tools.section.media': 'Multimedia, QR e IA',
+  'tools.cta.cheatsheets': '¿Buscas una referencia rápida? Consulta las Guías rápidas de cron, Git, regex y más.',
+  'tool.base64.title': 'Codificador / decodificador Base64',
+  'tool.json.title': 'Formateador y validador JSON',
+  'tool.jwt.title': 'Decodificador de JWT',
+  'tool.url.title': 'Codificador / decodificador de URL',
+  'tool.markdown.title': 'Conversor Markdown ↔ HTML',
+  'tool.regex.title': 'Probador de expresiones regulares',
+  'tool.cron.title': 'Visualizador de expresiones cron',
+  'tool.git.title': 'Generador de comandos Git',
+  'tool.colorpalette.title': 'Generador de paletas de color',
+  'tool.glassmorphism.title': 'Generador de efecto glassmorphism',
+  'tool.flexgrid.title': 'Constructor de rejillas Flexbox',
+  'tool.svg.title': 'Biblioteca de iconos SVG',
+  'tool.metatags.title': 'Generador de metaetiquetas',
+  'tool.codeimage.title': 'Generador de imágenes de código',
+  'tool.image.title': 'Compresor de imágenes',
+  'tool.qrcode.title': 'Generador de códigos QR',
+  'tool.prompt.title': 'Asistente de prompts',
+  'cs.h1': 'Guías rápidas',
+  'cs.intro': 'Tablas de referencia concisas para las tareas que buscas una y otra vez.',
+  'cs.cta.guides': 'Ver la biblioteca de guías',
+  'cs.cta.tools': 'Abrir las herramientas',
+  'coll.h1': 'Recursos seleccionados',
+  'coll.intro': 'Sitios y servicios que realmente usamos, con una nota editorial sobre para quién sirve cada uno.',
+  'coll.bar.browse': 'Explorar la colección',
+  'coll.section.developer': 'Herramientas para desarrolladores',
+  'coll.section.design': 'Recursos de diseño',
+  'deals.hub.h1': 'Ofertas y regalos gratis',
+  'deals.hub.intro': 'Promociones 100 % gratis verificadas, recopiladas automáticamente cada día y retiradas al caducar.',
+  'deals.hub.cta': 'Ver todas las ofertas',
+  'deals.hub.category.games': 'Juegos gratis',
+  'deals.hub.category.games.desc': 'Regalos para conservar de Epic y otras tiendas, actualizados a diario.',
+  'deals.hub.category.ai': 'Ofertas de IA',
+  'deals.hub.category.ai.desc': 'Niveles gratuitos de modelos y APIs, revisados a mano.',
+  'deals.hub.category.servers': 'Servidores y VPS',
+  'deals.hub.category.servers.desc': 'Promociones de alojamiento y VPS económicos.',
+  'deals.hub.category.software': 'Software gratis',
+  'deals.hub.category.software.desc': 'Licencias y aplicaciones gratis por tiempo limitado.',
+  'deals.hub.live': 'Disponible ahora',
+  'deals.hub.coming': 'Próximamente',
+  'deals.games.h1': 'Juegos gratis para siempre',
+  'deals.games.live-heading': 'Disponibles ahora',
+  'deals.games.upcoming-heading': 'Próximamente',
+  'deals.games.empty': 'Ahora mismo no hay regalos activos. Vuelve mañana.',
+  'deals.games.badge.live': 'ACTIVO',
+  'deals.games.badge.upcoming': 'PRONTO',
+  'deals.footer.tagline': 'Datos de las tiendas oficiales. Sin enlaces de afiliados, sin descuentos falsos.',
+  'ui.here': 'aquí',
+  'ui.recipes.related': 'Recetas relacionadas',
+  'ui.recipes.git-related': 'Más recetas de Git',
+  'ui.faq': 'Preguntas frecuentes',
+  'ui.cta.try-tool': 'Abrir la herramienta',
+  'ui.full-ref': 'Referencia completa',
+  'ui.crumbs.sheets': 'Guías rápidas',
+  'ui.crumbs.sheet.cron': 'cron',
+  'ui.crumbs.sheet.git': 'Git',
+  'nav.tools': 'Herramientas',
+  'nav.cheatsheets': 'Guías rápidas',
+  'nav.library': 'Biblioteca',
+  'nav.guides': 'Guías',
+  'nav.deals': 'Ofertas',
+  'nav.collection': 'Colección',
+  'nav.about': 'Acerca de',
+  'nav-footer.privacy': 'Privacidad',
+  'nav-footer.terms': 'Términos',
+  'nav-footer.about': 'Acerca de',
+  'nav-footer.contact': 'Contacto',
+  'lib.cat.howto': 'Tutoriales',
+  'lib.cat.privacy': 'Privacidad y seguridad',
+  'lib.related': 'Artículos relacionados',
+};
+
+TRANSLATIONS.es = { ...TRANSLATIONS.en, ...ES_OVERRIDES };

@@ -1,19 +1,25 @@
 /**
- * Plobi-kit Worker â the dynamic layer behind the static toolkit.
+ * Plobi-kit Worker — the dynamic layer behind the static toolkit.
  *
  * Handled here (anything else falls through to static assets, which are
  * served directly by the assets binding and never invoke this Worker):
  *
- *   POST /api/share        create a share link                     â D1
- *   GET  /api/share/:id    share payload as JSON (tool page restore) â D1
+ *   POST /api/share        create a share link                     → D1
+ *   GET  /api/share/:id    share payload as JSON (tool page restore) → D1
  *   GET  /s/:id            server-rendered share page (social-crawler friendly)
- *   POST /api/contact      contact form submission                  â D1
- *   GET  /api/deals        deals JSON feed (?category=games)        â D1
+ *   POST /api/contact      contact form submission                  → D1
+ *   GET  /api/deals        deals JSON feed (?category=games)        → D1
  *   GET  /api/deals/refresh  manual deals refresh (gated by DEBUG_KEY)
- *   GET  /deals            deals hub (SSR)                          â D1
- *   GET  /deals/games      Epic free games (SSR)                    â D1
- *   GET  /deals/:cat       servers | software | ai (SSR)            â D1
+ *   GET  /deals            deals hub (SSR)                          → D1
+ *   GET  /deals/games      Epic free games (SSR)                    → D1
+ *   GET  /deals/:cat       servers | software | ai (SSR)            → D1
+ *   GET  /ai/free-models   AI free-tier leaderboard (SSR)            → D1
+ *   GET  /api/ai-models    free models JSON feed                     → D1
  *   GET  /api/health       liveness probe
+ *
+ *   All SSR pages are also served under /cn/ and /es/ prefixes — real URLs,
+ *   not cookie-only variants, so hreflang points at indexable pages.
+ *   POST /api/share accepts lang: en | cn | es.
  *
  * Design notes:
  *  - D1 (not KV) backs the shares: KV is eventually consistent, which would
@@ -23,11 +29,15 @@
  *    bucket + client IP. Approximate by design (D1 has one writer), which
  *    is fine for abuse damping.
  *  - The share page only renders whitelisted, escaped text server-side.
- *    Tool state is never interpolated into HTML â the tool page fetches it
+ *    Tool state is never interpolated into HTML — the tool page fetches it
  *    as JSON and applies it locally, honoring the privacy-first contract.
  */
 
-import { refreshAllDeals, apiDeals, dealsHubPage, dealsGamesPage, dealsCategoryPage } from './deals.js';
+import {
+  refreshAllDeals, refreshEpicDeals, refreshRedditFGF, refreshFeedDeals, refreshAiSeeds,
+  apiDeals, dealsHubPage, dealsGamesPage, dealsCategoryPage,
+} from './deals.js';
+import { refreshFreeModels, apiFreeModels, freeModelsPage } from './ai-models.js';
 
 const SITE_URL = 'https://plobikit.com';
 const SHARE_TTL_SECONDS = 30 * 24 * 60 * 60;
@@ -36,24 +46,26 @@ const MAX_STATE_BYTES = 12 * 1024;
 const ID_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
 
 const TOOLS = {
-  base64: { en: 'Base64 Encoder / Decoder', cn: 'Base64 ç¼è§£ç å¨' },
-  codeimage: { en: 'Code Screenshot Generator', cn: 'ä»£ç æªå¾çæå¨' },
-  colorpalette: { en: 'Color Palette Generator', cn: 'éè²æ¹æ¡çæå¨' },
-  cron: { en: 'Cron Expression Visualizer', cn: 'Cron è¡¨è¾¾å¼å¯è§å' },
-  flexgrid: { en: 'Flexbox Grid Builder', cn: 'Flexbox ç½æ ¼çæå¨' },
-  git: { en: 'Git Command Builder', cn: 'Git å½ä»¤çæå¨' },
-  glassmorphism: { en: 'Glassmorphism Generator', cn: 'æ¯ç»çææçæå¨' },
-  image: { en: 'Image Compressor', cn: 'å¾çåç¼©å·¥å·' },
-  json: { en: 'JSON Formatter', cn: 'JSON æ ¼å¼åå·¥å·' },
-  jwt: { en: 'JWT Decoder', cn: 'JWT è§£ç å¨' },
-  markdown: { en: 'Markdown Previewer', cn: 'Markdown é¢è§å¨' },
-  metatags: { en: 'Meta Tag Generator', cn: 'Meta æ ç­¾çæå¨' },
-  prompt: { en: 'Prompt Helper', cn: 'Prompt å©æ' },
-  qrcode: { en: 'QR Code Generator', cn: 'äºç»´ç çæå¨' },
-  regex: { en: 'Regex Tester', cn: 'æ­£åè¡¨è¾¾å¼æµè¯å¨' },
-  svg: { en: 'SVG Icon Library', cn: 'SVG å¾æ åº' },
-  url: { en: 'URL Encoder / Decoder', cn: 'URL ç¼è§£ç å¨' },
+  base64: { en: 'Base64 Encoder / Decoder', cn: 'Base64 编解码器', es: 'Codificador / decodificador Base64' },
+  codeimage: { en: 'Code Screenshot Generator', cn: '代码截图生成器', es: 'Generador de capturas de código' },
+  colorpalette: { en: 'Color Palette Generator', cn: '配色方案生成器', es: 'Generador de paletas de color' },
+  cron: { en: 'Cron Expression Visualizer', cn: 'Cron 表达式可视化', es: 'Visualizador de expresiones cron' },
+  flexgrid: { en: 'Flexbox Grid Builder', cn: 'Flexbox 网格生成器', es: 'Constructor de rejillas Flexbox' },
+  git: { en: 'Git Command Builder', cn: 'Git 命令生成器', es: 'Generador de comandos Git' },
+  glassmorphism: { en: 'Glassmorphism Generator', cn: '毛玻璃效果生成器', es: 'Generador glassmorphism' },
+  image: { en: 'Image Compressor', cn: '图片压缩工具', es: 'Compresor de imágenes' },
+  json: { en: 'JSON Formatter', cn: 'JSON 格式化工具', es: 'Formateador JSON' },
+  jwt: { en: 'JWT Decoder', cn: 'JWT 解码器', es: 'Decodificador JWT' },
+  markdown: { en: 'Markdown Previewer', cn: 'Markdown 预览器', es: 'Vista previa de Markdown' },
+  metatags: { en: 'Meta Tag Generator', cn: 'Meta 标签生成器', es: 'Generador de metaetiquetas' },
+  prompt: { en: 'Prompt Helper', cn: 'Prompt 助手', es: 'Asistente de prompts' },
+  qrcode: { en: 'QR Code Generator', cn: '二维码生成器', es: 'Generador de códigos QR' },
+  regex: { en: 'Regex Tester', cn: '正则表达式测试器', es: 'Probador de expresiones regulares' },
+  svg: { en: 'SVG Icon Library', cn: 'SVG 图标库', es: 'Biblioteca de iconos SVG' },
+  url: { en: 'URL Encoder / Decoder', cn: 'URL 编解码器', es: 'Codificador / decodificador de URL' },
 };
+
+const LANGS = ['en', 'cn', 'es'];
 
 export default {
   async fetch(request, env, ctx) {
@@ -67,7 +79,8 @@ export default {
 
   // Daily housekeeping (see triggers.crons in wrangler.jsonc):
   // purge expired share links + stale rate-limit windows, then refresh
-  // every deals source. A failed upstream fetch never blocks cleanup.
+  // every deals source and the AI free-tier snapshot. A failed upstream
+  // fetch never blocks cleanup or the other sources.
   async scheduled(_event, env, _ctx) {
     const now = nowSec();
     await env.DB.batch([
@@ -80,12 +93,23 @@ export default {
     } catch (err) {
       console.error('deals refresh failed:', (err && err.message) || err);
     }
+    try {
+      const n = await refreshFreeModels(env);
+      console.log('free models refresh:', n);
+    } catch (err) {
+      console.error('free models refresh failed:', (err && err.message) || err);
+    }
   },
 };
 
 async function route(request, env, ctx) {
   const url = new URL(request.url);
   let path = url.pathname;
+  // Each language owns a real URL for SSR pages (/cn/deals, /es/deals, ...).
+  // Strip the prefix for routing only; resolveLang() still reads the original
+  // request URL and renders the matching dictionary.
+  const langPrefix = path.match(/^\/(cn|es)(?=\/|$)/);
+  if (langPrefix) path = path.slice(langPrefix[0].length) || '/';
   if (path.length > 1 && path.endsWith('/')) path = path.replace(/\/+$/, '') || '/';
 
   if (path === '/api/health') return json({ ok: true, ts: nowSec() });
@@ -112,7 +136,7 @@ async function route(request, env, ctx) {
     return submitContact(request, env, ctx);
   }
 
-  // Deals vertical (worker-first SSR â see run_worker_first in wrangler.jsonc)
+  // Deals vertical (worker-first SSR — see run_worker_first in wrangler.jsonc)
   if (path === '/deals') return html(await dealsHubPage(request, env), 200);
   if (path === '/deals/games') return html(await dealsGamesPage(request, env), 200);
   const catMatch = path.match(/^\/deals\/(servers|software|ai)$/);
@@ -120,24 +144,43 @@ async function route(request, env, ctx) {
     const page = await dealsCategoryPage(request, env, catMatch[1]);
     if (page) return html(page, 200);
   }
+  if (path === '/ai/free-models') return html(await freeModelsPage(request, env), 200);
   if (path === '/api/deals') return apiDeals(env, request);
+  if (path === '/api/ai-models') return apiFreeModels(env);
 
-  // Manual deals refresh for ops (gated by DEBUG_KEY secret; cron runs daily anyway).
+  // Manual refresh for ops (gated by DEBUG_KEY; cron runs daily anyway).
+  // Every source maps to its real refresher — no dead gog/let aliases and no
+  // "epic" accidentally triggering a full refresh.
   if (path === '/api/deals/refresh') {
     if (!env.DEBUG_KEY || url.searchParams.get('key') !== env.DEBUG_KEY) {
       return json({ ok: false, error: 'forbidden' }, 403);
     }
+    const DISPATCH = {
+      epic: () => refreshEpicDeals(env),
+      fgf: () => refreshRedditFGF(env),
+      ai: () => refreshAiSeeds(env),
+      models: () => refreshFreeModels(env),
+      leb: () => refreshFeedDeals(env, 'leb'),
+      gotd: () => refreshFeedDeals(env, 'gotd'),
+      sos: () => refreshFeedDeals(env, 'sos'),
+    };
     const source = url.searchParams.get('source');
     if (source) {
-      if (!/^(epic|gog|fgf|leb|let|gotd|sos|ai)$/.test(source)) return json({ ok: false, error: 'bad_source' }, 400);
-      const out = source === 'epic'
-        ? await refreshAllDeals(env).then(() => 'epic done')
-        : await import('./deals.js').then((m) => m.refreshFeedDeals(env, source))
-            .then((n) => `${n} upserted`).catch((e) => `failed: ${e.message}`);
-      return json({ ok: true, out });
+      if (!DISPATCH[source]) {
+        return json({ ok: false, error: 'bad_source', available: Object.keys(DISPATCH) }, 400);
+      }
+      try {
+        const upserted = await DISPATCH[source]();
+        return json({ ok: true, source, upserted });
+      } catch (err) {
+        return json({ ok: false, source, error: (err && err.message) || String(err) }, 502);
+      }
     }
-    const out = await refreshAllDeals(env);
-    return json({ ok: true, out });
+    const deals = await refreshAllDeals(env);
+    let models;
+    try { models = await refreshFreeModels(env); }
+    catch (err) { models = `failed: ${(err && err.message) || err}`; }
+    return json({ ok: true, deals, models });
   }
 
   if (path.startsWith('/api/')) return json({ ok: false, error: 'not_found' }, 404);
@@ -164,7 +207,7 @@ async function createShare(request, env, ctx) {
   const tool = typeof body.tool === 'string' ? body.tool : '';
   if (!TOOLS[tool]) return json({ ok: false, error: 'unknown_tool' }, 400);
 
-  const lang = body.lang === 'cn' ? 'cn' : 'en';
+  const lang = LANGS.includes(body.lang) ? body.lang : 'en';
 
   const title = cleanText(body.title, 120);
   if (!title) return json({ ok: false, error: 'missing_title' }, 400);
@@ -291,19 +334,19 @@ async function getSharePage(id, env) {
 }
 
 function sharePageHTML(share) {
-  const lang = share.lang === 'cn' ? 'cn' : 'en';
+  const lang = LANGS.includes(share.lang) ? share.lang : 'en';
   const isCN = lang === 'cn';
   const toolName = (TOOLS[share.tool] && TOOLS[share.tool][lang]) || share.tool;
   const title = escapeHtml(share.title);
   const description = escapeHtml(share.description) ||
-    (isCN ? 'ä¸ä¸ªéè¿ Plobi-kit åäº«çéç½®ã' : 'A setup shared via Plobi-kit.');
+    (isCN ? '一个通过 Plobi-kit 分享的配置。' : 'A setup shared via Plobi-kit.');
   const toolUrl = `${isCN ? '/cn' : ''}/tools/${share.tool}.html?share=${encodeURIComponent(share.id)}`;
-  const openLabel = isCN ? `å¨${toolName}ä¸­æå¼` : `Open in ${toolName}`;
+  const openLabel = isCN ? `在${toolName}中打开` : `Open in ${toolName}`;
   const note = isCN
-    ? 'æ­¤åäº«é¾æ¥å°å¨ 30 å¤©åè¿æãæå¼å·¥å·æ¶ï¼éç½®ä»å¨ä½ çæµè§å¨ä¸­æ¬å°æ¢å¤ã'
+    ? '此分享链接将在 30 天后过期。打开工具时，配置仅在你的浏览器中本地恢复。'
     : 'This share link expires in 30 days. When you open the tool, the setup is restored locally in your browser.';
   const home = isCN ? '/cn/' : '/';
-  const tagline = isCN ? 'éç§ä¼åãå¨é¨å¨æµè§å¨ä¸­è¿è¡çå¼åèå·¥å·ç®±ã' : 'Privacy-first tools that run in your browser.';
+  const tagline = isCN ? '隐私优先、全部在浏览器中运行的开发者工具箱。' : 'Privacy-first tools that run in your browser.';
 
   return `<!DOCTYPE html>
 <html lang="${isCN ? 'zh' : 'en'}">
@@ -357,7 +400,7 @@ function sharePageHTML(share) {
     <a class="cta" href="${toolUrl}">${openLabel} &rarr;</a>
     <p class="note">${note}</p>
   </main>
-  <footer>Powered by <a href="${home}">Plobi-kit</a> â ${tagline}</footer>
+  <footer>Powered by <a href="${home}">Plobi-kit</a> — ${tagline}</footer>
 </body>
 </html>`;
 }
@@ -381,9 +424,9 @@ function expiredHTML() {
 </style>
 </head>
 <body>
-  <h1>Link expired Â· é¾æ¥å·²è¿æ</h1>
-  <p>This share link has expired or does not exist.<br>è¯¥åäº«é¾æ¥å·²è¿ææä¸å­å¨ã</p>
-  <a href="/">Go to Plobi-kit Â· è¿åé¦é¡µ</a>
+  <h1>Link expired · 链接已过期</h1>
+  <p>This share link has expired or does not exist.<br>该分享链接已过期或不存在。</p>
+  <a href="/">Go to Plobi-kit · 返回首页</a>
 </body>
 </html>`;
 }
@@ -407,9 +450,9 @@ function notFoundHTML() {
 </style>
 </head>
 <body>
-  <h1>404 Â· Page not found</h1>
-  <p>The page you are looking for does not exist.<br>é¡µé¢ä¸å­å¨ã</p>
-  <a href="/">Go to Plobi-kit Â· è¿åé¦é¡µ</a>
+  <h1>404 · Page not found</h1>
+  <p>The page you are looking for does not exist.<br>页面不存在。</p>
+  <a href="/">Go to Plobi-kit · 返回首页</a>
 </body>
 </html>`;
 }

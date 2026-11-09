@@ -8,38 +8,46 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/"/>
   </url>
   <url>
     <loc>https://plobikit.com/about</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/about"/>
   </url>
   <url>
     <loc>https://plobikit.com/privacy</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/privacy"/>
   </url>
   <url>
     <loc>https://plobikit.com/terms</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/terms"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/terms"/>
   </url>
 
   <!-- Root Pages (Chinese) -->
@@ -48,32 +56,37 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/about</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/about"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/about"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/privacy</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/privacy"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/terms</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/terms"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/terms"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/terms"/>
   </url>
 
   <!-- Hub Pages (Chinese) -->
@@ -82,12 +95,18 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/"/>
   </url>
 
   <!-- Guides Hub & Articles (English) -->
@@ -96,40 +115,45 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/"/>
   </url>
   <url>
     <loc>https://plobikit.com/contact</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/contact"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/contact"/>
   </url>
   <url>
     <loc>https://plobikit.com/guides/never-paste-secrets</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/never-paste-secrets"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/never-paste-secrets"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/never-paste-secrets"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/never-paste-secrets"/>
   </url>
   <url>
     <loc>https://plobikit.com/guides/cloudflare-email</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/cloudflare-email"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/cloudflare-email"/>
   </url>
   <url>
     <loc>https://plobikit.com/guides/ai-agent-workflows</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/ai-agent-workflows"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/ai-agent-workflows"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/ai-agent-workflows"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/ai-agent-workflows"/>
   </url>
 
   <url>
@@ -137,24 +161,27 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/regex-redos"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/regex-redos"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/regex-redos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/regex-redos"/>
   </url>
   <url>
     <loc>https://plobikit.com/guides/color-60-30-10</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/color-60-30-10"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/color-60-30-10"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/color-60-30-10"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/color-60-30-10"/>
   </url>
   <url>
     <loc>https://plobikit.com/guides/privacy-workflow</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/privacy-workflow"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/privacy-workflow"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/privacy-workflow"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/privacy-workflow"/>
   </url>
 
   <!-- Guides Hub & Articles (Chinese) -->
@@ -163,40 +190,45 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/contact"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/contact"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/guides/never-paste-secrets</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/never-paste-secrets"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/never-paste-secrets"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/never-paste-secrets"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/never-paste-secrets"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/guides/</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/guides/cloudflare-email</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/cloudflare-email"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/cloudflare-email"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/cloudflare-email"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/guides/ai-agent-workflows</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/ai-agent-workflows"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/ai-agent-workflows"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/ai-agent-workflows"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/ai-agent-workflows"/>
   </url>
 
   <url>
@@ -204,24 +236,27 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/regex-redos"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/regex-redos"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/regex-redos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/regex-redos"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/guides/color-60-30-10</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/color-60-30-10"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/color-60-30-10"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/color-60-30-10"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/color-60-30-10"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/guides/privacy-workflow</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/privacy-workflow"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/guides/privacy-workflow"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/guides/privacy-workflow"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/guides/privacy-workflow"/>
   </url>
 
   <!-- Tools Standalone Pages (English) -->
@@ -230,136 +265,153 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/base64"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/base64"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/glassmorphism</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/glassmorphism"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/glassmorphism"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/glassmorphism"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/glassmorphism"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/qrcode</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/qrcode"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/qrcode"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/colorpalette</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/colorpalette"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/colorpalette"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/colorpalette"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/colorpalette"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/regex</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/regex"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/regex"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/git</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/git"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/git"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/cron</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/cron"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/cron"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/cron"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/cron"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/image</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/image"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/json</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/json"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/jwt</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/jwt"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/jwt"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/url</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/url"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/markdown</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/markdown"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/markdown"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/flexgrid</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/flexgrid"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/svg</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/svg"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/metatags</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/metatags"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/prompt</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/prompt"/>
   </url>
   <url>
     <loc>https://plobikit.com/tools/codeimage</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/codeimage"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/codeimage"/>
   </url>
 
 
@@ -369,136 +421,153 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/base64"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/base64"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/base64"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/glassmorphism</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/glassmorphism"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/glassmorphism"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/glassmorphism"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/glassmorphism"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/qrcode</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/qrcode"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/qrcode"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/qrcode"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/colorpalette</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/colorpalette"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/colorpalette"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/colorpalette"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/colorpalette"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/regex</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/regex"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/regex"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/regex"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/git</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/git"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/git"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/git"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/cron</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/cron"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/cron"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/cron"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/cron"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/image</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/image"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/image"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/image"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/json</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/json"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/json"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/json"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/jwt</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/jwt"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/jwt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/jwt"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/url</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/url"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/url"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/url"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/markdown</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/markdown"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/markdown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/markdown"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/flexgrid</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/flexgrid"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/svg</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/svg"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/svg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/svg"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/metatags</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/metatags"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/metatags"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/metatags"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/prompt</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/prompt"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/prompt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/prompt"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/tools/codeimage</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/codeimage"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/codeimage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/codeimage"/>
   </url>
 
   <!-- Collection & Deals (English) -->
@@ -507,30 +576,44 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/"/>
   </url>
   <url>
     <loc>https://plobikit.com/collection/developer-tools</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/developer-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/developer-tools"/>
   </url>
   <url>
     <loc>https://plobikit.com/collection/design-resources</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/design-resources"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/design-resources"/>
   </url>
   <url>
     <loc>https://plobikit.com/deals</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals"/>
   </url>
   <url>
     <loc>https://plobikit.com/deals/games</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/games"/>
   </url>
 
 
@@ -539,54 +622,73 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/tools/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/tools/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/tools/"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/regex</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/regex"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/regex"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/flexgrid</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/flexgrid"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/flexgrid"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/markdown</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/markdown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/markdown"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/http-status</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/http-status"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/http-status"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/html-entities</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/html-entities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/html-entities"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/base64</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/base64"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/base64"/>
   </url>
 
   <url>
@@ -594,174 +696,261 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-minute"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-minute"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-minute"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-5-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-5-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-5-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-5-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-10-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-10-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-10-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-10-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-15-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-15-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-15-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-15-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-30-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-30-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-30-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-30-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-hour</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-hour"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-hour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-hour"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-daily-midnight</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-midnight"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-midnight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-midnight"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-weekday-9am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-weekday-9am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-weekday-9am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-weekday-9am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-weekends-only</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-weekends-only"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-weekends-only"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-weekends-only"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-first-day-of-month</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-first-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-first-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-first-day-of-month"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-last-day-of-month</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-last-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-last-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-last-day-of-month"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-2-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-2-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-2-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-2-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-3-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-3-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-3-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-3-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-4-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-4-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-4-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-4-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-6-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-6-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-6-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-6-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-12-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-12-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-12-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-12-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-2-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-2-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-2-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-2-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-20-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-20-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-20-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-20-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-twice-a-day</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-twice-a-day"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-twice-a-day"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-twice-a-day"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-daily-at-1am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-1am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-1am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-1am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-daily-at-8am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-8am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-8am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-8am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-daily-at-noon</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-noon"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-noon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-noon"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-sunday-midnight</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-sunday-midnight"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-sunday-midnight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-sunday-midnight"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-monday-9am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-monday-9am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-monday-9am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-monday-9am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-friday-5pm</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-friday-5pm"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-friday-5pm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-friday-5pm"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-every-month-on-the-15th</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-month-on-the-15th"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-month-on-the-15th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-month-on-the-15th"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-quarterly</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-quarterly"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-quarterly"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-quarterly"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/cron-yearly-jan-1st</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-yearly-jan-1st"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-yearly-jan-1st"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-yearly-jan-1st"/>
   </url>
 
   <url>
@@ -769,138 +958,184 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-undo-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-undo-last-commit"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-discard-local-changes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-discard-local-changes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-discard-local-changes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-delete-branch</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-delete-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-delete-branch"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-stash-changes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-stash-changes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-stash-changes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-amend-last-commit</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-amend-last-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-amend-last-commit"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-revert-pushed-commit</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-revert-pushed-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-revert-pushed-commit"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-rename-local-branch</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-rename-local-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-rename-local-branch"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-rename-remote-branch</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-rename-remote-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-rename-remote-branch"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-cherry-pick-commit</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-cherry-pick-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-cherry-pick-commit"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-squash-last-n-commits</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-squash-last-n-commits"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-squash-last-n-commits"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-sync-fork</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-sync-fork"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-sync-fork"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-delete-remote-tag</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-delete-remote-tag"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-delete-remote-tag"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-change-commit-author</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-change-commit-author"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-change-commit-author"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-unstage-file</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-unstage-file"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-unstage-file"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-view-commit-history-graph</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-view-commit-history-graph"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-clean-untracked-files</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-clean-untracked-files"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-clean-untracked-files"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-switch-branch</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-switch-branch"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-switch-branch"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-create-branch-from-commit</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-create-branch-from-commit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-create-branch-from-commit"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-stash-include-untracked</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-stash-include-untracked"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-stash-include-untracked"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-pull-overwrite-local</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-pull-overwrite-local"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-pull-overwrite-local"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-resolve-merge-conflict</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-resolve-merge-conflict"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-show-commit-diff</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-show-commit-diff"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-show-commit-diff"/>
   </url>
   <url>
     <loc>https://plobikit.com/cheatsheets/git-tag-release</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/git-tag-release"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/git-tag-release"/>
   </url>
 
   <url>
@@ -908,237 +1143,438 @@
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/collection/platforms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/collection/platforms"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-daily-at-1am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-1am"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-1am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-1am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-1am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-daily-at-8am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-8am"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-8am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-8am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-8am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-midnight-and-noon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-midnight-and-noon"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-daily-at-noon</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-noon"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-at-noon"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-at-noon"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-at-noon"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-daily-midnight</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-midnight"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-daily-midnight"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-daily-midnight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-daily-midnight"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-10-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-10-minutes"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-10-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-10-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-10-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-12-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-12-hours"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-12-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-12-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-12-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-15-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-15-minutes"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-15-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-15-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-15-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-2-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-2-hours"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-2-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-2-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-2-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-2-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-2-minutes"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-2-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-2-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-2-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-20-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-20-minutes"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-20-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-20-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-20-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-3-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-3-hours"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-3-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-3-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-3-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-30-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-30-minutes"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-30-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-30-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-30-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-4-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-4-hours"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-4-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-4-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-4-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-5-minutes</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-5-minutes"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-5-minutes"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-5-minutes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-5-minutes"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-6-hours</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-6-hours"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-6-hours"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-6-hours"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-6-hours"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-friday-5pm</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-friday-5pm"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-friday-5pm"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-friday-5pm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-friday-5pm"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-hour</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-hour"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-hour"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-hour"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-hour"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-minute</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-minute"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-minute"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-minute"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-minute"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-monday-9am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-monday-9am"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-monday-9am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-monday-9am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-monday-9am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-month-on-the-15th</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-month-on-the-15th"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-month-on-the-15th"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-month-on-the-15th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-month-on-the-15th"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-sunday-midnight</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-sunday-midnight"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-sunday-midnight"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-sunday-midnight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-sunday-midnight"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-every-weekday-9am</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-weekday-9am"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-every-weekday-9am"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-every-weekday-9am"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-every-weekday-9am"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-first-day-of-month</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-first-day-of-month"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-first-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-first-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-first-day-of-month"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-last-day-of-month</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-last-day-of-month"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-last-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-last-day-of-month"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-last-day-of-month"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-quarterly</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-quarterly"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-quarterly"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-quarterly"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-quarterly"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-twice-a-day</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-twice-a-day"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-twice-a-day"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-twice-a-day"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-twice-a-day"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-weekends-only</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-weekends-only"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-weekends-only"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-weekends-only"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-weekends-only"/>
   </url>
   <url>
     <loc>https://plobikit.com/cn/cheatsheets/cron-yearly-jan-1st</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-yearly-jan-1st"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/cheatsheets/cron-yearly-jan-1st"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/cheatsheets/cron-yearly-jan-1st"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/cheatsheets/cron-yearly-jan-1st"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/deals</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/deals</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/deals/games</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/games"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/deals/games</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/games"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/games"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/deals/servers</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/servers"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/deals/servers</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/servers"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/deals/servers</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/servers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/servers"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/deals/software</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/software"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/deals/software</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/software"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/deals/software</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/software"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/software"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/deals/ai</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/ai"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/deals/ai</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/ai"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/deals/ai</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/deals/ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/deals/ai"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/ai/free-models</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/ai/free-models"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/cn/ai/free-models</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/ai/free-models"/>
+  </url>
+  <url>
+    <loc>https://plobikit.com/es/ai/free-models</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plobikit.com/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://plobikit.com/cn/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://plobikit.com/es/ai/free-models"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plobikit.com/ai/free-models"/>
   </url>
 </urlset>
