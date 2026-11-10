@@ -93,8 +93,11 @@ const SOURCES = {
   leb: { feed: 'https://lowendbox.com/feed/', category: 'servers', windowDays: 30 },
   // GiveawayOfTheDay's Feedburner feed is gone (502 since 2026-11). This is a
   // live daily software-giveaway feed; titleMatch keeps the coupon posts out.
-  tick: { feed: 'https://giveaway.tickcoupon.com/feed/', category: 'software', windowDays: 7, titleMatch: /giveaway/i },
-  sos: { feed: 'https://www.sharewareonsale.com/feed', category: 'software', windowDays: 7 },
+  // Software licences expire in 24-48h. Treat the RSS as a snapshot, not a
+  // 7-day rolling archive: without this the feed's daily 15 items pile up to
+  // ~80 long-dead giveaways before the ends_at purge ever reaches them.
+  tick: { feed: 'https://giveaway.tickcoupon.com/feed/', category: 'software', windowDays: 7, titleMatch: /giveaway/i, snapshot: true },
+  sos: { feed: 'https://www.sharewareonsale.com/feed', category: 'software', windowDays: 7, snapshot: true },
 };
 
 /**
@@ -192,9 +195,9 @@ async function commitSource(env, source, rows, now, snapshot = false) {
   if (rows.length) await env.DB.batch(rows);
   await purgeSource(env, source, now);
   if (snapshot) {
-    // JSON APIs are full snapshots: if a giveaway disappears from the feed it
-    // was withdrawn, so drop it now instead of leaving it until ends_at.
-    // RSS sources are incremental and keep their publication-window rule.
+    // Full snapshots: if an offer disappears from the feed it was withdrawn,
+    // so drop it now instead of leaving it until ends_at. Server/VPS deals
+    // are the exception — they stay valid for weeks and keep their window.
     await env.DB.prepare('DELETE FROM deals WHERE source = ? AND updated_at < ?')
       .bind(source, now - 3600).run();
   }
@@ -254,7 +257,7 @@ export async function refreshFeedDeals(env, sourceKey) {
       })
     );
   }
-  return commitSource(env, sourceKey, stmts, now);
+  return commitSource(env, sourceKey, stmts, now, !!src.snapshot);
 }
 
 /* ------------------------- Steam store (first party) ---------------------- */

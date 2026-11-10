@@ -133,8 +133,10 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 - **跨源去重**：同一个赠送常被 3 个源同时报道。写入时各存各的（`id` 带源前缀），读取时用
   `ROW_NUMBER() OVER (PARTITION BY lower(trim(title)) ...)` 按 `SOURCE_RANK` 保留一手商店版本；
   hub 计数用 `COUNT(DISTINCT lower(trim(title)))`。这样刷新不会把删掉的条目又写回来。
-- **快照 vs 增量**：JSON API 源按完整快照处理（`commitSource(..., snapshot=true)`），
-  源不再返回的条目按 `updated_at` 立刻删除；RSS 源是增量，保留各自的发布窗口。
+- **快照 vs 增量**：JSON API 源与软件类 RSS（`sos` / `tick`）按完整快照处理
+  （`commitSource(..., snapshot=true)`），源不再返回的条目按 `updated_at` 立刻删除——
+  软件授权 24–48 小时就失效，留 7 天只会堆出一堆死链。只有 `leb` 的 VPS 促销是增量，
+  按发布窗口保留数周。
 - **单源失败不拖垮全站**：`refreshAllDeals` 逐个 try/catch，返回值里逐源标 `N upserted` 或 `failed: ...`。
   Steam 两个端点只要有一个通就照常出数据；两个都挂时保留上一轮的行，不清空。
 - **已退役**：`gotd`（GiveawayOfTheDay / Feedburner）自 2026-11 起返回 502，已换成 `tick`，
