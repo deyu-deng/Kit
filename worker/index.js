@@ -11,7 +11,7 @@
  *   GET  /api/deals        deals JSON feed (?category=games)        → D1
  *   GET  /api/deals/refresh  manual deals refresh (gated by DEBUG_KEY)
  *   GET  /deals            deals hub (SSR)                          → D1
- *   GET  /deals/games      Epic free games (SSR)                    → D1
+ *   GET  /deals/games      free games + Steam free weekends (SSR)    → D1
  *   GET  /deals/:cat       servers | software | ai (SSR)            → D1
  *   GET  /ai/free-models   AI free-tier leaderboard (SSR)            → D1
  *   GET  /api/ai-models    free models JSON feed                     → D1
@@ -35,6 +35,7 @@
 
 import {
   refreshAllDeals, refreshEpicDeals, refreshRedditFGF, refreshFeedDeals, refreshAiSeeds,
+  refreshSteamDeals, refreshFreeToKeep, refreshSteamFreeWeekends, refreshGamerPower,
   apiDeals, dealsHubPage, dealsGamesPage, dealsCategoryPage,
 } from './deals.js';
 import { refreshFreeModels, apiFreeModels, freeModelsPage } from './ai-models.js';
@@ -157,11 +158,15 @@ async function route(request, env, ctx) {
     }
     const DISPATCH = {
       epic: () => refreshEpicDeals(env),
+      steam: () => refreshSteamDeals(env),
+      ftk: () => refreshFreeToKeep(env),
+      ftkfw: () => refreshSteamFreeWeekends(env),
+      gp: () => refreshGamerPower(env),
       fgf: () => refreshRedditFGF(env),
       ai: () => refreshAiSeeds(env),
       models: () => refreshFreeModels(env),
       leb: () => refreshFeedDeals(env, 'leb'),
-      gotd: () => refreshFeedDeals(env, 'gotd'),
+      tick: () => refreshFeedDeals(env, 'tick'),
       sos: () => refreshFeedDeals(env, 'sos'),
     };
     const source = url.searchParams.get('source');

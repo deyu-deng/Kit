@@ -92,10 +92,10 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 | `/s/:id` | GET | 服务端渲染的分享落地页（带 OG meta，社交分享友好） |
 | `/api/contact` | POST | contact 表单。body: `{name, email, message, company?}`，`company` 为蜜罐字段 |
 | `/deals` | GET | 优惠栏目 hub（SSR，worker-first） |
-| `/deals/games` | GET | Epic 喜加一页面（SSR，每日 cron 自动更新，过期自动下架） |
+| `/deals/games` | GET | 免费游戏与 Steam 免费周末（SSR，每日 cron 自动更新，过期自动下架） |
 | `/deals/servers` `/deals/software` `/deals/ai` | GET | 分类优惠页（SSR） |
 | `/ai/free-models` | GET | AI 免费档排行榜（SSR，每日 OpenRouter 快照） |
-| `/api/deals` | GET | 优惠 JSON feed，`?category=games` |
+| `/api/deals` | GET | 优惠 JSON feed，`?category=games`；同标题跨源去重后返回，附 `sources` 来源表 |
 | `/api/ai-models` | GET | 免费模型 JSON feed |
 | `/api/deals/refresh?source=models` | GET | 手动刷新排行榜（需 DEBUG_KEY） |
 | `/api/health` | GET | 存活探测 |
@@ -109,8 +109,36 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 
 排行榜数据源为 OpenRouter 公开 `/api/v1/models`（无需 key）：只保留 prompt 单价为 0 的模型，
 每次快照 upsert 并删除 `updated_at` 落伍的条目，模型不再免费即自动下架。
-`/api/deals/refresh?source=<name>` 的可用值：`epic | fgf | ai | models | leb | gotd | sos`；
-`fgf`（Reddit）对 Cloudflare 出口常返回 403，属 best-effort，失败会在返回值里明确标出。
+
+### 优惠信源
+
+`/api/deals/refresh?source=<name>` 的可用值：
+`epic | steam | ftk | ftkfw | gp | fgf | ai | models | leb | tick | sos`。
+
+| key | 来源 | 拿到什么 | 类别 |
+|---|---|---|---|
+| `epic` | Epic 官方 freeGamesPromotions | 每周喜加一 | games |
+| `steam` | Steam 商店 `search/results?maxprice=free&specials=1` + `featuredcategories` | 100% 折扣限免（含免费 DLC） | games |
+| `ftk` | freetokeep.gg `/api/v1/offers` | Prime Gaming / Epic / GOG / Ubisoft / itch.io / STOVE 的领取后永久保留赠送 | games |
+| `ftkfw` | freetokeep.gg `/api/v1/free-weekends` | Steam 免费周末（限时试玩，**不是**永久保留） | games |
+| `gp` | GamerPower `/api/giveaways` | 跨平台赠送、试玩、DLC（DLC 限量 10 条并排在游戏之后） | games |
+| `fgf` | r/FreeGameFindings | 社区追踪的限免 | games |
+| `leb` | LowEndBox RSS | VPS / 主机促销 | servers |
+| `tick` | Software Giveaway RSS | 每日软件授权赠送 | software |
+| `sos` | SharewareOnSale RSS | 限时免费软件 | software |
+| `ai` / `models` | 人工清单 / OpenRouter | 常青免费档 / $0 模型 | ai / 独立页 |
+
+- **署名义务**：GamerPower 的免费 API 允许商用，但要求可见署名 + 指向 gamerpower.com 的有效链接；
+  freetokeep.gg 亦请求署名。每张卡片的来源标签与页面底部 "Sources & credits" 都带链接，删掉会违反条款。
+- **跨源去重**：同一个赠送常被 3 个源同时报道。写入时各存各的（`id` 带源前缀），读取时用
+  `ROW_NUMBER() OVER (PARTITION BY lower(trim(title)) ...)` 按 `SOURCE_RANK` 保留一手商店版本；
+  hub 计数用 `COUNT(DISTINCT lower(trim(title)))`。这样刷新不会把删掉的条目又写回来。
+- **快照 vs 增量**：JSON API 源按完整快照处理（`commitSource(..., snapshot=true)`），
+  源不再返回的条目按 `updated_at` 立刻删除；RSS 源是增量，保留各自的发布窗口。
+- **单源失败不拖垮全站**：`refreshAllDeals` 逐个 try/catch，返回值里逐源标 `N upserted` 或 `failed: ...`。
+  Steam 两个端点只要有一个通就照常出数据；两个都挂时保留上一轮的行，不清空。
+- **已退役**：`gotd`（GiveawayOfTheDay / Feedburner）自 2026-11 起返回 502，已换成 `tick`，
+  全量刷新时会清掉残留的 `source='gotd'` 行。`fgf`（Reddit）对 Cloudflare 出口常返回 403，属 best-effort。
 
 ## 运维
 
