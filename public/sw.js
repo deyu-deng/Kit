@@ -1,8 +1,8 @@
-const CACHE_NAME = 'plobi-kit-v3';
+const CACHE_NAME = 'plobi-kit-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/cheatsheet.html',
+  '/cheatsheets/',
   '/about.html',
   '/privacy.html',
   '/terms.html',
@@ -15,6 +15,7 @@ const ASSETS_TO_CACHE = [
   '/css/layout.css',
   '/css/tools.css',
   '/js/ads.js',
+  '/js/i18n-content.js',
   '/js/base64.js',
   '/js/colorPalette.js',
   '/js/cronGenerator.js',
@@ -39,7 +40,13 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      // One dead path used to make addAll() reject and abort the whole
+      // install. Cache what exists and log the rest instead.
+      return Promise.allSettled(
+        ASSETS_TO_CACHE.map((path) =>
+          cache.add(path).catch((err) => console.warn('SW precache skipped', path, err.message))
+        )
+      );
     })
   );
   self.skipWaiting();

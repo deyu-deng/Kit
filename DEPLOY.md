@@ -42,7 +42,7 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 52 个配方页掉了 i18n 启动脚本，中文界面在那些页面上完全不生效）：
 
 1. `gen-cheatsheets` / `gen-recipes` / `gen-guides` / `gen-tool-hub` / `gen-collection` — 由数据生成页面
-2. `cleanup` — 全站卫生检查（假广告位、坏标题、缺失 canonical）
+2. `cleanup` — 全站卫生检查（假广告位、坏标题、缺失 canonical、无广告位页面上的孤儿 AdSense 脚本）
 3. `normalize-nav` — 外壳契约：导航、页脚、logo、语言按钮、资源路径、
    内链规范化、内链按语言归位（中文页里的 `/tools/regex` 自动改指 `/cn/tools/regex`，
    没有对应译文的才落回英文）、i18n 启动脚本，**每次构建都会重写所有页面**
@@ -78,6 +78,24 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 2. sitemap 与磁盘页面一一对应、URL 全为规范形式
 3. 站内链接无死链、无 `.html` / `index.html` 这类要多跳一次 307 的写法，
    也没有"译好的页面往英文页跳"的跨语言链接（语言切换按钮除外）
+
+### AdSense 卫生（2026-11 复审）
+
+- **广告位只在真有 `<ins>` 的页面出现**：`cleanup` 会把没有广告位的页面上的
+  `adsbygoogle.js` 脚本整行删掉（复审前 182 页加载脚本、只有 44 页有广告位）。
+  `google-adsense-account` meta 是站点归属验证，全站保留。构建后 `cleanup` 会自检，
+  发现孤儿脚本即失败。
+- **广告初始化**：`js/ads.js` 的 `initAdSlots()` 把每个 `<ins>` 幂等地排入
+  `window.adsbygoogle` 队列。不要改回"给 head 里已加载完的 async 脚本绑 onload"——
+  那个回调不会再触发，广告位永远不会被注册。
+- **文案诚实**：广告被拦截时的 fallback 不能声称"本站不设置追踪 Cookie"，
+  因为页面确实加载 AdSense。中英文两版都指向 `/privacy#cookies` /
+  `/cn/privacy#cookies`，隐私政策第 3 节写清工具输入与广告 Cookie 是两件事。
+- **`sw.js`**：预缓存名单里不能放不存在的路径（`/cheatsheet.html` 曾让
+  `cache.addAll` 整体 reject、SW 装不上）。现在用 `Promise.allSettled`，
+  改 JS 时记得同步升 `CACHE_NAME`。
+- **仍未做（P0）**：EEA/UK/CH 需要的 Google 认证 CMP + Consent Mode v2（TCF v2.3）。
+  没有它只能投 Limited Ads；接 CMP 前不要声称站点已取得同意或提供"撤回同意"入口。
 
 `scripts/` 里原先的四个一次性迁移（`restructure-home.mjs`、`reposition-copy.mjs`、
 `add-nav.mjs`、`fix-logo-hrefs.py`）已删除：它们的效果要么已经固化进手写页（手写页是

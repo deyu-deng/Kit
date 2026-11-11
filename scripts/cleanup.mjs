@@ -8,6 +8,9 @@
  *   3. repair malformed guide markup: an orphan <h2 ...> opening tag
  *      immediately followed by another <h2 ...>, and bare "text</h2>" lines
  *   4. add <link rel="canonical"> where missing (clean URLs: /tools/cron)
+ *   5. remove the AdSense library from pages with no ad slot — 138 pages used
+ *      to load adsbygoogle.js for nothing, which is exactly the "ad code on
+ *      empty/utility pages" pattern reviewers flag
  *
  * Run: node scripts/cleanup.mjs
  */
@@ -40,6 +43,23 @@ function removeFakeAds(s, changes) {
   // its real <ins>, so it never becomes empty).
   s = s.replace(/<div[^>]*class="ad-container[^"]*"[^>]*>\s*<\/div>\s*/g, '');
   if (s !== before) changes.push('removed fake ad units');
+  return s;
+}
+
+/**
+ * The AdSense <script> belongs only on pages that actually render an <ins>.
+ * The publisher-account meta tag stays everywhere: it is the site-ownership
+ * verification code, not an ad request.
+ */
+const AD_SCRIPT_LINE = /^[ \t]*<script\b[^>]*adsbygoogle\.js[^>]*>[ \t]*<\/script>[ \t]*\r?\n?/gim;
+const AD_SCRIPT_COMMENT = /^[ \t]*<!-- Google AdSense Verification Code -->[ \t]*\r?\n/gim;
+
+function pruneOrphanAdScripts(s, changes) {
+  if (/<ins\s[^>]*data-ad-slot=/i.test(s)) return s;
+  const before = s;
+  s = s.replace(AD_SCRIPT_LINE, '');
+  s = s.replace(AD_SCRIPT_COMMENT, '');
+  if (s !== before) changes.push('removed orphan AdSense script');
   return s;
 }
 
@@ -88,6 +108,7 @@ for (const file of listHtmlFiles()) {
   const changes = [];
   let out = original;
   out = removeFakeAds(out, changes);
+  out = pruneOrphanAdScripts(out, changes);
   out = removeMfaFooter(out, changes);
   out = fixBrokenHeadings(out, changes);
   out = addCanonical(out, changes, file);
@@ -109,11 +130,14 @@ for (const file of listHtmlFiles()) {
   if (/Managed legally under AdSense|依据 AdSense/.test(s)) leftovers.push(`${file}: MFA phrase still present`);
   if (/<h2[^>]*>\s*<h2[^>]*>/.test(s)) leftovers.push(`${file}: double <h2> still present`);
   if (!/<link\s+rel="canonical"/i.test(s)) leftovers.push(`${file}: canonical missing`);
+  if (/adsbygoogle\.js/.test(s) && !/<ins\s[^>]*data-ad-slot=/i.test(s)) {
+    leftovers.push(`${file}: AdSense script on a page with no ad slot`);
+  }
 }
 if (leftovers.length) {
   console.log('\nLEFTOVERS (need manual attention):');
   for (const l of leftovers) console.log(`  ! ${l}`);
   process.exitCode = 1;
 } else {
-  console.log('Verification clean: no fake slots, no MFA phrases, no broken h2, all pages have canonicals.');
+  console.log('Verification clean: no fake slots, no MFA phrases, no broken h2, all pages have canonicals, AdSense scripts only on ad-bearing pages.');
 }

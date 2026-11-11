@@ -1,6 +1,6 @@
 /* app.js - Main Application Orchestrator (ES6 Entrypoint) */
 
-import { initAdSenseLazyLoad } from './js/ads.js';
+import { initAdSlots } from './js/ads.js';
 import { translations, updatePageLanguage } from './js/i18n.js';
 import { initBase64Tool } from './js/base64.js';
 import { initGlassmorphismTool } from './js/glassmorphism.js';
@@ -30,7 +30,7 @@ localStorage.setItem('app-lang', currentLang);
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initial State Setup
   updatePageLanguage(currentLang);
-  initAdSenseLazyLoad();
+  initAdSlots();
 
   // 2. Initialize Individual Tools (if elements exist on this page)
   initBase64Tool();
