@@ -89,16 +89,22 @@
         <p style="margin-bottom: 16px;">Google's advertising cookies allow it and its partners to serve ads based on your visit to this site and/or other sites. Their handling of that data is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">Google's Privacy Policy</a> and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">Google's advertising privacy notice</a>. Google acts as an independent controller for this processing; we do not control the cookies it sets.</p>
         <p style="margin-bottom: 16px;"><strong>Your choices.</strong> You can turn off personalised advertising at <a href="https://settings.google.com/ads" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">Google Ads Settings</a>, opt out of third-party vendors' cookie-based ads at <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">www.aboutads.info</a>, and block or delete cookies at any time in your browser settings. Doing so never affects the tools themselves — ads may simply be less relevant or may not load. If you clear your cookies, these choices may need to be made again.</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">4. External Links</h3>
+        <h3 id="consent" style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">4. Consent and Your Choices</h3>
+        <p style="margin-bottom: 16px;">If you are in the EEA, the UK or Switzerland, Google may present a consent message on your first visit, asking whether this site and its advertising partners may use cookies and personal data for personalised ads. That message is delivered by Google's certified consent management platform through the AdSense code already on the site; the choices made there decide whether ads are personalised, non-personalised or limited.</p>
+        <p style="margin-bottom: 16px;">You can change or withdraw that choice at any time using the control below (which appears once a consent message is active on this site), the "Consent settings" link in the footer, or the opt-out links in section 3. Withdrawing consent never affects the tools themselves.</p>
+        <p id="consent-revoke-wrap" hidden style="margin-bottom: 16px;"><a id="consent-revoke-link" href="/privacy#cookies" style="color: var(--success-color); text-decoration: underline;">Privacy and cookie settings</a></p>
+        <p style="margin-bottom: 16px;">Visitors in certain US states may have additional rights regarding the "sale" or "sharing" of personal information; where applicable Google provides a "Do Not Sell or Share" control, and the options in section 3 remain available.</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">5. External Links</h3>
         <p style="margin-bottom: 16px;">Our site may contain links to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">5. Children's Privacy (COPPA Compliance)</h3>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">6. Children's Privacy (COPPA Compliance)</h3>
         <p style="margin-bottom: 16px;">Plobi-kit's services are not directed at children under the age of 13. We do not knowingly collect any personal information from children under 13. The tools themselves collect no personal data from any user (of any age), as all processing is local and client-side; the only personal data we ever hold is what you explicitly submit via a share link or the contact form described above. If you believe that a child under 13 has somehow provided personal information to us through a contact channel, please contact us immediately and we will take steps to remove that information.</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">6. Changes to This Policy</h3>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">7. Changes to This Policy</h3>
         <p style="margin-bottom: 16px;">We reserve the right to make changes to this Privacy Policy at any time. Changes will be reflected by updating the "Last Updated" date at the top of this page. We encourage visitors to review this page periodically. Continued use of Plobi-kit's tools following any updates constitutes acceptance of the revised policy.</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">7. Contact Us</h3>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">8. Contact Us</h3>
         <p style="margin-bottom: 16px;">If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us through our official GitHub repository. You can open an issue or discussion at: <a href="https://github.com/Deng-Deyu/NoCloud" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">github.com/Deng-Deyu/NoCloud</a>. We aim to respond to all legitimate privacy inquiries within 30 days.</p>
       </div>
 
@@ -111,6 +117,7 @@
         <a href="/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">Terms</a>
         <a href="/about" id="nav-footer-about" data-i18n="nav-footer.about">About</a>
         <a href="/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">Contact</a>
+        <a href="/privacy#consent" id="nav-footer-consent" data-i18n="nav-footer.consent">Consent settings</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. All rights reserved.
@@ -134,6 +141,28 @@
     import { applyTranslations, currentLang } from '/js/i18n-content.js';
     import '/app.js';
     applyTranslations(currentLang());
+  </script>
+
+  <!-- Google Privacy & messaging (Funding Choices) revocation API.
+       The consent message itself is deployed by the existing AdSense tag;
+       we only own the revocation entry point. -->
+  <script>
+    (function () {
+      window.googlefc = window.googlefc || {};
+      window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+      window.googlefc.callbackQueue.push({
+        'CONSENT_API_READY': function () {
+          var wrap = document.getElementById('consent-revoke-wrap');
+          if (wrap) wrap.hidden = false;
+        }
+      });
+      var link = document.getElementById('consent-revoke-link');
+      if (link) link.addEventListener('click', function (e) {
+        if (!window.googlefc || typeof window.googlefc.showRevocationMessage !== 'function') return;
+        e.preventDefault();
+        window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
+      });
+    })();
   </script>
 </body>
 </html>

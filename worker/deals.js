@@ -620,7 +620,7 @@ export const UI = {
     navHome: 'Home', navCheatsheets: 'Cheat Sheets', navGuides: 'Guides', navDeals: 'Deals',
     navCollection: 'Collection', navAbout: 'About',
     footerPrivacy: 'Privacy Policy', footerTerms: 'Terms', footerAbout: 'About',
-    footerContact: 'Contact', rights: 'All rights reserved.',
+    footerContact: 'Contact', footerConsent: 'Consent settings', rights: 'All rights reserved.',
     hubTitle: 'Free Deals & Giveaways | Plobi-kit',
     hubDesc: 'Curated freebies with zero junk: free game giveaways, Steam free weekends, AI software deals, server and software promotions — refreshed daily, expired offers removed.',
     hubH1: 'Free Deals & Giveaways',
@@ -661,7 +661,7 @@ export const UI = {
     navHome: '工具首页', navCheatsheets: '速查表', navGuides: '技术教程', navDeals: '优惠活动',
     navCollection: '精选合集', navAbout: '关于我们',
     footerPrivacy: '隐私政策', footerTerms: '服务条款', footerAbout: '关于我们',
-    footerContact: '联系我们', rights: '保留所有权利。',
+    footerContact: '联系我们', footerConsent: '同意设置', rights: '保留所有权利。',
     hubTitle: '免费优惠与限时赠送 | Plobi-kit',
     hubDesc: '精心整理的免费资源：游戏赠送、Steam 免费周末、AI 免费档、服务器与软件促销，每日自动更新，过期自动下架。',
     hubH1: '免费优惠与限时赠送',
@@ -702,7 +702,7 @@ export const UI = {
     navHome: 'Inicio', navCheatsheets: 'Guías rápidas', navGuides: 'Guías', navDeals: 'Ofertas',
     navCollection: 'Colección', navAbout: 'Acerca de',
     footerPrivacy: 'Privacidad', footerTerms: 'Términos', footerAbout: 'Acerca de',
-    footerContact: 'Contacto', rights: 'Todos los derechos reservados.',
+    footerContact: 'Contacto', footerConsent: 'Configuración de consentimiento', rights: 'Todos los derechos reservados.',
     hubTitle: 'Ofertas y regalos gratis | Plobi-kit',
     hubDesc: 'Regalos gratis, fines de semana gratis de Steam, niveles gratuitos de IA y promociones de servidores y software: actualización diaria y baja automática al caducar.',
     hubH1: 'Ofertas y regalos gratis',
@@ -936,6 +936,7 @@ export function shell({ title, description, path, active, content, lang = 'en' }
     ['/terms', t.footerTerms, 'terms'],
     ['/about', t.footerAbout, 'about'],
     ['/contact', t.footerContact, 'contact'],
+    ['/privacy#consent', t.footerConsent, 'consent'],
   ].map(([href, label, key]) =>
     `<a href="${local(href)}" id="nav-footer-${key}">${label}</a>`).join('\n        ');
 

@@ -35,16 +35,19 @@ const LABELS = {
     tools: 'Tools', cheatsheets: 'Cheat Sheets', library: 'Library', deals: 'Deals',
     collection: 'Collection', about: 'About',
     privacy: 'Privacy Policy', terms: 'Terms', contact: 'Contact',
+    consent: 'Consent settings',
   },
   cn: {
     tools: '工具箱', cheatsheets: '速查表', library: '知识库', deals: '优惠活动',
     collection: '精选合集', about: '关于我们',
     privacy: '隐私政策', terms: '服务条款', contact: '联系我们',
+    consent: '同意设置',
   },
   es: {
     tools: 'Herramientas', cheatsheets: 'Guías rápidas', library: 'Biblioteca', deals: 'Ofertas',
     collection: 'Colección', about: 'Acerca de',
     privacy: 'Privacidad', terms: 'Términos', contact: 'Contacto',
+    consent: 'Configuración de consentimiento',
   },
 };
 
@@ -66,12 +69,18 @@ const FOOTER_LINKS = [
   ['terms', '/terms', '/cn/terms', '/es/terms'],
   ['about', '/about', '/cn/about', '/es/about'],
   ['contact', '/contact', '/cn/contact', '/es/contact'],
+  // GDPR / EU user consent policy: a durable revocation entry point in the
+  // footer, pointing at the consent section rather than relying solely on the
+  // link Google injects after a message is published.
+  ['consent', '/privacy#consent', '/cn/privacy#consent', '/es/privacy#consent'],
 ];
 
 const sectionUrl = (section, lang, index) => {
   const pos = LANGS.indexOf(lang) + 1;
   const candidate = section[pos];
-  return index.resolve(candidate) ? candidate : section[1];
+  // A fragment is not part of the on-disk path: /cn/privacy#consent exists
+  // because /cn/privacy does. Resolve the path, return the full URL.
+  return index.resolve(candidate.split('#')[0]) ? candidate : section[1];
 };
 
 function pageContext(file) {
@@ -157,8 +166,11 @@ function canonicalizeUrls(html, selfUrl, index, lang) {
     .split(/(<script[\s\S]*?<\/script>)/g)
     .map((part) => (/^<script/.test(part) ? part : part.replace(/((?:href|src)=")([^"]+)"/g, (m, prefix, raw) => {
       if (EXTERNAL.test(raw)) return m;
+      // URL.pathname drops the fragment; keep it so in-page links survive.
+      const hashAt = raw.indexOf('#');
+      const hash = hashAt >= 0 ? raw.slice(hashAt) : '';
       const served = index.resolve(resolveFrom(selfUrl, raw));
-      return served ? `${prefix}${localize(served, lang, index)}"` : m;
+      return served ? `${prefix}${localize(served, lang, index)}${hash}"` : m;
     })))
     .join('');
 }

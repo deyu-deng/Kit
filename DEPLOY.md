@@ -94,8 +94,49 @@ node scripts/check-links.mjs  # 内链与 canonical 自检
 - **`sw.js`**：预缓存名单里不能放不存在的路径（`/cheatsheet.html` 曾让
   `cache.addAll` 整体 reject、SW 装不上）。现在用 `Promise.allSettled`，
   改 JS 时记得同步升 `CACHE_NAME`。
-- **仍未做（P0）**：EEA/UK/CH 需要的 Google 认证 CMP + Consent Mode v2（TCF v2.3）。
-  没有它只能投 Limited Ads；接 CMP 前不要声称站点已取得同意或提供"撤回同意"入口。
+- **同意管理**：代码侧已就绪，实际生效仍需在 AdSense 后台发布消息，见下一节。
+
+### 同意管理（Google 自带 CMP，免费）
+
+选的是 Google 自己的 Privacy & messaging（原 Funding Choices），不引入第三方账号。
+Google 明确说明：AdSense 发布商**通常不需要重新加标签**——已发布的同意消息由页面上
+现有的 AdSense 代码自动投放；Google CMP 自己写 TCF v2.3 字符串（2026-03-01 起强制）。
+TC 字符串是 CMP 运行时生成的，仓库里没有、也不该有。
+
+因此代码侧**故意不做**两件事：
+- 不注入 `fundingchoicesmessages.google.com/i/...` 脚本（AdSense 标签已负责部署，重复加载无益）；
+- 不写 `gtag('consent','default',...)` shim（本站点没有 gtag.js / GTM，无人消费这些信号；
+  Consent Mode 由后台的 Privacy & messaging 设置控制，客户端再设一次反而可能抢时序）。
+
+代码侧实际做了：
+- 页脚每页都有「Consent settings / 同意设置」入口，指向隐私政策 `#consent`；
+  `normalize-nav` 解析语言化路径时会剥掉 fragment 再查文件，并原样保留 fragment。
+- 隐私政策（EN/ZH）第 4 节写明 EEA/UK/CH 的同意与撤回、美国州级权利，并提供
+  Google 官方 `googlefc.callbackQueue.push(googlefc.showRevocationMessage)` 撤回控件。
+  该控件**只在 `CONSENT_API_READY` 回调触发后出现**（即后台消息确实已发布），
+  未就绪时链接回退到第 3 节的退出方式，不会出现点了没反应的死链。
+- 文案用条件式（"may present / 可能会展示"），后台消息发布前也成立。
+
+#### 需要账号操作、仓库无法代劳的步骤
+
+1. 登录 AdSense → 左侧「隐私权和消息」(`Privacy & messaging`)。
+2. **欧洲法规 (GDPR) 消息**：创建 → 选择网站 `plobikit.com` →
+   隐私权政策网址填 `https://plobikit.com/privacy` → 选 IAB TCF 与供应商列表
+   （Google 必须在内）→ 按钮建议 `Consent / Do not consent / Manage options` → **发布**。
+   Google CMP 会自动写 TCF v2.3 字符串，无需手工迁移版本。
+3. **美国州级法规消息**：定向选 `All current and future supported US States` → 发布。
+4. 确认站点在 AdSense 里已获批且页面含 AdSense 代码（本站已满足）。
+
+#### 发布后怎么验证（别只看代码）
+
+- 用 EEA / 英国 / 瑞士出口的 IP（VPN）打开首页，应看到同意消息；
+  或在 URL 加 `?fc=alwaysshow` 强制预览（Google 官方测试参数）。
+- DevTools Console：`typeof window.__tcfapi` 应为 `function`，`window.googlefc` 存在。
+- 用 TCF 字符串解码器确认版本 **v2.3**、disclosed vendors 段含 Google；
+  缺 disclosed vendors 会返回 error 1.4 并降级 Limited Ads。
+- 打开 `/privacy#consent`，「Privacy and cookie settings」按钮应可见，
+  点击后重新弹出同意消息（`showRevocationMessage`）。
+- AdSense 后台看 EEA 流量的 Limited Ads 占比是否下降、consent 报告是否正常。
 
 `scripts/` 里原先的四个一次性迁移（`restructure-home.mjs`、`reposition-copy.mjs`、
 `add-nav.mjs`、`fix-logo-hrefs.py`）已删除：它们的效果要么已经固化进手写页（手写页是

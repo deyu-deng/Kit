@@ -70,13 +70,19 @@
         <p style="margin-bottom: 16px;">借助广告 Cookie，Google 及其合作伙伴可以基于您访问本站和/或其他网站的记录投放广告。这部分数据的处理遵循 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">Google 隐私政策</a> 与 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">Google 广告隐私说明</a>。Google 是这项处理的独立数据控制者，我们无法控制它设置的 Cookie。</p>
         <p style="margin-bottom: 16px;"><strong>您可以这样管理：</strong>在 <a href="https://settings.google.com/ads" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">Google 广告设置</a> 中关闭个性化广告，在 <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color: var(--success-color); text-decoration: underline;">www.aboutads.info</a> 退出第三方广告商的 Cookie 广告，或随时在浏览器设置里拦截、清除 Cookie。这些操作不影响任何工具的使用，只是广告可能变得不相关或不再加载。清除 Cookie 后，上述选择可能需要重新设置。</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">4. 外部链接</h3>
+        <h3 id="consent" style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">4. 同意与撤回</h3>
+        <p style="margin-bottom: 16px;">如果您位于欧洲经济区、英国或瑞士，首次访问时 Google 可能会展示一条同意消息，询问本网站及其广告合作方能否使用 Cookie 与个人数据投放个性化广告。该消息由 Google 认证的意见征求平台通过本页已有的 AdSense 代码投放；您在其中的选择决定广告是个性化、非个性化还是受限投放。</p>
+        <p style="margin-bottom: 16px;">您可以随时更改或撤回这一选择：使用下方控件（当本站的同意消息生效后出现）、页脚的「同意设置」链接，或第 3 节中的退出链接。撤回同意不会影响任何工具的使用。</p>
+        <p id="consent-revoke-wrap" hidden style="margin-bottom: 16px;"><a id="consent-revoke-link" href="/cn/privacy#cookies" style="color: var(--success-color); text-decoration: underline;">隐私和 Cookie 设置</a></p>
+        <p style="margin-bottom: 16px;">美国部分州的访客可能就个人信息的「出售」或「共享」享有额外权利；适用时 Google 会提供「不出售或共享」控件，第 3 节中的选项也始终可用。</p>
+
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">5. 外部链接</h3>
         <p style="margin-bottom: 16px;">我们的网站可能包含指向非我们运营的外部网站的链接。请注意，我们无法控制这些外部网站的内容和隐私政策，且不对其各自的隐私行为承担任何法律责任。</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">5. 政策变更</h3>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">6. 政策变更</h3>
         <p style="margin-bottom: 16px;">我们保留随时修改本隐私政策的权利。政策如有变更,会更新页面顶部的"最近更新"日期。变更后您继续使用 Plobi-kit 即视为接受修订后的政策。</p>
 
-        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">6. 联系信息</h3>
+        <h3 style="color: var(--text-main); font-size: 18px; margin: 28px 0 12px 0;">7. 联系信息</h3>
         <p style="margin-bottom: 16px;">如果您对本隐私声明有任何疑问,欢迎通过我们的公共反馈渠道或页面内的留言表单直接联系我们。</p>
 </div>
 
@@ -89,6 +95,7 @@
         <a href="/cn/terms" id="nav-footer-terms" data-i18n="nav-footer.terms">服务条款</a>
         <a href="/cn/about" id="nav-footer-about" data-i18n="nav-footer.about">关于我们</a>
         <a href="/cn/contact" id="nav-footer-contact" data-i18n="nav-footer.contact">联系我们</a>
+        <a href="/cn/privacy#consent" id="nav-footer-consent" data-i18n="nav-footer.consent">同意设置</a>
       </div>
       <div class="copyright" id="nav-footer-copy">
         &copy; 2026 Plobi. 保留所有权利。
@@ -112,6 +119,28 @@
     import { applyTranslations, currentLang } from '/js/i18n-content.js';
     import '/app.js';
     applyTranslations(currentLang());
+  </script>
+
+  <!-- Google Privacy & messaging (Funding Choices) revocation API.
+       The consent message itself is deployed by the existing AdSense tag;
+       we only own the revocation entry point. -->
+  <script>
+    (function () {
+      window.googlefc = window.googlefc || {};
+      window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+      window.googlefc.callbackQueue.push({
+        'CONSENT_API_READY': function () {
+          var wrap = document.getElementById('consent-revoke-wrap');
+          if (wrap) wrap.hidden = false;
+        }
+      });
+      var link = document.getElementById('consent-revoke-link');
+      if (link) link.addEventListener('click', function (e) {
+        if (!window.googlefc || typeof window.googlefc.showRevocationMessage !== 'function') return;
+        e.preventDefault();
+        window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
+      });
+    })();
   </script>
 </body>
 </html>
